@@ -1,5 +1,5 @@
 // Copyright (c) 2009-2012 The Bitcoin developers
-// Copyright (c) 2015-2019 The PIVX developers
+// Copyright (c) 2020 The BCZ developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -7,9 +7,7 @@
 #include "db.h"
 #include "init.h"
 #include "main.h"
-#include "masternode-budget.h"
 #include "masternode-payments.h"
-#include "masternode-sync.h"
 #include "masternodeconfig.h"
 #include "masternodeman.h"
 #include "rpc/server.h"
@@ -19,6 +17,32 @@
 
 #include <boost/tokenizer.hpp>
 #include <fstream>
+
+UniValue getpoolinfo(const UniValue& params, bool fHelp)
+{
+    if (fHelp || params.size() != 0)
+        throw std::runtime_error(
+            "getpoolinfo\n"
+            "\nReturns anonymous pool-related information\n"
+
+            "\nResult:\n"
+            "{\n"
+            "  \"current\": \"addr\",    (string) BCZ address of current masternode\n"
+            "  \"state\": xxxx,        (string) unknown\n"
+            "  \"entries\": xxxx,      (numeric) Number of entries\n"
+            "  \"accepted\": xxxx,     (numeric) Number of entries accepted\n"
+            "}\n"
+
+            "\nExamples:\n" +
+            HelpExampleCli("getpoolinfo", "") + HelpExampleRpc("getpoolinfo", ""));
+
+    UniValue obj(UniValue::VOBJ);
+    obj.push_back(Pair("current_masternode", mnodeman.GetCurrentMasterNode()->addr.ToString()));
+    obj.push_back(Pair("state", obfuScationPool.GetState()));
+    obj.push_back(Pair("entries", obfuScationPool.GetEntriesCount()));
+    obj.push_back(Pair("entries_accepted", obfuScationPool.GetCountEntriesAccepted()));
+    return obj;
+}
 
 UniValue listmasternodes(const UniValue& params, bool fHelp)
 {
@@ -42,7 +66,7 @@ UniValue listmasternodes(const UniValue& params, bool fHelp)
             "    \"outidx\": n,         (numeric) Collateral transaction output index\n"
             "    \"pubkey\": \"key\",   (string) Masternode public key used for message broadcasting\n"
             "    \"status\": s,         (string) Status (ENABLED/EXPIRED/REMOVE/etc)\n"
-            "    \"addr\": \"addr\",      (string) Masternode PIVX address\n"
+            "    \"addr\": \"addr\",      (string) Masternode BCZ address\n"
             "    \"version\": v,        (numeric) Masternode protocol version\n"
             "    \"lastseen\": ttt,     (numeric) The time in seconds since epoch (Jan 1 1970 GMT) of the last seen\n"
             "    \"activetime\": ttt,   (numeric) The time in seconds since epoch (Jan 1 1970 GMT) masternode has been active\n"
@@ -80,7 +104,7 @@ UniValue listmasternodes(const UniValue& params, bool fHelp)
             std::string strHost;
             int port;
             SplitHostPort(mn->addr.ToString(), port, strHost);
-            CNetAddr node = CNetAddr(strHost);
+            CNetAddr node = CNetAddr(strHost, false);
             std::string strNetwork = GetNetworkName(node.GetNetwork());
 
             obj.push_back(Pair("rank", (strStatus == "ENABLED" ? s.first : 0)));
@@ -113,13 +137,13 @@ UniValue masternodeconnect(const UniValue& params, bool fHelp)
             "1. \"address\"     (string, required) IP or net address to connect to\n"
 
             "\nExamples:\n" +
-            HelpExampleCli("masternodeconnect", "\"192.168.0.6:51472\"") + HelpExampleRpc("masternodeconnect", "\"192.168.0.6:51472\""));
+            HelpExampleCli("masternodeconnect", "\"192.168.0.6:29500\"") + HelpExampleRpc("masternodeconnect", "\"192.168.0.6:29500\""));
 
     std::string strAddress = params[0].get_str();
 
     CService addr = CService(strAddress);
 
-    CNode* pnode = ConnectNode((CAddress)addr, NULL, true);
+    CNode* pnode = ConnectNode((CAddress)addr, NULL, false);
     if (pnode) {
         pnode->Release();
         return NullUniValue;
@@ -138,7 +162,7 @@ UniValue getmasternodecount (const UniValue& params, bool fHelp)
             "\nResult:\n"
             "{\n"
             "  \"total\": n,        (numeric) Total masternodes\n"
-            "  \"stable\": n,       (numeric) Stable count\n"
+            "  \"obfcompat\": n,    (numeric) Obfuscation Compatible\n"
             "  \"enabled\": n,      (numeric) Enabled masternodes\n"
             "  \"inqueue\": n       (numeric) Masternodes in queue\n"
             "}\n"
@@ -156,7 +180,7 @@ UniValue getmasternodecount (const UniValue& params, bool fHelp)
     mnodeman.CountNetworks(ActiveProtocol(), ipv4, ipv6, onion);
 
     obj.push_back(Pair("total", mnodeman.size()));
-    obj.push_back(Pair("stable", mnodeman.stable_size()));
+    obj.push_back(Pair("obfcompat", mnodeman.CountEnabled(ActiveProtocol())));
     obj.push_back(Pair("enabled", mnodeman.CountEnabled()));
     obj.push_back(Pair("inqueue", nCount));
     obj.push_back(Pair("ipv4", ipv4));
@@ -171,25 +195,24 @@ UniValue masternodecurrent (const UniValue& params, bool fHelp)
     if (fHelp || (params.size() != 0))
         throw std::runtime_error(
             "masternodecurrent\n"
-            "\nGet current masternode winner (scheduled to be paid next).\n"
+            "\nGet current masternode winner\n"
 
             "\nResult:\n"
             "{\n"
             "  \"protocol\": xxxx,        (numeric) Protocol version\n"
             "  \"txhash\": \"xxxx\",      (string) Collateral transaction hash\n"
             "  \"pubkey\": \"xxxx\",      (string) MN Public key\n"
-            "  \"lastseen\": xxx,         (numeric) Time since epoch of last seen\n"
-            "  \"activeseconds\": xxx,    (numeric) Seconds MN has been active\n"
+            "  \"lastseen\": xxx,       (numeric) Time since epoch of last seen\n"
+            "  \"activeseconds\": xxx,  (numeric) Seconds MN has been active\n"
             "}\n"
 
             "\nExamples:\n" +
             HelpExampleCli("masternodecurrent", "") + HelpExampleRpc("masternodecurrent", ""));
 
-    const int nHeight = WITH_LOCK(cs_main, return chainActive.Height() + 1);
-    int nCount = 0;
-    CMasternode* winner = mnodeman.GetNextMasternodeInQueueForPayment(nHeight, true, nCount);
+    CMasternode* winner = mnodeman.GetCurrentMasterNode(1);
     if (winner) {
         UniValue obj(UniValue::VOBJ);
+
         obj.push_back(Pair("protocol", (int64_t)winner->protocolVersion));
         obj.push_back(Pair("txhash", winner->vin.prevout.hash.ToString()));
         obj.push_back(Pair("pubkey", CBitcoinAddress(winner->pubKeyCollateralAddress.GetID()).ToString()));
@@ -233,7 +256,7 @@ bool StartMasternodeEntry(UniValue& statusObjRet, CMasternodeBroadcast& mnbRet, 
         return false;
     }
 
-    CTxIn vin = CTxIn(uint256S(mne.getTxHash()), uint32_t(nIndex));
+    CTxIn vin = CTxIn(uint256(mne.getTxHash()), uint32_t(nIndex));
     CMasternode* pmn = mnodeman.Find(vin);
     if (pmn != NULL) {
         if (strCommand == "missing") return false;
@@ -408,7 +431,7 @@ UniValue startmasternode (const UniValue& params, bool fHelp)
 
         if(!found) {
             statusObj.push_back(Pair("success", false));
-            statusObj.push_back(Pair("error_message", "Could not find alias in config. Verify with listmasternodeconf."));
+            statusObj.push_back(Pair("error_message", "Could not find alias in config. Verify with list-conf."));
         }
 
         return statusObj;
@@ -507,7 +530,7 @@ UniValue listmasternodeconf (const UniValue& params, bool fHelp)
         int nIndex;
         if(!mne.castOutputIndex(nIndex))
             continue;
-        CTxIn vin = CTxIn(uint256S(mne.getTxHash()), uint32_t(nIndex));
+        CTxIn vin = CTxIn(uint256(mne.getTxHash()), uint32_t(nIndex));
         CMasternode* pmn = mnodeman.Find(vin);
 
         std::string strStatus = pmn ? pmn->Status() : "MISSING";
@@ -542,7 +565,7 @@ UniValue getmasternodestatus (const UniValue& params, bool fHelp)
             "  \"txhash\": \"xxxx\",      (string) Collateral transaction hash\n"
             "  \"outputidx\": n,        (numeric) Collateral transaction output index number\n"
             "  \"netaddr\": \"xxxx\",     (string) Masternode network address\n"
-            "  \"addr\": \"xxxx\",        (string) PIVX address for masternode payments\n"
+            "  \"addr\": \"xxxx\",        (string) BCZ address for masternode payments\n"
             "  \"status\": \"xxxx\",      (string) Masternode status\n"
             "  \"message\": \"xxxx\"      (string) Masternode status message\n"
             "}\n"
@@ -584,7 +607,7 @@ UniValue getmasternodewinners (const UniValue& params, bool fHelp)
             "  {\n"
             "    \"nHeight\": n,           (numeric) block height\n"
             "    \"winner\": {\n"
-            "      \"address\": \"xxxx\",    (string) PIVX MN Address\n"
+            "      \"address\": \"xxxx\",    (string) BCZ MN Address\n"
             "      \"nVotes\": n,          (numeric) Number of votes for winner\n"
             "    }\n"
             "  }\n"
@@ -597,7 +620,7 @@ UniValue getmasternodewinners (const UniValue& params, bool fHelp)
             "    \"nHeight\": n,           (numeric) block height\n"
             "    \"winner\": [\n"
             "      {\n"
-            "        \"address\": \"xxxx\",  (string) PIVX MN Address\n"
+            "        \"address\": \"xxxx\",  (string) BCZ MN Address\n"
             "        \"nVotes\": n,        (numeric) Number of votes for winner\n"
             "      }\n"
             "      ,...\n"
@@ -702,7 +725,7 @@ UniValue getmasternodescores (const UniValue& params, bool fHelp)
 
     std::vector<CMasternode> vMasternodes = mnodeman.GetFullMasternodeVector();
     for (int nHeight = chainActive.Tip()->nHeight - nLast; nHeight < chainActive.Tip()->nHeight + 20; nHeight++) {
-        uint256 nHigh;
+        uint256 nHigh = 0;
         CMasternode* pBestMasternode = NULL;
         for (CMasternode& mn : vMasternodes) {
             uint256 n = mn.CalculateScore(1, nHeight - 100);
@@ -803,7 +826,7 @@ UniValue createmasternodebroadcast(const UniValue& params, bool fHelp)
 
         if(!found) {
             statusObj.push_back(Pair("success", false));
-            statusObj.push_back(Pair("error_message", "Could not find alias in config. Verify with listmasternodeconf."));
+            statusObj.push_back(Pair("error_message", "Could not find alias in config. Verify with list-conf."));
         }
 
         return statusObj;

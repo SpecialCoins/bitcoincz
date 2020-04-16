@@ -1,6 +1,6 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2013 The Bitcoin developers
-// Copyright (c) 2016-2020 The PIVX developers
+// Copyright (c) 2020 The BCZ developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -9,14 +9,8 @@
 
 #include "amount.h"
 #include "wallet/db.h"
-#include "wallet/hdchain.h"
 #include "key.h"
 #include "keystore.h"
-#include "script/keyorigin.h"
-#include "zpiv/zerocoin.h"
-#include "libzerocoin/Accumulator.h"
-#include "libzerocoin/Denominations.h"
-#include "zpiv/zpivtracker.h"
 
 #include <list>
 #include <stdint.h>
@@ -33,9 +27,6 @@ class CMasterKey;
 class CScript;
 class CWallet;
 class CWalletTx;
-class CDeterministicMint;
-class CZerocoinMint;
-class CZerocoinSpend;
 class uint160;
 class uint256;
 
@@ -52,16 +43,9 @@ enum DBErrors {
 class CKeyMetadata
 {
 public:
-    // Metadata versions
-    static const int VERSION_BASIC = 1;
-    static const int VERSION_WITH_KEY_ORIGIN = 12;
-    // Active version
-    static const int CURRENT_VERSION = VERSION_WITH_KEY_ORIGIN;
-
+    static const int CURRENT_VERSION = 1;
     int nVersion;
     int64_t nCreateTime; // 0 means unknown
-    CKeyID hd_seed_id; //id of the HD seed used to derive this key
-    KeyOriginInfo key_origin; // Key origin info with path and fingerprint
 
     CKeyMetadata()
     {
@@ -69,7 +53,7 @@ public:
     }
     CKeyMetadata(int64_t nCreateTime_)
     {
-        SetNull();
+        nVersion = CKeyMetadata::CURRENT_VERSION;
         nCreateTime = nCreateTime_;
     }
 
@@ -79,24 +63,14 @@ public:
     inline void SerializationOp(Stream& s, Operation ser_action, int nType, int nVersion)
     {
         READWRITE(this->nVersion);
+        nVersion = this->nVersion;
         READWRITE(nCreateTime);
-        if (HasKeyOrigin()) {
-            READWRITE(hd_seed_id);
-            READWRITE(key_origin);
-        }
     }
 
     void SetNull()
     {
         nVersion = CKeyMetadata::CURRENT_VERSION;
         nCreateTime = 0;
-        hd_seed_id.SetNull();
-        key_origin.clear();
-    }
-
-    bool HasKeyOrigin() const
-    {
-        return this->nVersion >= VERSION_WITH_KEY_ORIGIN;
     }
 };
 
@@ -134,9 +108,8 @@ public:
 
     bool WriteOrderPosNext(int64_t nOrderPosNext);
 
-    bool WriteStakeSplitThreshold(const CAmount& nStakeSplitThreshold);
-    bool WriteUseCustomFee(bool fUse);
-    bool WriteCustomFeeValue(const CAmount& nCustomFee);
+    // presstab
+    bool WriteStakeSplitThreshold(uint64_t nStakeSplitThreshold);
     bool WriteMultiSend(std::vector<std::pair<std::string, int> > vMultiSend);
     bool EraseMultiSend(std::vector<std::pair<std::string, int> > vMultiSend);
     bool WriteMSettings(bool fMultiSendStake, bool fMultiSendMasternode, int nLastMultiSendHeight);
@@ -157,9 +130,6 @@ public:
     bool ReadAccount(const std::string& strAccount, CAccount& account);
     bool WriteAccount(const std::string& strAccount, const CAccount& account);
 
-    //! write the hdchain model (external/internal chain child index counter)
-    bool WriteHDChain(const CHDChain& chain);
-
     /// Write destination data key,value tuple to database
     bool WriteDestData(const std::string& address, const std::string& key, const std::string& value);
     /// Erase destination data tuple from wallet database
@@ -174,39 +144,6 @@ public:
     DBErrors ZapWalletTx(CWallet* pwallet, std::vector<CWalletTx>& vWtx);
     static bool Recover(CDBEnv& dbenv, std::string filename, bool fOnlyKeys);
     static bool Recover(CDBEnv& dbenv, std::string filename);
-
-    bool WriteDeterministicMint(const CDeterministicMint& dMint);
-    bool ReadDeterministicMint(const uint256& hashPubcoin, CDeterministicMint& dMint);
-    bool EraseDeterministicMint(const uint256& hashPubcoin);
-    bool WriteZerocoinMint(const CZerocoinMint& zerocoinMint);
-    bool EraseZerocoinMint(const CZerocoinMint& zerocoinMint);
-    bool ReadZerocoinMint(const CBigNum &bnPubcoinValue, CZerocoinMint& zerocoinMint);
-    bool ReadZerocoinMint(const uint256& hashPubcoin, CZerocoinMint& mint);
-    bool ArchiveMintOrphan(const CZerocoinMint& zerocoinMint);
-    bool ArchiveDeterministicOrphan(const CDeterministicMint& dMint);
-    bool UnarchiveZerocoinMint(const uint256& hashPubcoin, CZerocoinMint& mint);
-    bool UnarchiveDeterministicMint(const uint256& hashPubcoin, CDeterministicMint& dMint);
-    std::list<CZerocoinMint> ListMintedCoins();
-    std::list<CDeterministicMint> ListDeterministicMints();
-    std::list<CZerocoinSpend> ListSpentCoins();
-    std::list<CBigNum> ListSpentCoinsSerial();
-    std::list<CZerocoinMint> ListArchivedZerocoins();
-    std::list<CDeterministicMint> ListArchivedDeterministicMints();
-    bool WriteZerocoinSpendSerialEntry(const CZerocoinSpend& zerocoinSpend);
-    bool EraseZerocoinSpendSerialEntry(const CBigNum& serialEntry);
-    bool ReadZerocoinSpendSerialEntry(const CBigNum& bnSerial);
-    bool WriteCurrentSeedHash(const uint256& hashSeed);
-    bool ReadCurrentSeedHash(uint256& hashSeed);
-    bool WriteZPIVSeed(const uint256& hashSeed, const std::vector<unsigned char>& seed);
-    bool ReadZPIVSeed(const uint256& hashSeed, std::vector<unsigned char>& seed);
-    bool ReadZPIVSeed_deprecated(uint256& seed);
-    bool EraseZPIVSeed();
-    bool EraseZPIVSeed_deprecated();
-
-    bool WriteZPIVCount(const uint32_t& nCount);
-    bool ReadZPIVCount(uint32_t& nCount);
-    std::map<uint256, std::vector<std::pair<uint256, uint32_t> > > MapMintPool();
-    bool WriteMintPoolPair(const uint256& hashMasterSeed, const uint256& hashPubcoin, const uint32_t& nCount);
 
 private:
     CWalletDB(const CWalletDB&);

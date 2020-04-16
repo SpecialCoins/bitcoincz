@@ -1,5 +1,5 @@
 // Copyright (c) 2012-2014 The Bitcoin developers
-// Copyright (c) 2015-2019 The PIVX developers
+// Copyright (c) 2020 The BCZ developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -54,14 +54,14 @@ bool CCoins::Spend(const COutPoint& out, CTxInUndo& undo)
 bool CCoins::Spend(int nPos)
 {
     CTxInUndo undo;
-    COutPoint out(UINT256_ZERO, nPos);
+    COutPoint out(0, nPos);
     return Spend(out, undo);
 }
 
 
 bool CCoinsView::GetCoins(const uint256& txid, CCoins& coins) const { return false; }
 bool CCoinsView::HaveCoins(const uint256& txid) const { return false; }
-uint256 CCoinsView::GetBestBlock() const { return UINT256_ZERO; }
+uint256 CCoinsView::GetBestBlock() const { return uint256(0); }
 bool CCoinsView::BatchWrite(CCoinsMap& mapCoins, const uint256& hashBlock) { return false; }
 bool CCoinsView::GetStats(CCoinsStats& stats) const { return false; }
 
@@ -76,7 +76,7 @@ bool CCoinsViewBacked::GetStats(CCoinsStats& stats) const { return base->GetStat
 
 CCoinsKeyHasher::CCoinsKeyHasher() : salt(GetRandHash()) {}
 
-CCoinsViewCache::CCoinsViewCache(CCoinsView* baseIn) : CCoinsViewBacked(baseIn), hasModifier(false) {}
+CCoinsViewCache::CCoinsViewCache(CCoinsView* baseIn) : CCoinsViewBacked(baseIn), hasModifier(false), hashBlock(0) {}
 
 CCoinsViewCache::~CCoinsViewCache()
 {
@@ -152,7 +152,7 @@ bool CCoinsViewCache::HaveCoins(const uint256& txid) const
 
 uint256 CCoinsViewCache::GetBestBlock() const
 {
-    if (hashBlock.IsNull())
+    if (hashBlock == uint256(0))
         hashBlock = base->GetBestBlock();
     return hashBlock;
 }
@@ -223,10 +223,6 @@ CAmount CCoinsViewCache::GetValueIn(const CTransaction& tx) const
     if (tx.IsCoinBase())
         return 0;
 
-    //todo are there any security precautions to take here?
-    if (tx.HasZerocoinSpendInputs())
-        return tx.GetZerocoinSpent();
-
     CAmount nResult = 0;
     for (unsigned int i = 0; i < tx.vin.size(); i++)
         nResult += GetOutputFor(tx.vin[i]).nValue;
@@ -236,7 +232,7 @@ CAmount CCoinsViewCache::GetValueIn(const CTransaction& tx) const
 
 bool CCoinsViewCache::HaveInputs(const CTransaction& tx) const
 {
-    if (!tx.IsCoinBase() && !tx.HasZerocoinSpendInputs()) {
+    if (!tx.IsCoinBase()) {
         for (unsigned int i = 0; i < tx.vin.size(); i++) {
             const COutPoint& prevout = tx.vin[i].prevout;
             const CCoins* coins = AccessCoins(prevout.hash);

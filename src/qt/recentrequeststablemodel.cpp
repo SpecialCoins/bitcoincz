@@ -1,5 +1,5 @@
 // Copyright (c) 2011-2014 The Bitcoin developers
-// Copyright (c) 2017-2019 The PIVX developers
+// Copyright (c) 2020 The BCZ developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -10,8 +10,6 @@
 #include "guiutil.h"
 #include "optionsmodel.h"
 #include "streams.h"
-
-#include <algorithm>
 
 
 RecentRequestsTableModel::RecentRequestsTableModel(CWallet* wallet, WalletModel* parent) : walletModel(parent)
@@ -28,7 +26,7 @@ RecentRequestsTableModel::RecentRequestsTableModel(CWallet* wallet, WalletModel*
     /* These columns must match the indices in the ColumnIndex enumeration */
     columns << tr("Date") << tr("Label") << tr("Address") << tr("Message") << getAmountTitle();
 
-    connect(walletModel->getOptionsModel(), &OptionsModel::displayUnitChanged, this, &RecentRequestsTableModel::updateDisplayUnit);
+    connect(walletModel->getOptionsModel(), SIGNAL(displayUnitChanged(int)), this, SLOT(updateDisplayUnit()));
 }
 
 RecentRequestsTableModel::~RecentRequestsTableModel()
@@ -200,7 +198,7 @@ void RecentRequestsTableModel::addNewRequest(RecentRequestEntry& recipient)
 
 void RecentRequestsTableModel::sort(int column, Qt::SortOrder order)
 {
-    std::sort(list.begin(), list.end(), RecentRequestEntryLessThan(column, order));
+    qSort(list.begin(), list.end(), RecentRequestEntryLessThan(column, order));
     Q_EMIT dataChanged(index(0, 0, QModelIndex()), index(list.size() - 1, NUMBER_OF_COLUMNS - 1, QModelIndex()));
 }
 

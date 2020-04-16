@@ -1,6 +1,6 @@
 // Copyright (c) 2010 Satoshi Nakamoto
 // Copyright (c) 2012-2014 The Bitcoin developers
-// Copyright (c) 2017-2019 The PIVX developers
+// Copyright (c) 2020 The BCZ developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -90,8 +90,11 @@ public:
     /** Number of network connections changed. */
     boost::signals2::signal<void(int newNumConnections)> NotifyNumConnectionsChanged;
 
-    /** New, updated or cancelled alert. */
-    boost::signals2::signal<void()> NotifyAlertChanged;
+    /**
+     * New, updated or cancelled alert.
+     * @note called with lock cs_mapAlerts held.
+     */
+    boost::signals2::signal<void(const uint256& hash, ChangeType status)> NotifyAlertChanged;
 
     /** A wallet has been loaded. */
     boost::signals2::signal<void(CWallet* wallet)> LoadWallet;

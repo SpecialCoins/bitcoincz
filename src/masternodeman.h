@@ -1,12 +1,11 @@
 // Copyright (c) 2014-2015 The Dash developers
-// Copyright (c) 2015-2019 The PIVX developers
+// Copyright (c) 2020 The BCZ developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #ifndef MASTERNODEMAN_H
 #define MASTERNODEMAN_H
 
-#include "activemasternode.h"
 #include "base58.h"
 #include "key.h"
 #include "main.h"
@@ -20,12 +19,8 @@
 
 
 class CMasternodeMan;
-class CActiveMasternode;
 
 extern CMasternodeMan mnodeman;
-extern CActiveMasternode activeMasternode;
-extern std::string strMasterNodePrivKey;
-
 void DumpMasternodes();
 
 /** Access to the MN database (mncache.dat)
@@ -56,10 +51,10 @@ class CMasternodeMan
 {
 private:
     // critical section to protect the inner data structures
-    mutable RecursiveMutex cs;
+    mutable CCriticalSection cs;
 
     // critical section to protect the inner data structures specifically on messaging
-    mutable RecursiveMutex cs_process_message;
+    mutable CCriticalSection cs_process_message;
 
     // map to hold all MNs
     std::vector<CMasternode> vMasternodes;
@@ -77,7 +72,6 @@ public:
     std::map<uint256, CMasternodePing> mapSeenMasternodePing;
 
     // keep track of dsq count to prevent masternodes from gaming obfuscation queue
-    // TODO: Remove this from serialization
     int64_t nDsqCount;
 
     ADD_SERIALIZE_METHODS;
@@ -144,13 +138,12 @@ public:
     int GetMasternodeRank(const CTxIn& vin, int64_t nBlockHeight, int minProtocol = 0, bool fOnlyActive = true);
     CMasternode* GetMasternodeByRank(int nRank, int64_t nBlockHeight, int minProtocol = 0, bool fOnlyActive = true);
 
+    void ProcessMasternodeConnections();
+
     void ProcessMessage(CNode* pfrom, std::string& strCommand, CDataStream& vRecv);
 
     /// Return the number of (unique) Masternodes
     int size() { return vMasternodes.size(); }
-
-    /// Return the number of Masternodes older than (default) 8000 seconds
-    int stable_size ();
 
     std::string ToString() const;
 
@@ -161,7 +154,5 @@ public:
     /// Update masternode list and maps using provided CMasternodeBroadcast
     void UpdateMasternodeList(CMasternodeBroadcast mnb);
 };
-
-void ThreadCheckMasternodes();
 
 #endif

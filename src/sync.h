@@ -1,6 +1,6 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2017 The Bitcoin developers
-// Copyright (c) 2017-2018 The PIVX developers
+// Copyright (c) 2017-2018 The BCZ developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -8,7 +8,6 @@
 #define BITCOIN_SYNC_H
 
 #include "threadsafety.h"
-#include "util/macros.h"
 
 #include <condition_variable>
 #include <thread>
@@ -22,7 +21,7 @@
 /////////////////////////////////////////////////
 
 /*
-RecursiveMutex mutex;
+CCriticalSection mutex;
     std::recursive_mutex mutex;
 
 LOCK(mutex);
@@ -53,24 +52,14 @@ void EnterCritical(const char* pszName, const char* pszFile, int nLine, void* cs
 void LeaveCritical();
 std::string LocksHeld();
 void AssertLockHeldInternal(const char* pszName, const char* pszFile, int nLine, void* cs);
-void AssertLockNotHeldInternal(const char* pszName, const char* pszFile, int nLine, void* cs);
 void DeleteLock(void* cs);
-
-/**
- * Call abort() if a potential lock order deadlock bug is detected, instead of
- * just logging information and throwing a logic_error. Defaults to true, and
- * set to false in DEBUG_LOCKORDER unit tests.
- */
-extern bool g_debug_lockorder_abort;
 #else
 void static inline EnterCritical(const char* pszName, const char* pszFile, int nLine, void* cs, bool fTry = false) {}
 void static inline LeaveCritical() {}
 void static inline AssertLockHeldInternal(const char* pszName, const char* pszFile, int nLine, void* cs) {}
-void static inline AssertLockNotHeldInternal(const char* pszName, const char* pszFile, int nLine, void* cs) {}
 void static inline DeleteLock(void* cs) {}
 #endif
 #define AssertLockHeld(cs) AssertLockHeldInternal(#cs, __FILE__, __LINE__, &cs)
-#define AssertLockNotHeld(cs) AssertLockNotHeldInternal(#cs, __FILE__, __LINE__, &cs)
 
 /**
  * Template mixin that adds -Wthread-safety locking annotations and lock order
@@ -98,7 +87,6 @@ public:
     {
         return PARENT::try_lock();
     }
-
     using UniqueLock = std::unique_lock<PARENT>;
 };
 
@@ -106,10 +94,13 @@ public:
  * Wrapped mutex: supports recursive locking, but no waiting
  * TODO: We should move away from using the recursive lock by default.
  */
-using RecursiveMutex = AnnotatedMixin<std::recursive_mutex>;
+typedef AnnotatedMixin<std::recursive_mutex> CCriticalSection;
 
 /** Wrapped mutex: supports waiting but not recursive locking */
 typedef AnnotatedMixin<std::mutex> Mutex;
+
+/** Just a typedef for std::unique_lock, can be wrapped later if desired */
+typedef std::unique_lock<std::mutex> WaitableLock;
 
 #ifdef DEBUG_LOCKCONTENTION
 void PrintLockContention(const char* pszName, const char* pszFile, int nLine);
@@ -176,6 +167,9 @@ public:
 
 template<typename MutexArg>
 using DebugLock = UniqueLock<typename std::remove_reference<typename std::remove_pointer<MutexArg>::type>::type>;
+
+#define PASTE(x, y) x ## y
+#define PASTE2(x, y) PASTE(x, y)
 
 #define LOCK(cs) DebugLock<decltype(cs)> PASTE2(criticalblock, __COUNTER__)(cs, #cs, __FILE__, __LINE__)
 #define LOCK2(cs1, cs2)                                               \

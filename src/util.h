@@ -1,28 +1,26 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2014 The Bitcoin developers
 // Copyright (c) 2014-2015 The Dash developers
-// Copyright (c) 2015-2019 The PIVX developers
+// Copyright (c) 2020 The BCZ developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 /**
  * Server/client environment: argument handling, config file parsing,
- * thread wrappers
+ * logging, thread wrappers
  */
 #ifndef BITCOIN_UTIL_H
 #define BITCOIN_UTIL_H
 
 #if defined(HAVE_CONFIG_H)
-#include "config/pivx-config.h"
+#include "config/bcz-config.h"
 #endif
 
-#include "logging.h"
 #include "compat.h"
 #include "tinyformat.h"
 #include "utiltime.h"
 #include "util/threadnames.h"
 
-#include <atomic>
 #include <exception>
 #include <map>
 #include <stdint.h>
@@ -33,33 +31,86 @@
 #include <boost/thread/exceptions.hpp>
 #include <boost/thread/condition_variable.hpp> // for boost::thread_interrupted
 
-extern const char * const DEFAULT_DEBUGLOGFILE;
-
-//PIVX only features
+//BCZ only features
 
 extern bool fMasterNode;
 extern bool fLiteMode;
 extern bool fEnableSwiftTX;
 extern int nSwiftTXDepth;
-extern int64_t enforceMasternodePaymentsTime;
 extern std::string strMasterNodeAddr;
 extern int keysLoaded;
 extern bool fSucessfullyLoaded;
-extern std::string strBudgetMode;
-
+extern std::vector<int64_t> obfuScationDenominations;
+extern bool fStake_BCZ;
 extern std::map<std::string, std::string> mapArgs;
 extern std::map<std::string, std::vector<std::string> > mapMultiArgs;
-
+extern bool fDebug;
+extern bool fPrintToConsole;
+extern bool fPrintToDebugLog;
 extern std::string strMiscWarning;
-
+extern bool fLogTimestamps;
+extern bool fLogIPs;
+extern volatile bool fReopenDebugLog;
 
 void SetupEnvironment();
 bool SetupNetworking();
 
-template<typename... Args>
-bool error(const char* fmt, const Args&... args)
+/** Return true if log accepts specified category */
+bool LogAcceptCategory(const char* category);
+/** Send a string to the log output */
+int LogPrintStr(const std::string& str);
+
+#define LogPrintf(...) LogPrint(NULL, __VA_ARGS__)
+
+/** Get format string from VA_ARGS for error reporting */
+template<typename... Args> std::string FormatStringFromLogArgs(const char *fmt, const Args&... args) { return fmt; }
+
+/**
+ * When we switch to C++11, this can be switched to variadic templates instead
+ * of this macro-based construction (see tinyformat.h).
+ */
+#define MAKE_ERROR_AND_LOG_FUNC(n)                                                              \
+    /**   Print to debug.log if -debug=category switch is given OR category is NULL. */         \
+    template <TINYFORMAT_ARGTYPES(n)>                                                           \
+    static inline int LogPrint(const char* category, const char* format, TINYFORMAT_VARARGS(n)) \
+    {                                                                                           \
+        if (!LogAcceptCategory(category)) return 0;                                             \
+        std::string _log_msg_; /* Unlikely name to avoid shadowing variables */                 \
+        try {                                                                                   \
+            _log_msg_ = tfm::format(format, TINYFORMAT_PASSARGS(n));                            \
+        } catch (std::runtime_error &e) {                                                       \
+            _log_msg_ = "Error \"" + std::string(e.what()) + "\" while formatting log message: " + FormatStringFromLogArgs(format, TINYFORMAT_PASSARGS(n));\
+        }                                                                                       \
+        return LogPrintStr(_log_msg_);                                                          \
+    }                                                                                           \
+    /**   Log error and return false */                                                         \
+    template <TINYFORMAT_ARGTYPES(n)>                                                           \
+    static inline bool error(const char* format, TINYFORMAT_VARARGS(n))                         \
+    {                                                                                           \
+        std::string _log_msg_; /* Unlikely name to avoid shadowing variables */                 \
+        try {                                                                                   \
+            _log_msg_ = tfm::format(format, TINYFORMAT_PASSARGS(n));                            \
+        } catch (std::runtime_error &e) {                                                       \
+            _log_msg_ = "Error \"" + std::string(e.what()) + "\" while formatting log message: " + FormatStringFromLogArgs(format, TINYFORMAT_PASSARGS(n));\
+        }                                                                                       \
+        LogPrintStr(std::string("ERROR: ") + _log_msg_ + "\n");                                 \
+        return false;                                                                           \
+    }
+
+TINYFORMAT_FOREACH_ARGNUM(MAKE_ERROR_AND_LOG_FUNC)
+
+/**
+ * Zero-arg versions of logging and error, these are not covered by
+ * TINYFORMAT_FOREACH_ARGNUM
+ */
+static inline int LogPrint(const char* category, const char* format)
 {
-    LogPrintf("ERROR: %s\n", tfm::format(fmt, args...));
+    if (!LogAcceptCategory(category)) return 0;
+    return LogPrintStr(format);
+}
+static inline bool error(const char* format)
+{
+    LogPrintStr(std::string("ERROR: ") + format + "\n");
     return false;
 }
 
@@ -87,7 +138,7 @@ void ReadConfigFile(std::map<std::string, std::string>& mapSettingsRet, std::map
 boost::filesystem::path GetSpecialFolderPath(int nFolder, bool fCreate = true);
 #endif
 boost::filesystem::path GetTempPath();
-
+void ShrinkDebugFile();
 void runCommand(std::string strCommand);
 
 inline bool IsSwitchChar(char c)
@@ -169,7 +220,7 @@ void SetThreadPriority(int nPriority);
 template <typename Callable>
 void TraceThread(const char* name, Callable func)
 {
-    std::string s = strprintf("pivx-%s", name);
+    std::string s = strprintf("bcz-%s", name);
     util::ThreadRename(s.c_str());
     try {
         LogPrintf("%s thread start\n", name);
@@ -186,7 +237,5 @@ void TraceThread(const char* name, Callable func)
         throw;
     }
 }
-
-boost::filesystem::path AbsPathForConfigVal(const boost::filesystem::path& path, bool net_specific = true);
 
 #endif // BITCOIN_UTIL_H

@@ -1,6 +1,6 @@
 // Copyright (c) 2012 Pieter Wuille
 // Copyright (c) 2012-2014 The Bitcoin developers
-// Copyright (c) 2017-2019 The PIVX developers
+// Copyright (c) 2020 The BCZ developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -29,9 +29,6 @@ class CAddrInfo : public CAddress
 public:
     //! last try whatsoever by us (memory only)
     int64_t nLastTry;
-
-    //! last counted attempt (memory only)
-    int64_t nLastCountAttempt;
 
 private:
     //! where knowledge about this address first came from
@@ -70,7 +67,6 @@ public:
     {
         nLastSuccess = 0;
         nLastTry = 0;
-        nLastCountAttempt = 0;
         nAttempts = 0;
         nRefCount = 0;
         fInTried = false;
@@ -183,7 +179,7 @@ class CAddrMan
 {
 private:
     //! critical section to protect the inner data structures
-    mutable RecursiveMutex cs;
+    mutable CCriticalSection cs;
 
     //! last used nId
     int nIdCount;
@@ -208,9 +204,6 @@ private:
 
     //! list of "new" buckets
     int vvNew[ADDRMAN_NEW_BUCKET_COUNT][ADDRMAN_BUCKET_SIZE];
-
-    //! last time Good was called (memory only)
-    int64_t nLastGood;
 
 protected:
     //! secret key to randomize bucket select with
@@ -245,7 +238,7 @@ protected:
     bool Add_(const CAddress& addr, const CNetAddr& source, int64_t nTimePenalty);
 
     //! Mark an entry as attempted to connect.
-    void Attempt_(const CService& addr, bool fCountFailure, int64_t nTime);
+    void Attempt_(const CService& addr, int64_t nTime);
 
     //! Select an address to connect to, if newOnly is set to true, only the new table is selected from.
     CAddrInfo Select_(bool newOnly);
@@ -436,7 +429,7 @@ public:
             }
         }
         if (nLost + nLostUnk > 0) {
-            LogPrint(BCLog::ADDRMAN, "addrman lost %i new and %i tried addresses due to collisions\n", nLostUnk, nLost);
+            LogPrint("addrman", "addrman lost %i new and %i tried addresses due to collisions\n", nLostUnk, nLost);
         }
 
         Check();
@@ -465,7 +458,6 @@ public:
         nIdCount = 0;
         nTried = 0;
         nNew = 0;
-        nLastGood = 1; //Initially at 1 so that "never" is strictly worse.
     }
 
     CAddrMan()
@@ -508,7 +500,7 @@ public:
             Check();
         }
         if (fRet)
-            LogPrint(BCLog::ADDRMAN, "Added %s from %s: %i tried, %i new\n", addr.ToStringIPPort(), source.ToString(), nTried, nNew);
+            LogPrint("addrman", "Added %s from %s: %i tried, %i new\n", addr.ToStringIPPort(), source.ToString(), nTried, nNew);
         return fRet;
     }
 
@@ -524,7 +516,7 @@ public:
             Check();
         }
         if (nAdd)
-            LogPrint(BCLog::ADDRMAN, "Added %i addresses from %s: %i tried, %i new\n", nAdd, source.ToString(), nTried, nNew);
+            LogPrint("addrman", "Added %i addresses from %s: %i tried, %i new\n", nAdd, source.ToString(), nTried, nNew);
         return nAdd > 0;
     }
 
@@ -540,12 +532,12 @@ public:
     }
 
     //! Mark an entry as connection attempted to.
-    void Attempt(const CService& addr, bool fCountFailure, int64_t nTime = GetAdjustedTime())
+    void Attempt(const CService& addr, int64_t nTime = GetAdjustedTime())
     {
         {
             LOCK(cs);
             Check();
-            Attempt_(addr, fCountFailure, nTime);
+            Attempt_(addr, nTime);
             Check();
         }
     }

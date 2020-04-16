@@ -1,12 +1,12 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2014 The Bitcoin developers
 // Copyright (c) 2014-2015 The Dash developers
-// Copyright (c) 2015-2020 The PIVX developers
+// Copyright (c) 2020 The BCZ developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #if defined(HAVE_CONFIG_H)
-#include "config/pivx-config.h"
+#include "config/bcz-config.h"
 #endif
 
 #include "util.h"
@@ -21,8 +21,6 @@
 #include <stdarg.h>
 
 #include <boost/date_time/posix_time/posix_time.hpp>
-
-namespace fs = boost::filesystem;
 
 
 #ifndef WIN32
@@ -87,7 +85,7 @@ namespace fs = boost::filesystem;
 #include <openssl/rand.h>
 
 
-// PIVX only features
+// BCZ only features
 // Masternode
 bool fMasterNode = false;
 std::string strMasterNodePrivKey = "";
@@ -97,19 +95,23 @@ bool fLiteMode = false;
 bool fEnableSwiftTX = true;
 int nSwiftTXDepth = 5;
 
-/** Spork enforcement enabled time */
-int64_t enforceMasternodePaymentsTime = 4085657524;
 bool fSucessfullyLoaded = false;
-std::string strBudgetMode = "";
+/** All denominations used by obfuscation */
+std::vector<int64_t> obfuScationDenominations;
 
 std::map<std::string, std::string> mapArgs;
 std::map<std::string, std::vector<std::string> > mapMultiArgs;
-
+bool fDebug = false;
+bool fPrintToConsole = false;
+bool fPrintToDebugLog = true;
 bool fDaemon = false;
 std::string strMiscWarning;
+bool fLogTimestamps = false;
+bool fLogIPs = false;
+volatile bool fReopenDebugLog = false;
 
 /** Init OpenSSL library multithreading support */
-static RecursiveMutex** ppmutexOpenSSL;
+static CCriticalSection** ppmutexOpenSSL;
 void locking_callback(int mode, int i, const char* file, int line) NO_THREAD_SAFETY_ANALYSIS
 {
     if (mode & CRYPTO_LOCK) {
@@ -126,9 +128,9 @@ public:
     CInit()
     {
         // Init OpenSSL library multithreading support
-        ppmutexOpenSSL = (RecursiveMutex**)OPENSSL_malloc(CRYPTO_num_locks() * sizeof(RecursiveMutex*));
+        ppmutexOpenSSL = (CCriticalSection**)OPENSSL_malloc(CRYPTO_num_locks() * sizeof(CCriticalSection*));
         for (int i = 0; i < CRYPTO_num_locks(); i++)
-            ppmutexOpenSSL[i] = new RecursiveMutex();
+            ppmutexOpenSSL[i] = new CCriticalSection();
         CRYPTO_set_locking_callback(locking_callback);
 
         // OpenSSL can optionally load a config file which lists optional loadable modules and engines.
@@ -158,6 +160,108 @@ public:
     }
 } instance_of_cinit;
 
+/**
+ * LogPrintf() has been broken a couple of times now
+ * by well-meaning people adding mutexes in the most straightforward way.
+ * It breaks because it may be called by global destructors during shutdown.
+ * Since the order of destruction of static/global objects is undefined,
+ * defining a mutex as a global object doesn't work (the mutex gets
+ * destroyed, and then some later destructor calls OutputDebugStringF,
+ * maybe indirectly, and you get a core dump at shutdown trying to lock
+ * the mutex).
+ */
+
+static boost::once_flag debugPrintInitFlag = BOOST_ONCE_INIT;
+/**
+ * We use boost::call_once() to make sure these are initialized
+ * in a thread-safe manner the first time called:
+ */
+static FILE* fileout = NULL;
+static boost::mutex* mutexDebugLog = NULL;
+
+static void DebugPrintInit()
+{
+    assert(fileout == NULL);
+    assert(mutexDebugLog == NULL);
+
+    boost::filesystem::path pathDebug = GetDataDir() / "debug.log";
+    fileout = fopen(pathDebug.string().c_str(), "a");
+    if (fileout) setbuf(fileout, NULL); // unbuffered
+
+    mutexDebugLog = new boost::mutex();
+}
+
+bool LogAcceptCategory(const char* category)
+{
+    if (category != NULL) {
+        if (!fDebug)
+            return false;
+
+        // Give each thread quick access to -debug settings.
+        // This helps prevent issues debugging global destructors,
+        // where mapMultiArgs might be deleted before another
+        // global destructor calls LogPrint()
+        static boost::thread_specific_ptr<std::set<std::string> > ptrCategory;
+        if (ptrCategory.get() == NULL) {
+            const std::vector<std::string>& categories = mapMultiArgs["-debug"];
+            ptrCategory.reset(new std::set<std::string>(categories.begin(), categories.end()));
+            // thread_specific_ptr automatically deletes the set when the thread ends.
+            // "bcz" is a composite category enabling all BCZ-related debug output
+            if (ptrCategory->count(std::string("bcz"))) {
+                ptrCategory->insert(std::string("obfuscation"));
+                ptrCategory->insert(std::string("swiftx"));
+                ptrCategory->insert(std::string("masternode"));
+                ptrCategory->insert(std::string("mnpayments"));
+                ptrCategory->insert(std::string("staking"));
+            }
+        }
+        const std::set<std::string>& setCategories = *ptrCategory.get();
+
+        // if not debugging everything and not debugging specific category, LogPrint does nothing.
+        if (setCategories.count(std::string("")) == 0 &&
+            setCategories.count(std::string(category)) == 0)
+            return false;
+    }
+    return true;
+}
+
+int LogPrintStr(const std::string& str)
+{
+    int ret = 0; // Returns total number of characters written
+    if (fPrintToConsole) {
+        // print to console
+        ret = fwrite(str.data(), 1, str.size(), stdout);
+        fflush(stdout);
+    } else if (fPrintToDebugLog && AreBaseParamsConfigured()) {
+        static bool fStartedNewLine = true;
+        boost::call_once(&DebugPrintInit, debugPrintInitFlag);
+
+        if (fileout == NULL)
+            return ret;
+
+        boost::mutex::scoped_lock scoped_lock(*mutexDebugLog);
+
+        // reopen the log file, if requested
+        if (fReopenDebugLog) {
+            fReopenDebugLog = false;
+            boost::filesystem::path pathDebug = GetDataDir() / "debug.log";
+            if (freopen(pathDebug.string().c_str(), "a", fileout) != NULL)
+                setbuf(fileout, NULL); // unbuffered
+        }
+
+        // Debug print useful for profiling
+        if (fLogTimestamps && fStartedNewLine)
+            ret += fprintf(fileout, "%s ", DateTimeStrFormat("%Y-%m-%d %H:%M:%S", GetTime()).c_str());
+        if (!str.empty() && str[str.size() - 1] == '\n')
+            fStartedNewLine = true;
+        else
+            fStartedNewLine = false;
+
+        ret = fwrite(str.data(), 1, str.size(), fileout);
+    }
+
+    return ret;
+}
 
 /** Interpret string as boolean, for argument parsing */
 static bool InterpretBool(const std::string& strValue)
@@ -267,7 +371,7 @@ static std::string FormatException(const std::exception* pex, const char* pszThr
     char pszModule[MAX_PATH] = "";
     GetModuleFileNameA(NULL, pszModule, sizeof(pszModule));
 #else
-    const char* pszModule = "pivx";
+    const char* pszModule = "bcz";
 #endif
     if (pex)
         return strprintf(
@@ -285,15 +389,16 @@ void PrintExceptionContinue(const std::exception* pex, const char* pszThread)
     strMiscWarning = message;
 }
 
-fs::path GetDefaultDataDir()
+boost::filesystem::path GetDefaultDataDir()
 {
-// Windows < Vista: C:\Documents and Settings\Username\Application Data\PIVX
-// Windows >= Vista: C:\Users\Username\AppData\Roaming\PIVX
-// Mac: ~/Library/Application Support/PIVX
-// Unix: ~/.pivx
+    namespace fs = boost::filesystem;
+// Windows < Vista: C:\Documents and Settings\Username\Application Data\BCZ
+// Windows >= Vista: C:\Users\Username\AppData\Roaming\BCZ
+// Mac: ~/Library/Application Support/BCZ
+// Unix: ~/.bcz
 #ifdef WIN32
     // Windows
-    return GetSpecialFolderPath(CSIDL_APPDATA) / "PIVX";
+    return GetSpecialFolderPath(CSIDL_APPDATA) / "BCZ";
 #else
     fs::path pathRet;
     char* pszHome = getenv("HOME");
@@ -305,20 +410,22 @@ fs::path GetDefaultDataDir()
     // Mac
     pathRet /= "Library/Application Support";
     TryCreateDirectory(pathRet);
-    return pathRet / "PIVX";
+    return pathRet / "BCZ";
 #else
     // Unix
-    return pathRet / ".pivx";
+    return pathRet / ".bcz";
 #endif
 #endif
 }
 
-static fs::path pathCached;
-static fs::path pathCachedNetSpecific;
-static RecursiveMutex csPathCached;
+static boost::filesystem::path pathCached;
+static boost::filesystem::path pathCachedNetSpecific;
+static CCriticalSection csPathCached;
 
-const fs::path& GetDataDir(bool fNetSpecific)
+const boost::filesystem::path& GetDataDir(bool fNetSpecific)
 {
+    namespace fs = boost::filesystem;
+
     LOCK(csPathCached);
 
     fs::path& path = fNetSpecific ? pathCachedNetSpecific : pathCached;
@@ -347,22 +454,22 @@ const fs::path& GetDataDir(bool fNetSpecific)
 
 void ClearDatadirCache()
 {
-    pathCached = fs::path();
-    pathCachedNetSpecific = fs::path();
+    pathCached = boost::filesystem::path();
+    pathCachedNetSpecific = boost::filesystem::path();
 }
 
-fs::path GetConfigFile()
+boost::filesystem::path GetConfigFile()
 {
-    fs::path pathConfigFile(GetArg("-conf", "pivx.conf"));
+    boost::filesystem::path pathConfigFile(GetArg("-conf", "bcz.conf"));
     if (!pathConfigFile.is_complete())
         pathConfigFile = GetDataDir(false) / pathConfigFile;
 
     return pathConfigFile;
 }
 
-fs::path GetMasternodeConfigFile()
+boost::filesystem::path GetMasternodeConfigFile()
 {
-    fs::path pathConfigFile(GetArg("-mnconf", "masternode.conf"));
+    boost::filesystem::path pathConfigFile(GetArg("-mnconf", "masternode.conf"));
     if (!pathConfigFile.is_complete()) pathConfigFile = GetDataDir() / pathConfigFile;
     return pathConfigFile;
 }
@@ -370,20 +477,34 @@ fs::path GetMasternodeConfigFile()
 void ReadConfigFile(std::map<std::string, std::string>& mapSettingsRet,
     std::map<std::string, std::vector<std::string> >& mapMultiSettingsRet)
 {
-    fs::ifstream streamConfig(GetConfigFile());
-    if (!streamConfig.good()) {
-        // Create empty pivx.conf if it does not exist
-        FILE* configFile = fopen(GetConfigFile().string().c_str(), "a");
-        if (configFile != NULL)
-            fclose(configFile);
-        return; // Nothing to read, so just return
-    }
+    boost::filesystem::ifstream streamConfig(GetConfigFile());
+    if (!streamConfig.good())
+     {
+            FILE* configFile = fopen(GetConfigFile().string().c_str(), "a");
+            if (configFile != NULL)
+            {
+                std::string strHeader =
+                        "#listen=1\n"
+                        "#maxconnections=\n"
+                        "#connect=\n"
+                        "#addnode=\n"
+                        "#addnode=\n"
+                        "#addnode=\n"
+                        "#masternode=1\n"
+                        "#masternodeprivkey=\n"
+                        "#externalip=\n";
+
+                fwrite(strHeader.c_str(), std::strlen(strHeader.c_str()), 1, configFile);
+                fclose(configFile);
+            }
+            return;
+        }
 
     std::set<std::string> setOptions;
     setOptions.insert("*");
 
     for (boost::program_options::detail::config_file_iterator it(streamConfig, setOptions), end; it != end; ++it) {
-        // Don't overwrite existing settings so command line settings override pivx.conf
+        // Don't overwrite existing settings so command line settings override bcz.conf
         std::string strKey = std::string("-") + it->string_key;
         std::string strValue = it->value[0];
         InterpretNegativeSetting(strKey, strValue);
@@ -395,23 +516,15 @@ void ReadConfigFile(std::map<std::string, std::string>& mapSettingsRet,
     ClearDatadirCache();
 }
 
-fs::path AbsPathForConfigVal(const fs::path& path, bool net_specific)
-{
-    if (path.is_absolute()) {
-        return path;
-    }
-    return fs::absolute(path, GetDataDir(net_specific));
-}
-
 #ifndef WIN32
-fs::path GetPidFile()
+boost::filesystem::path GetPidFile()
 {
-    fs::path pathPidFile(GetArg("-pid", "pivxd.pid"));
+    boost::filesystem::path pathPidFile(GetArg("-pid", "bczd.pid"));
     if (!pathPidFile.is_complete()) pathPidFile = GetDataDir() / pathPidFile;
     return pathPidFile;
 }
 
-void CreatePidFile(const fs::path& path, pid_t pid)
+void CreatePidFile(const boost::filesystem::path& path, pid_t pid)
 {
     FILE* file = fopen(path.string().c_str(), "w");
     if (file) {
@@ -421,7 +534,7 @@ void CreatePidFile(const fs::path& path, pid_t pid)
 }
 #endif
 
-bool RenameOver(fs::path src, fs::path dest)
+bool RenameOver(boost::filesystem::path src, boost::filesystem::path dest)
 {
 #ifdef WIN32
     return MoveFileExA(src.string().c_str(), dest.string().c_str(),
@@ -437,12 +550,12 @@ bool RenameOver(fs::path src, fs::path dest)
  * Specifically handles case where path p exists, but it wasn't possible for the user to
  * write to the parent directory.
  */
-bool TryCreateDirectory(const fs::path& p)
+bool TryCreateDirectory(const boost::filesystem::path& p)
 {
     try {
-        return fs::create_directory(p);
-    } catch (const fs::filesystem_error&) {
-        if (!fs::exists(p) || !fs::is_directory(p))
+        return boost::filesystem::create_directory(p);
+    } catch (const boost::filesystem::filesystem_error&) {
+        if (!boost::filesystem::exists(p) || !boost::filesystem::is_directory(p))
             throw;
     }
 
@@ -547,9 +660,32 @@ void AllocateFileRange(FILE* file, unsigned int offset, unsigned int length)
 #endif
 }
 
-#ifdef WIN32
-fs::path GetSpecialFolderPath(int nFolder, bool fCreate)
+void ShrinkDebugFile()
 {
+    // Scroll debug.log if it's getting too big
+    boost::filesystem::path pathLog = GetDataDir() / "debug.log";
+    FILE* file = fopen(pathLog.string().c_str(), "r");
+    if (file && boost::filesystem::file_size(pathLog) > 10 * 1000000) {
+        // Restart the file with some of the end
+        std::vector<char> vch(200000, 0);
+        fseek(file, -((long)vch.size()), SEEK_END);
+        int nBytes = fread(vch.data(), 1, vch.size(), file);
+        fclose(file);
+
+        file = fopen(pathLog.string().c_str(), "w");
+        if (file) {
+            fwrite(vch.data(), 1, nBytes, file);
+            fclose(file);
+        }
+    } else if (file != NULL)
+        fclose(file);
+}
+
+#ifdef WIN32
+boost::filesystem::path GetSpecialFolderPath(int nFolder, bool fCreate)
+{
+    namespace fs = boost::filesystem;
+
     char pszPath[MAX_PATH] = "";
 
     if (SHGetSpecialFolderPathA(NULL, pszPath, nFolder, fCreate)) {
@@ -561,24 +697,24 @@ fs::path GetSpecialFolderPath(int nFolder, bool fCreate)
 }
 #endif
 
-fs::path GetTempPath()
+boost::filesystem::path GetTempPath()
 {
 #if BOOST_FILESYSTEM_VERSION == 3
-    return fs::temp_directory_path();
+    return boost::filesystem::temp_directory_path();
 #else
     // TODO: remove when we don't support filesystem v2 anymore
-    fs::path path;
+    boost::filesystem::path path;
 #ifdef WIN32
     char pszPath[MAX_PATH] = "";
 
     if (GetTempPathA(MAX_PATH, pszPath))
-        path = fs::path(pszPath);
+        path = boost::filesystem::path(pszPath);
 #else
-    path = fs::path("/tmp");
+    path = boost::filesystem::path("/tmp");
 #endif
-    if (path.empty() || !fs::is_directory(path)) {
+    if (path.empty() || !boost::filesystem::is_directory(path)) {
         LogPrintf("GetTempPath(): failed to find temp path\n");
-        return fs::path("");
+        return boost::filesystem::path("");
     }
     return path;
 #endif
@@ -626,8 +762,8 @@ void SetupEnvironment()
     // in multithreading environments, it is set explicitly by the main thread.
     // A dummy locale is used to extract the internal default locale, used by
     // boost::filesystem::path, which is then used to explicitly imbue the path.
-    std::locale loc = fs::path::imbue(std::locale::classic());
-    fs::path::imbue(loc);
+    std::locale loc = boost::filesystem::path::imbue(std::locale::classic());
+    boost::filesystem::path::imbue(loc);
 }
 
 bool SetupNetworking()

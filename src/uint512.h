@@ -1,9 +1,9 @@
-// Copyright (c) 2017-2018 The PIVX developers
+// Copyright (c) 2017-2018 The BCZ developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef PIVX_UINT512_H
-#define PIVX_UINT512_H
+#ifndef BCZ_UINT512_H
+#define BCZ_UINT512_H
 
 #include "arith_uint256.h"
 #include "uint256.h"
@@ -33,7 +33,7 @@ public:
 
 /* uint256 from const char *.
  * This is a separate function because the constructor uint256(const char*) can result
- * in dangerously catching UINT256_ZERO.
+ * in dangerously catching uint256(0).
  */
 inline uint512 uint512S(const char* str)
 {
@@ -42,4 +42,4 @@ inline uint512 uint512S(const char* str)
     return rv;
 }
 
-#endif // PIVX_UINT512_H
+#endif // BCZ_UINT512_H

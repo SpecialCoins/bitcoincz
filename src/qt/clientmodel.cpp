@@ -1,6 +1,6 @@
 // Copyright (c) 2011-2014 The Bitcoin developers
 // Copyright (c) 2014-2015 The Dash developers
-// Copyright (c) 2015-2019 The PIVX developers
+// Copyright (c) 2020 The BCZ developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -11,6 +11,7 @@
 #include "guiutil.h"
 #include "peertablemodel.h"
 
+#include "alert.h"
 #include "chainparams.h"
 #include "checkpoints.h"
 #include "clientversion.h"
@@ -36,7 +37,7 @@ ClientModel::ClientModel(OptionsModel* optionsModel, QObject* parent) : QObject(
                                                                         optionsModel(optionsModel),
                                                                         peerTableModel(0),
                                                                         banTableModel(0),
-                                                                        cacheTip(nullptr),
+                                                                        cachedNumBlocks(0),
                                                                         cachedMasternodeCountString(""),
                                                                         cachedReindexing(0), cachedImporting(0),
                                                                         numBlocksAtStartup(-1), pollTimer(0)
@@ -44,13 +45,13 @@ ClientModel::ClientModel(OptionsModel* optionsModel, QObject* parent) : QObject(
     peerTableModel = new PeerTableModel(this);
     banTableModel = new BanTableModel(this);
     pollTimer = new QTimer(this);
-    connect(pollTimer, &QTimer::timeout, this, &ClientModel::updateTimer);
+    connect(pollTimer, SIGNAL(timeout()), this, SLOT(updateTimer()));
     pollTimer->start(MODEL_UPDATE_DELAY);
 
     pollMnTimer = new QTimer(this);
-    connect(pollMnTimer, &QTimer::timeout, this, &ClientModel::updateMnTimer);
+    connect(pollMnTimer, SIGNAL(timeout()), this, SLOT(updateMnTimer()));
     // no need to update as frequent as data for balances/txes/blocks
-    pollMnTimer->start(MODEL_UPDATE_DELAY * 40);
+    pollMnTimer->start(MODEL_UPDATE_DELAY * 4);
 
     subscribeToCoreSignals();
 }
@@ -83,13 +84,10 @@ QString ClientModel::getMasternodeCountString() const
     return tr("Total: %1 (IPv4: %2 / IPv6: %3 / Tor: %4 / Unknown: %5)").arg(QString::number((int)mnodeman.size())).arg(QString::number((int)ipv4)).arg(QString::number((int)ipv6)).arg(QString::number((int)onion)).arg(QString::number((int)nUnknown));
 }
 
-int ClientModel::getNumBlocks()
+int ClientModel::getNumBlocks() const
 {
-    if (!cacheTip) {
-        cacheTip = WITH_LOCK(cs_main, return chainActive.Tip(););
-    }
-
-    return cacheTip ? cacheTip->nHeight : 0;
+    LOCK(cs_main);
+    return chainActive.Height();
 }
 
 int ClientModel::getNumBlocksAtStartup()
@@ -110,19 +108,37 @@ quint64 ClientModel::getTotalBytesSent() const
 
 QDateTime ClientModel::getLastBlockDate() const
 {
-    const int nTime = (cacheTip == nullptr ? Params().GenesisBlock().GetBlockTime() : cacheTip->GetBlockTime());
-    return QDateTime::fromTime_t(nTime);
+    LOCK(cs_main);
+    if (chainActive.Tip())
+        return QDateTime::fromTime_t(chainActive.Tip()->GetBlockTime());
+    else
+        return QDateTime::fromTime_t(Params().GenesisBlock().GetBlockTime()); // Genesis block's time of current network
 }
 
 QString ClientModel::getLastBlockHash() const
 {
-    const uint256& nHash = (cacheTip == nullptr ? Params().GenesisBlock().GetHash() : cacheTip->GetBlockHash());
-    return QString::fromStdString(nHash.GetHex());
+    LOCK(cs_main);
+    if (chainActive.Tip())
+        return QString::fromStdString(chainActive.Tip()->GetBlockHash().ToString());
+    else
+        return QString::fromStdString(Params().GenesisBlock().GetHash().ToString()); // Genesis block's hash of current network
 }
+
+long ClientModel::getMempoolSize() const
+{
+    return mempool.size();
+}
+
+size_t ClientModel::getMempoolDynamicUsage() const
+{
+    return mempool.GetTotalTxSize();
+}
+
 
 double ClientModel::getVerificationProgress() const
 {
-    return Checkpoints::GuessVerificationProgress(cacheTip);
+    LOCK(cs_main);
+    return Checkpoints::GuessVerificationProgress(chainActive.Tip());
 }
 
 void ClientModel::updateTimer()
@@ -131,6 +147,7 @@ void ClientModel::updateTimer()
     // periodical polls if the core is holding the locks for a longer time -
     // for example, during a wallet rescan.
     Q_EMIT bytesChanged(getTotalBytesRecv(), getTotalBytesSent());
+    Q_EMIT mempoolSizeChanged(getMempoolSize(), getMempoolDynamicUsage());
 }
 
 void ClientModel::updateMnTimer()
@@ -155,14 +172,24 @@ void ClientModel::updateNumConnections(int numConnections)
     Q_EMIT numConnectionsChanged(numConnections);
 }
 
-void ClientModel::updateAlert()
+void ClientModel::updateAlert(const QString& hash, int status)
 {
+    // Show error message notification for new alert
+    if (status == CT_NEW) {
+        uint256 hash_256;
+        hash_256.SetHex(hash.toStdString());
+        CAlert alert = CAlert::getAlertByHash(hash_256);
+        if (!alert.IsNull()) {
+            Q_EMIT message(tr("Network Alert"), QString::fromStdString(alert.strStatusBar), CClientUIInterface::ICON_ERROR);
+        }
+    }
+
     Q_EMIT alertsChanged(getStatusBarWarnings());
 }
 
 bool ClientModel::inInitialBlockDownload() const
 {
-    return cachedInitialSync;
+    return IsInitialBlockDownload();
 }
 
 enum BlockSource ClientModel::getBlockSource() const
@@ -244,11 +271,11 @@ static void BlockTipChanged(ClientModel *clientmodel, bool initialSync, const CB
     // if we are in-sync, update the UI regardless of last update time
     if (!initialSync || now - nLastBlockTipUpdateNotification > MODEL_UPDATE_DELAY) {
         //pass a async signal to the UI thread
-        clientmodel->setCacheTip(pIndex);
+        int newHeight = pIndex->nHeight;
+        clientmodel->setCacheNumBlocks(newHeight);
         clientmodel->setCacheImporting(fImporting);
         clientmodel->setCacheReindexing(fReindex);
-        clientmodel->setCacheInitialSync(initialSync);
-        Q_EMIT clientmodel->numBlocksChanged(pIndex->nHeight);
+        Q_EMIT clientmodel->numBlocksChanged(newHeight);
         nLastBlockTipUpdateNotification = now;
     }
 }
@@ -269,10 +296,12 @@ static void NotifyNumConnectionsChanged(ClientModel* clientmodel, int newNumConn
         Q_ARG(int, newNumConnections));
 }
 
-static void NotifyAlertChanged(ClientModel* clientmodel)
+static void NotifyAlertChanged(ClientModel* clientmodel, const uint256& hash, ChangeType status)
 {
-    qDebug() << "NotifyAlertChanged";
-    QMetaObject::invokeMethod(clientmodel, "updateAlert", Qt::QueuedConnection);
+    qDebug() << "NotifyAlertChanged : " + QString::fromStdString(hash.GetHex()) + " status=" + QString::number(status);
+    QMetaObject::invokeMethod(clientmodel, "updateAlert", Qt::QueuedConnection,
+        Q_ARG(QString, QString::fromStdString(hash.GetHex())),
+        Q_ARG(int, status));
 }
 
 static void BannedListChanged(ClientModel *clientmodel)
@@ -286,7 +315,7 @@ void ClientModel::subscribeToCoreSignals()
     // Connect signals to client
     uiInterface.ShowProgress.connect(boost::bind(ShowProgress, this, _1, _2));
     uiInterface.NotifyNumConnectionsChanged.connect(boost::bind(NotifyNumConnectionsChanged, this, _1));
-    uiInterface.NotifyAlertChanged.connect(boost::bind(NotifyAlertChanged, this));
+    uiInterface.NotifyAlertChanged.connect(boost::bind(NotifyAlertChanged, this, _1, _2));
     uiInterface.BannedListChanged.connect(boost::bind(BannedListChanged, this));
     uiInterface.NotifyBlockTip.connect(boost::bind(BlockTipChanged, this, _1, _2));
 }
@@ -296,7 +325,7 @@ void ClientModel::unsubscribeFromCoreSignals()
     // Disconnect signals from client
     uiInterface.ShowProgress.disconnect(boost::bind(ShowProgress, this, _1, _2));
     uiInterface.NotifyNumConnectionsChanged.disconnect(boost::bind(NotifyNumConnectionsChanged, this, _1));
-    uiInterface.NotifyAlertChanged.disconnect(boost::bind(NotifyAlertChanged, this));
+    uiInterface.NotifyAlertChanged.disconnect(boost::bind(NotifyAlertChanged, this, _1, _2));
     uiInterface.BannedListChanged.disconnect(boost::bind(BannedListChanged, this));
     uiInterface.NotifyBlockTip.disconnect(boost::bind(BlockTipChanged, this, _1, _2));
 }

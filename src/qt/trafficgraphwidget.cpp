@@ -1,5 +1,5 @@
 // Copyright (c) 2011-2013 The Bitcoin developers
-// Copyright (c) 2017-2019 The PIVX developers
+// Copyright (c) 2020 The BCZ developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -28,7 +28,7 @@ TrafficGraphWidget::TrafficGraphWidget(QWidget* parent) : QWidget(parent),
                                                           clientModel(0)
 {
     timer = new QTimer(this);
-    connect(timer, &QTimer::timeout, this, &TrafficGraphWidget::updateRates);
+    connect(timer, SIGNAL(timeout()), SLOT(updateRates()));
 }
 
 void TrafficGraphWidget::setClientModel(ClientModel* model)

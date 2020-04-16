@@ -1,5 +1,5 @@
 // Copyright (c) 2014-2018 The Dash Core developers
-// Copyright (c) 2018-2020 The PIVX developers
+// Copyright (c) 2020 The BCZ developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -128,11 +128,16 @@ bool CSignedMessage::CheckSignature(const CPubKey& pubKey) const
 
     if (nMessVersion == MessageVersion::MESS_VER_HASH) {
         uint256 hash = GetSignatureHash();
-        return CHashSigner::VerifyHash(hash, pubKey, vchSig, strError);
+        if(!CHashSigner::VerifyHash(hash, pubKey, vchSig, strError))
+            return error("%s : VerifyHash failed: %s", __func__, strError);
+
+    } else {
+        std::string strMessage = GetStrMessage();
+        if(!CMessageSigner::VerifyMessage(pubKey, vchSig, strMessage, strError))
+            return error("%s : VerifyMessage failed: %s", __func__, strError);
     }
 
-    std::string strMessage = GetStrMessage();
-    return CMessageSigner::VerifyMessage(pubKey, vchSig, strMessage, strError);
+    return true;
 }
 
 bool CSignedMessage::CheckSignature() const

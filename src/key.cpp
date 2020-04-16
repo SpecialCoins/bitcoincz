@@ -1,5 +1,5 @@
 // Copyright (c) 2009-2017 The Bitcoin developers
-// Copyright (c) 2017-2018 The PIVX developers
+// Copyright (c) 2017-2018 The BCZ developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -299,7 +299,7 @@ bool CExtKey::Derive(CExtKey& out, unsigned int nChild) const
     return key.Derive(out.key, out.chaincode, nChild, chaincode);
 }
 
-void CExtKey::SetSeed(const unsigned char* seed, unsigned int nSeedLen)
+void CExtKey::SetMaster(const unsigned char* seed, unsigned int nSeedLen)
 {
     static const unsigned char hashkey[] = {'B', 'i', 't', 'c', 'o', 'i', 'n', ' ', 's', 'e', 'e', 'd'};
     std::vector<unsigned char, secure_allocator<unsigned char>> vout(64);
