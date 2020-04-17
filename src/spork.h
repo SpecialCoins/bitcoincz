@@ -14,8 +14,7 @@
 #include "sporkid.h"
 #include "sync.h"
 #include "util.h"
-
-#include "obfuscation.h"
+#include "messagesigner.h"
 #include "protocol.h"
 
 
@@ -86,7 +85,7 @@ public:
 class CSporkManager
 {
 private:
-    mutable CCriticalSection cs;
+    mutable RecursiveMutex cs;
     std::string strMasterPrivKey;
     std::map<SporkId, CSporkDef*> sporkDefsById;
     std::map<std::string, CSporkDef*> sporkDefsByName;

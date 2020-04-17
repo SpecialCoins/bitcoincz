@@ -178,6 +178,8 @@ extern std::string HelpExampleCli(std::string methodname, std::string args);
 extern std::string HelpExampleRpc(std::string methodname, std::string args);
 
 extern void EnsureWalletIsUnlocked(bool fAllowAnonOnly = false);
+// Ensure the wallet's existence.
+extern void EnsureWallet();
 
 extern UniValue getconnectioncount(const UniValue& params, bool fHelp); // in rpc/net.cpp
 extern UniValue getpeerinfo(const UniValue& params, bool fHelp);
@@ -212,6 +214,9 @@ extern UniValue delegatestake(const UniValue& params, bool fHelp); // in rpcwall
 extern UniValue rawdelegatestake(const UniValue& params, bool fHelp);
 extern UniValue delegatoradd(const UniValue& params, bool fHelp);
 extern UniValue delegatorremove(const UniValue& params, bool fHelp);
+extern UniValue upgradewallet(const UniValue& params, bool fHelp);
+extern UniValue sethdseed(const UniValue& params, bool fHelp);
+extern UniValue getaddressinfo(const UniValue& params, bool fHelp);
 extern UniValue getnewaddress(const UniValue& params, bool fHelp);
 extern UniValue getnewstakingaddress(const UniValue& params, bool fHelp);
 extern UniValue getaccountaddress(const UniValue& params, bool fHelp);
@@ -288,7 +293,6 @@ extern UniValue reconsiderblock(const UniValue& params, bool fHelp);
 extern UniValue getblockindexstats(const UniValue& params, bool fHelp);
 extern void validaterange(const UniValue& params, int& heightStart, int& heightEnd, int minHeightStart=1);
 
-extern UniValue getpoolinfo(const UniValue& params, bool fHelp); // in rpc/masternode.cpp
 extern UniValue listmasternodes(const UniValue& params, bool fHelp);
 extern UniValue getmasternodecount(const UniValue& params, bool fHelp);
 extern UniValue createmasternodebroadcast(const UniValue& params, bool fHelp);
@@ -306,6 +310,7 @@ extern UniValue getmasternodewinners(const UniValue& params, bool fHelp);
 extern UniValue getmasternodescores(const UniValue& params, bool fHelp);
 
 extern UniValue getinfo(const UniValue& params, bool fHelp); // in rpc/misc.cpp
+extern UniValue logging(const UniValue& params, bool fHelp);
 extern UniValue mnsync(const UniValue& params, bool fHelp);
 extern UniValue spork(const UniValue& params, bool fHelp);
 extern UniValue validateaddress(const UniValue& params, bool fHelp);

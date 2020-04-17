@@ -16,7 +16,6 @@
 
 #include "coincontrol.h"
 #include "main.h"
-#include "obfuscation.h"
 #include "wallet/wallet.h"
 
 #include "qt/bcz/qtutils.h"
@@ -55,51 +54,51 @@ CoinControlDialog::CoinControlDialog(QWidget* parent, bool fMultisigEnabled) : Q
     /* Open CSS when configured */
     this->setStyleSheet(GUIUtil::loadStyleSheet());
 
-    ui->frameContainer->setProperty("cssClass", "container-dialog");
-    ui->layoutAmount->setProperty("cssClass", "container-border-purple");
-    ui->layoutAfter->setProperty("cssClass", "container-border-purple");
-    ui->layoutBytes->setProperty("cssClass", "container-border-purple");
-    ui->layoutChange->setProperty("cssClass", "container-border-purple");
-    ui->layoutDust->setProperty("cssClass", "container-border-purple");
-    ui->layoutFee->setProperty("cssClass", "container-border-purple");
-    ui->layoutQuantity->setProperty("cssClass", "container-border-purple");
+    setCssProperty({ui->frameContainer,
+                    ui->layoutAmount,
+                    ui->layoutAfter,
+                    ui->layoutBytes,
+                    ui->layoutChange,
+                    ui->layoutDust,
+                    ui->layoutFee,
+                    ui->layoutQuantity
+                    }, "container-border-purple");
 
     // Title
 
-    ui->labelTitle->setText("Select BCZ Denominations to Spend");
     ui->labelTitle->setProperty("cssClass", "text-title-dialog");
 
     // Label Style
 
-    ui->labelCoinControlAfterFeeText->setProperty("cssClass", "text-main-purple");
-    ui->labelCoinControlAmountText->setProperty("cssClass", "text-main-purple");
-    ui->labelCoinControlBytesText->setProperty("cssClass", "text-main-purple");
-    ui->labelCoinControlChangeText->setProperty("cssClass", "text-main-purple");
-    ui->labelCoinControlLowOutputText->setProperty("cssClass", "text-main-purple");
-    ui->labelCoinControlFeeText->setProperty("cssClass", "text-main-purple");
-    ui->labelCoinControlQuantityText->setProperty("cssClass", "text-main-purple");
+    setCssProperty({ui->labelCoinControlAfterFeeText,
+                    ui->labelCoinControlAmountText,
+                    ui->labelCoinControlBytesText,
+                    ui->labelCoinControlChangeText,
+                    ui->labelCoinControlLowOutputText,
+                    ui->labelCoinControlFeeText,
+                    ui->labelCoinControlQuantityText
+                    }, "text-main-purple");
 
-    ui->labelCoinControlAfterFee->setProperty("cssClass", "text-main-purple");
-    ui->labelCoinControlAmount->setProperty("cssClass", "text-main-purple");
-    ui->labelCoinControlBytes->setProperty("cssClass", "text-main-purple");
-    ui->labelCoinControlChange->setProperty("cssClass", "text-main-purple");
-    ui->labelCoinControlLowOutput->setProperty("cssClass", "text-main-purple");
-    ui->labelCoinControlFee->setProperty("cssClass", "text-main-purple");
-    ui->labelCoinControlQuantity->setProperty("cssClass", "text-main-purple");
+    // Value Style
+    setCssProperty({ui->labelCoinControlAfterFee,
+                    ui->labelCoinControlAmount,
+                    ui->labelCoinControlBytes,
+                    ui->labelCoinControlChange,
+                    ui->labelCoinControlLowOutput,
+                    ui->labelCoinControlFee,
+                    ui->labelCoinControlQuantity
+                    }, "text-main-purple");
 
     ui->groupBox_2->setProperty("cssClass", "group-box");
     ui->treeWidget->setProperty("cssClass", "table-tree");
     ui->labelLocked->setProperty("cssClass", "text-main-purple");
 
     // Buttons
-    ui->pushButtonSelectAll->setProperty("cssClass", "btn-check");
-    ui->pushButtonToggleLock->setProperty("cssClass", "btn-check");
-
-    ui->btnEsc->setText("");
+    setCssProperty({ui->pushButtonSelectAll, ui->pushButtonToggleLock}, "btn-check");
     ui->btnEsc->setProperty("cssClass", "ic-close");
     ui->pushButtonOk->setProperty("cssClass", "btn-primary");
 
-    connect(ui->btnEsc, SIGNAL(clicked()), this, SLOT(close()));
+    connect(ui->btnEsc, &QPushButton::clicked, this, &CoinControlDialog::close);
 
     this->fMultisigEnabled = fMultisigEnabled;
 
@@ -122,13 +121,13 @@ CoinControlDialog::CoinControlDialog(QWidget* parent, bool fMultisigEnabled) : Q
     contextMenu->addAction(unlockAction);
 
     // context menu signals
-    connect(ui->treeWidget, SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(showMenu(QPoint)));
-    connect(copyAddressAction, SIGNAL(triggered()), this, SLOT(copyAddress()));
-    connect(copyLabelAction, SIGNAL(triggered()), this, SLOT(copyLabel()));
-    connect(copyAmountAction, SIGNAL(triggered()), this, SLOT(copyAmount()));
-    connect(copyTransactionHashAction, SIGNAL(triggered()), this, SLOT(copyTransactionHash()));
-    connect(lockAction, SIGNAL(triggered()), this, SLOT(lockCoin()));
-    connect(unlockAction, SIGNAL(triggered()), this, SLOT(unlockCoin()));
+    connect(ui->treeWidget, &QWidget::customContextMenuRequested, this, &CoinControlDialog::showMenu);
+    connect(copyAddressAction, &QAction::triggered, this, &CoinControlDialog::copyAddress);
+    connect(copyLabelAction, &QAction::triggered, this, &CoinControlDialog::copyLabel);
+    connect(copyAmountAction, &QAction::triggered, this, &CoinControlDialog::copyAmount);
+    connect(copyTransactionHashAction, &QAction::triggered, this, &CoinControlDialog::copyTransactionHash);
+    connect(lockAction, &QAction::triggered, this, &CoinControlDialog::lockCoin);
+    connect(unlockAction, &QAction::triggered, this, &CoinControlDialog::unlockCoin);
 
     // clipboard actions
     setCssProperty({
@@ -139,8 +138,7 @@ CoinControlDialog::CoinControlDialog(QWidget* parent, bool fMultisigEnabled) : Q
         ui->pushButtonBytes,
         ui->pushButtonChange,
         ui->pushButtonDust
-        },
-        "ic-copy-big"
+        }, "ic-copy-big"
     );
 
     connect(ui->pushButtonQuantity, &QPushButton::clicked, this, &CoinControlDialog::clipboardQuantity);
@@ -158,24 +156,24 @@ CoinControlDialog::CoinControlDialog(QWidget* parent, bool fMultisigEnabled) : Q
     }
 
     // toggle tree/list mode
-    connect(ui->radioTreeMode, SIGNAL(toggled(bool)), this, SLOT(radioTreeMode(bool)));
-    connect(ui->radioListMode, SIGNAL(toggled(bool)), this, SLOT(radioListMode(bool)));
+    connect(ui->radioTreeMode, &QRadioButton::toggled, this, &CoinControlDialog::radioTreeMode);
+    connect(ui->radioListMode, &QRadioButton::toggled, this, &CoinControlDialog::radioListMode);
 
     // click on checkbox
-    connect(ui->treeWidget, SIGNAL(itemChanged(QTreeWidgetItem*, int)), this, SLOT(viewItemChanged(QTreeWidgetItem*, int)));
+    connect(ui->treeWidget, &QTreeWidget::itemChanged, this, &CoinControlDialog::viewItemChanged);
 
     // click on header
     ui->treeWidget->header()->setSectionsClickable(true);
-    connect(ui->treeWidget->header(), SIGNAL(sectionClicked(int)), this, SLOT(headerSectionClicked(int)));
+    connect(ui->treeWidget->header(), &QHeaderView::sectionClicked, this, &CoinControlDialog::headerSectionClicked);
 
     // ok button
-    connect(ui->pushButtonOk, SIGNAL(clicked()), this, SLOT(accept()));
+    connect(ui->pushButtonOk, &QPushButton::clicked, this, &CoinControlDialog::accept);
 
     // (un)select all
-    connect(ui->pushButtonSelectAll, SIGNAL(clicked()), this, SLOT(buttonSelectAllClicked()));
+    connect(ui->pushButtonSelectAll, &QPushButton::clicked, this, &CoinControlDialog::buttonSelectAllClicked);
 
     // Toggle lock state
-    connect(ui->pushButtonToggleLock, SIGNAL(clicked()), this, SLOT(buttonToggleLockClicked()));
+    connect(ui->pushButtonToggleLock, &QPushButton::clicked, this, &CoinControlDialog::buttonToggleLockClicked);
 
     // change coin control first column label due Qt4 bug.
     // see https://github.com/bitcoin/bitcoin/issues/5716
@@ -269,7 +267,11 @@ void CoinControlDialog::buttonToggleLockClicked()
             if (model->isLockedCoin(uint256(item->text(COLUMN_TXHASH).toStdString()), item->text(COLUMN_VOUT_INDEX).toUInt())) {
                 model->unlockCoin(outpt);
                 item->setDisabled(false);
-                item->setIcon(COLUMN_CHECKBOX, QIcon());
+                // restore cold-stake snowflake icon for P2CS which were previously locked
+                if (item->data(COLUMN_CHECKBOX, Qt::UserRole) == QString("Delegated"))
+                    item->setIcon(COLUMN_CHECKBOX, QIcon("://ic-check-cold-staking-off"));
+                else
+                    item->setIcon(COLUMN_CHECKBOX, QIcon());
             } else {
                 model->lockCoin(outpt);
                 item->setDisabled(true);
@@ -368,7 +370,11 @@ void CoinControlDialog::unlockCoin()
     COutPoint outpt(uint256(contextMenuItem->text(COLUMN_TXHASH).toStdString()), contextMenuItem->text(COLUMN_VOUT_INDEX).toUInt());
     model->unlockCoin(outpt);
     contextMenuItem->setDisabled(false);
-    contextMenuItem->setIcon(COLUMN_CHECKBOX, QIcon());
+    // restore cold-stake snowflake icon for P2CS which were previously locked
+    if (contextMenuItem->data(COLUMN_CHECKBOX, Qt::UserRole) == QString("Delegated"))
+        contextMenuItem->setIcon(COLUMN_CHECKBOX, QIcon("://ic-check-cold-staking-off"));
+    else
+        contextMenuItem->setIcon(COLUMN_CHECKBOX, QIcon());
     updateLabelLocked();
 }
 
@@ -840,9 +846,23 @@ void CoinControlDialog::updateView()
             }
 
             // address
+            const bool fDelegated = (bool)(mine & ISMINE_SPENDABLE_DELEGATED);
             CTxDestination outputAddress;
+            CTxDestination outputAddressStaker;
             QString sAddress = "";
-            if (ExtractDestination(out.tx->vout[out.i].scriptPubKey, outputAddress)) {
+            bool haveDest = false;
+            if (fDelegated) {
+                txnouttype type; std::vector<CTxDestination> addresses; int nRequired;
+                haveDest = (ExtractDestinations(out.tx->vout[out.i].scriptPubKey, type, addresses, nRequired)
+                            && addresses.size() == 2);
+                if (haveDest) {
+                    outputAddressStaker = addresses[0];
+                    outputAddress = addresses[1];
+                }
+            } else {
+                haveDest = ExtractDestination(out.tx->vout[out.i].scriptPubKey, outputAddress);
+            }
+            if (haveDest) {
                 sAddress = QString::fromStdString(CBitcoinAddress(outputAddress).ToString());
 
                 // if listMode or change => show BCZ address. In tree mode, address is not shown again for direct wallet address outputs
@@ -894,6 +914,16 @@ void CoinControlDialog::updateView()
 
             // vout index
             itemOutput->setText(COLUMN_VOUT_INDEX, QString::number(out.i));
+
+            // outputs delegated (for cold staking)
+            if (fDelegated) {
+                itemOutput->setData(COLUMN_CHECKBOX, Qt::UserRole, QString("Delegated"));
+                itemOutput->setIcon(COLUMN_CHECKBOX, QIcon("://ic-check-cold-staking-off"));
+                if (haveDest) {
+                    sAddress = QString::fromStdString(CBitcoinAddress(outputAddressStaker, CChainParams::STAKING_ADDRESS).ToString());
+                    itemOutput->setToolTip(COLUMN_CHECKBOX, tr("delegated to %1 for cold staking").arg(sAddress));
+                }
+            }
 
             // disable locked coins
             if (model->isLockedCoin(txhash, out.i)) {

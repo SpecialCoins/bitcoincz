@@ -14,6 +14,8 @@
 #include "networkstyle.h"
 #include "notificator.h"
 #include "guiinterface.h"
+#include "init.h"
+#include "util.h"
 #include "qt/bcz/qtutils.h"
 #include "qt/bcz/defaultdialog.h"
 #include "qt/bcz/settings/settingsfaqwidget.h"
@@ -26,8 +28,6 @@
 #include <QShortcut>
 #include <QKeySequence>
 #include <QWindowStateChangeEvent>
-
-#include "util.h"
 
 #define BASE_WINDOW_WIDTH 1200
 #define BASE_WINDOW_HEIGHT 740
@@ -71,15 +71,8 @@ BCZGUI::BCZGUI(const NetworkStyle* networkStyle, QWidget* parent) :
     windowTitle += " " + networkStyle->getTitleAddText();
     setWindowTitle(windowTitle);
 
-#ifndef Q_OS_MAC
     QApplication::setWindowIcon(networkStyle->getAppIcon());
     setWindowIcon(networkStyle->getAppIcon());
-#else
-    MacDockIconHandler::instance()->setIcon(networkStyle->getAppIcon());
-#endif
-
-
-
 
 #ifdef ENABLE_WALLET
     // Create wallet frame
@@ -181,8 +174,8 @@ void BCZGUI::createActions(const NetworkStyle* networkStyle){
     quitAction->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_Q));
     quitAction->setMenuRole(QAction::QuitRole);
 
-    connect(toggleHideAction, SIGNAL(triggered()), this, SLOT(toggleHidden()));
-    connect(quitAction, SIGNAL(triggered()), qApp, SLOT(quit()));
+    connect(toggleHideAction, &QAction::triggered, this, &BCZGUI::toggleHidden);
+    connect(quitAction, &QAction::triggered, qApp, &QApplication::quit);
 }
 
 /**
@@ -257,9 +250,9 @@ void BCZGUI::setClientModel(ClientModel* clientModel) {
         settingsWidget->setClientModel(clientModel);
 
         // Receive and report messages from client model
-        connect(clientModel, SIGNAL(message(QString, QString, unsigned int)), this, SLOT(message(QString, QString, unsigned int)));
-        connect(topBar, SIGNAL(walletSynced(bool)), dashboard, SLOT(walletSynced(bool)));
-        connect(topBar, SIGNAL(walletSynced(bool)), coldStakingWidget, SLOT(walletSynced(bool)));
+        connect(clientModel, &ClientModel::message, this, &BCZGUI::message);
+        connect(topBar, &TopBar::walletSynced, dashboard, &DashboardWidget::walletSynced);
+        connect(topBar, &TopBar::walletSynced, coldStakingWidget, &ColdStakingWidget::walletSynced);
 
         // Get restart command-line parameters and handle restart
         connect(settingsWidget, &SettingsWidget::handleRestart, [this](QStringList arg){handleRestart(arg);});
@@ -290,13 +283,14 @@ void BCZGUI::createTrayIconMenu() {
     trayIconMenu = new QMenu(this);
     trayIcon->setContextMenu(trayIconMenu);
 
-    connect(trayIcon, SIGNAL(activated(QSystemTrayIcon::ActivationReason)),
-            this, SLOT(trayIconActivated(QSystemTrayIcon::ActivationReason)));
+    connect(trayIcon, &QSystemTrayIcon::activated, this, &BCZGUI::trayIconActivated);
 #else
     // Note: On Mac, the dock icon is used to provide the tray's functionality.
     MacDockIconHandler* dockIconHandler = MacDockIconHandler::instance();
-    dockIconHandler->setMainWindow((QMainWindow*)this);
-    trayIconMenu = dockIconHandler->dockMenu();
+    connect(dockIconHandler, &MacDockIconHandler::dockIconClicked, this, &BCZGUI::macosDockIconActivated);
+
+    trayIconMenu = new QMenu(this);
+    trayIconMenu->setAsDockMenu();
 #endif
 
     // Configuration of the tray icon (or dock icon) icon menu
@@ -317,6 +311,12 @@ void BCZGUI::trayIconActivated(QSystemTrayIcon::ActivationReason reason)
         toggleHidden();
     }
 }
+#else
+void BCZGUI::macosDockIconActivated()
+ {
+     show();
+     activateWindow();
+ }
 #endif
 
 void BCZGUI::changeEvent(QEvent* e)
@@ -327,7 +327,7 @@ void BCZGUI::changeEvent(QEvent* e)
         if (clientModel && clientModel->getOptionsModel() && clientModel->getOptionsModel()->getMinimizeToTray()) {
             QWindowStateChangeEvent* wsevt = static_cast<QWindowStateChangeEvent*>(e);
             if (!(wsevt->oldState() & Qt::WindowMinimized) && isMinimized()) {
-                QTimer::singleShot(0, this, SLOT(hide()));
+                QTimer::singleShot(0, this, &BCZGUI::hide);
                 e->ignore();
             }
         }
@@ -439,18 +439,11 @@ bool BCZGUI::openStandardDialog(QString title, QString body, QString okBtn, QStr
 void BCZGUI::showNormalIfMinimized(bool fToggleHidden) {
     if (!clientModel)
         return;
-    // activateWindow() (sometimes) helps with keyboard focus on Windows
-    if (isHidden()) {
-        show();
-        activateWindow();
-    } else if (isMinimized()) {
-        showNormal();
-        activateWindow();
-    } else if (GUIUtil::isObscured(this)) {
-        raise();
-        activateWindow();
-    } else if (fToggleHidden)
+    if (!isHidden() && !isMinimized() && !GUIUtil::isObscured(this) && fToggleHidden) {
         hide();
+    } else {
+        GUIUtil::bringToFront(this);
+    }
 }
 
 void BCZGUI::toggleHidden() {
@@ -588,7 +581,7 @@ bool BCZGUI::addWallet(const QString& name, WalletModel* walletModel)
 
     // Connect actions..
     connect(masterNodesWidget, &MasterNodesWidget::message, this, &BCZGUI::message);
-    connect(coldStakingWidget, &MasterNodesWidget::message, this, &BCZGUI::message);
+    connect(coldStakingWidget, &ColdStakingWidget::message, this, &BCZGUI::message);
     connect(topBar, &TopBar::message, this, &BCZGUI::message);
     connect(sendWidget, &SendWidget::message,this, &BCZGUI::message);
     connect(receiveWidget, &ReceiveWidget::message,this, &BCZGUI::message);
@@ -596,8 +589,7 @@ bool BCZGUI::addWallet(const QString& name, WalletModel* walletModel)
     connect(settingsWidget, &SettingsWidget::message, this, &BCZGUI::message);
 
     // Pass through transaction notifications
-    connect(dashboard, SIGNAL(incomingTransaction(QString, int, CAmount, QString, QString)), this, SLOT(incomingTransaction(QString, int, CAmount, QString, QString)));
-
+    connect(dashboard, &DashboardWidget::incomingTransaction, this, &BCZGUI::incomingTransaction);
     return true;
 }
 

@@ -18,9 +18,17 @@
 
 typedef unsigned char MessageStartChars[MESSAGE_START_SIZE];
 
-struct CDNSSeedData {
+class CDNSSeedData {
+public:
     std::string name, host;
-    CDNSSeedData(const std::string& strName, const std::string& strHost) : name(strName), host(strHost) {}
+    bool supportsServiceBitsFiltering;
+    std::string getHost(uint64_t requiredServiceBits) const;
+    CDNSSeedData(const std::string& strName, const std::string& strHost, bool supportsServiceBitsFilteringIn = false) : name(strName), host(strHost), supportsServiceBitsFiltering(supportsServiceBitsFilteringIn) {}
+};
+
+struct SeedSpec6 {
+    uint8_t addr[16];
+    uint16_t port;
 };
 
 /**
@@ -100,14 +108,12 @@ public:
 
     /** Spork key and Masternode Handling **/
     std::string SporkPubKey() const { return strSporkPubKey; }
-    std::string ObfuscationPoolDummyAddress() const { return strObfuscationPoolDummyAddress; }
 
     CBaseChainParams::Network NetworkID() const { return networkID; }
 
     /** Height or Time Based Activations **/
     int LAST_POW_BLOCK() const { return nLastPOWBlock; }
     bool IsStakeModifierV2(const int nHeight) const { return nHeight >= nBlockStakeModifierlV2; }
-    int NewSigsActive(const int nHeight) const { return nHeight >= nBlockEnforceNewMessageSignatures; }
     int ColdStart() const { return nColdStart; }
 
 protected:
@@ -148,7 +154,6 @@ protected:
     bool fHeadersFirstSyncingActive;
     int nPoolMaxTransactions;
     std::string strSporkPubKey;
-    std::string strObfuscationPoolDummyAddress;
     int nBlockEnforceNewMessageSignatures;
     int nColdStart;
     int nBlockStakeModifierlV2;

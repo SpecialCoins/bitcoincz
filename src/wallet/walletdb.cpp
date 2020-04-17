@@ -158,11 +158,22 @@ bool CWalletDB::WriteOrderPosNext(int64_t nOrderPosNext)
     return Write(std::string("orderposnext"), nOrderPosNext);
 }
 
-// presstab HyperStake
-bool CWalletDB::WriteStakeSplitThreshold(uint64_t nStakeSplitThreshold)
+bool CWalletDB::WriteStakeSplitThreshold(const CAmount& nStakeSplitThreshold)
 {
     nWalletDBUpdated++;
     return Write(std::string("stakeSplitThreshold"), nStakeSplitThreshold);
+}
+
+bool CWalletDB::WriteUseCustomFee(bool fUse)
+{
+    nWalletDBUpdated++;
+    return Write(std::string("fUseCustomFee"), fUse);
+}
+
+bool CWalletDB::WriteCustomFeeValue(const CAmount& nFee)
+{
+    nWalletDBUpdated++;
+    return Write(std::string("nCustomFee"), nFee);
 }
 
 //presstab HyperStake
@@ -251,6 +262,12 @@ bool CWalletDB::ErasePool(int64_t nPool)
 bool CWalletDB::WriteMinVersion(int nVersion)
 {
     return Write(std::string("minversion"), nVersion);
+}
+
+bool CWalletDB::WriteHDChain(const CHDChain& chain)
+{
+    nWalletDBUpdated++;
+    return Write(std::string("hdchain"), chain);
 }
 
 bool CWalletDB::ReadAccount(const std::string& strAccount, CAccount& account)
@@ -498,7 +515,7 @@ bool ReadKeyValue(CWallet* pwallet, CDataStream& ssKey, CDataStream& ssValue, CW
             }
             CKey key;
             CPrivKey pkey;
-            uint256 hash = 0;
+            uint256 hash;
 
             if (strType == "key") {
                 wss.nKeys++;
@@ -521,7 +538,7 @@ bool ReadKeyValue(CWallet* pwallet, CDataStream& ssKey, CDataStream& ssValue, CW
 
             bool fSkipCheck = false;
 
-            if (hash != 0) {
+            if (!hash.IsNull()) {
                 // hash pubkey/privkey to accelerate wallet load
                 std::vector<unsigned char> vchKey;
                 vchKey.reserve(vchPubKey.size() + pkey.size());
@@ -595,14 +612,7 @@ bool ReadKeyValue(CWallet* pwallet, CDataStream& ssKey, CDataStream& ssValue, CW
             ssKey >> nIndex;
             CKeyPool keypool;
             ssValue >> keypool;
-            pwallet->setKeyPool.insert(nIndex);
-
-            // If no metadata exists yet, create a default with the pool key's
-            // creation time. Note that this may be overwritten by actually
-            // stored metadata for that key later, which is fine.
-            CKeyID keyid = keypool.vchPubKey.GetID();
-            if (pwallet->mapKeyMetadata.count(keyid) == 0)
-                pwallet->mapKeyMetadata[keyid] = CKeyMetadata(keypool.nTime);
+            pwallet->GetScriptPubKeyMan()->LoadKeyPool(nIndex, keypool);
         } else if (strType == "version") {
             ssValue >> wss.nFileVersion;
             if (wss.nFileVersion == 10300)
@@ -618,9 +628,15 @@ bool ReadKeyValue(CWallet* pwallet, CDataStream& ssKey, CDataStream& ssValue, CW
             }
         } else if (strType == "orderposnext") {
             ssValue >> pwallet->nOrderPosNext;
-        } else if (strType == "stakeSplitThreshold") //presstab HyperStake
-        {
+        } else if (strType == "stakeSplitThreshold") {
             ssValue >> pwallet->nStakeSplitThreshold;
+            // originally saved as integer
+            if (pwallet->nStakeSplitThreshold < 201 * COIN)
+                pwallet->nStakeSplitThreshold *= 201 * COIN;
+        } else if (strType == "fUseCustomFee") {
+            ssValue >> pwallet->fUseCustomFee;
+        } else if (strType == "nCustomFee") {
+            ssValue >> pwallet->nCustomFee;
         } else if (strType == "multisend") //presstab HyperStake
         {
             unsigned int i;
@@ -656,6 +672,10 @@ bool ReadKeyValue(CWallet* pwallet, CDataStream& ssKey, CDataStream& ssValue, CW
                 strErr = "Error reading wallet database: LoadDestData failed";
                 return false;
             }
+        } else if (strType == "hdchain") {
+            CHDChain chain;
+            ssValue >> chain;
+            pwallet->GetScriptPubKeyMan()->SetHDChain(chain, true);
         }
     } catch (...) {
         return false;
@@ -881,7 +901,7 @@ void ThreadFlushWalletDB(const std::string& strFile)
                     boost::this_thread::interruption_point();
                     std::map<std::string, int>::iterator mi = bitdb.mapFileUseCount.find(strFile);
                     if (mi != bitdb.mapFileUseCount.end()) {
-                        LogPrint("db", "Flushing wallet.dat\n");
+                        LogPrint(BCLog::DB, "Flushing wallet.dat\n");
                         nLastFlushed = nWalletDBUpdated;
                         int64_t nStart = GetTimeMillis();
 
@@ -890,7 +910,7 @@ void ThreadFlushWalletDB(const std::string& strFile)
                         bitdb.CheckpointLSN(strFile);
 
                         bitdb.mapFileUseCount.erase(mi++);
-                        LogPrint("db", "Flushed wallet.dat %dms\n", GetTimeMillis() - nStart);
+                        LogPrint(BCLog::DB, "Flushed wallet.dat %dms\n", GetTimeMillis() - nStart);
                     }
                 }
             }
@@ -900,7 +920,7 @@ void ThreadFlushWalletDB(const std::string& strFile)
 
 void NotifyBacked(const CWallet& wallet, bool fSuccess, std::string strMessage)
 {
-    LogPrint(nullptr, strMessage.data());
+    LogPrintf("%s\n", strMessage);
     wallet.NotifyWalletBacked(fSuccess, strMessage);
 }
 
@@ -988,7 +1008,6 @@ bool BackupWallet(const CWallet& wallet, const boost::filesystem::path& strDest,
                                 }
                             } catch (const boost::filesystem::filesystem_error& error) {
                                 std::string strMessage = strprintf("Failed to delete backup %s\n", error.what());
-                                LogPrint(nullptr, strMessage.data());
                                 NotifyBacked(wallet, false, strMessage);
                             }
                         }
@@ -1024,12 +1043,12 @@ bool AttemptBackupWallet(const CWallet& wallet, const boost::filesystem::path& p
         dst.close();
 #endif
         strMessage = strprintf("copied wallet.dat to %s\n", pathDest.string());
-        LogPrint(nullptr, strMessage.data());
+        LogPrintf("%s : %s\n", __func__, strMessage);
         retStatus = true;
     } catch (const boost::filesystem::filesystem_error& e) {
         retStatus = false;
         strMessage = strprintf("%s\n", e.what());
-        LogPrint(nullptr, strMessage.data());
+        LogPrintf("%s : %s\n", __func__, strMessage);
     }
     NotifyBacked(wallet, retStatus, strMessage);
     return retStatus;

@@ -124,7 +124,7 @@ public:
         DuplicateAddress,
         TransactionCreationFailed, // Error returned when wallet is still locked
         TransactionCommitFailed,
-        AnonymizeOnlyUnlocked,
+        StakingOnlyUnlocked,
         InsaneFee,
         CannotCreateInternalAddress
     };
@@ -133,7 +133,7 @@ public:
         Unencrypted,                 // !wallet->IsCrypted()
         Locked,                      // wallet->IsCrypted() && wallet->IsLocked()
         Unlocked,                    // wallet->IsCrypted() && !wallet->IsLocked()
-        UnlockedForAnonymizationOnly // wallet->IsCrypted() && !wallet->IsLocked() && wallet->fWalletUnlockAnonymizeOnly
+        UnlockedForStaking          // wallet->IsCrypted() && !wallet->IsLocked() && wallet->fWalletUnlockStaking
     };
 
     OptionsModel* getOptionsModel();
@@ -148,7 +148,10 @@ public:
     /* current staking status from the miner thread **/
     bool isStakingStatusActive() const;
 
-    CAmount getBalance(const CCoinControl* coinControl = NULL) const;
+    bool isHDEnabled() const;
+    bool upgradeWallet(std::string& upgradeError);
+
+    CAmount getBalance(const CCoinControl* coinControl = nullptr, bool fIncludeDelegated = true) const;
     CAmount getUnconfirmedBalance() const;
     CAmount getImmatureBalance() const;
     CAmount getLockedBalance() const;
@@ -164,7 +167,7 @@ public:
 
     EncryptionStatus getEncryptionStatus() const;
     bool isWalletUnlocked() const;
-    bool isWalletLocked() const;
+    bool isWalletLocked(bool fFullUnlocked = true) const;
     CKey generateNewKey() const; //for temporary paper wallet key generation
     bool setAddressBook(const CTxDestination& address, const std::string& strName, const std::string& strPurpose);
     void encryptKey(const CKey key, const std::string& pwd, const std::string& slt, std::vector<unsigned char>& crypted);
@@ -173,7 +176,8 @@ public:
 
     // Check address for validity
     bool validateAddress(const QString& address);
-    bool validateStakingAddress(const QString& address);
+    // Check address for validity and type (whether cold staking address or not)
+    bool validateAddress(const QString& address, bool fStaking);
 
     // Return status record for SendCoins, contains error id + information
     struct SendCoinsReturn {
@@ -182,11 +186,14 @@ public:
     };
 
     void setWalletDefaultFee(CAmount fee = DEFAULT_TRANSACTION_FEE);
+    bool hasWalletCustomFee();
+    bool getWalletCustomFee(CAmount& nFeeRet);
+    void setWalletCustomFee(bool fUseCustomFee, const CAmount& nFee = DEFAULT_TRANSACTION_FEE);
 
     const CWalletTx* getTx(uint256 id);
 
     // prepare transaction for getting txfee before sending coins
-    SendCoinsReturn prepareTransaction(WalletModelTransaction& transaction, const CCoinControl* coinControl = NULL);
+    SendCoinsReturn prepareTransaction(WalletModelTransaction& transaction, const CCoinControl* coinControl = NULL, bool fIncludeDelegations = true);
 
     // Send coins to a list of recipients
     SendCoinsReturn sendCoins(WalletModelTransaction& transaction);
@@ -194,15 +201,15 @@ public:
     // Wallet encryption
     bool setWalletEncrypted(bool encrypted, const SecureString& passphrase);
     // Passphrase only needed when unlocking
-    bool setWalletLocked(bool locked, const SecureString& passPhrase = SecureString(), bool anonymizeOnly = false);
+    bool setWalletLocked(bool locked, const SecureString& passPhrase = SecureString(), bool stakingOnly = false);
 
     // Method used to "lock" the wallet only for staking purposes. Just a flag that should prevent possible movements in the wallet.
     // Passphrase only needed when unlocking.
     bool lockForStakingOnly(const SecureString& passPhrase = SecureString());
 
     bool changePassphrase(const SecureString& oldPass, const SecureString& newPass);
-    // Is wallet unlocked for anonymization only?
-    bool isAnonymizeOnlyUnlocked();
+    // Is wallet unlocked for staking only?
+    bool isStakingOnlyUnlocked();
     // Wallet backup
     bool backupWallet(const QString& filename);
 
@@ -210,27 +217,28 @@ public:
     class UnlockContext
     {
     public:
-        UnlockContext(bool valid, bool relock);
+        UnlockContext(WalletModel *wallet, bool valid, const WalletModel::EncryptionStatus& status_before);
         ~UnlockContext();
 
         bool isValid() const { return valid; }
 
+        // Copy constructor is disabled
+        UnlockContext(const UnlockContext&) = delete;
         // Copy operator and constructor transfer the context
-        UnlockContext(const UnlockContext& obj) { CopyFrom(obj); }
-        UnlockContext& operator=(const UnlockContext& rhs)
-        {
-            CopyFrom(rhs);
-            return *this;
-        }
+        UnlockContext(UnlockContext&& obj) { CopyFrom(std::move(obj)); }
+        UnlockContext& operator=(UnlockContext&& rhs) { CopyFrom(std::move(rhs)); return *this; }
 
     private:
+        WalletModel *wallet;
         bool valid;
+        WalletModel::EncryptionStatus was_status;   // original status
         mutable bool relock; // mutable, as it can be set to false by copying
 
-        void CopyFrom(const UnlockContext& rhs);
+        UnlockContext& operator=(const UnlockContext&) = default;
+        void CopyFrom(UnlockContext&& rhs);
     };
 
-    UnlockContext requestUnlock(AskPassphraseDialog::Context context, bool relock = false);
+    UnlockContext requestUnlock();
 
     bool getPubKey(const CKeyID& address, CPubKey& vchPubKeyOut) const;
     int64_t getCreationTime() const;
@@ -250,7 +258,6 @@ public:
 
     bool isMine(CBitcoinAddress address);
     bool isMine(const QString& addressStr);
-    bool isUsed(CBitcoinAddress address);
     void getOutputs(const std::vector<COutPoint>& vOutpoints, std::vector<COutput>& vOutputs);
     bool isSpent(const COutPoint& outpoint) const;
     void listCoins(std::map<QString, std::vector<COutput> >& mapCoins) const;
@@ -309,7 +316,7 @@ Q_SIGNALS:
     // Signal emitted when wallet needs to be unlocked
     // It is valid behaviour for listeners to keep the wallet locked after this signal;
     // this means that the unlocking failed or was cancelled.
-    void requireUnlock(AskPassphraseDialog::Context context);
+    void requireUnlock();
 
     // Fired when a message should be reported to the user
     void message(const QString& title, const QString& message, unsigned int style);

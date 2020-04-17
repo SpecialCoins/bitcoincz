@@ -76,7 +76,7 @@ void OptionsModel::Init()
     // Main
     setMainDefaultOptions(settings);
 
-// Wallet
+    // Wallet
 #ifdef ENABLE_WALLET
     setWalletDefaultOptions(settings);
 #endif
@@ -89,11 +89,13 @@ void OptionsModel::Init()
     language = settings.value("language").toString();
 }
 
-void OptionsModel::refreshDataView(){
+void OptionsModel::refreshDataView()
+{
     Q_EMIT dataChanged(index(0), index(rowCount(QModelIndex()) - 1));
 }
 
-void OptionsModel::setMainDefaultOptions(QSettings& settings, bool reset){
+void OptionsModel::setMainDefaultOptions(QSettings& settings, bool reset)
+{
     // These are shared with the core or have a command-line parameter
     // and we want command-line parameters to overwrite the GUI settings.
     //
@@ -112,27 +114,26 @@ void OptionsModel::setMainDefaultOptions(QSettings& settings, bool reset){
     if (!SoftSetArg("-par", settings.value("nThreadsScriptVerif").toString().toStdString()))
         addOverriddenOption("-par");
 
-    if(reset){
+    if (reset) {
         refreshDataView();
     }
 }
 
-void OptionsModel::setWalletDefaultOptions(QSettings& settings, bool reset){
+void OptionsModel::setWalletDefaultOptions(QSettings& settings, bool reset)
+{
     if (!settings.contains("bSpendZeroConfChange") || reset)
         settings.setValue("bSpendZeroConfChange", false);
     if (!SoftSetBoolArg("-spendzeroconfchange", settings.value("bSpendZeroConfChange").toBool()))
         addOverriddenOption("-spendzeroconfchange");
-
-    if (!settings.contains("nStakeSplitThreshold") || reset)
-        settings.setValue("nStakeSplitThreshold", CWallet::STAKE_SPLIT_THRESHOLD);
-
-    if (reset){
-        setStakeSplitThreshold(CWallet::STAKE_SPLIT_THRESHOLD);
+    if (reset) {
+        setStakeSplitThreshold(CWallet::DEFAULT_STAKE_SPLIT_THRESHOLD);
+        setUseCustomFee(false);
         refreshDataView();
     }
 }
 
-void OptionsModel::setNetworkDefaultOptions(QSettings& settings, bool reset){
+void OptionsModel::setNetworkDefaultOptions(QSettings& settings, bool reset)
+{
     if (!settings.contains("fUseUPnP") || reset)
         settings.setValue("fUseUPnP", DEFAULT_UPNP);
     if (!SoftSetBoolArg("-upnp", settings.value("fUseUPnP").toBool()))
@@ -153,12 +154,13 @@ void OptionsModel::setNetworkDefaultOptions(QSettings& settings, bool reset){
     else if (!settings.value("fUseProxy").toBool() && !GetArg("-proxy", "").empty())
         addOverriddenOption("-proxy");
 
-    if(reset){
+    if (reset) {
         refreshDataView();
     }
 }
 
-void OptionsModel::setWindowDefaultOptions(QSettings& settings, bool reset){
+void OptionsModel::setWindowDefaultOptions(QSettings& settings, bool reset)
+{
     if (!settings.contains("fMinimizeToTray") || reset)
         settings.setValue("fMinimizeToTray", false);
     fMinimizeToTray = settings.value("fMinimizeToTray").toBool();
@@ -167,12 +169,13 @@ void OptionsModel::setWindowDefaultOptions(QSettings& settings, bool reset){
         settings.setValue("fMinimizeOnClose", false);
     fMinimizeOnClose = settings.value("fMinimizeOnClose").toBool();
 
-    if(reset){
+    if (reset) {
         refreshDataView();
     }
 }
 
-void OptionsModel::setDisplayDefaultOptions(QSettings& settings, bool reset){
+void OptionsModel::setDisplayDefaultOptions(QSettings& settings, bool reset)
+{
     if (!settings.contains("nDisplayUnit") || reset)
         settings.setValue("nDisplayUnit", BitcoinUnits::BCZ);
     nDisplayUnit = settings.value("nDisplayUnit").toInt();
@@ -186,12 +189,13 @@ void OptionsModel::setDisplayDefaultOptions(QSettings& settings, bool reset){
         settings.setValue("language", "");
     if (!SoftSetArg("-lang", settings.value("language").toString().toStdString()))
         addOverriddenOption("-lang");
-
     if (!settings.contains("strThirdPartyTxUrls") || reset)
         settings.setValue("strThirdPartyTxUrls", "");
     strThirdPartyTxUrls = settings.value("strThirdPartyTxUrls", "").toString();
 
-    if(reset){
+    fHideCharts = GetBoolArg("-hidecharts", false);
+
+    if (reset) {
         refreshDataView();
     }
 }
@@ -252,13 +256,18 @@ QVariant OptionsModel::data(const QModelIndex& index, int role) const
             return settings.value("bSpendZeroConfChange");
         case ShowMasternodesTab:
             return settings.value("fShowMasternodesTab");
-#endif
         case StakeSplitThreshold:
-            if (pwalletMain)
-                return QVariant((int)pwalletMain->nStakeSplitThreshold);
-            return settings.value("nStakeSplitThreshold");
+        {
+            // Return CAmount/qlonglong as double
+            const CAmount nStakeSplitThreshold = (pwalletMain) ? pwalletMain->nStakeSplitThreshold : CWallet::DEFAULT_STAKE_SPLIT_THRESHOLD;
+            return QVariant(static_cast<double>(nStakeSplitThreshold / static_cast<double>(COIN)));
+        }
+        case fUseCustomFee:
+            return QVariant((pwalletMain) ? pwalletMain->fUseCustomFee : false);
+        case nCustomFee:
+            return QVariant(static_cast<qlonglong>((pwalletMain) ? pwalletMain->nCustomFee : CWallet::minTxFee.GetFeePerK()));
+#endif
         case DisplayUnit:
-
             return nDisplayUnit;
         case ThirdPartyTxUrls:
             return strThirdPartyTxUrls;
@@ -276,6 +285,8 @@ QVariant OptionsModel::data(const QModelIndex& index, int role) const
             return settings.value("nDatabaseCache");
         case ThreadsScriptVerif:
             return settings.value("nThreadsScriptVerif");
+        case HideCharts:
+            return fHideCharts;
         case HideZeroBalances:
             return settings.value("fHideZeroBalances");
         case HideOrphans:
@@ -354,10 +365,16 @@ bool OptionsModel::setData(const QModelIndex& index, const QVariant& value, int 
                 setRestartRequired(true);
             }
             break;
+        case fUseCustomFee:
+            setUseCustomFee(value.toBool());
+            break;
+        case nCustomFee:
+            setCustomFeeValue(value.toLongLong());
+            break;
 #endif
         case StakeSplitThreshold:
-            settings.setValue("nStakeSplitThreshold", value.toInt());
-            setStakeSplitThreshold(value.toInt());
+            // Write double as qlonglong/CAmount
+            setStakeSplitThreshold(static_cast<CAmount>(value.toDouble() * COIN));
             break;
         case DisplayUnit:
             setDisplayUnit(value);
@@ -386,6 +403,10 @@ bool OptionsModel::setData(const QModelIndex& index, const QVariant& value, int 
                 settings.setValue("language", value);
                 setRestartRequired(true);
             }
+            break;
+        case HideCharts:
+            fHideCharts = value.toBool();   // memory only
+            Q_EMIT hideChartsChanged(fHideCharts);
             break;
         case HideZeroBalances:
             fHideZeroBalances = value.toBool();
@@ -447,12 +468,8 @@ void OptionsModel::setDisplayUnit(const QVariant& value)
 }
 
 /* Update StakeSplitThreshold's value in wallet */
-void OptionsModel::setStakeSplitThreshold(int value)
+void OptionsModel::setStakeSplitThreshold(const CAmount nStakeSplitThreshold)
 {
-    // XXX: maybe it's worth to wrap related stuff with WALLET_ENABLE ?
-    uint64_t nStakeSplitThreshold;
-
-    nStakeSplitThreshold = value;
     if (pwalletMain && pwalletMain->nStakeSplitThreshold != nStakeSplitThreshold) {
         CWalletDB walletdb(pwalletMain->strWalletFile);
         LOCK(pwalletMain->cs_wallet);
@@ -464,6 +481,32 @@ void OptionsModel::setStakeSplitThreshold(int value)
     }
 }
 
+/* Update Custom Fee value in wallet */
+void OptionsModel::setUseCustomFee(bool fUse)
+{
+    if (pwalletMain && pwalletMain->fUseCustomFee != fUse) {
+        CWalletDB walletdb(pwalletMain->strWalletFile);
+        {
+            LOCK(pwalletMain->cs_wallet);
+            pwalletMain->fUseCustomFee = fUse;
+            if (pwalletMain->fFileBacked)
+                walletdb.WriteUseCustomFee(fUse);
+        }
+    }
+}
+
+void OptionsModel::setCustomFeeValue(const CAmount& value)
+{
+    if (pwalletMain && pwalletMain->nCustomFee != value) {
+        CWalletDB walletdb(pwalletMain->strWalletFile);
+        {
+            LOCK(pwalletMain->cs_wallet);
+            pwalletMain->nCustomFee = value;
+            if (pwalletMain->fFileBacked)
+                walletdb.WriteCustomFeeValue(value);
+        }
+    }
+}
 
 bool OptionsModel::getProxySettings(QNetworkProxy& proxy) const
 {
@@ -493,3 +536,4 @@ bool OptionsModel::isRestartRequired()
     QSettings settings;
     return settings.value("fRestartRequired", false).toBool();
 }
+

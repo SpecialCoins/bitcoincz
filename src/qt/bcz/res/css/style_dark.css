@@ -421,6 +421,30 @@ QPushButton[cssClass="btn-qr"] {
     border-radius:2px;
 }
 
+/** btn HD Upgrade */
+
+QPushButton[cssClass="btn-check-hd-upgrade"] {
+    background-color:#500be0cb;
+    color:#FFFFFF;
+    font-weight: bold;
+    font-size: 15px;
+    padding-right:6px;
+    padding-left:6px;
+    border-bottom:2px solid #0be0cb;
+    border-radius:2px;
+}
+
+QPushButton[cssClass="btn-check-hd-upgrade"]:hover {
+    font-size: 14px;
+}
+
+QPushButton[cssClass="btn-check-hd-upgrade"]:checked {
+    background-color:#500be0cb;
+    border-bottom:2px solid #0be0cb;
+    border-radius:2px;
+}
+
+/** End btn HD Upgrade */
 
 QPushButton[cssClass="btn-check-faq"] {
     qproperty-icon: url("://ic-check-faq");
@@ -973,6 +997,10 @@ HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH*/
     font-size:17px;
 }
 
+*[cssClass="text-main-hash"] {
+    color:#FFFFFF;
+    font-size:12px;
+}
 
 *[cssClass="text-main-settings"] {
     color:#FFFFFF;
@@ -2038,6 +2066,21 @@ QComboBox[cssClass="btn-combo"]::down-arrow {
     image: url("://ic-arrow-drop-down");
     width: 24px;
     height: 24px;
+}
+
+QComboBox[cssClass="btn-combo-small"] {
+    background-color:#0f0b16;
+    padding:8px 14px 8px 8px;
+    font-size:13px;
+    border:1px solid #0f0b16;
+    color: #908c96;
+    text-align: right;
+}
+
+QComboBox[cssClass="btn-combo-small"]::down-arrow {
+    image: url("://ic-arrow-drop-down");
+    width: 15px;
+    height: 15px;
 }
 
 QComboBox[cssClass="btn-combo-edit"] {

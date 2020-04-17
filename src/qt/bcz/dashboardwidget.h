@@ -125,7 +125,7 @@ private Q_SLOTS:
     void onTxArrived(const QString& hash, const bool& isCoinStake, const bool& isCSAnyType);
 
 #ifdef USE_QTCHARTS
-    void windowResizeEvent(QResizeEvent *event);
+    void windowResizeEvent(QResizeEvent* event);
     void changeChartColors();
     void onChartYearChanged(const QString&);
     void onChartMonthChanged(const QString&);
@@ -166,6 +166,7 @@ private:
 
     ChartData* chartData = nullptr;
     bool hasStakes = false;
+    bool fShowCharts = true;
 
     void initChart();
     void showHideEmptyChart(bool show, bool loading, bool forceView = false);
@@ -180,6 +181,7 @@ private:
 
 private Q_SLOTS:
     void onChartRefreshed();
+    void onHideChartsChanged(bool fHide);
 
 #endif
 

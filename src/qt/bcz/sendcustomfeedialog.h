@@ -8,6 +8,7 @@
 #include <QDialog>
 #include "amount.h"
 
+class BCZGUI;
 class WalletModel;
 
 namespace Ui {
@@ -19,12 +20,13 @@ class SendCustomFeeDialog : public QDialog
     Q_OBJECT
 
 public:
-    explicit SendCustomFeeDialog(QWidget *parent = nullptr);
+    explicit SendCustomFeeDialog(BCZGUI *parent = nullptr);
     ~SendCustomFeeDialog();
 
     void setWalletModel(WalletModel* model);
     void showEvent(QShowEvent *event) override;
     CFeeRate getFeeRate();
+    bool isCustomFeeChecked();
     void clear();
 
 public Q_SLOTS:
@@ -32,6 +34,10 @@ public Q_SLOTS:
     void onCustomChecked();
     void updateFee();
     void onChangeTheme(bool isLightTheme, QString& theme);
+
+protected Q_SLOTS:
+    void accept() override;
+
 private:
     Ui::SendCustomFeeDialog *ui;
     WalletModel* walletModel = nullptr;

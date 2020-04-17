@@ -277,7 +277,15 @@ UniValue listunspent(const UniValue& params, bool fHelp)
     std::vector<COutput> vecOutputs;
     assert(pwalletMain != NULL);
     LOCK2(cs_main, pwalletMain->cs_wallet);
-    pwalletMain->AvailableCoins(&vecOutputs, false, NULL, false, ALL_COINS, false, nWatchonlyConfig);
+    pwalletMain->AvailableCoins(&vecOutputs,
+            nullptr,    // coin control
+            true,       // include delegated
+            false,      // include cold staking
+            ALL_COINS,  // coin type
+            false,      // only confirmed
+            false,      // include zero value
+            false,      // use IX
+            nWatchonlyConfig);
     for (const COutput& out : vecOutputs) {
         if (out.nDepth < nMinDepth || out.nDepth > nMaxDepth)
             continue;
@@ -482,7 +490,7 @@ UniValue decoderawtransaction(const UniValue& params, bool fHelp)
         throw JSONRPCError(RPC_DESERIALIZATION_ERROR, "TX decode failed");
 
     UniValue result(UniValue::VOBJ);
-    TxToJSON(tx, 0, result);
+    TxToJSON(tx, UINT256_ZERO, result);
 
     return result;
 }
@@ -825,7 +833,6 @@ UniValue sendrawtransaction(const UniValue& params, bool fHelp)
             "\nSend the transaction (signed hex)\n" + HelpExampleCli("sendrawtransaction", "\"signedhex\"") +
             "\nAs a json rpc call\n" + HelpExampleRpc("sendrawtransaction", "\"signedhex\""));
 
-    LOCK(cs_main);
     RPCTypeCheck(params, boost::assign::list_of(UniValue::VSTR)(UniValue::VBOOL));
 
     // parse hex string from parameter
@@ -842,6 +849,7 @@ UniValue sendrawtransaction(const UniValue& params, bool fHelp)
     if (params.size() > 2)
         fSwiftX = params[2].get_bool();
 
+    AssertLockNotHeld(cs_main);
     CCoinsViewCache& view = *pcoinsTip;
     const CCoins* existingCoins = view.AccessCoins(hashTx);
     bool fHaveMempool = mempool.exists(hashTx);

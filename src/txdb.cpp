@@ -46,7 +46,7 @@ uint256 CCoinsViewDB::GetBestBlock() const
 {
     uint256 hashBestChain;
     if (!db.Read('B', hashBestChain))
-        return uint256(0);
+        return UINT256_ZERO;
     return hashBestChain;
 }
 
@@ -64,10 +64,10 @@ bool CCoinsViewDB::BatchWrite(CCoinsMap& mapCoins, const uint256& hashBlock)
         CCoinsMap::iterator itOld = it++;
         mapCoins.erase(itOld);
     }
-    if (hashBlock != uint256(0))
+    if (!hashBlock.IsNull())
         BatchWriteHashBestChain(batch, hashBlock);
 
-    LogPrint("coindb", "Committing %u changed transactions (out of %u) to coin database...\n", (unsigned int)changed, (unsigned int)count);
+    LogPrint(BCLog::COINDB, "Committing %u changed transactions (out of %u) to coin database...\n", (unsigned int)changed, (unsigned int)count);
     return db.WriteBatch(batch);
 }
 
@@ -158,6 +158,18 @@ bool CCoinsViewDB::GetStats(CCoinsStats& stats) const
     return true;
 }
 
+static const char MONEYSUPPLY = 'M';
+
+bool CBlockTreeDB::WriteMoneySupply(const int64_t& nSupply)
+{
+    return Write(MONEYSUPPLY, nSupply);
+}
+
+bool CBlockTreeDB::ReadMoneySupply(int64_t& nSupply) const
+{
+    return Read(MONEYSUPPLY, nSupply);
+}
+
 bool CBlockTreeDB::WriteBatchSync(const std::vector<std::pair<int, const CBlockFileInfo*> >& fileInfo, int nLastFile, const std::vector<const CBlockIndex*>& blockinfo) {
     CLevelDBBatch batch;
     for (std::vector<std::pair<int, const CBlockFileInfo*> >::const_iterator it=fileInfo.begin(); it != fileInfo.end(); it++) {
@@ -212,7 +224,7 @@ bool CBlockTreeDB::LoadBlockIndexGuts()
     boost::scoped_ptr<leveldb::Iterator> pcursor(NewIterator());
 
     CDataStream ssKeySet(SER_DISK, CLIENT_VERSION);
-    ssKeySet << std::make_pair('b', uint256(0));
+    ssKeySet << std::make_pair('b', UINT256_ZERO);
     pcursor->Seek(ssKeySet.str());
 
     // Load mapBlockIndex
@@ -271,3 +283,9 @@ bool CBlockTreeDB::LoadBlockIndexGuts()
 
     return true;
 }
+//xxxx
+//bool CBlockTreeDB::ReadLegacyBlockIndex(const uint256& blockHash, CLegacyBlockIndex& biRet)
+//{
+//    return Read(std::make_pair('b', blockHash), biRet);
+//}
+

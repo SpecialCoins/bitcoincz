@@ -265,7 +265,7 @@ public:
         nTime = 0;
         nBits = 0;
         nNonce = 0;
-        nAccumulatorCheckpoint = 0;
+        nAccumulatorCheckpoint.SetNull();
     }
 
     CBlockIndex()
@@ -396,13 +396,6 @@ public:
         if (fGeneratedStakeModifier)
             nFlags |= BLOCK_STAKE_MODIFIER;
     }
-
-    /**
-     * Returns true if there are nRequired or more blocks of minVersion or above
-     * in the last Params().ToCheckBlockUpgradeMajority() blocks, starting at pstart
-     * and going backwards.
-     */
-    static bool IsSuperMajority(int minVersion, const CBlockIndex* pstart, unsigned int nRequired);
 
     std::string ToString() const
     {
@@ -613,8 +606,6 @@ public:
     /** Find the last common block between this chain and a block index entry. */
     const CBlockIndex* FindFork(const CBlockIndex* pindex) const;
 
-    /** Check if new message signatures are active **/
-    bool NewSigsActive() { return Params().NewSigsActive(Height()); }
 };
 
 #endif // BITCOIN_CHAIN_H

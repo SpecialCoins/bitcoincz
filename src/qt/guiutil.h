@@ -32,6 +32,16 @@ class QUrl;
 class QWidget;
 QT_END_NAMESPACE
 
+/*
+ * General GUI exception
+ */
+class GUIException : public std::exception
+{
+public:
+    std::string message;
+    GUIException(const std::string &message) : message(message) {}
+};
+
 /** Utility functions used by the BCZ Qt UI.
  */
 namespace GUIUtil
@@ -49,9 +59,6 @@ CAmount parseValue(const QString& text, int displayUnit, bool* valid_out = 0);
 
 // Format an amount
 QString formatBalance(CAmount amount, int nDisplayUnit = 0);
-
-// Request wallet unlock
-bool requestUnlock(WalletModel* walletModel, AskPassphraseDialog::Context context, bool relock);
 
 // Set up widgets for address and amounts
 void setupAddressWidget(QValidatedLineEdit* widget, QWidget* parent);
@@ -119,6 +126,9 @@ QString getOpenFileName(QWidget* parent, const QString& caption, const QString& 
                 If called from another thread, return a Qt::BlockingQueuedConnection.
     */
 Qt::ConnectionType blockingGUIThreadConnection();
+
+// Activate, show and raise the widget
+void bringToFront(QWidget* w);
 
 // Determine whether a widget is hidden behind other windows
 bool isObscured(QWidget* w);
