@@ -10,7 +10,7 @@ Bitcoin CZ coininfo
 * Target Spacing: 150 Seconds
 * Retarget: every block
 * Confirmation: 6 Blocks
-* Maturity: 120 Blocks
+* Maturity: 100/120 Blocks
 * Blocks: ~576 per day
 * Min TX Fee: 0.001 BCZ
 * Block Size: 4MB
