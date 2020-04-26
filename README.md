@@ -32,4 +32,4 @@ Installation folder
 
 License
 ----------------
-Bitcoin CZ Core is released under the terms of the MIT license. See COPYING for more information or see https://opensource.org/licenses/MIT.
+Bitcoin CZ Core is released under the terms of the MIT license, and some of it based on faulty pivx code we fixed. See COPYING for more information or see https://opensource.org/licenses/MIT.
