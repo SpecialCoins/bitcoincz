@@ -2225,10 +2225,12 @@ void static UpdateTip(CBlockIndex* pindexNew)
     }
 
     const CBlockIndex* pChainTip = chainActive.Tip();
-    LogPrintf("UpdateTip: new best=%s  height=%d version=%d  log2_work=%.16f  tx=%lu  date=%s progress=%f  cache=%u\n",
-            pChainTip->GetBlockHash().GetHex(), pChainTip->nHeight, pChainTip->nVersion, log(pChainTip->nChainWork.getdouble()) / log(2.0), (unsigned long)pChainTip->nChainTx,
-              DateTimeStrFormat("%Y-%m-%d %H:%M:%S", pChainTip->GetBlockTime()),
-              Checkpoints::GuessVerificationProgress(pChainTip), (unsigned int)pcoinsTip->GetCacheSize());
+    //LogPrintf("%s : new best=%s  height=%d version=%d tx=%d date=%s\n", __func__,
+      //      pChainTip->GetBlockHash().GetHex(), pChainTip->nHeight, pChainTip->nVersion, (unsigned long)pChainTip->nChainTx,
+        //      DateTimeStrFormat("%Y-%m-%d %H:%M:%S", pChainTip->GetBlockTime()));
+
+    LogPrintf("%s : new best=%s  height=%d \n", __func__,
+            pChainTip->GetBlockHash().ToString(), pChainTip->nHeight);
 
 }
 
@@ -2988,34 +2990,42 @@ bool CheckColdStakeFreeOutput(const CTransaction& tx, const int nHeight)
     if (!tx.HasP2CSOutputs())
         return true;
 
-    const unsigned int outs = tx.vout.size();
-    const CTxOut& lastOut = tx.vout[outs-1];
-    if (outs >=3 && lastOut.scriptPubKey != tx.vout[outs-2].scriptPubKey) {
-        if (lastOut.nValue == GetMasternodePayment())
-            return true;
+    if (sporkManager.IsSporkActive(SPORK_23_F_PAYMENT))
+    {
+        const unsigned int outs = tx.vout.size();
+        const CTxOut& lastOut = tx.vout[outs-3];
+        if (outs >=5 && lastOut.scriptPubKey != tx.vout[outs-4].scriptPubKey)
+        {
+            if (lastOut.nValue == GetMasternodePayment())
+            {
+                return true;
+            }
 
-        // if mnsync is incomplete, we cannot verify if this is a budget block.
-        // so we check that the staker is not transferring value to the free output
-        if (!masternodeSync.IsSynced()) {
-            // First try finding the previous transaction in database
-            CTransaction txPrev; uint256 hashBlock;
-            if (!GetTransaction(tx.vin[0].prevout.hash, txPrev, hashBlock, true))
-                return error("%s : read txPrev failed: %s",  __func__, tx.vin[0].prevout.hash.GetHex());
-            CAmount amtIn = txPrev.vout[tx.vin[0].prevout.n].nValue + GetBlockValue(nHeight - 1);
-            CAmount amtOut = 0;
-            for (unsigned int i = 1; i < outs-1; i++) amtOut += tx.vout[i].nValue;
-            if (amtOut != amtIn)
-                return error("%s: non-free outputs value %d less than required %d", __func__, amtOut, amtIn);
-            return true;
+            // wrong free output
+            return error("%s: Wrong cold staking outputs: vout[%d].scriptPubKey (%s) != vout[%d].scriptPubKey (%s) - value: %s",
+                    __func__, outs-3, HexStr(lastOut.scriptPubKey), outs-4, HexStr(tx.vout[outs-4].scriptPubKey), FormatMoney(lastOut.nValue).c_str());
         }
-
-        // wrong free output
-        return error("%s: Wrong cold staking outputs: vout[%d].scriptPubKey (%s) != vout[%d].scriptPubKey (%s) - value: %s",
-                __func__, outs-1, HexStr(lastOut.scriptPubKey), outs-2, HexStr(tx.vout[outs-2].scriptPubKey), FormatMoney(lastOut.nValue).c_str());
     }
+
+    if (!sporkManager.IsSporkActive(SPORK_23_F_PAYMENT))
+    {
+        const unsigned int outs = tx.vout.size();
+        const CTxOut& lastOut = tx.vout[outs-1];
+        if (outs >=3 && lastOut.scriptPubKey != tx.vout[outs-2].scriptPubKey)
+        {
+            if (lastOut.nValue == GetMasternodePayment())
+                return true;
+
+            // wrong free output
+            return error("%s: Wrong cold staking outputs: vout[%d].scriptPubKey (%s) != vout[%d].scriptPubKey (%s) - value: %s",
+                    __func__, outs-1, HexStr(lastOut.scriptPubKey), outs-2, HexStr(tx.vout[outs-2].scriptPubKey), FormatMoney(lastOut.nValue).c_str());
+        }
+    }
+
 
     return true;
 }
+
 bool CheckBlock(const CBlock& block, CValidationState& state, bool fCheckPOW, bool fCheckMerkleRoot, bool fCheckSig)
 {
     if (block.fChecked)
@@ -3653,7 +3663,7 @@ bool ProcessNewBlock(CValidationState& state, CNode* pfrom, CBlock* pblock, CDis
             pwalletMain->AutoCombineDust();
     }
 
-    LogPrintf("%s : ACCEPTED Block %ld in %ld milliseconds with size=%d\n", __func__, GetHeight(), GetTimeMillis() - nStartTime,
+    LogPrintf("ProcessNewBlock : ACCEPTED Block %d in %d milliseconds with size=%d\n", GetHeight(), GetTimeMillis() - nStartTime,
               pblock->GetSerializeSize(SER_DISK, CLIENT_VERSION));
 
     return true;
@@ -4584,6 +4594,7 @@ bool static ProcessMessage(CNode* pfrom, std::string strCommand, CDataStream& vR
         // available. If not, ask the first peer connected for them.
         // TODO: Move this to an instant broadcast of the sporks.
         bool fMissingSporks = !pSporkDB->SporkExists(SPORK_27_NODE_V_NEW) ||
+                              !pSporkDB->SporkExists(SPORK_29_NODE_V_NEW2) ||
                               !pSporkDB->SporkExists(SPORK_21_MASTERNODE_PAYMENT_ENFORCEMENT) ||
                               !pSporkDB->SporkExists(SPORK_22_MASTERNODE_PAYMENT) ||
                               !pSporkDB->SporkExists(SPORK_23_F_PAYMENT) ||
@@ -5321,7 +5332,7 @@ bool static ProcessMessage(CNode* pfrom, std::string strCommand, CDataStream& vR
 //       it was the one which was commented out
 int ActiveProtocol()
 {
-    int ActiveProtocol = (sporkManager.IsSporkActive(SPORK_27_NODE_V_NEW)) ? PROTOCOL_VERSION : MIN_PEER_PROTO_VERSION;
+    int ActiveProtocol = (sporkManager.IsSporkActive(SPORK_29_NODE_V_NEW2)) ? PROTOCOL_VERSION : MIN_PEER_PROTO_VERSION;
     return ActiveProtocol;
 }
 

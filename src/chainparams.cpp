@@ -133,7 +133,7 @@ public:
         nMaturity = 100;
         nStakeMinDepth = 120;
         nFutureTimeDrift = 180;
-        nMinColdStakingAmount = 1000 * COIN;
+        nMinColdStakingAmount = 100 * COIN;
 
         /** Height or Time Based Activations **/
         nLastPOWBlock = 50000;
@@ -163,7 +163,7 @@ public:
         vSeeds.push_back(CDNSSeedData("51.77.145.35", "51.77.145.35"));
         vSeeds.push_back(CDNSSeedData("51.91.156.249", "51.91.156.249"));
         vSeeds.push_back(CDNSSeedData("51.91.156.251", "51.91.156.251"));
-        //base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 25);
+        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 25);
         base58Prefixes[STAKING_ADDRESS] = std::vector<unsigned char>(1, 63);     // starting with 'S'
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 20);
         base58Prefixes[SECRET_KEY] = std::vector<unsigned char>(1, 210);
