@@ -1,5 +1,5 @@
 // Copyright (c) 2015 The Bitcoin Core developers
-// Copyright (c) 2018-2019 The PIVX developers
+// Copyright (c) 2020 The BCZ developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -393,9 +393,8 @@ bool InitHTTPServer()
     // libevent doesn't support debug logging, in which case we should
     // clear the BCLog::LIBEVENT flag.
     if (!UpdateHTTPServerLogging(g_logger->WillLogCategory(BCLog::LIBEVENT))) {
-        g_logger->DisableCategory(BCLog::LIBEVENT);
+            g_logger->DisableCategory(BCLog::LIBEVENT);
     }
-
 #ifdef WIN32
     evthread_use_windows_threads();
 #else
@@ -489,8 +488,12 @@ void StopHTTPServer()
     LogPrint(BCLog::HTTP, "Stopping HTTP server\n");
     if (workQueue) {
         LogPrint(BCLog::HTTP, "Waiting for HTTP worker threads to exit\n");
+#ifdef WIN32
+        delete workQueue;
+#else
         workQueue->WaitExit();
         delete workQueue;
+#endif
     }
     MilliSleep(500); // Avoid race condition while the last HTTP-thread is exiting
     if (eventBase) {

@@ -1,6 +1,6 @@
 // Copyright (c) 2011-2014 The Bitcoin developers
 // Copyright (c) 2014-2015 The Dash developers
-// Copyright (c) 2015-2020 The PIVX developers
+// Copyright (c) 2020 The BCZ developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -18,7 +18,7 @@
 #include "main.h"
 #include "wallet/wallet.h"
 
-#include "qt/pivx/qtutils.h"
+#include "qt/bcz/qtutils.h"
 
 #include <boost/assign/list_of.hpp> // for 'map_list_of()'
 
@@ -92,10 +92,7 @@ CoinControlDialog::CoinControlDialog(QWidget* parent, bool fMultisigEnabled) : Q
 
     // Buttons
     setCssProperty({ui->pushButtonSelectAll, ui->pushButtonToggleLock}, "btn-check");
-    ui->btnEsc->setProperty("cssClass", "ic-close");
     ui->pushButtonOk->setProperty("cssClass", "btn-primary");
-
-    connect(ui->btnEsc, &QPushButton::clicked, this, &CoinControlDialog::close);
 
     this->fMultisigEnabled = fMultisigEnabled;
 
@@ -228,24 +225,21 @@ void CoinControlDialog::setModel(WalletModel* model)
 // (un)select all
 void CoinControlDialog::buttonSelectAllClicked()
 {
-    Qt::CheckState state = Qt::Checked;
-    for (int i = 0; i < ui->treeWidget->topLevelItemCount(); i++) {
-        if (ui->treeWidget->topLevelItem(i)->checkState(COLUMN_CHECKBOX) != Qt::Unchecked) {
-            state = Qt::Unchecked;
-            break;
-        }
-    }
+    // "Select all": if some entry is unchecked, then check it
+    // "Unselect all": if some entry is checked, then uncheck it
+    Qt::CheckState wantedState = fSelectAllToggled ? Qt::Checked : Qt::Unchecked;
     ui->treeWidget->setEnabled(false);
     for (int i = 0; i < ui->treeWidget->topLevelItemCount(); i++)
-        if (ui->treeWidget->topLevelItem(i)->checkState(COLUMN_CHECKBOX) != state)
-            ui->treeWidget->topLevelItem(i)->setCheckState(COLUMN_CHECKBOX, state);
+        if (ui->treeWidget->topLevelItem(i)->checkState(COLUMN_CHECKBOX) != wantedState)
+            ui->treeWidget->topLevelItem(i)->setCheckState(COLUMN_CHECKBOX, wantedState);
     ui->treeWidget->setEnabled(true);
-    if (state == Qt::Unchecked) {
+    if (!fSelectAllToggled) {
         coinControl->UnSelectAll(); // just to be sure
         ui->pushButtonSelectAll->setText(tr("Select all"));
-    }else{
+    } else {
         ui->pushButtonSelectAll->setText(tr("Unselect all"));
     }
+    fSelectAllToggled = !fSelectAllToggled;
     CoinControlDialog::updateLabels(model, this);
     updateDialogLabels();
 }
@@ -688,7 +682,7 @@ void CoinControlDialog::updateLabels(WalletModel* model, QDialog* dialog)
     }
 
     // actually update labels
-    int nDisplayUnit = BitcoinUnits::PIV;
+    int nDisplayUnit = BitcoinUnits::BCZ;
     if (model && model->getOptionsModel())
         nDisplayUnit = model->getOptionsModel()->getDisplayUnit();
 
@@ -742,7 +736,7 @@ void CoinControlDialog::updateLabels(WalletModel* model, QDialog* dialog)
         dFeeVary = (double)std::max(CWallet::minTxFee.GetFeePerK(), payTxFee.GetFeePerK()) / 1000;
     else
         dFeeVary = (double)std::max(CWallet::minTxFee.GetFeePerK(), mempool.estimateFee(nTxConfirmTarget).GetFeePerK()) / 1000;
-    QString toolTip4 = tr("Can vary +/- %1 upiv per input.").arg(dFeeVary);
+    QString toolTip4 = tr("Can vary +/- %1 ubcz per input.").arg(dFeeVary);
 
     l3->setToolTip(toolTip4);
     l4->setToolTip(toolTip4);
@@ -862,7 +856,7 @@ void CoinControlDialog::updateView()
             if (haveDest) {
                 sAddress = QString::fromStdString(CBitcoinAddress(outputAddress).ToString());
 
-                // if listMode or change => show PIVX address. In tree mode, address is not shown again for direct wallet address outputs
+                // if listMode or change => show BCZ address. In tree mode, address is not shown again for direct wallet address outputs
                 if (!treeMode || (!(sAddress == sWalletAddress)))
                     itemOutput->setText(COLUMN_ADDRESS, sAddress);
                 else
@@ -912,18 +906,9 @@ void CoinControlDialog::updateView()
             // vout index
             itemOutput->setText(COLUMN_VOUT_INDEX, QString::number(out.i));
 
-            // outputs delegated (for cold staking)
-            if (fDelegated) {
-                itemOutput->setData(COLUMN_CHECKBOX, Qt::UserRole, QString("Delegated"));
-                itemOutput->setIcon(COLUMN_CHECKBOX, QIcon("://ic-check-cold-staking-off"));
-                if (haveDest) {
-                    sAddress = QString::fromStdString(CBitcoinAddress(outputAddressStaker, CChainParams::STAKING_ADDRESS).ToString());
-                    itemOutput->setToolTip(COLUMN_CHECKBOX, tr("delegated to %1 for cold staking").arg(sAddress));
-                }
-            }
-
             // disable locked coins
-            if (model->isLockedCoin(txhash, out.i)) {
+            const bool isLockedCoin = model->isLockedCoin(txhash, out.i);
+            if (isLockedCoin) {
                 COutPoint outpt(txhash, out.i);
                 coinControl->UnSelect(outpt); // just to be sure
                 itemOutput->setDisabled(true);
@@ -933,6 +918,17 @@ void CoinControlDialog::updateView()
             // set checkbox
             if (coinControl->IsSelected(txhash, out.i))
                 itemOutput->setCheckState(COLUMN_CHECKBOX, Qt::Checked);
+
+            // outputs delegated (for cold staking)
+            if (fDelegated) {
+                itemOutput->setData(COLUMN_CHECKBOX, Qt::UserRole, QString("Delegated"));
+                if (!isLockedCoin)
+                    itemOutput->setIcon(COLUMN_CHECKBOX, QIcon("://ic-check-cold-staking-off"));
+                if (haveDest) {
+                    sAddress = QString::fromStdString(CBitcoinAddress(outputAddressStaker, CChainParams::STAKING_ADDRESS).ToString());
+                    itemOutput->setToolTip(COLUMN_CHECKBOX, tr("delegated to %1 for cold staking").arg(sAddress));
+                }
+            }
         }
 
         // amount

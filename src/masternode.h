@@ -1,5 +1,5 @@
 // Copyright (c) 2014-2015 The Dash developers
-// Copyright (c) 2015-2019 The PIVX developers
+// Copyright (c) 2020 The BCZ developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -103,7 +103,7 @@ public:
 };
 
 //
-// The Masternode Class. It contains the input of the 10000 PIV, signature to prove
+// The Masternode Class. It contains the input of the 5000 BCZ, signature to prove
 // it's the one who own that ip address and code for calculating the payment election.
 //
 class CMasternode : public CSignedMessage
@@ -137,7 +137,6 @@ public:
     int64_t sigTime; //mnb message time
     int cacheInputAge;
     int cacheInputAgeBlock;
-    bool unitTest;
     bool allowFreeTx;
     int protocolVersion;
     int nActiveState;
@@ -173,7 +172,6 @@ public:
         swap(first.lastPing, second.lastPing);
         swap(first.cacheInputAge, second.cacheInputAge);
         swap(first.cacheInputAgeBlock, second.cacheInputAgeBlock);
-        swap(first.unitTest, second.unitTest);
         swap(first.allowFreeTx, second.allowFreeTx);
         swap(first.protocolVersion, second.protocolVersion);
         swap(first.nLastDsq, second.nLastDsq);
@@ -215,7 +213,6 @@ public:
         READWRITE(lastPing);
         READWRITE(cacheInputAge);
         READWRITE(cacheInputAgeBlock);
-        READWRITE(unitTest);
         READWRITE(allowFreeTx);
         READWRITE(nLastDsq);
         READWRITE(nScanningErrorCount);
@@ -282,7 +279,7 @@ public:
     int64_t GetLastPaid();
     bool IsValidNetAddr();
 
-    /// Is the input associated with collateral public key? (and there is 10000 PIV - checking if valid masternode)
+    /// Is the input associated with collateral public key? (and there is 5000 BCZ - checking if valid masternode)
     bool IsInputAssociatedWithPubkey() const;
 };
 
@@ -306,8 +303,8 @@ public:
     void Relay();
 
     // special sign/verify
-    bool Sign(const CKey& key, const CPubKey& pubKey, const bool fNewSigs);
-    bool Sign(const std::string strSignKey, const bool fNewSigs);
+    bool Sign(const CKey& key, const CPubKey& pubKey);
+    bool Sign(const std::string strSignKey);
     bool CheckSignature() const;
 
     ADD_SERIALIZE_METHODS;

@@ -1,6 +1,6 @@
 // Copyright (c) 2009-2014 The Bitcoin developers
 // Copyright (c) 2014-2015 The Dash developers
-// Copyright (c) 2015-2020 The PIVX developers
+// Copyright (c) 2015-2020 The BCZ developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -83,12 +83,12 @@ UniValue importprivkey(const UniValue& params, bool fHelp)
 {
     if (fHelp || params.size() < 1 || params.size() > 4)
         throw std::runtime_error(
-            "importprivkey \"pivxprivkey\" ( \"label\" rescan fStakingAddress )\n"
+            "importprivkey \"bczprivkey\" ( \"label\" rescan fStakingAddress )\n"
             "\nAdds a private key (as returned by dumpprivkey) to your wallet.\n" +
             HelpRequiringPassphrase() + "\n"
 
             "\nArguments:\n"
-            "1. \"pivxprivkey\"      (string, required) The private key (see dumpprivkey)\n"
+            "1. \"bczprivkey\"      (string, required) The private key (see dumpprivkey)\n"
             "2. \"label\"            (string, optional, default=\"\") An optional label\n"
             "3. rescan               (boolean, optional, default=true) Rescan the wallet for transactions\n"
             "4. fStakingAddress      (boolean, optional, default=false) Whether this key refers to a (cold) staking address\n"
@@ -145,9 +145,9 @@ UniValue importprivkey(const UniValue& params, bool fHelp)
 
         if (fRescan) {
             CBlockIndex *pindex = chainActive.Genesis();
-            if (fStakingAddress && !Params().IsRegTestNet()) {
-                // cold staking was activated after nBlockTimeProtocolV2. No need to scan the whole chain
-                pindex = chainActive[Params().GetConsensus().height_start_TimeProtoV2];
+            if (fStakingAddress && Params().NetworkID() != CBaseChainParams::REGTEST) {
+                // cold staking, no need to scan the whole chain
+                pindex = chainActive[Params().ColdStart()];
             }
             pwalletMain->ScanForWalletTransactions(pindex, true);
         }
@@ -189,7 +189,7 @@ UniValue importaddress(const UniValue& params, bool fHelp)
         std::vector<unsigned char> data(ParseHex(params[0].get_str()));
         script = CScript(data.begin(), data.end());
     } else {
-        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid PIVX address or script");
+        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid BCZ address or script");
     }
 
     std::string strLabel = "";
@@ -231,7 +231,6 @@ UniValue importaddress(const UniValue& params, bool fHelp)
     return NullUniValue;
 }
 
-// TODO: Needs further review over the HD flow, staking addresses and multisig import.
 UniValue importwallet(const UniValue& params, bool fHelp)
 {
     if (fHelp || params.size() != 1)
@@ -294,16 +293,13 @@ UniValue importwallet(const UniValue& params, bool fHelp)
         std::string strLabel;
         bool fLabel = true;
         for (unsigned int nStr = 2; nStr < vstr.size(); nStr++) {
-            const std::string& type = vstr[nStr];
-            if (boost::algorithm::starts_with(type, "#"))
+            if (boost::algorithm::starts_with(vstr[nStr], "#"))
                 break;
-            if (type == "change=1")
+            if (vstr[nStr] == "change=1")
                 fLabel = false;
-            else if (type == "reserve=1")
+            if (vstr[nStr] == "reserve=1")
                 fLabel = false;
-            else if (type == "hdseed")
-                fLabel = false;
-            if (boost::algorithm::starts_with(type, "label=")) {
+            if (boost::algorithm::starts_with(vstr[nStr], "label=")) {
                 strLabel = DecodeDumpString(vstr[nStr].substr(6));
                 fLabel = true;
             }
@@ -314,7 +310,7 @@ UniValue importwallet(const UniValue& params, bool fHelp)
             continue;
         }
         pwalletMain->mapKeyMetadata[keyid].nCreateTime = nTime;
-        if (fLabel) // TODO: This is not entirely true.. needs to be reviewed properly.
+        if (fLabel)
             pwalletMain->SetAddressBook(keyid, strLabel, AddressBook::AddressBookPurpose::RECEIVE);
         nTimeBegin = std::min(nTimeBegin, nTime);
     }
@@ -342,13 +338,13 @@ UniValue dumpprivkey(const UniValue& params, bool fHelp)
 {
     if (fHelp || params.size() != 1)
         throw std::runtime_error(
-            "dumpprivkey \"pivxaddress\"\n"
-            "\nReveals the private key corresponding to 'pivxaddress'.\n"
+            "dumpprivkey \"bczaddress\"\n"
+            "\nReveals the private key corresponding to 'bczaddress'.\n"
             "Then the importprivkey can be used with this output\n" +
             HelpRequiringPassphrase() + "\n"
 
             "\nArguments:\n"
-            "1. \"pivxaddress\"   (string, required) The pivx address for the private key\n"
+            "1. \"bczaddress\"   (string, required) The bcz address for the private key\n"
 
             "\nResult:\n"
             "\"key\"                (string) The private key\n"
@@ -363,7 +359,7 @@ UniValue dumpprivkey(const UniValue& params, bool fHelp)
     std::string strAddress = params[0].get_str();
     CBitcoinAddress address;
     if (!address.SetString(strAddress))
-        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid PIVX address");
+        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid BCZ address");
     CKeyID keyID;
     if (!address.GetKeyID(keyID))
         throw JSONRPCError(RPC_TYPE_ERROR, "Address does not refer to a key");
@@ -372,6 +368,7 @@ UniValue dumpprivkey(const UniValue& params, bool fHelp)
         throw JSONRPCError(RPC_WALLET_ERROR, "Private key for address " + strAddress + " is not known");
     return CBitcoinSecret(vchSecret).ToString();
 }
+
 
 UniValue dumpwallet(const UniValue& params, bool fHelp)
 {
@@ -414,7 +411,6 @@ UniValue dumpwallet(const UniValue& params, bool fHelp)
     pwalletMain->GetKeyBirthTimes(mapKeyBirth);
     const std::map<CKeyID, int64_t>& mapKeyPool = spk_man->GetAllReserveKeys();
 
-
     // sort time/key pairs
     std::vector<std::pair<int64_t, CKeyID> > vKeyBirth;
     for (std::map<CKeyID, int64_t>::const_iterator it = mapKeyBirth.begin(); it != mapKeyBirth.end(); it++) {
@@ -425,7 +421,7 @@ UniValue dumpwallet(const UniValue& params, bool fHelp)
 
     CBlockIndex* tip = chainActive.Tip();
     // produce output
-    file << strprintf("# Wallet dump created by PIVX %s (%s)\n", CLIENT_BUILD, CLIENT_DATE);
+    file << strprintf("# Wallet dump created by BCZ %s (%s)\n", CLIENT_BUILD, CLIENT_DATE);
     file << strprintf("# * Created on %s\n", EncodeDumpTime(GetTime()));
     if (tip) {
         file << strprintf("# * Best block at time of backup was %i (%s),\n", tip->nHeight,
@@ -487,12 +483,12 @@ UniValue bip38encrypt(const UniValue& params, bool fHelp)
 {
     if (fHelp || params.size() != 2)
         throw std::runtime_error(
-            "bip38encrypt \"pivxaddress\" \"passphrase\"\n"
-            "\nEncrypts a private key corresponding to 'pivxaddress'.\n" +
+            "bip38encrypt \"bczaddress\" \"passphrase\"\n"
+            "\nEncrypts a private key corresponding to 'bczaddress'.\n" +
             HelpRequiringPassphrase() + "\n"
 
             "\nArguments:\n"
-            "1. \"pivxaddress\"   (string, required) The pivx address for the private key (you must hold the key already)\n"
+            "1. \"bczaddress\"   (string, required) The bcz address for the private key (you must hold the key already)\n"
             "2. \"passphrase\"   (string, required) The passphrase you want the private key to be encrypted with - Valid special chars: !#$%&'()*+,-./:;<=>?`{|}~ \n"
 
             "\nResult:\n"
@@ -511,7 +507,7 @@ UniValue bip38encrypt(const UniValue& params, bool fHelp)
 
     CBitcoinAddress address;
     if (!address.SetString(strAddress))
-        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid PIVX address");
+        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid BCZ address");
     CKeyID keyID;
     if (!address.GetKeyID(keyID))
         throw JSONRPCError(RPC_TYPE_ERROR, "Address does not refer to a key");
@@ -533,7 +529,7 @@ UniValue bip38decrypt(const UniValue& params, bool fHelp)
 {
     if (fHelp || params.size() != 2)
         throw std::runtime_error(
-            "bip38decrypt \"pivxaddress\" \"passphrase\"\n"
+            "bip38decrypt \"bczaddress\" \"passphrase\"\n"
             "\nDecrypts and then imports password protected private key.\n" +
             HelpRequiringPassphrase() + "\n"
 
@@ -593,5 +589,46 @@ UniValue bip38decrypt(const UniValue& params, bool fHelp)
         pwalletMain->ScanForWalletTransactions(chainActive.Genesis(), true);
     }
 
+    return result;
+}
+
+UniValue makekeypair(const UniValue& params, bool fHelp)
+{
+    if (fHelp || params.size() > 1)
+        throw std::runtime_error(
+            "makekeypair [prefix]\n"
+            "Make a public/private key pair.\n"
+            "[prefix] is optional preferred prefix for the public key.\n");
+
+    std::string strPrefix = "";
+    if (params.size() > 0)
+        strPrefix = params[0].get_str();
+
+    CKey key;
+    int nCount = 0;
+    do
+    {
+        key.MakeNewKey(false);
+        nCount++;
+    } while (nCount < 10000 && strPrefix != HexStr(key.GetPubKey()).substr(0, strPrefix.size()));
+
+    if (strPrefix != HexStr(key.GetPubKey()).substr(0, strPrefix.size()))
+        return NullUniValue;
+
+    CPrivKey vchPrivKey = key.GetPrivKey();
+    CKeyID keyID = key.GetPubKey().GetID();
+    CKey vchSecret = CKey();
+    vchSecret.SetPrivKey(vchPrivKey, false);
+    CKey vchCSecret = CKey();
+    vchCSecret.SetPrivKey(vchPrivKey, true);
+    CKeyID keyCID = vchCSecret.GetPubKey().GetID();
+    UniValue result(UniValue::VOBJ);
+    result.push_back(Pair("private_key", HexStr<CPrivKey::iterator>(vchPrivKey.begin(), vchPrivKey.end())));
+    result.push_back(Pair("U public_key", HexStr(key.GetPubKey())));
+    result.push_back(Pair("U wallet_address", CBitcoinAddress(keyID).ToString()));
+    result.push_back(Pair("U wallet_private_key", CBitcoinSecret(vchSecret).ToString()));
+    result.push_back(Pair("C public_key", HexStr(vchCSecret.GetPubKey())));
+    result.push_back(Pair("C wallet_address", CBitcoinAddress(keyCID).ToString()));
+    result.push_back(Pair("C wallet_private_key", CBitcoinSecret(vchCSecret).ToString()));
     return result;
 }

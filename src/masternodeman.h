@@ -1,5 +1,5 @@
 // Copyright (c) 2014-2015 The Dash developers
-// Copyright (c) 2015-2019 The PIVX developers
+// Copyright (c) 2020 The BCZ developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -17,7 +17,6 @@
 
 #define MASTERNODES_DUMP_SECONDS (15 * 60)
 #define MASTERNODES_DSEG_SECONDS (3 * 60 * 60)
-
 
 class CMasternodeMan;
 class CActiveMasternode;
@@ -77,7 +76,6 @@ public:
     std::map<uint256, CMasternodePing> mapSeenMasternodePing;
 
     // keep track of dsq count to prevent masternodes from gaming obfuscation queue
-    // TODO: Remove this from serialization
     int64_t nDsqCount;
 
     ADD_SERIALIZE_METHODS;
@@ -148,9 +146,6 @@ public:
 
     /// Return the number of (unique) Masternodes
     int size() { return vMasternodes.size(); }
-
-    /// Return the number of Masternodes older than (default) 8000 seconds
-    int stable_size ();
 
     std::string ToString() const;
 

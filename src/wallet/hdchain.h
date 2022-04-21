@@ -1,7 +1,7 @@
-// Copyright (c) 2020 The PIVX Core developers
+// Copyright (c) 2020 The BCZ Core developers
 // Distributed under the MIT software license, see the accompanying
-#ifndef PIVX_HDCHAIN_H
-#define PIVX_HDCHAIN_H
+#ifndef BCZ_HDCHAIN_H
+#define BCZ_HDCHAIN_H
 
 #include "key.h"
 
@@ -61,4 +61,4 @@ public:
     }
 };
 
-#endif // PIVX_HDCHAIN_H
+#endif // BCZ_HDCHAIN_H
