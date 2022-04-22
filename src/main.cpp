@@ -1415,18 +1415,18 @@ bool ReadBlockFromDisk(CBlock& block, const CBlockIndex* pindex)
 
 int64_t GetBlockValue(int nHeight)
 {
-    int Height = nHeight;
+    int height = nHeight + 1;
 
-    if (Height < UTXOF)
+    if (height < UTXOF)
         return 0 * COIN;
 
-    else if (Height == 107068)
+    else if (height == 107068)
         return 4.1 * COIN;
 
-    else if (Height == 107147)
+    else if (height == 107147)
         return 4.1 * COIN;
 
-    if (Height == 107198)
+    if (height == 107198)
         return 4.1 * COIN;
 
     else
@@ -2028,8 +2028,8 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
         return state.DoS(100, error("ConnectBlock() : PoS period not active"),
             REJECT_INVALID, "PoS-early");
 
-    const bool isPoW_inActive = consensus.NetworkUpgradeActive(pindex->nHeight, Consensus::UPGRADE_POW_END);
-    if (isPoW_inActive && block.IsProofOfWork())
+    const bool isPoWActive = consensus.NetworkUpgradeActive(pindex->nHeight, Consensus::UPGRADE_POW_END);
+    if (!(isPoWActive) && block.IsProofOfWork())
         return state.DoS(100, error("ConnectBlock() : PoW period ended"),
             REJECT_INVALID, "PoW-ended");
 
