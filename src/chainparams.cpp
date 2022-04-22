@@ -118,7 +118,7 @@ public:
         consensus.vUpgrades[Consensus::UPGRADE_POS].nActivationHeight           = 39125;
         consensus.vUpgrades[Consensus::UPGRADE_POW_END].nActivationHeight       = 50000;
         consensus.vUpgrades[Consensus::UPGRADE_MODV2].nActivationHeight         = 66555;
-        consensus.vUpgrades[Consensus::UPGRADE_V5_DUMMY].nActivationHeight =
+        consensus.vUpgrades[Consensus::UPGRADE_V5_DUMMY].nActivationHeight      =
                 Consensus::NetworkUpgrade::NO_ACTIVATION_HEIGHT;
 
         pchMessageStart[0] = { 'b' };
