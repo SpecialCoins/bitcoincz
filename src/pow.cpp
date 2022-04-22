@@ -1,19 +1,24 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2014 The Bitcoin developers
-// Copyright (c) 2020 The BCZ developers
+// Copyright (c) 2014-2015 The Dash developers
+// Copyright (c) 2015-2020 The BCZ developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #include "pow.h"
+
 #include "chain.h"
 #include "chainparams.h"
 #include "main.h"
 #include "primitives/block.h"
 #include "uint256.h"
 #include "util.h"
+
 #include <math.h>
 
 unsigned int static DarkGravityWave3(const CBlockIndex* pindexLast) {
+
+   int64_t timeblocks = 150;
 
    int64_t nPastBlocks = 24;
    const CBlockIndex *pindex = pindexLast;
@@ -34,7 +39,7 @@ unsigned int static DarkGravityWave3(const CBlockIndex* pindexLast) {
 
    uint256 bnNew(bnPastTargetAvg);
    int64_t nActualTimespan = pindexLast->GetBlockTime() - pindex->GetBlockTime();
-   int64_t nTargetTimespan = nPastBlocks * 150;
+   int64_t nTargetTimespan = nPastBlocks * timeblocks;
    if (nActualTimespan < nTargetTimespan/1.5)
        nActualTimespan = nTargetTimespan/1.5;
    if (nActualTimespan > nTargetTimespan*1.5)
@@ -67,9 +72,6 @@ bool CheckProofOfWork(uint256 hash, unsigned int nBits)
    bool fNegative;
    bool fOverflow;
    uint256 bnTarget;
-
-   if (Params().SkipProofOfWorkCheck())
-       return true;
 
    bnTarget.SetCompact(nBits, &fNegative, &fOverflow);
 

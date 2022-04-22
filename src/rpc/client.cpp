@@ -1,7 +1,7 @@
 // Copyright (c) 2010 Satoshi Nakamoto
 // Copyright (c) 2009-2014 The Bitcoin developers
 // Copyright (c) 2014-2015 The Dash developers
-// Copyright (c) 2020 The BCZ developers
+// Copyright (c) 2015-2020 The BCZ developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -31,12 +31,7 @@ static const CRPCConvertParam vRPCConvertParams[] =
         {"setmocktime", 0},
         {"getaddednodeinfo", 0},
         {"setstake", 0},
-        {"setstake", 1},
         {"getstake", 0},
-        {"getstake", 1},
-        {"generate", 0},
-        {"getnetworkhashps", 0},
-        {"getnetworkhashps", 1},
         {"delegatestake", 1},
         {"delegatestake", 3},
         {"delegatestake", 4},
@@ -49,6 +44,7 @@ static const CRPCConvertParam vRPCConvertParams[] =
         {"settxfee", 0},
         {"getreceivedbyaddress", 1},
         {"getreceivedbyaccount", 1},
+        {"getreceivedbylabel", 1},
         {"listcoldutxos", 0},
         {"listdelegators", 0},
         {"listreceivedbyaddress", 0},
@@ -57,8 +53,12 @@ static const CRPCConvertParam vRPCConvertParams[] =
         {"listreceivedbyaccount", 0},
         {"listreceivedbyaccount", 1},
         {"listreceivedbyaccount", 2},
+        {"listreceivedbylabel", 0},
+        {"listreceivedbylabel", 1},
+        {"listreceivedbylabel", 2},
         {"getbalance", 1},
         {"getbalance", 2},
+        {"getbalance", 3},
         {"getblockhash", 0},
         { "waitforblockheight", 0 },
         { "waitforblockheight", 1 },
@@ -101,6 +101,7 @@ static const CRPCConvertParam vRPCConvertParams[] =
         {"createrawtransaction", 0},
         {"createrawtransaction", 1},
         {"createrawtransaction", 2},
+        {"fundrawtransaction", 1},
         {"signrawtransaction", 1},
         {"signrawtransaction", 2},
         {"sendrawtransaction", 1},
@@ -113,10 +114,11 @@ static const CRPCConvertParam vRPCConvertParams[] =
         {"importprivkey", 2},
         {"importprivkey", 3},
         {"importaddress", 2},
+        {"importaddress", 3},
+        {"importpubkey", 2},
         {"verifychain", 0},
         {"verifychain", 1},
         {"keypoolrefill", 0},
-        {"clearmempool", 0},
         {"getrawmempool", 0},
         {"estimatefee", 0},
         {"estimatepriority", 0},
@@ -125,20 +127,13 @@ static const CRPCConvertParam vRPCConvertParams[] =
         {"setban", 2},
         {"setban", 3},
         {"spork", 1},
-        {"makekeypair", 2},
         // disabled until removal of the legacy 'masternode' command
         //{"startmasternode", 1},
         {"mnvoteraw", 1},
         {"mnvoteraw", 4},
-        {"reservebalance", 0},
-        {"reservebalance", 1},
         {"setstakesplitthreshold", 0},
         {"autocombinerewards", 0},
         {"autocombinerewards", 1},
-        {"getblockindexstats", 0},
-        {"getblockindexstats", 1},
-        {"getblockindexstats", 2},
-        {"getfeeinfo", 0},
     };
 
 class CRPCConvertTable

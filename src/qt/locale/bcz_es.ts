@@ -6,8 +6,8 @@
         <translation>Diálogo</translation>
     </message>
     <message>
-        <source>My Address</source>
-        <translation>Mi Dirección</translation>
+        <source>New Address</source>
+        <translation>Nueva Direccion</translation>
     </message>
     <message>
         <source>Address</source>
@@ -22,8 +22,8 @@
         <translation>CANCELAR</translation>
     </message>
     <message>
-        <source>OK</source>
-        <translation>OK</translation>
+        <source>SAVE</source>
+        <translation>GUARDAR</translation>
     </message>
 </context>
 <context>
@@ -33,16 +33,8 @@
         <translation>Diálogo</translation>
     </message>
     <message>
-        <source>TextLabel</source>
-        <translation>EtiquetaDeTexto</translation>
-    </message>
-    <message>
         <source>CANCEL</source>
         <translation>CANCELAR</translation>
-    </message>
-    <message>
-        <source>OK</source>
-        <translation>OK</translation>
     </message>
     <message>
         <source>Edit Contact</source>
@@ -53,8 +45,8 @@
         <translation>Etiqueta la dirección seleccionada</translation>
     </message>
     <message>
-        <source>Enter a name for the address (e.g Exchange)</source>
-        <translation>Introduce un nombre para la dirección (p.e. Exchange)</translation>
+        <source>Enter a label for the address (e.g. Exchange)</source>
+        <translation>Introduzca un titulo para la direccion (Ejemplo: Exchange)</translation>
     </message>
     <message>
         <source>SAVE</source>
@@ -196,6 +188,10 @@
         <translation>Fecha</translation>
     </message>
     <message>
+        <source>Type</source>
+        <translation>Tipo</translation>
+    </message>
+    <message>
         <source>(no label)</source>
         <translation>(sin etiqueta)</translation>
     </message>
@@ -207,28 +203,12 @@
         <translation>Formulario</translation>
     </message>
     <message>
-        <source>Send</source>
-        <translation>Enviar</translation>
-    </message>
-    <message>
-        <source>TextLabel</source>
-        <translation>EtiquetaDeTexto</translation>
-    </message>
-    <message>
-        <source>No active Master Node yet</source>
-        <translation>No hay ningún nodo Maestro activo todavía.</translation>
-    </message>
-    <message>
         <source>Contact name</source>
         <translation>Nombre de contacto</translation>
     </message>
     <message>
         <source>Enter address</source>
         <translation>Ingresa la dirección</translation>
-    </message>
-    <message>
-        <source>OK</source>
-        <translation>OK</translation>
     </message>
     <message>
         <source>Contacts</source>
@@ -243,16 +223,16 @@
         <translation>Aún no hay contactos</translation>
     </message>
     <message>
-        <source>e.g. John Doe</source>
-        <translation>p.ej. John Doe</translation>
-    </message>
-    <message>
-        <source>Enter a BCZ address</source>
-        <translation>Introduzca una dirección BCZ</translation>
-    </message>
-    <message>
         <source>SAVE</source>
         <translation>GUARDAR</translation>
+    </message>
+    <message>
+        <source>Add new contact</source>
+        <translation>Anadir un nuevo contacto</translation>
+    </message>
+    <message>
+        <source>Generate a new address to receive tokens.</source>
+        <translation>Generar una nueva direccion para recibir fichas</translation>
     </message>
     <message>
         <source>Invalid Contact Address</source>
@@ -327,33 +307,33 @@ Are you sure?</source>
     </message>
     <message>
         <source>Enter the new passphrase to the wallet.&lt;br/&gt;Please use a passphrase of &lt;b&gt;ten or more random characters&lt;/b&gt;, or &lt;b&gt;eight or more words&lt;/b&gt;.</source>
-        <translation>Escriba la nueva contraseña para el monedero. &lt;br/&gt;Por favor utilice una contraseña de &lt;b&gt;10 o más caracteres aleatorios&lt;/b&gt;, u &lt;b&gt; ocho o más palabras&lt;/b&gt;</translation>
+        <translation>Escriba la nueva contraseña para la wallet. &lt;br/&gt;Por favor utilice una contraseña de &lt;b&gt;10 o más caracteres aleatorios&lt;/b&gt;, u &lt;b&gt; ocho o más palabras&lt;/b&gt;</translation>
     </message>
     <message>
         <source>Encrypt wallet</source>
-        <translation>Cifrar monedero</translation>
+        <translation>Encriptar wallet</translation>
     </message>
     <message>
         <source>This operation needs your wallet passphrase to unlock the wallet.</source>
-        <translation>Esta operación requiere su contraseña para desbloquear el monedero</translation>
+        <translation>Esta operación requiere su contraseña para desbloquear la wallet.</translation>
     </message>
     <message>
         <source>Unlock wallet
 for staking</source>
-        <translation>Desbloquear billetera
+        <translation>Desbloquear wallet
 para staking</translation>
     </message>
     <message>
         <source>Unlock wallet</source>
-        <translation>Desbloquear monedero</translation>
+        <translation>Desbloquear wallet</translation>
     </message>
     <message>
         <source>This operation needs your wallet passphrase to decrypt the wallet.</source>
-        <translation>Esta operación requiere su contraseña para descifrar el monedero</translation>
+        <translation>Esta operación requiere su contraseña para desencriptar la wallet.</translation>
     </message>
     <message>
         <source>Decrypt wallet</source>
-        <translation>Descifrar monedero</translation>
+        <translation>Desencriptar wallet</translation>
     </message>
     <message>
         <source>Change passphrase</source>
@@ -361,11 +341,19 @@ para staking</translation>
     </message>
     <message>
         <source>Enter the old and new passphrase to the wallet.</source>
-        <translation>Ingrese la antigua y la nueva contraseña para el monedero</translation>
+        <translation>Ingrese la antigua y la nueva contraseña de la wallet.</translation>
     </message>
     <message>
         <source>Confirm wallet encryption</source>
-        <translation>Confirme el cifrado del monedero</translation>
+        <translation>Confirma el encriptado de la wallet</translation>
+    </message>
+    <message>
+        <source>WARNING</source>
+        <translation>ADVERTENCIA</translation>
+    </message>
+    <message>
+        <source>If you encrypt your wallet and lose your passphrase, you will</source>
+        <translation>Si encriptas tu wallet y pierdes tu contraseña, tu</translation>
     </message>
     <message>
         <source>ENCRYPT</source>
@@ -377,27 +365,35 @@ para staking</translation>
     </message>
     <message>
         <source>BCZ will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your BCZs from being stolen by malware infecting your computer.</source>
-        <translation>BCZ se cerrará para finalizar el proceso de cifrado. Recuerde que cifrar su monedero no garantiza que sus BCZs no sean robados mediante malware de su ordenador.</translation>
+        <translation>BCZ se cerrará para finalizar el proceso de encriptación. Recuerda que encriptar tu wallet no garantiza que sus BCZs no sean robados mediante malware de tu computadora.</translation>
     </message>
     <message>
         <source>Are you sure you wish to encrypt your wallet?</source>
-        <translation>¿Está seguro de que desea cifrar su monedero?</translation>
-    </message>
-    <message>
-        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR BCZ&lt;/b&gt;!</source>
-        <translation>Atención: Si cifra su monedero y pierde su contraseña, perderá &lt;b&gt; TODOS SUS BCZ&lt;/b&gt;!</translation>
+        <translation>¿Está seguro de que desea encriptar tu wallet?</translation>
     </message>
     <message>
         <source>Wallet encrypted</source>
-        <translation>Monedero cifrado</translation>
+        <translation>Wallet encriptado</translation>
+    </message>
+    <message>
+        <source>WARNING:</source>
+        <translation>ADVERTENCIA:</translation>
+    </message>
+    <message>
+        <source>The caps lock key is on!</source>
+        <translation>Las mayusculas estan activadas!</translation>
+    </message>
+    <message>
+        <source>Passphrases do not match!</source>
+        <translation>Las contraseñas no coinciden!</translation>
     </message>
     <message>
         <source>IMPORTANT: Any previous backups you have made of your wallet file should be replaced with the newly generated, encrypted wallet file. For security reasons, previous backups of the unencrypted wallet file will become useless as soon as you start using the new, encrypted wallet.</source>
-        <translation>IMPORTANTE: Cualquier copia de seguridad anterior que haya realizado de su monedero debe ser reemplazada por la nueva copia de seguridad cifrada. Por razones de seguridad, las copias de seguridad anteriores del monedero sin cifrar pasarán a ser obsoletas tan pronto empiece a utilizar el nuevo monedero cifrado.</translation>
+        <translation>IMPORTANTE: Cualquier copia de seguridad anterior que hayas realizado de tu wallet debe ser reemplazada por la nueva copia de seguridad encriptada. Por razones de seguridad, las copias de seguridad anteriores de la wallet sin encriptar pasarán a ser obsoletas tan pronto empiece a utilizar la nueva wallet encriptada.</translation>
     </message>
     <message>
         <source>Wallet encryption failed</source>
-        <translation>El cifrado del monedero ha fallado</translation>
+        <translation>El encriptado de la wallet ha fallado</translation>
     </message>
     <message>
         <source>OK</source>
@@ -405,31 +401,31 @@ para staking</translation>
     </message>
     <message>
         <source>Wallet encryption failed due to an internal error. Your wallet was not encrypted.</source>
-        <translation>El cifrado del monedero ha fallado debido a un error interno. Su monedero no ha sido cifrado.</translation>
+        <translation>La encriptación de la El cifrado fallado debido a un error interno. Tu El cifrado  no ha sido encriptado.</translation>
     </message>
     <message>
         <source>The supplied passphrases do not match.</source>
         <translation>Las contraseñas introducidas no coinciden.</translation>
     </message>
     <message>
+        <source>LOSE ALL OF YOUR COINS</source>
+        <translation>PERDER TODAS TUS MONEDAS</translation>
+    </message>
+    <message>
         <source>Wallet unlock failed</source>
-        <translation>Desbloqueo del monedero fallido</translation>
+        <translation>El desbloqueo de la wallet ha fallido</translation>
     </message>
     <message>
         <source>The passphrase entered for the wallet decryption was incorrect.</source>
-        <translation>La contraseña introducida para el descifrado del monedero es incorrecta.</translation>
+        <translation>La contraseña introducida para desencriptar la wallet es incorrecta.</translation>
     </message>
     <message>
         <source>Wallet decryption failed</source>
-        <translation>Descifrado del monedero fallido</translation>
+        <translation>Desencriptado de la wallet ha fallado</translation>
     </message>
     <message>
         <source>Wallet passphrase was successfully changed.</source>
         <translation>Se cambió la contraseña con éxito.</translation>
-    </message>
-    <message>
-        <source>Warning: The Caps Lock key is on!</source>
-        <translation>Aviso: La tecla Mayúsculas está encendida!</translation>
     </message>
 </context>
 <context>
@@ -441,37 +437,6 @@ para staking</translation>
     <message>
         <source>Banned Until</source>
         <translation>Suspendido hasta</translation>
-    </message>
-</context>
-<context>
-    <name>BlockExplorer</name>
-    <message>
-        <source>Blockchain Explorer</source>
-        <translation>Explorador del blockchain</translation>
-    </message>
-    <message>
-        <source>Back</source>
-        <translation>Atrás</translation>
-    </message>
-    <message>
-        <source>Forward</source>
-        <translation>Adelante</translation>
-    </message>
-    <message>
-        <source>Address / Block / Transaction</source>
-        <translation>Dirección / Bloque / Transacción</translation>
-    </message>
-    <message>
-        <source>Search</source>
-        <translation>Buscar</translation>
-    </message>
-    <message>
-        <source>TextLabel</source>
-        <translation>EtiquetaDeTexto</translation>
-    </message>
-    <message>
-        <source>Not all transactions will be shown. To view all transactions you need to set txindex=1 in the configuration file (bcz.conf).</source>
-        <translation>No se muestran todas las transacciones. Para ver todas las transacciones introduzca la línea "txindex=1" en el archivo de configuración (bcz.conf).</translation>
     </message>
 </context>
 <context>
@@ -507,10 +472,6 @@ para staking</translation>
         <source>Total: %1 (IPv4: %2 / IPv6: %3 / Tor: %4 / Unknown: %5)</source>
         <translation>Total: %1 (IPv4: %2 / IPv6: %3 / Tor: %4 / Desconocido: %5)</translation>
     </message>
-    <message>
-        <source>Network Alert</source>
-        <translation>Alerta de Red</translation>
-    </message>
 </context>
 <context>
     <name>CoinControlDialog</name>
@@ -529,6 +490,10 @@ para staking</translation>
     <message>
         <source>Coin Selection</source>
         <translation>Selección de Moneda</translation>
+    </message>
+    <message>
+        <source>Select BCZ Outputs to Spend</source>
+        <translation>Seleccionar Salidas BCZ para Gastar</translation>
     </message>
     <message>
         <source>Dust:</source>
@@ -553,14 +518,6 @@ para staking</translation>
     <message>
         <source>Amount</source>
         <translation>Cantidad</translation>
-    </message>
-    <message>
-        <source>Transaction Details</source>
-        <translation>Detalles de Transacción</translation>
-    </message>
-    <message>
-        <source>PushButton</source>
-        <translation>Presionar el botón</translation>
     </message>
     <message>
         <source>0.00 BCZ</source>
@@ -631,40 +588,40 @@ para staking</translation>
         <translation>Desbloquear no gastado</translation>
     </message>
     <message>
-        <source>Copy quantity</source>
-        <translation>Copiar cantidad</translation>
-    </message>
-    <message>
-        <source>Copy fee</source>
-        <translation>Copiar comisión</translation>
-    </message>
-    <message>
-        <source>Copy after fee</source>
-        <translation>Copiar después de comisión</translation>
-    </message>
-    <message>
-        <source>Copy bytes</source>
-        <translation>Copiar octetos</translation>
-    </message>
-    <message>
-        <source>Copy priority</source>
-        <translation>Copiar prioridad</translation>
-    </message>
-    <message>
-        <source>Copy dust</source>
-        <translation>Copiar calderilla</translation>
-    </message>
-    <message>
-        <source>Copy change</source>
-        <translation>Copiar cambio</translation>
-    </message>
-    <message>
         <source>Unselect all</source>
         <translation>Deseleccionar todo</translation>
     </message>
     <message>
         <source>Please switch to "List mode" to use this function.</source>
         <translation>Por favor cambie a "Modo de Lista" para utilizar esta función.</translation>
+    </message>
+    <message>
+        <source>Quantity Copied</source>
+        <translation>Cantidad Copiada</translation>
+    </message>
+    <message>
+        <source>Amount Copied</source>
+        <translation>Monto Copiado</translation>
+    </message>
+    <message>
+        <source>Fee Copied</source>
+        <translation>Comisión Copiada</translation>
+    </message>
+    <message>
+        <source>After Fee Copied</source>
+        <translation>Después de la Comisión Copiada</translation>
+    </message>
+    <message>
+        <source>Bytes Copied</source>
+        <translation>Bytes Copiados</translation>
+    </message>
+    <message>
+        <source>Dust Copied</source>
+        <translation>Dust Copiado</translation>
+    </message>
+    <message>
+        <source>Change Copied</source>
+        <translation>Cambio Copiado</translation>
     </message>
     <message>
         <source>highest</source>
@@ -715,6 +672,18 @@ para staking</translation>
         <translation>sí</translation>
     </message>
     <message>
+        <source>Can vary +/- %1 u%2 per input.</source>
+        <translation>Puede variar +/- %1 u%2 por entrada.</translation>
+    </message>
+    <message>
+        <source>delegated to %1 for cold staking</source>
+        <translation>delegar a %1 para hacer cold staking</translation>
+    </message>
+    <message>
+        <source>Select All</source>
+        <translation>Deseleccionar Todo</translation>
+    </message>
+    <message>
         <source>no</source>
         <translation>no</translation>
     </message>
@@ -743,10 +712,6 @@ para staking</translation>
         <translation>Esta etiqueta se vuelve roja, si algún destinatario recibe una cantidad menor que %1.</translation>
     </message>
     <message>
-        <source>Can vary +/- %1 ubcz per input.</source>
-        <translation>Puede variar +/- %1 ubcz por entrada.</translation>
-    </message>
-    <message>
         <source>(no label)</source>
         <translation>(sin etiqueta)</translation>
     </message>
@@ -760,129 +725,22 @@ para staking</translation>
     </message>
 </context>
 <context>
-    <name>CoinControlBczWidget</name>
-    <message>
-        <source>Dialog</source>
-        <translation>Diálogo</translation>
-    </message>
-    <message>
-        <source>Transaction Details</source>
-        <translation>Detalles de Transacción</translation>
-    </message>
-    <message>
-        <source>PushButton</source>
-        <translation>Presionar el botón</translation>
-    </message>
-    <message>
-        <source>BCZ:</source>
-        <translation>BCZ:</translation>
-    </message>
-    <message>
-        <source>TextLabel</source>
-        <translation>EtiquetaDeTexto</translation>
-    </message>
-    <message>
-        <source>Quantity:</source>
-        <translation>Cantidad:</translation>
-    </message>
-    <message>
-        <source>Fee:</source>
-        <translation>Comisión:</translation>
-    </message>
-    <message>
-        <source>Amount</source>
-        <translation>Cantidad</translation>
-    </message>
-    <message>
-        <source>Label</source>
-        <translation>Etiqueta</translation>
-    </message>
-    <message>
-        <source>Address</source>
-        <translation>Dirección</translation>
-    </message>
-    <message>
-        <source>Type</source>
-        <translation>Tipo</translation>
-    </message>
-    <message>
-        <source>Date</source>
-        <translation>Fecha</translation>
-    </message>
-    <message>
-        <source>Confirmations</source>
-        <translation>Confirmaciones</translation>
-    </message>
-    <message>
-        <source>CheckBox</source>
-        <translation>CheckBox</translation>
-    </message>
-    <message>
-        <source>Bytes:</source>
-        <translation>Bytes:</translation>
-    </message>
-    <message>
-        <source>Dust:</source>
-        <translation>Calderilla:</translation>
-    </message>
-    <message>
-        <source>Change:</source>
-        <translation>Cambio:</translation>
-    </message>
-    <message>
-        <source>After Fee: </source>
-        <translation>Después de Comisión:</translation>
-    </message>
-    <message>
-        <source>CANCEL</source>
-        <translation>CANCELAR</translation>
-    </message>
-    <message>
-        <source>OK</source>
-        <translation>OK</translation>
-    </message>
-</context>
-<context>
     <name>ColdStakingWidget</name>
     <message>
         <source>Form</source>
         <translation>Formulario</translation>
     </message>
     <message>
-        <source>Title</source>
-        <translation>Título</translation>
-    </message>
-    <message>
-        <source>TextLabel</source>
-        <translation>EtiquetaDeTexto</translation>
-    </message>
-    <message>
-        <source>PushButton</source>
-        <translation>Presionar el botón</translation>
-    </message>
-    <message>
-        <source>Owner Address (optional, if empty a new address will be created)</source>
+        <source>Owner address (optional, if empty a new address will be created)</source>
         <translation>Dirección del propietario (opcional, si está vacía se creará una nueva dirección)</translation>
     </message>
     <message>
-        <source>List of delegated balance by address</source>
-        <translation>Lista de saldos delegados por dirección</translation>
-    </message>
-    <message>
-        <source>Total</source>
-        <translation>Total</translation>
-    </message>
-    <message>
-        <source>Unconfirmed balance will not be shown</source>
-        <translation>No se mostrará el saldo no confirmado</translation>
-    </message>
-    <message>
-        <source>No balance delegated</source>
-        <translation>Sin saldo delegado</translation>
+        <source>Total Staking:</source>
+        <translation>Staking Total:</translation>
     </message>
     <message>
         <source>Cold Staking</source>
-        <translation>Colocar Cold Staking</translation>
+        <translation>Cold Staking</translation>
     </message>
     <message>
         <source>Staker</source>
@@ -893,29 +751,12 @@ para staking</translation>
         <translation>Delegación </translation>
     </message>
     <message>
-        <source>You can delegate your BCZs and let a hot node (24/7 online node)
-stake in your behalf, keeping the keys in a secure place offline.</source>
-        <translation>Puedes delegar tus BCZs y dejar que un nodo de acceso directo (24/7 nodo en línea) Haga Stake en tu nombre, manteniendo las llaves en un lugar seguro fuera de línea.</translation>
-    </message>
-    <message>
-        <source>Add owner address</source>
-        <translation>Añadir dirección del propietario</translation>
-    </message>
-    <message>
-        <source>Delegate or Accept BCZ delegation</source>
-        <translation>Delegar o aceptar la delegación de BCZ</translation>
-    </message>
-    <message>
         <source>Delegate</source>
         <translation>Delegado</translation>
     </message>
     <message>
         <source>Clear All</source>
         <translation>Borrar todo</translation>
-    </message>
-    <message>
-        <source>Add the staking address</source>
-        <translation>Añadir la dirección de hacer Stake</translation>
     </message>
     <message>
         <source>Delegated balance history</source>
@@ -931,23 +772,76 @@ stake in your behalf, keeping the keys in a secure place offline.</source>
     </message>
     <message>
         <source>Error loading delegations: %1</source>
-        <translation>Error al cargar las delegaciones:%1</translation>
+        <translation>Error al cargar las delegaciones: %1</translation>
+    </message>
+    <message>
+        <source>You can delegate your BCZs, letting a hot node (24/7 online node)
+stake on your behalf, while you keep the keys securely offline.</source>
+        <translation>Puedes delegar tus BCZ, dejando un nodo activo (nodo en línea 24/7)
+Haga Stake en tu nombre, manteniendo las llaves en un lugar seguro fuera de línea.</translation>
+    </message>
+    <message>
+        <source>Enter owner address</source>
+        <translation>Ingresa la dirección del propietario</translation>
+    </message>
+    <message>
+        <source>Accept BCZ delegation / Delegate BCZ</source>
+        <translation>Aceptar delegación de BCZ / BCZ Delegados</translation>
+    </message>
+    <message>
+        <source>Cold Staking address</source>
+        <translation>Dirección de Cold Staking</translation>
+    </message>
+    <message>
+        <source>No receive addresses available, you can go to the receive screen and create some there!</source>
+        <translation>No hay direcciones de recepción disponibles, puedes ir a la pantalla de recepción y añadir algunas allí!</translation>
     </message>
     <message>
         <source>No contacts available, you can go to the contacts screen and add some there!</source>
         <translation>Sin contactos disponibles, ¡puedes ir a la pantalla de contactos y añadir alguno allí!</translation>
     </message>
     <message>
+        <source>Cannot send delegation, wallet locked</source>
+        <translation>No se puede enviar delegación, la wallet está bloqueada</translation>
+    </message>
+    <message>
         <source>Cold staking is networkely disabled</source>
         <translation>El Cold Stake está desactivado en la red </translation>
+    </message>
+    <message>
+        <source>Coin Control</source>
+        <translation>Control de moneda</translation>
+    </message>
+    <message>
+        <source>Select %1 outputs to delegate.</source>
+        <translation>Selecciona %1 salidas para delegar.</translation>
+    </message>
+    <message>
+        <source>Create Cold Staking Address</source>
+        <translation>Crear direccion de apuesta en frio</translation>
+    </message>
+    <message>
+        <source>Creates an address to receive delegated coins
+and stake them on their owner's behalf.</source>
+        <translation>Crea una dirección para recibir monedas delegadas y apostarlas en nombre de su propietario.</translation>
+    </message>
+    <message>
+        <source>My Cold Staking Addresses</source>
+        <translation>Mis direcciones de Cold Staking
+
+</translation>
+    </message>
+    <message>
+        <source>List your own cold staking addresses.</source>
+        <translation>Enumere sus propias direcciones de apuesta en frío.</translation>
     </message>
     <message>
         <source>Invalid entry</source>
         <translation>Entrada inválida</translation>
     </message>
     <message>
-        <source>Invalid entry, minimum delegable amount is 10 BCZ</source>
-        <translation>Entrada no válida, la cantidad mínima para delegar es de 10 BCZ</translation>
+        <source>Invalid entry, minimum delegable amount is </source>
+        <translation>Entrada no válida, la cantidad mínima para delegar es de</translation>
     </message>
     <message>
         <source>Owner address invalid</source>
@@ -955,7 +849,7 @@ stake in your behalf, keeping the keys in a secure place offline.</source>
     </message>
     <message>
         <source>ALERT!</source>
-        <translation>ALERTA!</translation>
+        <translation>¡ALERTA!</translation>
     </message>
     <message>
         <source>Delegating to an external owner address!
@@ -967,15 +861,15 @@ device containing the owner address.
 Do you wish to proceed?</source>
         <translation>¡Delegar en una dirección de propietario externa!
 
-Las monedas delegadas NO se podrán gastar en esta billetera.
-El gasto de estas monedas tendrá que hacerse desde la billetera o
+Las monedas delegadas NO se podrán gastar en esta wallet.
+El gasto de estas monedas tendrá que hacerse desde la wallet o
 el dispositivo que contiene la dirección del propietario.
 
 ¿Deseas continuar?</translation>
     </message>
     <message>
         <source>Staking address corresponds to this wallet, change it to an external node</source>
-        <translation>La dirección de Stake corresponde a esta cartera, cámbiala a un nodo externo.</translation>
+        <translation>La dirección de Stake corresponde a esta wallet, cámbiala a un nodo externo.</translation>
     </message>
     <message>
         <source>Cannot create transaction.</source>
@@ -986,8 +880,12 @@ el dispositivo que contiene la dirección del propietario.
         <translation>Monedas delegadas </translation>
     </message>
     <message>
-        <source>You don't have any BCZ to select.</source>
-        <translation>Tú no tienes ningún BCZ para seleccionar</translation>
+        <source>You don't have any %1 to select.</source>
+        <translation>No tiene %1 para seleccionar.</translation>
+    </message>
+    <message>
+        <source>Cannot perform operation, wallet locked</source>
+        <translation>No se puede realizar la operación, la wallet está bloqueada</translation>
     </message>
     <message>
         <source>URI copied to clipboard</source>
@@ -1070,14 +968,6 @@ del propietario </translation>
         <source>Form</source>
         <translation>Formulario</translation>
     </message>
-    <message>
-        <source>Bob Allen</source>
-        <translation>Bob Allen</translation>
-    </message>
-    <message>
-        <source>DN6i46dytMPVhV1JMGZFuQBh7BZZ6nNLox</source>
-        <translation>DN6i46dytMPVhV1JMGZFuQBh7BZZ6nNLox</translation>
-    </message>
 </context>
 <context>
     <name>DashboardWidget</name>
@@ -1090,40 +980,16 @@ del propietario </translation>
         <translation>Transacciones</translation>
     </message>
     <message>
-        <source>You can see here the history of your account</source>
-        <translation>Puedes ver aquí el historial de tu cuenta</translation>
-    </message>
-    <message>
-        <source>Warning</source>
-        <translation>Advertencia</translation>
-    </message>
-    <message>
-        <source>No transactions</source>
-        <translation>Sin transacciones</translation>
-    </message>
-    <message>
-        <source>PushButton</source>
-        <translation>Presionar el botón</translation>
-    </message>
-    <message>
         <source>Staking Rewards</source>
         <translation>Recompensas de Staking</translation>
-    </message>
-    <message>
-        <source>TextLabel</source>
-        <translation>EtiquetaDeTexto</translation>
     </message>
     <message>
         <source>Staking statistics</source>
         <translation>Estadísticas de Staking</translation>
     </message>
     <message>
-        <source>BCZ</source>
-        <translation>BCZ</translation>
-    </message>
-    <message>
-        <source>zBCZ</source>
-        <translation>zBCZ</translation>
+        <source>View your account's history</source>
+        <translation>Ver el historial de su cuenta</translation>
     </message>
     <message>
         <source>Sort by</source>
@@ -1146,77 +1012,21 @@ del propietario </translation>
         <translation>Filtrar por</translation>
     </message>
     <message>
-        <source>LabelText</source>
-        <translation>LabelText</translation>
-    </message>
-    <message>
-        <source>You can view your account's history</source>
-        <translation>Puedes ver el historial de tu cuenta</translation>
-    </message>
-    <message>
-        <source>Amount of BCZ and zBCZ staked.</source>
-        <translation>Cantidad de BCZ y zBCZ por stake.</translation>
-    </message>
-    <message>
-        <source>All</source>
-        <translation>Todos</translation>
-    </message>
-    <message>
-        <source>Received</source>
-        <translation>Recibidos</translation>
-    </message>
-    <message>
-        <source>Sent</source>
-        <translation>Enviados</translation>
-    </message>
-    <message>
-        <source>Mined</source>
-        <translation>Minado</translation>
-    </message>
-    <message>
-        <source>Minted</source>
-        <translation>Creación de moneda</translation>
-    </message>
-    <message>
-        <source>MN reward</source>
-        <translation>Recompensa de MN</translation>
-    </message>
-    <message>
-        <source>To yourself</source>
-        <translation>A usted mismo</translation>
-    </message>
-    <message>
-        <source>Cold stakes</source>
-        <translation>Stake en frío</translation>
-    </message>
-    <message>
-        <source>Hot stakes</source>
-        <translation>Stake en caliente</translation>
-    </message>
-    <message>
-        <source>Delegated</source>
-        <translation>Delegado </translation>
-    </message>
-    <message>
-        <source>Delegations</source>
-        <translation>Delegaciones </translation>
+        <source>Amount of BCZ staked.</source>
+        <translation>Cantidad de BCZ por stake.</translation>
     </message>
     <message>
         <source>Please wait until the wallet is fully synced to see your correct balance</source>
-        <translation>Espere hasta que la billetera esté completamente sincronizada para ver su saldo correcto</translation>
+        <translation>Espere hasta que la wallet esté completamente sincronizada para ver su saldo correcto</translation>
     </message>
     <message>
         <source>No transactions yet</source>
         <translation>Aún no hay transacciones</translation>
     </message>
     <message>
-        <source>How to get BCZ or zBCZ</source>
-        <translation>Cómo obtener BCZ o zBCZ</translation>
-    </message>
-    <message>
         <source>You can verify the staking activity in the status bar at the top right of the wallet.
 It will start automatically as soon as the wallet has enough confirmations on any unspent balances, and the wallet has synced.</source>
-        <translation>Puedes verificar la actividad de tu Stake en la barra de estado en la parte superior derecha de la billetera. Se iniciará automáticamente tan pronto como la billetera se haya sincronizado y  tenga suficientes confirmaciones sobre cualquier saldo disponible. </translation>
+        <translation>Puedes verificar la actividad de tu Stake en la barra de estado en la parte superior derecha de la wallet. Se iniciará automáticamente tan pronto como la wallet se haya sincronizado y  tenga suficientes confirmaciones sobre cualquier saldo disponible. </translation>
     </message>
     <message>
         <source>You have no staking rewards</source>
@@ -1250,20 +1060,12 @@ It will start automatically as soon as the wallet has enough confirmations on an
         <translation>Formulario</translation>
     </message>
     <message>
-        <source>Transaction Details</source>
-        <translation>Detalles de Transacción</translation>
-    </message>
-    <message>
-        <source>Text Label</source>
-        <translation>Text Label</translation>
+        <source>OK</source>
+        <translation>OK</translation>
     </message>
     <message>
         <source>CANCEL</source>
         <translation>CANCELAR</translation>
-    </message>
-    <message>
-        <source>SAVE</source>
-        <translation>GUARDAR</translation>
     </message>
 </context>
 <context>
@@ -1314,7 +1116,7 @@ It will start automatically as soon as the wallet has enough confirmations on an
     </message>
     <message>
         <source>Could not unlock wallet.</source>
-        <translation>No se pudo desbloquear el monedero.</translation>
+        <translation>No se pudo desbloquear la wallet</translation>
     </message>
     <message>
         <source>New key generation failed.</source>
@@ -1394,6 +1196,10 @@ It will start automatically as soon as the wallet has enough confirmations on an
         <translation>Mostrar pantalla de bienvenida al arrancar (por defecto: %u)</translation>
     </message>
     <message>
+        <source>Hide QT staking charts on startup (default: %u)</source>
+        <translation>Ocultar gráficas de staking QT al inicio (predeterminado: %u)</translation>
+    </message>
+    <message>
         <source>Set language, for example "de_DE" (default: system locale)</source>
         <translation>Seleccionar el idioma, por ejemplo "es_ES" (por defecto: idioma del sistema)</translation>
     </message>
@@ -1426,7 +1232,7 @@ It will start automatically as soon as the wallet has enough confirmations on an
     </message>
     <message>
         <source>BCZ Core will download and store a copy of the BCZ block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
-        <translation>BCZ Core descargará y guardará una copia de la cadena de bloques BCZ. Por lo menos %1GB de datos serán guardados en esta carpeta, y crecerá con el tiempo. El monedero también se guardará en esta carpeta.</translation>
+        <translation>BCZ Core descargará y guardará una copia de la cadena de bloques BCZ. Por lo menos %1GB de datos serán guardados en esta carpeta, y crecerá con el tiempo. La wallet también se guardará en esta carpeta.</translation>
     </message>
     <message>
         <source>Use the default data directory</source>
@@ -1466,25 +1272,6 @@ It will start automatically as soon as the wallet has enough confirmations on an
     </message>
 </context>
 <context>
-    <name>LoadingDialog</name>
-    <message>
-        <source>Form</source>
-        <translation>Formulario</translation>
-    </message>
-    <message>
-        <source>TextLabel</source>
-        <translation>EtiquetaDeTexto</translation>
-    </message>
-    <message>
-        <source>Loading</source>
-        <translation>Cargando</translation>
-    </message>
-    <message>
-        <source>.</source>
-        <translation>.</translation>
-    </message>
-</context>
-<context>
     <name>LockUnlock</name>
     <message>
         <source>Form</source>
@@ -1492,11 +1279,11 @@ It will start automatically as soon as the wallet has enough confirmations on an
     </message>
     <message>
         <source>Unlock Wallet</source>
-        <translation>Desbloquear monedero</translation>
+        <translation>Desbloquear wallet</translation>
     </message>
     <message>
         <source>Lock Wallet</source>
-        <translation>Bloquear monedero</translation>
+        <translation>Bloquear wallet</translation>
     </message>
     <message>
         <source>Staking Only</source>
@@ -1510,16 +1297,12 @@ It will start automatically as soon as the wallet has enough confirmations on an
         <translation>Formulario</translation>
     </message>
     <message>
-        <source>user_masternode</source>
-        <translation>usuario_masternode</translation>
+        <source>Collateral tx not found</source>
+        <translation>tx colateral no encontrado</translation>
     </message>
     <message>
-        <source>Address: 88.26.164.88:29600</source>
-        <translation>Dirección: 88.26.164.88:29600</translation>
-    </message>
-    <message>
-        <source>Jan. 19, 2019</source>
-        <translation>19 de enero, 2019</translation>
+        <source>Status: %1</source>
+        <translation>Estado: %1</translation>
     </message>
 </context>
 <context>
@@ -1553,28 +1336,32 @@ It will start automatically as soon as the wallet has enough confirmations on an
         <translation>Dirección</translation>
     </message>
     <message>
-        <source>Create New Master Node Controller</source>
-        <translation>Crear Nuevo Controlador de Master Node</translation>
+        <source>Create New Masternode Controller</source>
+        <translation>Crear Nuevo Controlador de Masternode</translation>
     </message>
     <message>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;To create a BCZ Masternode you must dedicate 5,000 BCZ (the unit of BCZ) to the network (however, these coins are still yours and will never leave your possession). &lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;You can deactivate the node and unlock the coins at any time.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>Para crear un Masternode de BCZ debes desponer 5,000 BCZ (la unidad de BCZ) a la red (sin embargo, estas monedas siguen siendo tuyas y nunca saldrán de tu posesión). Puedes desactivar el nodo y desbloquear las monedas en cualquier momento.</translation>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;To create a BCZ Masternode you must dedicate 10,000 BCZ (the unit of BCZ) to the network (however, these coins are still yours and will never leave your possession). &lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;You can deactivate the node and unlock the coins at any time.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>Para crear un Masternode de BCZ debes desponer 10.000 BCZ (la unidad de BCZ) a la red (sin embargo, estas monedas siguen siendo tuyas y nunca saldrán de tu posesión). Puedes desactivar el nodo y desbloquear las monedas en cualquier momento.</translation>
+    </message>
+    <message>
+        <source>Set Masternode Name</source>
+        <translation>Configurar el Nombre del Masternode</translation>
+    </message>
+    <message>
+        <source>Set Masternode IP and Port</source>
+        <translation>Configurar la IP y el puerto del Masternode</translation>
+    </message>
+    <message>
+        <source>Enter port</source>
+        <translation>Ingresa el puerto</translation>
     </message>
     <message>
         <source>Make sure you have this amount of coins.</source>
         <translation>Asegúrate de tener esta cantidad de monedas.</translation>
     </message>
     <message>
-        <source>Set Master Node’s Name</source>
-        <translation>Establecer el nombre del Master Node</translation>
-    </message>
-    <message>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;A transaction of 5,000 BCZ will be made&lt;/p&gt;&lt;p&gt;to a new empty address in your wallet.&lt;/p&gt;&lt;p&gt;The Address is labeled under the master node's name.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>Una transacción de 5,000 BCZ se hará a una nueva dirección vacía en tu billetera.  La dirección está etiquetada bajo el nombre de masternode. </translation>
-    </message>
-    <message>
-        <source>Set Master Node’s IP and port</source>
-        <translation>Configurar la IP y el puerto del Nodo Maestro</translation>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;A transaction of 10,000 BCZ will be made&lt;/p&gt;&lt;p&gt;to a new empty address in your wallet.&lt;/p&gt;&lt;p&gt;The Address is labeled under the master node's name.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>Una transacción de 10,000 BCZ se hará a una nueva dirección vacía en tu wallet.  La dirección está etiquetada bajo el nombre de masternode. </translation>
     </message>
     <message>
         <source>Address of the node that must always be online running the actual master node.</source>
@@ -1583,22 +1370,6 @@ It will start automatically as soon as the wallet has enough confirmations on an
     <message>
         <source>Enter IP address</source>
         <translation>Ingresa la dirección IP</translation>
-    </message>
-    <message>
-        <source>Enter Port</source>
-        <translation>Ingresa el Puerto</translation>
-    </message>
-    <message>
-        <source>CANCEL</source>
-        <translation>CANCELAR</translation>
-    </message>
-    <message>
-        <source>OK</source>
-        <translation>OK</translation>
-    </message>
-    <message>
-        <source>e.g user_masternode</source>
-        <translation>por ejemplo usuario_masternode</translation>
     </message>
     <message>
         <source>NEXT</source>
@@ -1617,72 +1388,54 @@ It will start automatically as soon as the wallet has enough confirmations on an
         <translation>IP o puerto no puede quedar vacío</translation>
     </message>
     <message>
-        <source>Invalid port number</source>
-        <translation>Número de puerto inválido</translation>
+        <source>Invalid IP address</source>
+        <translation>Dirección IP Inválida</translation>
     </message>
     <message>
-        <source>Prepare master node failed..</source>
-        <translation>Preparar el masternode fallido.</translation>
+        <source>Unknown error</source>
+        <translation>Error desconocido</translation>
     </message>
     <message>
-        <source>Invalid masternode.conf file</source>
-        <translation>Archivo masternode.conf no válido</translation>
+        <source>Prepare master node failed.
+
+%1
+</source>
+        <translation>Preparar el masternode fallido.
+
+%1
+</translation>
     </message>
     <message>
-        <source>Error parsing masternode.conf file</source>
-        <translation>Error al analizar el archivo masternode.conf</translation>
-    </message>
-    <message>
-        <source>Invalid collaterall output index</source>
+        <source>Invalid collateral output index</source>
         <translation>Índice de salida de colaterales no válido</translation>
     </message>
     <message>
-        <source>Master node created!</source>
-        <translation>¡Masternodo creado!</translation>
+        <source>Master node created! Wait %1 confirmations before starting it.</source>
+        <translation>¡Masternode creado! Espere %1 confirmaciones antes de arrancarlos.</translation>
+    </message>
+    <message>
+        <source>Cannot send collateral transaction.
+
+%1</source>
+        <translation>No se pueden enviar transacciones colaterales.
+
+%1</translation>
+    </message>
+    <message>
+        <source>walletModel not set</source>
+        <translation>Modelo de billetera no definido</translation>
+    </message>
+    <message>
+        <source>Invalid masternode.conf file</source>
+        <translation>Archivo masternode.conf inválido </translation>
+    </message>
+    <message>
+        <source>Error parsing masternode.conf file</source>
+        <translation>Error al analizar el archivo masternode.conf </translation>
     </message>
     <message>
         <source>masternode.conf file doesn't exists</source>
         <translation>El archivo masternode.conf no existe</translation>
-    </message>
-    <message>
-        <source>The recipient address is not valid, please recheck.</source>
-        <translation>La dirección de destino no es válida, por favor compruébelo de nuevo.</translation>
-    </message>
-    <message>
-        <source>The amount to pay must be larger than 0.</source>
-        <translation>La cantidad a pagar debe ser mayor de 0.</translation>
-    </message>
-    <message>
-        <source>The amount exceeds your balance.</source>
-        <translation>La cantidad excede su saldo.</translation>
-    </message>
-    <message>
-        <source>The total exceeds your balance when the %1 transaction fee is included.</source>
-        <translation>El total excede su saldo si contamos la comisión de %1 .</translation>
-    </message>
-    <message>
-        <source>Duplicate address found, can only send to each address once per send operation.</source>
-        <translation>Hemos encontrado una dirección duplicada, sólo podemos enviar a cada dirección una vez por envío.</translation>
-    </message>
-    <message>
-        <source>Transaction creation failed!</source>
-        <translation>¡Fallo al crear la transacción!</translation>
-    </message>
-    <message>
-        <source>The transaction was rejected! This might happen if some of the coins in your wallet were already spent, such as if you used a copy of wallet.dat and coins were spent in the copy but not marked as spent here.</source>
-        <translation>¡La transacción fue rechazada! Esto puede ocurrir si alguna de sus monedas ya se gastó con anterioridad, por ejemplo, si estuvo usted usando una copia de su monedero wallet.dat y gastó allí monedas pero no las marcó como gastadas aquí.</translation>
-    </message>
-    <message>
-        <source>Error: The wallet was unlocked only to anonymize coins.</source>
-        <translation>Error: El monedero se desbloqueó sólo para anonimizar monedas.</translation>
-    </message>
-    <message>
-        <source>A fee %1 times higher than %2 per kB is considered an insanely high fee.</source>
-        <translation>Una comisión %1 veces más alta que %2 por kB se considera exageradamente alta.</translation>
-    </message>
-    <message>
-        <source>Error: The wallet was unlocked only to anonymize coins. Unlock canceled.</source>
-        <translation>Error: El monedero ya fue desbloqueado para anonimizar monedas. El desbloqueo total se ha cancelado.</translation>
     </message>
 </context>
 <context>
@@ -1692,16 +1445,12 @@ It will start automatically as soon as the wallet has enough confirmations on an
         <translation>Formulario</translation>
     </message>
     <message>
-        <source>TextLabel</source>
-        <translation>EtiquetaDeTexto</translation>
+        <source>Start All</source>
+        <translation>Iniciar Todo</translation>
     </message>
     <message>
-        <source>No active Master Node yet</source>
-        <translation>No hay ningún nodo Maestro activo todavía.</translation>
-    </message>
-    <message>
-        <source>PushButton</source>
-        <translation>Presionar el botón</translation>
+        <source>Start Inactive/s</source>
+        <translation>Iniciar Inactivo/s</translation>
     </message>
     <message>
         <source>Masternodes</source>
@@ -1733,6 +1482,10 @@ and vote on the treasury system receiving a periodic reward.</source>
         <translation>Información</translation>
     </message>
     <message>
+        <source>Please wait until the node is fully synced</source>
+        <translation>Espera hasta que el nodo esté completamente sincronizado</translation>
+    </message>
+    <message>
         <source>Start Masternode</source>
         <translation>Iniciar Masternode </translation>
     </message>
@@ -1743,14 +1496,70 @@ and vote on the treasury system receiving a periodic reward.</source>
 </translation>
     </message>
     <message>
-        <source>Cannot start masternode, the collateral transaction has not been accepted by the network.
-Please wait few more minutes.</source>
-        <translation>No se puede iniciar el masternode, la operación de garantía no ha sido aceptada por la red.
-Por favor, espera unos minutos más. </translation>
+        <source>Cannot edit masternode, wallet locked</source>
+        <translation>No se puede editar el Masternode, la wallet está bloqueada</translation>
+    </message>
+    <message>
+        <source>Cannot start masternode, the collateral transaction has not been confirmed by the network yet.
+Please wait few more minutes (masternode collaterals require %1 confirmations).</source>
+        <translation>No se puede arrancar masternode, la transacción del colateral aún no ha sido confirmada por la red.
+Espere unos minutos más (las garantías de masternode requieren %1 confirmaciones).</translation>
+    </message>
+    <message>
+        <source>Background task is being executed, please wait</source>
+        <translation>La tarea se está ejecutando en segundo plano, por favor espere</translation>
+    </message>
+    <message>
+        <source>Start ALL masternodes failed</source>
+        <translation>Arrancar TODOS los Masternodes ha fallado!</translation>
+    </message>
+    <message>
+        <source>Wallet unlock cancelled</source>
+        <translation>Desbloqueo de la wallet cancelado.</translation>
+    </message>
+    <message>
+        <source>Cannot perform Masternodes start</source>
+        <translation>No se puede realizar el arranque de Masternodes</translation>
+    </message>
+    <message>
+        <source>%1 Masternodes failed to start, %2 started</source>
+        <translation>%1 Masternodes han fallado, %2 han arrancado</translation>
+    </message>
+    <message>
+        <source>All Masternodes started!</source>
+        <translation>¡Todos los Masternodes han arrancado!</translation>
+    </message>
+    <message>
+        <source>Cannot show Masternode information, wallet locked</source>
+        <translation>No se puede mostrar la información del Masternode, la wallet está bloqueada</translation>
+    </message>
+    <message>
+        <source>Masternode data copied to the clipboard.</source>
+        <translation>Datos de Masternode copiados al portapapeles.</translation>
+    </message>
+    <message>
+        <source>Not enough balance to create a masternode, 10,000 %1 required.</source>
+        <translation>No hay suficiente saldo para crear un masternode, se requiere 10,000 %1.</translation>
     </message>
     <message>
         <source>Remote Masternode Data</source>
         <translation>Datos Remotos del Masternode </translation>
+    </message>
+    <message>
+        <source>What is a Masternode?</source>
+        <translation>¿Qué es un Masternode?</translation>
+    </message>
+    <message>
+        <source>FAQ explaining what Masternodes are</source>
+        <translation>Preguntas frecuentes que explican qué son los Masternodes</translation>
+    </message>
+    <message>
+        <source>What is a Controller?</source>
+        <translation>¿Qué es un controlador?</translation>
+    </message>
+    <message>
+        <source>FAQ explaining what is a Masternode Controller</source>
+        <translation>Preguntas frecuentes que explican qué es un controlador Masternode</translation>
     </message>
     <message>
         <source>You are just about to export the required data to run a Masternode
@@ -1764,12 +1573,8 @@ this controller wallet (select the Masternode in the list and press "start").
         <translation>Estás a punto de exportar los datos necesarios para ejecutar un Masternode de un servidor remoto a tu portapapeles.
 
 
-Sólo tendrás que pegar los datos en el archivo bcz.conf de tu servidor remoto e iniciarlo, luego inicia el Masternode usando esta cartera de controladores (selecciona el Masternode en la lista y presione "start").
+Sólo tendrás que pegar los datos en el archivo bcz.conf de tu servidor remoto e iniciarlo, luego inicia el Masternode usando esta wallet de controladores (selecciona el Masternode en la lista y presione "start").
 </translation>
-    </message>
-    <message>
-        <source>Masternode exported!, check your clipboard</source>
-        <translation>Masternode exportado, comprueba tu portapapeles</translation>
     </message>
     <message>
         <source>Delete Masternode</source>
@@ -1798,8 +1603,8 @@ Are you sure?</source>
         <translation>El archivo masternode.conf no existe</translation>
     </message>
     <message>
-        <source>Not enough balance to create a masternode, 5,000 BCZ required.</source>
-        <translation>No hay suficiente saldo para crear un masternode, se necesitan 5,000 BCZ.</translation>
+        <source>Cannot create Masternode controller, wallet locked</source>
+        <translation>No se puede crear controlador de Masternode, la wallet está bloqueada</translation>
     </message>
     <message>
         <source>Error creating masternode</source>
@@ -1813,24 +1618,16 @@ Are you sure?</source>
         <translation>Formulario</translation>
     </message>
     <message>
-        <source>Master Node Information</source>
-        <translation>Información del Masternode </translation>
+        <source>Masternode Information</source>
+        <translation>Información de Masternodes</translation>
     </message>
     <message>
         <source>Public Key:</source>
         <translation>Clave Pública: </translation>
     </message>
     <message>
-        <source>492526e7fa3c810b35016...40a5df85ee227ab00b1156994</source>
-        <translation>492526e7fa3c810b35016...40a5df85ee227ab00b1156994</translation>
-    </message>
-    <message>
         <source>Address: </source>
         <translation>Dirección:</translation>
-    </message>
-    <message>
-        <source>127.0.0.2:43223</source>
-        <translation>127.0.0.2:43223</translation>
     </message>
     <message>
         <source>Collaterall tx id:</source>
@@ -1849,12 +1646,16 @@ Are you sure?</source>
         <translation>Estado:</translation>
     </message>
     <message>
-        <source>MISSING</source>
-        <translation>FALTAN</translation>
+        <source>Export data to run the Masternode on a remote server</source>
+        <translation>Exportar datos para ejecutar el Masternode en un servidor remoto</translation>
     </message>
     <message>
-        <source>Export data to run the Master Node on a remote server</source>
-        <translation>Exportar datos para ejecutar el masternode en un servidor remoto</translation>
+        <source>Masternode public key copied</source>
+        <translation>Se copió la clave pública de masternode</translation>
+    </message>
+    <message>
+        <source>Collateral tx id copied</source>
+        <translation>Se copió el ID de transaccion colateral</translation>
     </message>
 </context>
 <context>
@@ -1863,24 +1664,53 @@ Are you sure?</source>
         <source>Form</source>
         <translation>Formulario</translation>
     </message>
-    <message>
-        <source>Savings</source>
-        <translation>Ahorros</translation>
-    </message>
-    <message>
-        <source>Jan. 19, 2019</source>
-        <translation>19 de enero de 2019</translation>
-    </message>
-    <message>
-        <source>DN6i46dytMPVhV1JMGZFuQBh7BZZ6nNLox</source>
-        <translation>DN6i46dytMPVhV1JMGZFuQBh7BZZ6nNLox</translation>
-    </message>
 </context>
 <context>
     <name>NavMenuWidget</name>
     <message>
         <source>Form</source>
         <translation>Formulario</translation>
+    </message>
+    <message>
+        <source>HOME
+</source>
+        <translation>INICIO</translation>
+    </message>
+    <message>
+        <source>SEND
+</source>
+        <translation>ENVIAR
+</translation>
+    </message>
+    <message>
+        <source>RECEIVE
+</source>
+        <translation>RECIBIR
+</translation>
+    </message>
+    <message>
+        <source>CONTACTS
+</source>
+        <translation>CONTACTOS
+</translation>
+    </message>
+    <message>
+        <source>MASTER
+NODES</source>
+        <translation>NODOS
+MAESTROS</translation>
+    </message>
+    <message>
+        <source>COLD
+STAKING</source>
+        <translation>APUESTA
+EN FRIO</translation>
+    </message>
+    <message>
+        <source>SETTINGS
+</source>
+        <translation>CONFIGURACIONES
+</translation>
     </message>
     <message>
         <source>V 1.0.0</source>
@@ -1940,10 +1770,6 @@ Are you sure?</source>
         <source>Form</source>
         <translation>Formulario</translation>
     </message>
-    <message>
-        <source>TextLabel</source>
-        <translation>EtiquetaDeTexto</translation>
-    </message>
 </context>
 <context>
     <name>OptionsDialog</name>
@@ -1973,7 +1799,7 @@ Are you sure?</source>
     </message>
     <message>
         <source>W&amp;allet</source>
-        <translation>M&amp;onedero</translation>
+        <translation>W&amp;allet</translation>
     </message>
     <message>
         <source>If you disable the spending of unconfirmed change, the change from a transaction&lt;br/&gt;cannot be used until that transaction has at least one confirmation.&lt;br/&gt;This also affects how your balance is computed.</source>
@@ -2047,7 +1873,7 @@ https://www.transifex.com/bcz-project/bcz-project-translations</translation>
     </message>
     <message>
         <source>Stake split threshold:</source>
-        <translation>Parte limite de stake:</translation>
+        <translation>Límite de división de los stake:</translation>
     </message>
     <message>
         <source>Connect to the BCZ network through a SOCKS5 proxy.</source>
@@ -2123,7 +1949,7 @@ https://www.transifex.com/bcz-project/bcz-project-translations</translation>
     </message>
     <message>
         <source>Hide orphan stakes</source>
-        <translation>Ocultar los Stakes en estado de huérfanos</translation>
+        <translation>Ocultar los Stakes en estado huérfanos</translation>
     </message>
     <message>
         <source>Third party URLs (e.g. a block explorer) that appear in the transactions tab as context menu items. %s in the URL is replaced by transaction hash. Multiple URLs are separated by vertical bar |.</source>
@@ -2202,7 +2028,7 @@ https://www.transifex.com/bcz-project/bcz-project-translations</translation>
     </message>
     <message>
         <source>Wallet</source>
-        <translation>Monedero</translation>
+        <translation>Wallet</translation>
     </message>
     <message>
         <source>Node</source>
@@ -2268,108 +2094,6 @@ Tipo: %3
 Dirección: %4
 </translation>
     </message>
-    <message>
-        <source>A fatal error occurred. BCZ can no longer continue safely and will quit.</source>
-        <translation>Se produjo un error fatal. BCZ ya no puede continuar de forma segura y dejará de funcionar.   </translation>
-    </message>
-</context>
-<context>
-    <name>PWidget</name>
-    <message>
-        <source>Wallet locked, you need to unlock it to perform this action</source>
-        <translation>Billetera bloqueada, es necesario desbloquearla para realizar esta acción</translation>
-    </message>
-</context>
-<context>
-    <name>PaymentServer</name>
-    <message>
-        <source>Payment request error</source>
-        <translation>Error en la solicitud de pago</translation>
-    </message>
-    <message>
-        <source>URI handling</source>
-        <translation>Manejo de URI</translation>
-    </message>
-    <message>
-        <source>Payment request fetch URL is invalid: %1</source>
-        <translation>Solicitud de pago via web inválida: %1</translation>
-    </message>
-    <message>
-        <source>Payment request file handling</source>
-        <translation>Manejo del fichero de solicitud de pago</translation>
-    </message>
-    <message>
-        <source>Invalid payment address %1</source>
-        <translation>Dirección de pago inválida %1</translation>
-    </message>
-    <message>
-        <source>Cannot start bcz: click-to-pay handler</source>
-        <translation>No se puede iniciar bcz: módulo click-to-pay</translation>
-    </message>
-    <message>
-        <source>URI cannot be parsed! This can be caused by an invalid BCZ address or malformed URI parameters.</source>
-        <translation>¡El identificador de la dirección no puede ser analizado! Esto puede ser causado por una dirección BCZ inválida o parámetros del identificador malformados.</translation>
-    </message>
-    <message>
-        <source>Payment request file cannot be read! This can be caused by an invalid payment request file.</source>
-        <translation>El fichero de solicitud de pago no se pudo leer! Esto puede estar causado por una solicitud de pago inválida.</translation>
-    </message>
-    <message>
-        <source>Payment request rejected</source>
-        <translation>Solicitud de pago rechazada</translation>
-    </message>
-    <message>
-        <source>Payment request network doesn't match client network.</source>
-        <translation>La solicitud de pago no coincide con la red del cliente.</translation>
-    </message>
-    <message>
-        <source>Payment request has expired.</source>
-        <translation>La solicitud de pago ha expirado.</translation>
-    </message>
-    <message>
-        <source>Payment request is not initialized.</source>
-        <translation>La solicitud de pago no está inicializada.</translation>
-    </message>
-    <message>
-        <source>Unverified payment requests to custom payment scripts are unsupported.</source>
-        <translation>Solicitudes de pago no verificadas a scripts de pago personalizado no están soportadas.</translation>
-    </message>
-    <message>
-        <source>Requested payment amount of %1 is too small (considered dust).</source>
-        <translation>La cantidad de pago solicitada de %1 es demasiado pequeña (se considera calderilla).</translation>
-    </message>
-    <message>
-        <source>Refund from %1</source>
-        <translation>Reembolso desde %1</translation>
-    </message>
-    <message>
-        <source>Payment request %1 is too large (%2 bytes, allowed %3 bytes).</source>
-        <translation>La solicitud de pago %1 es demasiado larga (%2 bytes, permitidos %3 bytes).</translation>
-    </message>
-    <message>
-        <source>Payment request DoS protection</source>
-        <translation>Protección de Denegación de Servicio para la solicitud de pago</translation>
-    </message>
-    <message>
-        <source>Error communicating with %1: %2</source>
-        <translation>Error de comunicación con %1: %2</translation>
-    </message>
-    <message>
-        <source>Payment request cannot be parsed!</source>
-        <translation>¡La solicitud de pago no se pudo procesar!</translation>
-    </message>
-    <message>
-        <source>Bad response from server %1</source>
-        <translation>Respuesta inadecuada del servidor %1</translation>
-    </message>
-    <message>
-        <source>Network request error</source>
-        <translation>Error de Red</translation>
-    </message>
-    <message>
-        <source>Payment acknowledged</source>
-        <translation>Pago confirmado</translation>
-    </message>
 </context>
 <context>
     <name>PeerTableModel</name>
@@ -2385,6 +2109,10 @@ Dirección: %4
         <source>Ping Time</source>
         <translation>Intervalo de Ping</translation>
     </message>
+    <message>
+        <source>NodeID</source>
+        <translation>ID del Nodo</translation>
+    </message>
 </context>
 <context>
     <name>QObject</name>
@@ -2393,7 +2121,7 @@ Dirección: %4
         <translation>Cantidad</translation>
     </message>
     <message>
-        <source>Enter a BCZ address (e.g. %1)</source>
+        <source>Enter BCZ address (e.g. %1)</source>
         <translation>Introduzca una dirección BCZ (p.e. %1)</translation>
     </message>
     <message>
@@ -2421,10 +2149,6 @@ Dirección: %4
         <translation>BLOOM</translation>
     </message>
     <message>
-        <source>ZK_BLOOM</source>
-        <translation>ZK_BLOOM</translation>
-    </message>
-    <message>
         <source>UNKNOWN</source>
         <translation>DESCONOCIDO</translation>
     </message>
@@ -2439,6 +2163,10 @@ Dirección: %4
     <message>
         <source>%1 ms</source>
         <translation>%1 ms</translation>
+    </message>
+    <message>
+        <source>A fatal error occurred. BCZ can no longer continue safely and will quit.</source>
+        <translation>Se produjo un error fatal. BCZ ya no puede continuar de forma segura y dejará de funcionar.   </translation>
     </message>
     <message>
         <source>BCZ Core</source>
@@ -2463,6 +2191,170 @@ Dirección: %4
     <message>
         <source>BCZ Core didn't yet exit safely...</source>
         <translation>El núcleo BCZ aún no ha salido de forma segura...</translation>
+    </message>
+    <message>
+        <source>Contact</source>
+        <translation>Contacto</translation>
+    </message>
+    <message>
+        <source>Receiving</source>
+        <translation>Recibiendo</translation>
+    </message>
+    <message>
+        <source>Delegator</source>
+        <translation>Delegador</translation>
+    </message>
+    <message>
+        <source>Delegable</source>
+        <translation>Delegable</translation>
+    </message>
+    <message>
+        <source>Cold Staking</source>
+        <translation>Cold Staking</translation>
+    </message>
+    <message>
+        <source>Cold Staking Contact</source>
+        <translation>Contacto de Cold Staking</translation>
+    </message>
+    <message>
+        <source>Hidden</source>
+        <translation>Oculto</translation>
+    </message>
+    <message>
+        <source>Unknown</source>
+        <translation>Desconocido</translation>
+    </message>
+    <message>
+        <source>All</source>
+        <translation>Todos</translation>
+    </message>
+    <message>
+        <source>Contacts</source>
+        <translation>Contactos</translation>
+    </message>
+    <message>
+        <source>Staking Contacts</source>
+        <translation>Contactos de Staking</translation>
+    </message>
+    <message>
+        <source>Date desc</source>
+        <translation>Fecha desc</translation>
+    </message>
+    <message>
+        <source>Date asc</source>
+        <translation>Fecha asc</translation>
+    </message>
+    <message>
+        <source>Amount desc</source>
+        <translation>Cantidad desc</translation>
+    </message>
+    <message>
+        <source>Amount asc</source>
+        <translation>Cantidad asc</translation>
+    </message>
+    <message>
+        <source>Received</source>
+        <translation>Recibidos</translation>
+    </message>
+    <message>
+        <source>Sent</source>
+        <translation>Enviados</translation>
+    </message>
+    <message>
+        <source>Mined</source>
+        <translation>Minado</translation>
+    </message>
+    <message>
+        <source>Minted</source>
+        <translation>Creación de moneda</translation>
+    </message>
+    <message>
+        <source>MN reward</source>
+        <translation>Recompensa de MN</translation>
+    </message>
+    <message>
+        <source>To yourself</source>
+        <translation>A usted mismo</translation>
+    </message>
+    <message>
+        <source>Cold stakes</source>
+        <translation>Stake en frío</translation>
+    </message>
+    <message>
+        <source>Hot stakes</source>
+        <translation>Stake en caliente</translation>
+    </message>
+    <message>
+        <source>Delegated</source>
+        <translation>Delegado </translation>
+    </message>
+    <message>
+        <source>Delegations</source>
+        <translation>Delegaciones </translation>
+    </message>
+    <message>
+        <source>by Label</source>
+        <translation>por Etiqueta</translation>
+    </message>
+    <message>
+        <source>by Address</source>
+        <translation>por Dirección</translation>
+    </message>
+    <message>
+        <source>by Date</source>
+        <translation>por Fecha</translation>
+    </message>
+    <message>
+        <source>Jan</source>
+        <translation>Ene</translation>
+    </message>
+    <message>
+        <source>Feb</source>
+        <translation>Feb</translation>
+    </message>
+    <message>
+        <source>Mar</source>
+        <translation>Mar</translation>
+    </message>
+    <message>
+        <source>Apr</source>
+        <translation>Abr</translation>
+    </message>
+    <message>
+        <source>May</source>
+        <translation>May</translation>
+    </message>
+    <message>
+        <source>Jun</source>
+        <translation>Jun</translation>
+    </message>
+    <message>
+        <source>Jul</source>
+        <translation>Jul</translation>
+    </message>
+    <message>
+        <source>Aug</source>
+        <translation>Ago</translation>
+    </message>
+    <message>
+        <source>Sep</source>
+        <translation>Sep</translation>
+    </message>
+    <message>
+        <source>Oct</source>
+        <translation>Oct</translation>
+    </message>
+    <message>
+        <source>Nov</source>
+        <translation>Nov</translation>
+    </message>
+    <message>
+        <source>Dec</source>
+        <translation>Dic</translation>
+    </message>
+    <message>
+        <source>Address with no label</source>
+        <translation>Direccion sin titulo</translation>
     </message>
 </context>
 <context>
@@ -2541,7 +2433,7 @@ Dirección: %4
     </message>
     <message>
         <source>Number of Masternodes</source>
-        <translation>Número de masternodes</translation>
+        <translation>Número de Masternodes</translation>
     </message>
     <message>
         <source>Data Directory</source>
@@ -2585,15 +2477,15 @@ Dirección: %4
     </message>
     <message>
         <source>Banned peers</source>
-        <translation>Peers proibidos</translation>
+        <translation>Peers prohibidos</translation>
     </message>
     <message>
         <source>Select a peer to view detailed information.</source>
-        <translation>Seleccione un peer conectado para ver información detallada.</translation>
+        <translation>Selecciona un peer conectado para ver información detallada.</translation>
     </message>
     <message>
         <source>Whitelisted</source>
-        <translation>En lista blance</translation>
+        <translation>Lista blanca</translation>
     </message>
     <message>
         <source>Direction</source>
@@ -2641,7 +2533,7 @@ Dirección: %4
     </message>
     <message>
         <source>&amp;Wallet Repair</source>
-        <translation>Reparar &amp;Monedero</translation>
+        <translation>Reparar &amp;Wallet</translation>
     </message>
     <message>
         <source>Delete local Blockchain Folders</source>
@@ -2649,15 +2541,15 @@ Dirección: %4
     </message>
     <message>
         <source>Wallet In Use:</source>
-        <translation>Monedero En Uso:</translation>
+        <translation>Wallet En Uso:</translation>
     </message>
     <message>
         <source>Starting Block</source>
-        <translation>Bloque de empiezo</translation>
+        <translation>Bloque Inicial</translation>
     </message>
     <message>
         <source>Synced Headers</source>
-        <translation>Encabezados sincronizados</translation>
+        <translation>Encabezados Sincronizados</translation>
     </message>
     <message>
         <source>Synced Blocks</source>
@@ -2673,15 +2565,15 @@ Dirección: %4
     </message>
     <message>
         <source>Time Offset</source>
-        <translation>Desplazamiento de tiempo</translation>
+        <translation>Intervalo de Tiempo</translation>
     </message>
     <message>
         <source>Custom Backup Path:</source>
         <translation>Ruta personalizada de la copia de seguridad:</translation>
     </message>
     <message>
-        <source>Custom zBCZ Backup Path:</source>
-        <translation>Ruta personalizada de la copia de seguridad zBCZ:</translation>
+        <source>Custom BCZ Backup Path:</source>
+        <translation>Ruta personalizada de la copia de seguridad BCZ:</translation>
     </message>
     <message>
         <source>Custom Backups Threshold:</source>
@@ -2689,7 +2581,7 @@ Dirección: %4
     </message>
     <message>
         <source>Salvage wallet</source>
-        <translation>Salvar monedero</translation>
+        <translation>Salvar wallet</translation>
     </message>
     <message>
         <source>Attempt to recover private keys from a corrupt wallet.dat.</source>
@@ -2701,7 +2593,7 @@ Dirección: %4
     </message>
     <message>
         <source>Rescan the block chain for missing wallet transactions.</source>
-        <translation>Reescanear el blockchain buscando transacciones que faltan en el monedero.</translation>
+        <translation>Reescanear el blockchain buscando transacciones que faltan en la wallet.</translation>
     </message>
     <message>
         <source>Recover transactions 1</source>
@@ -2721,7 +2613,7 @@ Dirección: %4
     </message>
     <message>
         <source>Upgrade wallet format</source>
-        <translation>Actualizar formato del monedero</translation>
+        <translation>Actualizar formato de la wallet</translation>
     </message>
     <message>
         <source>Rebuild block chain index from current blk000??.dat files.</source>
@@ -2733,19 +2625,19 @@ Dirección: %4
     </message>
     <message>
         <source>Deletes all local blockchain folders so the wallet synchronizes from scratch.</source>
-        <translation>Eliminar todos los directorios locales del blockchain y sincronizar el monedero desde el principio</translation>
+        <translation>Eliminar todos los directorios locales del blockchain y sincronizar la wallet desde el principio.</translation>
     </message>
     <message>
         <source>The buttons below will restart the wallet with command-line options to repair the wallet, fix issues with corrupt blockhain files or missing/obsolete transactions.</source>
-        <translation>Los botones de más abajo reiniciarán el programa con comandos especiales para reparar el monedero, solucionar problemas con cadenas de bloques corruptas o buscar transacciones obsoletas o perdidas</translation>
+        <translation>Los botones de más abajo reiniciarán el programa con comandos especiales para reparar la wallet, solucionar problemas con cadenas de bloques corruptas o buscar transacciones obsoletas o perdidas</translation>
     </message>
     <message>
         <source>Wallet repair options.</source>
-        <translation>Opciones de reparación de monedero.</translation>
+        <translation>Opciones de reparación de la wallet</translation>
     </message>
     <message>
         <source>Upgrade wallet to latest format on startup. (Note: this is NOT an update of the wallet itself!)</source>
-        <translation>Actualizar el monedero al último formato en el arranque. (Nota: esto NO es una actualización del monedero como tal!)</translation>
+        <translation>Actualizar la wallet al último formato en el arranque. (Nota: esto NO es una actualización de la wallet como tal!)</translation>
     </message>
     <message>
         <source>Rebuild index</source>
@@ -2793,7 +2685,7 @@ Dirección: %4
     </message>
     <message>
         <source>This will delete your local blockchain folders and the wallet will synchronize the complete Blockchain from scratch.&lt;br /&gt;&lt;br /&gt;</source>
-        <translation>Esto eliminará las carpetas de blockchain locales y el monedero sincronizará la cadena de bloques completa desde cero.&lt;br /&gt;&lt;br /&gt;</translation>
+        <translation>Esto eliminará las carpetas de blockchain locales y la wallet sincronizará la cadena de bloques completa desde cero.&lt;br /&gt;&lt;br /&gt;</translation>
     </message>
     <message>
         <source>This needs quite some time and downloads a lot of data.&lt;br /&gt;&lt;br /&gt;</source>
@@ -2821,7 +2713,7 @@ Dirección: %4
     </message>
     <message>
         <source>WARNING: Scammers have been active, telling users to type commands here, stealing their wallet contents. Do not use this console without fully understanding the ramifications of a command.</source>
-        <translation>ADVERTENCIA: Los estafadores han estado activos, diciendo a los usuarios que escriban comandos aquí, robando el contenido de su billetera. No uses esta consola sin entender completamente las consecuencias de un comando.</translation>
+        <translation>ADVERTENCIA: Los estafadores han estado muy activos, diciéndole a los usuarios que escriban comandos aquí, robando el contenido de su wallet. No uses esta consola sin entender completamente las consecuencias de un comando.</translation>
     </message>
     <message>
         <source>%1 B</source>
@@ -2879,24 +2771,16 @@ Dirección: %4
         <translation>Diálogo</translation>
     </message>
     <message>
-        <source>Transaction Details</source>
-        <translation>Detalles de Transacción</translation>
+        <source>My Address</source>
+        <translation>Mi Dirección</translation>
     </message>
     <message>
-        <source>PushButton</source>
-        <translation>Presionar el botón</translation>
-    </message>
-    <message>
-        <source>B52EagiPxecjS9zwyebbCZz3x3QuYBNezo </source>
-        <translation>B52EagiPxecjS9zwyebbCZz3x3QuYBNezo </translation>
+        <source>COPY</source>
+        <translation>COPIAR</translation>
     </message>
     <message>
         <source>CANCEL</source>
         <translation>CANCELAR</translation>
-    </message>
-    <message>
-        <source>OK</source>
-        <translation>OK</translation>
     </message>
 </context>
 <context>
@@ -2906,12 +2790,12 @@ Dirección: %4
         <translation>Formulario</translation>
     </message>
     <message>
-        <source>TextLabel</source>
-        <translation>EtiquetaDeTexto</translation>
-    </message>
-    <message>
         <source>No address</source>
         <translation>Sin dirección </translation>
+    </message>
+    <message>
+        <source>Scan the QR code or copy the address to receive BCZ</source>
+        <translation>Escanee el código QR o copie la dirección para recibir BCZ</translation>
     </message>
     <message>
         <source>Add Label</source>
@@ -2930,24 +2814,32 @@ Dirección: %4
         <translation>Recibir</translation>
     </message>
     <message>
-        <source>Scan the QR code or copy the address to receive BCZ.</source>
-        <translation>Escanear el código QR o copiar la dirección para recibir BCZ.</translation>
+        <source>My Addresses</source>
+        <translation>Mi Direccion</translation>
     </message>
     <message>
-        <source>No address </source>
-        <translation>Sin dirección </translation>
+        <source>List your own addresses</source>
+        <translation>Enumere sus propias direcciones</translation>
+    </message>
+    <message>
+        <source>Create Request</source>
+        <translation>Crear solicitud</translation>
+    </message>
+    <message>
+        <source>Request payment with a fixed amount</source>
+        <translation>Solicitar pago con una cantidad fija</translation>
     </message>
     <message>
         <source>No available address, try unlocking the wallet</source>
-        <translation>Sin dirección disponible, intenta desbloquear la billetera</translation>
+        <translation>Sin dirección disponible, intenta desbloquear la wallet</translation>
     </message>
     <message>
         <source>Error generating address</source>
         <translation>Error al generar la dirección</translation>
     </message>
     <message>
-        <source>Change Label</source>
-        <translation>Cambiar etiqueta</translation>
+        <source>Edit Label</source>
+        <translation>Editar etiqueta</translation>
     </message>
     <message>
         <source>Edit Address Label</source>
@@ -2962,12 +2854,20 @@ Dirección: %4
         <translation>Error al almacenar la etiqueta de dirección</translation>
     </message>
     <message>
+        <source>Cannot create new address, wallet locked</source>
+        <translation>No se puede crear una nueva dirección, la wallet está bloqueada</translation>
+    </message>
+    <message>
         <source>New address created</source>
         <translation>Nueva dirección creada</translation>
     </message>
     <message>
         <source>Address copied</source>
         <translation>Dirección copiada</translation>
+    </message>
+    <message>
+        <source>Cannot perform operation, wallet locked</source>
+        <translation>No se puede realizar la operación, la wallet está bloqueada</translation>
     </message>
     <message>
         <source>URI copied to clipboard</source>
@@ -3020,14 +2920,6 @@ Dirección: %4
         <translation>Diálogo</translation>
     </message>
     <message>
-        <source>New Request Payment</source>
-        <translation>Nueva Solicitud de Pago</translation>
-    </message>
-    <message>
-        <source>Lorem ipsum dolor sit amet, consectur cling elit, sed do </source>
-        <translation>Lorem ipsum dolor sit amet, consectur cling elit, sed do</translation>
-    </message>
-    <message>
         <source>Amount</source>
         <translation>Cantidad</translation>
     </message>
@@ -3036,12 +2928,12 @@ Dirección: %4
         <translation>BCZ</translation>
     </message>
     <message>
-        <source>TextLabel</source>
-        <translation>EtiquetaDeTexto</translation>
+        <source>Instead of sharing only a BCZ address, you can create a payment request, bundling up more information</source>
+        <translation>En lugar de compartir solo una dirección BCZ, puede crear una solicitud de pago, agrupando más información</translation>
     </message>
     <message>
-        <source>B52EagiPxecjS9zwyebbCZz3x3QuYBNezo </source>
-        <translation>B52EagiPxecjS9zwyebbCZz3x3QuYBNezo </translation>
+        <source>D7VFR83SQbiezrW72hjcWJtcfip5krte2Z </source>
+        <translation>D7VFR83SQbiezrW72hjcWJtcfip5krte2Z </translation>
     </message>
     <message>
         <source>COPY ADDRESS</source>
@@ -3056,28 +2948,24 @@ Dirección: %4
         <translation>CANCELAR</translation>
     </message>
     <message>
-        <source>REQUEST</source>
-        <translation>SOLICITUD</translation>
-    </message>
-    <message>
-        <source>Instead of only sharing a BCZ address, you can create a Payment Request message which bundles up more information than is contained in just a BCZ address.</source>
-        <translation>En lugar de compartir únicamente una dirección de BCZ, puedes crear un mensaje de Solicitud de Pago que agrupe más información de la que contiene sólo una dirección de BCZ.</translation>
-    </message>
-    <message>
         <source>Label</source>
         <translation>Etiqueta</translation>
-    </message>
-    <message>
-        <source>Enter a label to be saved within the address</source>
-        <translation>Introduce una etiqueta para guardar dentro de la dirección</translation>
     </message>
     <message>
         <source>Description (optional)</source>
         <translation>Descripción (opcional)</translation>
     </message>
     <message>
-        <source>Add description </source>
-        <translation>Añadir descripción</translation>
+        <source>New Payment Request</source>
+        <translation>Nueva Solicitud de Pago</translation>
+    </message>
+    <message>
+        <source>Enter a label for the address</source>
+        <translation>Introduce una etiqueta para la dirección</translation>
+    </message>
+    <message>
+        <source>Enter description</source>
+        <translation>Ingrese una descripción</translation>
     </message>
     <message>
         <source>Error</source>
@@ -3095,6 +2983,26 @@ Dirección: %4
         <source>New Cold Staking Address</source>
         <translation>Nueva dirección de Cold Staking</translation>
     </message>
+    <message>
+        <source>Amount (optional)</source>
+        <translation>Cantidad (opcional)</translation>
+    </message>
+    <message>
+        <source>Address label cannot be empty</source>
+        <translation>La etiqueta de dirección no puede estar vacía</translation>
+    </message>
+    <message>
+        <source>Invalid amount</source>
+        <translation>Cantidad incorrecta</translation>
+    </message>
+    <message>
+        <source>Request for </source>
+        <translation>Solicitud para</translation>
+    </message>
+    <message>
+        <source>Cold Staking Address Generated</source>
+        <translation>Dirección de Cold Staking generada</translation>
+    </message>
 </context>
 <context>
     <name>SendChangeAddressDialog</name>
@@ -3103,24 +3011,8 @@ Dirección: %4
         <translation>Diálogo</translation>
     </message>
     <message>
-        <source>Transaction Details</source>
-        <translation>Detalles de Transacción</translation>
-    </message>
-    <message>
-        <source>PushButton</source>
-        <translation>Presionar el botón</translation>
-    </message>
-    <message>
-        <source>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim.</source>
-        <translation>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim.</translation>
-    </message>
-    <message>
         <source>CANCEL</source>
         <translation>CANCELAR</translation>
-    </message>
-    <message>
-        <source>OK</source>
-        <translation>OK</translation>
     </message>
     <message>
         <source>Custom Change Address</source>
@@ -3130,6 +3022,22 @@ Dirección: %4
         <source>The remainder of the value resultant from the inputs minus the outputs value goes to the "change" BCZ address</source>
         <translation>El resto del valor resultante de las entradas menos el valor de las salidas va al "cambio" de dirección de BCZ</translation>
     </message>
+    <message>
+        <source>SAVE</source>
+        <translation>GUARDAR</translation>
+    </message>
+    <message>
+        <source>RESET</source>
+        <translation>REINICIAR</translation>
+    </message>
+    <message>
+        <source>Invalid address</source>
+        <translation>Dirección inválida</translation>
+    </message>
+    <message>
+        <source>Cannot use cold staking addresses for change</source>
+        <translation>No se pueden usar direcciones de staking en frío para el cambio</translation>
+    </message>
 </context>
 <context>
     <name>SendCustomFeeDialog</name>
@@ -3138,44 +3046,32 @@ Dirección: %4
         <translation>Formulario</translation>
     </message>
     <message>
-        <source>Transaction Details</source>
-        <translation>Detalles de Transacción</translation>
+        <source>Recommended</source>
+        <translation>Recomendada</translation>
     </message>
     <message>
-        <source>Customize the transaction fee at your to your liking, depending on the fee value your transaction will be included or not in the blockchain.</source>
-        <translation>Personaliza la tarifa de transacción a tu gusto, dependiendo del valor de la tarifa, tu transacción será incluida o no en la blockchain.</translation>
-    </message>
-    <message>
-        <source>Recomended</source>
-        <translation>Recomendado</translation>
+        <source>BCZ/kilobyte</source>
+        <translation>BCZ/kilobyte</translation>
     </message>
     <message>
         <source>0.00 KB</source>
         <translation>0.00 KB</translation>
     </message>
     <message>
-        <source>Custom</source>
-        <translation>Personalizado:</translation>
+        <source>Customize the transaction fee, depending on the fee value your transaction might be included faster in the blockchain</source>
+        <translation>Personalice la tarifa de transacción, dependiendo del valor de la tarifa, su transacción podría incluirse más rápido en la cadena de bloques</translation>
     </message>
     <message>
-        <source>Per kilobyte</source>
-        <translation>Por kilobyte</translation>
+        <source>Custom</source>
+        <translation>Personalizado:</translation>
     </message>
     <message>
         <source>CANCEL</source>
         <translation>CANCELAR</translation>
     </message>
     <message>
-        <source>OK</source>
-        <translation>OK</translation>
-    </message>
-    <message>
         <source>Customize Fee</source>
-        <translation>Tarifa Personalizada</translation>
-    </message>
-    <message>
-        <source>Customize the transaction fee, depending on the fee value your transaction will be included or not in the blockchain.</source>
-        <translation>Personaliza la comisión de la transacción, dependiendo del valor de la comisión tu transacción será incluida o no en la Blockchain. </translation>
+        <translation>Comisión Personalizada</translation>
     </message>
     <message>
         <source>Normal</source>
@@ -3193,6 +3089,14 @@ Dirección: %4
         <source>SAVE</source>
         <translation>GUARDAR</translation>
     </message>
+    <message>
+        <source>Fee too high. Must be below: %1</source>
+        <translation>Comisión es muy alta. Debe estar debajo: %1</translation>
+    </message>
+    <message>
+        <source>Fee too low. Must be at least: %1</source>
+        <translation>Comisión es muy baja. Debe ser de al menos: %1</translation>
+    </message>
 </context>
 <context>
     <name>SendMultiRow</name>
@@ -3201,79 +3105,39 @@ Dirección: %4
         <translation>Formulario</translation>
     </message>
     <message>
-        <source>TextLabel</source>
-        <translation>EtiquetaDeTexto</translation>
+        <source>Enter address</source>
+        <translation>Ingresa la dirección</translation>
     </message>
     <message>
-        <source>Add address</source>
-        <translation>Añadir dirección</translation>
+        <source>Address label (optional)</source>
+        <translation>Etiqueta de dirección (opcional)</translation>
     </message>
     <message>
-        <source>Add description</source>
-        <translation>Añadir descripción</translation>
+        <source>Enter label</source>
+        <translation>Introduce una etiqueta</translation>
     </message>
 </context>
 <context>
     <name>SendWidget</name>
     <message>
-        <source>Send</source>
-        <translation>Enviar</translation>
-    </message>
-    <message>
-        <source>You can transfer public coins (BCZ) or private coins (zBCZ)</source>
-        <translation>Puedes transferir monedas públicas (BCZ) o monedas privadas (zBCZ)</translation>
-    </message>
-    <message>
-        <source>Select coin type to spend</source>
-        <translation>Selecciona el tipo de moneda a usar</translation>
-    </message>
-    <message>
-        <source>Enter a BCZ address or contact label</source>
-        <translation>Introduzca una dirección BCZ o una etiqueta de contacto</translation>
-    </message>
-    <message>
-        <source>Amount</source>
-        <translation>Cantidad</translation>
-    </message>
-    <message>
-        <source>Customize fee</source>
-        <translation>Tarifa personalizada</translation>
-    </message>
-    <message>
-        <source>Clear all</source>
-        <translation>Borrar todo</translation>
-    </message>
-    <message>
-        <source>Add recipient</source>
-        <translation>Añadir destinatario</translation>
-    </message>
-    <message>
-        <source>Reset to default</source>
-        <translation>Reestablecer los valores predeterminados</translation>
-    </message>
-    <message>
-        <source>Total to send</source>
-        <translation>Total a enviar</translation>
-    </message>
-    <message>
-        <source>Send BCZ</source>
-        <translation>Enviar BCZ</translation>
-    </message>
-    <message>
-        <source>Send zBCZ</source>
-        <translation>Enviar zBCZ</translation>
-    </message>
-    <message>
         <source>Total remaining from the selected UTXO</source>
         <translation>Total restante del UTXO seleccionado</translation>
     </message>
     <message>
-        <source>Total remaining</source>
-        <translation>Total restante</translation>
+        <source>Warning!</source>
+        <translation>Advertencia!</translation>
+    </message>
+    <message>
+        <source>The change address doesn't belong to this wallet.
+
+Do you want to continue?</source>
+        <translation>La dirección del cambio no pertenece a esta wallet.
+
+¿Deseas continuar?</translation>
     </message>
     <message>
         <source>Customize Fee</source>
-        <translation>Tarifa Personalizada</translation>
+        <translation>Comisión Personalizada</translation>
     </message>
     <message>
         <source>Maximum amount of outputs reached</source>
@@ -3282,6 +3146,10 @@ Dirección: %4
     <message>
         <source>Invalid entry, previous entries must be valid before add a new one</source>
         <translation>Entrada inválida, las entradas anteriores deben ser válidas antes de añadir una nueva</translation>
+    </message>
+    <message>
+        <source>Possibly spend coins delegated for cold-staking (currently available: %1</source>
+        <translation>Posiblemente gaste monedas delegadas en cold-staking (actualmente disponible: %1</translation>
     </message>
     <message>
         <source>Invalid entry</source>
@@ -3312,60 +3180,8 @@ Estas monedas ya no serán puestas en Cold-Staked</translation>
         <translation>Transacción enviada</translation>
     </message>
     <message>
-        <source>Spend Zerocoin</source>
-        <translation>Gastar Zerocoin</translation>
-    </message>
-    <message>
-        <source>zBCZ is currently undergoing maintenance.</source>
-        <translation>zBCZ se encuentra actualmente en mantenimiento.</translation>
-    </message>
-    <message>
-        <source>Coin control mint not found</source>
-        <translation>No se ha encontrado el control de monedas acuñadas</translation>
-    </message>
-    <message>
-        <source>Sending %1 to address %2
-</source>
-        <translation>Enviando %1 a la dirección %2
-</translation>
-    </message>
-    <message>
-        <source>Sending %1 to addresses:
-%2</source>
-        <translation>Enviando %1 a las direcciones:
-%2</translation>
-    </message>
-    <message>
-        <source>zBCZ transaction sent!</source>
-        <translation>¡Transacción de zBCZ enviada!</translation>
-    </message>
-    <message>
-        <source>Version 1 zBCZ require a security level of 100 to successfully spend.</source>
-        <translation>La versión 1 zBCZ requiere un nivel de seguridad de 100 para gastar exitosamente.</translation>
-    </message>
-    <message>
-        <source>Too much inputs (</source>
-        <translation>Demasiadas entradas (</translation>
-    </message>
-    <message>
-        <source>) needed.
-Maximum allowed: </source>
-        <translation>) necesario.
-Máximo permitido:</translation>
-    </message>
-    <message>
-        <source>
-Either mint higher denominations (so fewer inputs are needed) or reduce the amount to spend.</source>
-        <translation>
-O mint las denominaciones más altas (por lo tanto, se necesitan menos datos) o reduzca la cantidad a gastar.</translation>
-    </message>
-    <message>
         <source>Address label update failed for address: %1</source>
         <translation>La actualización de la etiqueta de dirección ha fallado para la dirección: %1</translation>
-    </message>
-    <message>
-        <source>Invalid change address</source>
-        <translation>Cambio de dirección inválida</translation>
     </message>
     <message>
         <source>Invalid URI</source>
@@ -3377,15 +3193,39 @@ O mint las denominaciones más altas (por lo tanto, se necesitan menos datos) o 
     </message>
     <message>
         <source>Custom Fee %1</source>
-        <translation>Tarifa personalizada %1</translation>
+        <translation>Comisión Personalizada %1</translation>
     </message>
     <message>
-        <source>You don't have any BCZ to select.</source>
-        <translation>Tú no tienes ningún BCZ para seleccionar</translation>
+        <source>Coin Control</source>
+        <translation>Control de moneda</translation>
     </message>
     <message>
-        <source>You don't have any zBCZ in your balance to select.</source>
-        <translation>No tienes ningún zBCZ en tu saldo para seleccionar.</translation>
+        <source>Select the source of the coins</source>
+        <translation>Seleccione la fuente de las monedas</translation>
+    </message>
+    <message>
+        <source>Change Address</source>
+        <translation>Cambiar Direccion</translation>
+    </message>
+    <message>
+        <source>Customize the change address</source>
+        <translation>Personaliza la dirección de cambio</translation>
+    </message>
+    <message>
+        <source>Open URI</source>
+        <translation>Abrir URI</translation>
+    </message>
+    <message>
+        <source>Parse a payment request</source>
+        <translation>Analizar una solicitud de pago</translation>
+    </message>
+    <message>
+        <source>Unlocked remaining</source>
+        <translation>Desbloqueado restante</translation>
+    </message>
+    <message>
+        <source>You don't have any %1 to select.</source>
+        <translation>No tiene %1 para seleccionar.</translation>
     </message>
     <message>
         <source>No contacts available, you can go to the contacts screen and add some there!</source>
@@ -3431,44 +3271,27 @@ O mint las denominaciones más altas (por lo tanto, se necesitan menos datos) o 
         <translation>Formulario</translation>
     </message>
     <message>
-        <source>TextLabel</source>
-        <translation>EtiquetaDeTexto</translation>
-    </message>
-    <message>
-        <source>PushButton</source>
-        <translation>Presionar el botón</translation>
-    </message>
-    <message>
-        <source>Backup Wallet </source>
-        <translation>Billetera de Respaldo</translation>
-    </message>
-    <message>
         <source>Change Wallet Passphrase</source>
-        <translation>Cambiar la Frase de la Contraseña de la Billetera</translation>
-    </message>
-    <message>
-        <source>Keep your wallet safe doing regular backups, store your backup file externally.
-This option creates a wallet.dat file that can be used to recover your whole balance (transactions and addresses) from another device.</source>
-        <translation>Mantén tu billetera segura haciendo copias de seguridad regulares, almacena tu archivo de copia de seguridad externamente.
-Esta opción crea un archivo wallet.dat que se puede utilizar para recuperar todo el saldo (transacciones y direcciones) de otro dispositivo.</translation>
-    </message>
-    <message>
-        <source>This will decrypt the whole wallet data and encrypt it back with the new passphrase.
-Remember to write it down and store it safely, otherwise you might lose access to your funds.</source>
-        <translation>Esto descifrará todos los datos de la billetera y los encriptará con la nueva frase de contraseña.
-Recuerda anotarla y guardarla de forma segura, de lo contrario podrías perder el acceso a tus fondos.</translation>
+        <translation>Cambiar la Frase de la Contraseña de la Wallet</translation>
     </message>
     <message>
         <source>Where</source>
         <translation>Donde</translation>
     </message>
     <message>
-        <source>Set a folder location</source>
-        <translation>Establecer una ubicación de carpeta</translation>
+        <source>Keep your wallet safe by doing regular backups and storing your backup file externally.
+This option creates a wallet.dat file that can be used to recover your whole balance (transactions and addresses) on another device</source>
+        <translation>Mantenga su billetera segura haciendo copias de seguridad periódicas y almacenando su archivo de copia de seguridad externamente. Esta opción crea un archivo wallet.dat que se puede usar para recuperar todo su saldo (transacciones y direcciones) en otro dispositivo</translation>
     </message>
     <message>
-        <source>Backup</source>
-        <translation>Respaldo</translation>
+        <source>Select folder...</source>
+        <translation>Selecciona un directorio...</translation>
+    </message>
+    <message>
+        <source>This will decrypt the whole wallet data and encrypt it back with the new passphrase.
+Remember to write it down and store it safely, otherwise you might lose access to your funds</source>
+        <translation>Esto descifrará todos los datos de la cartera y los volverá a cifrar con la nueva frase de contraseña.
+Recuerde anotarlos y almacenarlos de forma segura, de lo contrario, podría perder el acceso a sus fondos.</translation>
     </message>
     <message>
         <source>Change Passphrase</source>
@@ -3476,11 +3299,11 @@ Recuerda anotarla y guardarla de forma segura, de lo contrario podrías perder e
     </message>
     <message>
         <source>Backup Wallet</source>
-        <translation>Copia del Monedero</translation>
+        <translation>Respaldo de la Wallet</translation>
     </message>
     <message>
         <source>Wallet Data (*.dat)</source>
-        <translation>Datos del Monedero (*.dat)</translation>
+        <translation>Datos de la Wallet (*.dat)</translation>
     </message>
     <message>
         <source>Backup created</source>
@@ -3502,28 +3325,18 @@ Recuerda anotarla y guardarla de forma segura, de lo contrario podrías perder e
         <translation>Formulario</translation>
     </message>
     <message>
-        <source>TextLabel</source>
-        <translation>EtiquetaDeTexto</translation>
-    </message>
-    <message>
-        <source>PushButton</source>
-        <translation>Presionar el botón</translation>
-    </message>
-    <message>
-        <source>Decrypt Address Result</source>
-        <translation>Resultado de la Dirección Descifrada</translation>
-    </message>
-    <message>
         <source>Import Address</source>
         <translation>Importar dirección</translation>
     </message>
     <message>
-        <source>Clear</source>
-        <translation>Limpiar</translation>
-    </message>
-    <message>
         <source>BIP38 Tool</source>
         <translation>Herramienta BIP38</translation>
+    </message>
+    <message>
+        <source>Encrypt your BCZ addresses (key pair actually) using BIP38 encryption.
+Using this mechanism you can share your keys without middle-man risk, only need to store your passphrase safely</source>
+        <translation>Cifre sus direcciones BCZ (par de claves en realidad) utilizando cifrado BIP38.
+Con este mecanismo puede compartir sus claves sin riesgo de intermediarios, solo necesita almacenar su contraseña de forma segura</translation>
     </message>
     <message>
         <source>Encrypt</source>
@@ -3546,10 +3359,6 @@ Recuerda anotarla y guardarla de forma segura, de lo contrario podrías perder e
         <translation>Frase de Contraseña</translation>
     </message>
     <message>
-        <source>Enter a passphrase </source>
-        <translation>Introduce una frase de contraseña</translation>
-    </message>
-    <message>
         <source>Decrypted address result</source>
         <translation>Resultado de la dirección descifrada</translation>
     </message>
@@ -3562,16 +3371,16 @@ Recuerda anotarla y guardarla de forma segura, de lo contrario podrías perder e
         <translation>CLAVE DESCIFRADA</translation>
     </message>
     <message>
-        <source>Enter a BCZ address</source>
-        <translation>Introduzca una dirección BCZ</translation>
+        <source>BCZ address</source>
+        <translation>Dirección BCZ</translation>
     </message>
     <message>
-        <source>Add address</source>
-        <translation>Añadir dirección</translation>
+        <source>Enter address</source>
+        <translation>Ingresa la dirección</translation>
     </message>
     <message>
-        <source>Write a message</source>
-        <translation>Escribe un mensaje</translation>
+        <source>Enter passphrase</source>
+        <translation>Introduzca la contraseña</translation>
     </message>
     <message>
         <source>Encrypted Key</source>
@@ -3584,6 +3393,10 @@ Recuerda anotarla y guardarla de forma segura, de lo contrario podrías perder e
     <message>
         <source>CLEAR ALL</source>
         <translation>BORRAR TODO</translation>
+    </message>
+    <message>
+        <source>Enter a passphrase</source>
+        <translation>Ingrese una contraseña</translation>
     </message>
     <message>
         <source>CLEAR</source>
@@ -3611,7 +3424,7 @@ Recuerda anotarla y guardarla de forma segura, de lo contrario podrías perder e
     </message>
     <message>
         <source>Wallet unlock was cancelled.</source>
-        <translation>El desbloqueo del monedero fue cancelado.</translation>
+        <translation>El desbloqueo de la wallet fue cancelado.</translation>
     </message>
     <message>
         <source>Private key for the entered address is not available.</source>
@@ -3647,15 +3460,15 @@ Recuerda anotarla y guardarla de forma segura, de lo contrario podrías perder e
     </message>
     <message>
         <source>Cannot import address, key already held by the wallet</source>
-        <translation>No se puede importar la dirección, la clave ya está en la billetera </translation>
+        <translation>No se puede importar la dirección, la clave ya está en la wallet </translation>
     </message>
     <message>
         <source>Error adding key to the wallet</source>
-        <translation>Error al añadir la clave a la billetera</translation>
+        <translation>Error al añadir la llave a la wallet</translation>
     </message>
     <message>
         <source>Successfully added private key to the wallet</source>
-        <translation>La clave fue agregada éxitosamente a la billetera</translation>
+        <translation>Llave privada agregada exitosamente a la wallet</translation>
     </message>
 </context>
 <context>
@@ -3663,10 +3476,6 @@ Recuerda anotarla y guardarla de forma segura, de lo contrario podrías perder e
     <message>
         <source>Form</source>
         <translation>Formulario</translation>
-    </message>
-    <message>
-        <source>TextLabel</source>
-        <translation>EtiquetaDeTexto</translation>
     </message>
     <message>
         <source>Console</source>
@@ -3677,12 +3486,16 @@ Recuerda anotarla y guardarla de forma segura, de lo contrario podrías perder e
         <translation>Entrada de consola</translation>
     </message>
     <message>
-        <source>Command Line Options </source>
-        <translation>Opciones de Línea de Comandos</translation>
-    </message>
-    <message>
         <source>Open Debug File</source>
         <translation>Abrir Archivo de Depuración</translation>
+    </message>
+    <message>
+        <source>Command Line Options</source>
+        <translation>Opciones de Linea de Comandos</translation>
+    </message>
+    <message>
+        <source>Clear history</source>
+        <translation>Limpiar historial</translation>
     </message>
     <message>
         <source>Cannot open debug file.
@@ -3704,7 +3517,7 @@ Verifica que tengas instalado un editor de texto predeterminado.</translation>
     </message>
     <message>
         <source>WARNING: Scammers have been active, telling users to type commands here, stealing their wallet contents. Do not use this console without fully understanding the ramifications of a command.</source>
-        <translation>ADVERTENCIA: Los estafadores han estado activos, diciendo a los usuarios que escriban comandos aquí, robando el contenido de su billetera. No uses esta consola sin entender completamente las consecuencias de un comando.</translation>
+        <translation>ADVERTENCIA: Los estafadores han estado muy activos, diciéndole a los usuarios que escriban comandos aquí, robando el contenido de su wallet. No uses esta consola sin entender completamente las consecuencias de un comando.</translation>
     </message>
 </context>
 <context>
@@ -3714,16 +3527,12 @@ Verifica que tengas instalado un editor de texto predeterminado.</translation>
         <translation>Formulario</translation>
     </message>
     <message>
-        <source>TextLabel</source>
-        <translation>EtiquetaDeTexto</translation>
-    </message>
-    <message>
-        <source>PushButton</source>
-        <translation>Presionar el botón</translation>
+        <source>Hide stake charts in the dashboard</source>
+        <translation>Ocultar las gráficas de stake del tablero</translation>
     </message>
     <message>
         <source>Reset to default</source>
-        <translation>Reestablecer a valores predeterminados</translation>
+        <translation>Reestablecer los valores predeterminados</translation>
     </message>
     <message>
         <source>Discard changes</source>
@@ -3771,14 +3580,113 @@ Verifica que tengas instalado un editor de texto predeterminado.</translation>
     </message>
 </context>
 <context>
-    <name>SettingsInformationWidget</name>
+    <name>SettingsExportCSV</name>
     <message>
         <source>Form</source>
         <translation>Formulario</translation>
     </message>
     <message>
-        <source>TextLabel</source>
-        <translation>EtiquetaDeTexto</translation>
+        <source>Export Accounting</source>
+        <translation>Exportar Contabilidad</translation>
+    </message>
+    <message>
+        <source>Export your wallet's accounting data to a csv file.</source>
+        <translation>Exporta los datos contables de tu wallet a un archivo csv.</translation>
+    </message>
+    <message>
+        <source>Where</source>
+        <translation>Donde</translation>
+    </message>
+    <message>
+        <source>Select folder...</source>
+        <translation>Selecciona un directorio...</translation>
+    </message>
+    <message>
+        <source>Export Address Book</source>
+        <translation>Exportar Libreta de Direcciones</translation>
+    </message>
+    <message>
+        <source>Export CSV</source>
+        <translation>Exportar CSV</translation>
+    </message>
+    <message>
+        <source>Export Address List</source>
+        <translation>Exportar lista de direcciones</translation>
+    </message>
+    <message>
+        <source>BCZ_tx_csv_export(*.csv)</source>
+        <translation>BCZ_tx_csv_export(*.csv)</translation>
+    </message>
+    <message>
+        <source>BCZ_addresses_csv_export(*.csv)</source>
+        <translation>BCZ_addresses_csv_export(*.csv)</translation>
+    </message>
+    <message>
+        <source>Please select a folder to export the csv file first.</source>
+        <translation>Por favor primero selecciona un directorio para exportar el archivo csv.</translation>
+    </message>
+    <message>
+        <source>Confirmed</source>
+        <translation>Confirmado</translation>
+    </message>
+    <message>
+        <source>Watch-only</source>
+        <translation>Sólo-lectura</translation>
+    </message>
+    <message>
+        <source>Date</source>
+        <translation>Fecha</translation>
+    </message>
+    <message>
+        <source>Type</source>
+        <translation>Tipo</translation>
+    </message>
+    <message>
+        <source>Label</source>
+        <translation>Etiqueta</translation>
+    </message>
+    <message>
+        <source>Address</source>
+        <translation>Dirección</translation>
+    </message>
+    <message>
+        <source>ID</source>
+        <translation>ID</translation>
+    </message>
+    <message>
+        <source>Exporting Successful
+The transaction history was successfully saved to %1.</source>
+        <translation>La exportación fue exitosa
+El historial de transacciones se guardó correctamente en %1.</translation>
+    </message>
+    <message>
+        <source>Exporting Failed
+There was an error trying to save the transaction history to %1.</source>
+        <translation>La exportación falló
+Ha habido un error al tratar de guardar el historial de transacciones %1.</translation>
+    </message>
+    <message>
+        <source>No available addresses to export under the selected filter</source>
+        <translation>No hay direcciones disponibles para exportar bajo el filtro seleccionado</translation>
+    </message>
+    <message>
+        <source>Exporting Successful
+The address book was successfully saved to %1.</source>
+        <translation>La exportación fue exitosa
+La libreta de direcciones se guardó correctamente en %1.</translation>
+    </message>
+    <message>
+        <source>Exporting Failed
+There was an error trying to save the address list to %1. Please try again.</source>
+        <translation>La exportación falló
+Ha habido un error al tratar de guardar la libreta de direcciones en %1. Por favor intenta otra vez.</translation>
+    </message>
+</context>
+<context>
+    <name>SettingsInformationWidget</name>
+    <message>
+        <source>Form</source>
+        <translation>Formulario</translation>
     </message>
     <message>
         <source>Network Monitor</source>
@@ -3793,24 +3701,48 @@ Verifica que tengas instalado un editor de texto predeterminado.</translation>
         <translation>General</translation>
     </message>
     <message>
-        <source>Client Version: </source>
+        <source>Client Version:</source>
         <translation>Versión del Cliente:</translation>
+    </message>
+    <message>
+        <source>BerkeleyDB version:</source>
+        <translation>BerkeleyDB versión:</translation>
+    </message>
+    <message>
+        <source>Datadir:</source>
+        <translation>Datadir:</translation>
+    </message>
+    <message>
+        <source>Startup time:</source>
+        <translation>Tiempo de Inicio:</translation>
+    </message>
+    <message>
+        <source>Connections:</source>
+        <translation>Conexiones:</translation>
+    </message>
+    <message>
+        <source>Number of Masternodes:</source>
+        <translation>Número de Masternodes:</translation>
+    </message>
+    <message>
+        <source>Current number of blocks:</source>
+        <translation>Número actual de bloques:</translation>
+    </message>
+    <message>
+        <source>Last block time:</source>
+        <translation>Momento del último bloque:</translation>
+    </message>
+    <message>
+        <source>Last block hash:</source>
+        <translation> Hash del bloque pasado:</translation>
+    </message>
+    <message>
+        <source>Current number of transactions:</source>
+        <translation>Número Actual de Transacciones:</translation>
     </message>
     <message>
         <source>User Agent:</source>
         <translation>Agente de Usuario:</translation>
-    </message>
-    <message>
-        <source>Using BerkeleyDB version:</source>
-        <translation>Usando la versión de BerkeleyDB: </translation>
-    </message>
-    <message>
-        <source>Datadir: </source>
-        <translation>Datadir:</translation>
-    </message>
-    <message>
-        <source>Startup Time:  </source>
-        <translation>Tiempo de Inicio:</translation>
     </message>
     <message>
         <source>Network</source>
@@ -3821,28 +3753,12 @@ Verifica que tengas instalado un editor de texto predeterminado.</translation>
         <translation>Nombre:</translation>
     </message>
     <message>
-        <source>Number Connections:</source>
-        <translation>Conexiones Numéricas:</translation>
-    </message>
-    <message>
         <source>Blockchain</source>
         <translation>Blockchain</translation>
     </message>
     <message>
-        <source>Current Number of Blocks:</source>
-        <translation>Número Actual de Bloques:</translation>
-    </message>
-    <message>
-        <source>Last Block Time:</source>
-        <translation>Tiempo del bloque pasado</translation>
-    </message>
-    <message>
         <source>Memory Pool</source>
         <translation>Pool de Memoria</translation>
-    </message>
-    <message>
-        <source>Current Number of Transactions:</source>
-        <translation>Número Actual de Transacciones:</translation>
     </message>
     <message>
         <source>Main</source>
@@ -3850,7 +3766,7 @@ Verifica que tengas instalado un editor de texto predeterminado.</translation>
     </message>
     <message>
         <source>Wallet Conf</source>
-        <translation>Configurar Billetera </translation>
+        <translation>Configurar Wallet </translation>
     </message>
     <message>
         <source>Backups</source>
@@ -3884,10 +3800,6 @@ Verifica que tengas instalado un editor de texto predeterminado.</translation>
         <translation>Formulario</translation>
     </message>
     <message>
-        <source>TextLabel</source>
-        <translation>EtiquetaDeTexto</translation>
-    </message>
-    <message>
         <source>Window</source>
         <translation>Ventana</translation>
     </message>
@@ -3896,12 +3808,8 @@ Verifica que tengas instalado un editor de texto predeterminado.</translation>
         <translation>Personalizar las opciones de la ventana de la aplicación</translation>
     </message>
     <message>
-        <source>CheckBox</source>
-        <translation>CheckBox</translation>
-    </message>
-    <message>
         <source>Reset to default</source>
-        <translation>Reestablecer a valores predeterminados</translation>
+        <translation>Reestablecer los valores predeterminados</translation>
     </message>
     <message>
         <source>Discard changes</source>
@@ -3914,6 +3822,10 @@ Verifica que tengas instalado un editor de texto predeterminado.</translation>
     <message>
         <source>Main</source>
         <translation>Principal</translation>
+    </message>
+    <message>
+        <source>Customize the main application options</source>
+        <translation>Personaliza las principales opciones de la aplicación</translation>
     </message>
     <message>
         <source>Size of database cache</source>
@@ -3981,12 +3893,12 @@ Are you sure?
         <translation>Nuevo destinatario para multisend</translation>
     </message>
     <message>
-        <source>Label (optional)</source>
-        <translation>Etiqueta (opcional)</translation>
+        <source>Address Label (optional)</source>
+        <translation>Etiqueta de Dirección (opcional)</translation>
     </message>
     <message>
-        <source>Enter a label to add this address in your address book</source>
-        <translation>Introduce una etiqueta para añadir esta dirección en tu libreta de direcciones</translation>
+        <source>Enter label to be saved with this address</source>
+        <translation>Introduce una etiqueta para guardar esta dirección</translation>
     </message>
     <message>
         <source>Percentage</source>
@@ -4004,8 +3916,8 @@ Are you sure?
         <translation>EtiquetaDeTexto</translation>
     </message>
     <message>
-        <source>No active Master Node yet</source>
-        <translation>No hay ningún nodo Maestro activo todavía.</translation>
+        <source>N/A</source>
+        <translation>N/A</translation>
     </message>
     <message>
         <source>CheckBox</source>
@@ -4044,12 +3956,20 @@ Are you sure?
         <translation>BORRAR TODO</translation>
     </message>
     <message>
+        <source>Cannot perform operation, wallet locked</source>
+        <translation>No se puede realizar la operación, la wallet está bloqueada</translation>
+    </message>
+    <message>
         <source>Clear succeed</source>
         <translation>Borrado con éxito</translation>
     </message>
     <message>
         <source>Clear all failed, could not locate address in wallet file</source>
-        <translation>Borrar todos los errores, no se pudo localizar la dirección en el archivo de la billetera</translation>
+        <translation>Borrar todos los errores, no se pudo localizar la dirección en el archivo de la wallet</translation>
+    </message>
+    <message>
+        <source>Cannot add multisend recipient, wallet locked</source>
+        <translation>No se puede agregar la destinatario de multisend, la wallet está bloqueada</translation>
     </message>
     <message>
         <source>The entered address: %1 is invalid.
@@ -4107,28 +4027,8 @@ Marque una o ambas casillas de verificación para enviar recompensas de stake y/
         <translation>Formulario</translation>
     </message>
     <message>
-        <source>TextLabel</source>
-        <translation>EtiquetaDeTexto</translation>
-    </message>
-    <message>
-        <source>PushButton</source>
-        <translation>Presionar el botón</translation>
-    </message>
-    <message>
-        <source>Clear</source>
-        <translation>Limpiar</translation>
-    </message>
-    <message>
         <source>Sign/Verify Message</source>
         <translation>Firmar/Verificar Mensaje</translation>
-    </message>
-    <message>
-        <source>Enter a BCZ address or contact label</source>
-        <translation>Introduce una dirección BCZ o una etiqueta de contacto</translation>
-    </message>
-    <message>
-        <source>Add address</source>
-        <translation>Añadir dirección</translation>
     </message>
     <message>
         <source>Sign</source>
@@ -4139,6 +4039,10 @@ Marque una o ambas casillas de verificación para enviar recompensas de stake y/
         <translation>Verificar</translation>
     </message>
     <message>
+        <source>Write message here...</source>
+        <translation>Escribe un mensaje aquí ...</translation>
+    </message>
+    <message>
         <source>Select mode</source>
         <translation>Seleccionar una modalidad</translation>
     </message>
@@ -4147,8 +4051,12 @@ Marque una o ambas casillas de verificación para enviar recompensas de stake y/
         <translation>Mensaje</translation>
     </message>
     <message>
-        <source>Write a message</source>
-        <translation>Escribe un mensaje</translation>
+        <source>BCZ address or contact label</source>
+        <translation>Dirección BCZ o etiqueta de contacto</translation>
+    </message>
+    <message>
+        <source>Enter address</source>
+        <translation>Ingresa la dirección</translation>
     </message>
     <message>
         <source>Signature</source>
@@ -4188,7 +4096,7 @@ Marque una o ambas casillas de verificación para enviar recompensas de stake y/
     </message>
     <message>
         <source>Wallet unlock was cancelled.</source>
-        <translation>El desbloqueo del monedero fue cancelado.</translation>
+        <translation>El desbloqueo de la wallet fue cancelado.</translation>
     </message>
     <message>
         <source>Private key for the entered address is not available.</source>
@@ -4234,40 +4142,24 @@ Marque una o ambas casillas de verificación para enviar recompensas de stake y/
         <translation>Formulario</translation>
     </message>
     <message>
-        <source>TextLabel</source>
-        <translation>EtiquetaDeTexto</translation>
-    </message>
-    <message>
-        <source>CheckBox</source>
-        <translation>CheckBox</translation>
-    </message>
-    <message>
-        <source>RadioButton</source>
-        <translation>RadioButton</translation>
-    </message>
-    <message>
         <source>Reset to default</source>
-        <translation>Reestablecer a valores predeterminados</translation>
+        <translation>Reestablecer los valores predeterminados</translation>
     </message>
     <message>
         <source>Discard changes</source>
         <translation>Descartar los cambios</translation>
     </message>
     <message>
-        <source>PushButton</source>
-        <translation>Presionar el botón</translation>
-    </message>
-    <message>
         <source>Wallet</source>
-        <translation>Monedero</translation>
+        <translation>Wallet</translation>
     </message>
     <message>
         <source>Customize the internal wallet options</source>
-        <translation>Personaliza las opciones de la billetera interna</translation>
+        <translation>Personaliza las opciones de la wallet interna</translation>
     </message>
     <message>
-        <source>Stake split threshold:</source>
-        <translation>Parte limite de stake:</translation>
+        <source>Stake split threshold</source>
+        <translation>Umbral de división de participación</translation>
     </message>
     <message>
         <source>Spend unconfirmed change</source>
@@ -4282,16 +4174,24 @@ Marque una o ambas casillas de verificación para enviar recompensas de stake y/
         <translation>Personalizar las opciones de la red de nodos</translation>
     </message>
     <message>
-        <source>Proxy IP:</source>
-        <translation>IP del proxy:</translation>
+        <source>Connect through SOCKS5 proxy (default proxy)</source>
+        <translation>Conéctese a través del proxy SOCKS5 (proxy predeterminado)</translation>
+    </message>
+    <message>
+        <source>Proxy IP</source>
+        <translation>Proxy IP</translation>
+    </message>
+    <message>
+        <source>Port</source>
+        <translation>Puerto</translation>
+    </message>
+    <message>
+        <source>Enter port</source>
+        <translation>Ingresa el puerto</translation>
     </message>
     <message>
         <source>Enter proxy IP</source>
         <translation>Introduce la IP del proxy</translation>
-    </message>
-    <message>
-        <source>Port:</source>
-        <translation>Puerto:</translation>
     </message>
     <message>
         <source>Map port using UPnP</source>
@@ -4300,10 +4200,6 @@ Marque una o ambas casillas de verificación para enviar recompensas de stake y/
     <message>
         <source>Allow incoming connections</source>
         <translation>Permitir conexiones entrantes</translation>
-    </message>
-    <message>
-        <source>Connect through SOCKS5 proxy (default proxy):</source>
-        <translation>Conectarse a través del proxy SOCKS5 (proxy por defecto): </translation>
     </message>
     <message>
         <source>SAVE</source>
@@ -4321,80 +4217,72 @@ Marque una o ambas casillas de verificación para enviar recompensas de stake y/
         <translation>Formulario</translation>
     </message>
     <message>
-        <source>TextLabel</source>
-        <translation>EtiquetaDeTexto</translation>
-    </message>
-    <message>
-        <source>PushButton</source>
-        <translation>Presionar el botón</translation>
-    </message>
-    <message>
         <source>Wallet Repair</source>
-        <translation>Reparación de billeteras</translation>
-    </message>
-    <message>
-        <source>The buttons below will restart the wallet with command-line options to repair this wallet, fix issues with corrupt blockchain files or missing/obsolete transactions.</source>
-        <translation>Los botones de abajo reiniciarán la billetera con opciones de línea de comandos para reparar esta billetera, solucionar problemas con archivos corruptos de blockchain o transacciones perdidas u obsoletas.</translation>
-    </message>
-    <message>
-        <source>Attempt to recover private keys from a corrupt wallet.dat.</source>
-        <translation>Intentar recuperar las llaves privadas de un archivo wallet.dat corrupto.</translation>
-    </message>
-    <message>
-        <source>Rescan the blockchain for missing wallet transactions.</source>
-        <translation>Vuelve a escanear la blockchain en busca de transacciones de billetera perdidas.</translation>
-    </message>
-    <message>
-        <source>Recover transactions from blockchain (keep-meta-data, e.g. account owner).</source>
-        <translation>Recuperar transacciones de la blockchain (guardar-meta-datos, por ejemplo, propietario de la cuenta).</translation>
-    </message>
-    <message>
-        <source>Recover transactions from blockchain (drop meta-data).</source>
-        <translation>Recuperar transacciones del blockchain (ignorar meta-datos).</translation>
+        <translation>Reparación de wallet </translation>
     </message>
     <message>
         <source>Upgrade wallet to latest format on startup. (Note: this is NOT an update of the wallet itself)</source>
-        <translation>Actualiza tu billetera al último formato al iniciarse. (Nota: esto NO es una actualización de la billetera en sí)</translation>
+        <translation>Actualiza tu wallet al último formato al iniciarse. (Nota: esto NO es una actualización de la wallet en sí)</translation>
     </message>
     <message>
-        <source>Rebuild blockchain index from current blk000???.dat files.</source>
-        <translation>Reconstruir el índice de la cadena de bloques desde los archivos blk000??.dat actuales.</translation>
-    </message>
-    <message>
-        <source>Deletes all local blockchain folders so the wallet synchronizes from scratch.</source>
-        <translation>Eliminar todos los directorios locales del blockchain y sincronizar el monedero desde el principio</translation>
+        <source>The buttons below will restart the wallet with command-line options to repair this wallet, fix issues with corrupt blockchain files or missing/obsolete transactions</source>
+        <translation>Los botones a continuación reiniciarán la billetera con opciones de línea de comandos para reparar esta billetera, solucionar problemas con archivos de la blockchain, transacciones faltantes/obsoletas</translation>
     </message>
     <message>
         <source>Salvage wallet</source>
-        <translation>Salvar monedero</translation>
+        <translation>Salvar wallet</translation>
+    </message>
+    <message>
+        <source>Attempt to recover private keys from a corrupt wallet.dat</source>
+        <translation>Intentar recuperar claves privadas desde un wallet.dat dañado</translation>
     </message>
     <message>
         <source>Rescan blockchain file</source>
         <translation>Volver a escanear el archivo de la blockchain</translation>
     </message>
     <message>
+        <source>Rescan the blockchain for missing wallet transactions</source>
+        <translation>Vuelva a escanear la cadena de bloques en busca de transacciones de billetera faltantes</translation>
+    </message>
+    <message>
         <source>Recover transactions 1</source>
         <translation>Recuperar transacciones 1</translation>
+    </message>
+    <message>
+        <source>Recover transactions from blockchain (keep-meta-data, e.g. account owner)</source>
+        <translation>Recuperar transacciones de blockchain (mantener metadatos, por ejemplo, propietario de la cuenta)</translation>
     </message>
     <message>
         <source>Recover transactions 2</source>
         <translation>Recuperar transacciones 2</translation>
     </message>
     <message>
+        <source>Recover transactions from blockchain (drop meta-data)</source>
+        <translation>Recuperar transacciones de blockchain (eliminar metadatos)</translation>
+    </message>
+    <message>
         <source>Upgrade wallet format</source>
-        <translation>Actualizar formato del monedero</translation>
+        <translation>Actualizar formato de la wallet</translation>
     </message>
     <message>
         <source>Rebuild index</source>
         <translation>Reconstruir índice</translation>
     </message>
     <message>
-        <source>Delete local blockchain </source>
-        <translation>Eliminar la blockchain local </translation>
+        <source>Rebuild blockchain index from current blk000???.dat files</source>
+        <translation>Reconstruir el índice de blockchain a partir de los archivos blk000 ???.dat</translation>
+    </message>
+    <message>
+        <source>Delete local blockchain</source>
+        <translation>Eliminar blockchain local</translation>
+    </message>
+    <message>
+        <source>Deletes all local blockchain folders so the wallet synchronizes from scratch</source>
+        <translation>Elimina todas las carpetas de blockchain locales para que la billetera se sincronice desde cero</translation>
     </message>
     <message>
         <source>This will delete your local blockchain folders and the wallet will synchronize the complete Blockchain from scratch.&lt;br /&gt;&lt;br /&gt;</source>
-        <translation>Esto eliminará las carpetas de blockchain locales y el monedero sincronizará la cadena de bloques completa desde cero.&lt;br /&gt;&lt;br /&gt;</translation>
+        <translation>Esto eliminará las carpetas de blockchain locales y la wallet sincronizará la cadena de bloques completa desde cero.&lt;br /&gt;&lt;br /&gt;</translation>
     </message>
     <message>
         <source>This needs quite some time and downloads a lot of data.&lt;br /&gt;&lt;br /&gt;</source>
@@ -4420,20 +4308,20 @@ Marque una o ambas casillas de verificación para enviar recompensas de stake y/
         <translation>Formulario</translation>
     </message>
     <message>
-        <source>TextLabel</source>
-        <translation>EtiquetaDeTexto</translation>
-    </message>
-    <message>
         <source>Wallet Data</source>
-        <translation>Datos de la Billetera</translation>
+        <translation>Datos de la Wallet</translation>
     </message>
     <message>
         <source>Wallet</source>
-        <translation>Monedero</translation>
+        <translation>Wallet</translation>
     </message>
     <message>
         <source>Multisend</source>
         <translation>Multisend</translation>
+    </message>
+    <message>
+        <source>Export Accounting</source>
+        <translation>Exportar Contabilidad</translation>
     </message>
     <message>
         <source>Tools</source>
@@ -4473,7 +4361,7 @@ Marque una o ambas casillas de verificación para enviar recompensas de stake y/
     </message>
     <message>
         <source>Wallet Repair</source>
-        <translation>Reparación de billetera </translation>
+        <translation>Reparación de wallet </translation>
     </message>
     <message>
         <source>Help</source>
@@ -4504,13 +4392,17 @@ Marque una o ambas casillas de verificación para enviar recompensas de stake y/
         <translation>El cliente se cerrará, ¿procedemos?</translation>
     </message>
     <message>
+        <source>Stake Split too low, it shall be either &gt;= %1 or equal to 0 (to disable stake splitting)</source>
+        <translation>Stake Split demasiado bajo, será &gt; = %1 o igual a 0 (para deshabilitar la división de participación)</translation>
+    </message>
+    <message>
         <source>Restart required</source>
         <translation>Se requiere reiniciar</translation>
     </message>
     <message>
         <source>Your wallet needs to be restarted to apply the changes
 </source>
-        <translation>Tu billetera necesita ser reiniciada para aplicar los cambios.
+        <translation>Tu wallet necesita ser reiniciada para aplicar los cambios.
 </translation>
     </message>
     <message>
@@ -4523,7 +4415,7 @@ Marque una o ambas casillas de verificación para enviar recompensas de stake y/
     </message>
     <message>
         <source>Options will be applied on next wallet restart</source>
-        <translation>Las opciones se aplicarán en el próximo reinicio de la billetera</translation>
+        <translation>Las opciones se aplicarán en el próximo reinicio de la wallet</translation>
     </message>
     <message>
         <source>Options stored</source>
@@ -4588,26 +4480,6 @@ Are you sure?
 <context>
     <name>SplashScreen</name>
     <message>
-        <source>BCZ Core</source>
-        <translation>BCZ Core</translation>
-    </message>
-    <message>
-        <source>Version %1</source>
-        <translation>Versión %1</translation>
-    </message>
-    <message>
-        <source>The Bitcoin Core developers</source>
-        <translation>Los desarrolladores de Bitcoin Core</translation>
-    </message>
-    <message>
-        <source>The Dash Core developers</source>
-        <translation>Los desarrolladores de Dash Core</translation>
-    </message>
-    <message>
-        <source>The BCZ Core developers</source>
-        <translation>Los desarrolladores de BCZ Core</translation>
-    </message>
-    <message>
         <source>[testnet]</source>
         <translation>[testnet]</translation>
     </message>
@@ -4642,14 +4514,6 @@ Are you sure?
         <translation>Formulario</translation>
     </message>
     <message>
-        <source>480.0685 BCZ</source>
-        <translation>480.0685 BCZ</translation>
-    </message>
-    <message>
-        <source>1,000 zBCZ</source>
-        <translation>1,000 zBCZ</translation>
-    </message>
-    <message>
         <source>Available</source>
         <translation>Disponible </translation>
     </message>
@@ -4658,28 +4522,12 @@ Are you sure?
         <translation>Pendiente</translation>
     </message>
     <message>
-        <source>6.943 BCZ</source>
-        <translation>6.943 BCZ</translation>
-    </message>
-    <message>
         <source>Immature</source>
         <translation>No está completamente desarrollado </translation>
     </message>
     <message>
-        <source>10 BCZ</source>
-        <translation>10 BCZ</translation>
-    </message>
-    <message>
-        <source>60 zBCZ</source>
-        <translation>60 zBCZ</translation>
-    </message>
-    <message>
-        <source>10 zBCZ</source>
-        <translation>10 zBCZ</translation>
-    </message>
-    <message>
         <source>Wallet Unlocked for staking</source>
-        <translation>Billetera desbloqueada para hacer Stake</translation>
+        <translation>Wallet desbloqueada para hacer Stake</translation>
     </message>
     <message>
         <source>Error generating address</source>
@@ -4698,190 +4546,151 @@ Are you sure?
         <translation>Stake inactivo </translation>
     </message>
     <message>
-        <source>Synchronized</source>
-        <translation>Sincronizado</translation>
+        <source>Synchronized - Block: %1</source>
+        <translation>Sincronizado - Bloque: %1</translation>
     </message>
     <message>
         <source>%1 and %2</source>
         <translation>%1 y %2</translation>
     </message>
-    </context>
+    <message>
+        <source>Wallet Upgrade</source>
+        <translation>Actualización de Wallet</translation>
+    </message>
+    <message>
+        <source>Upgrading to HD wallet will improve
+the wallet's reliability and security.
+
+
+NOTE: after the upgrade, a new
+backup will be created.
+</source>
+        <translation>La actualización a wallet HD mejorará
+la fiabilidad y seguridad de la wallet.
+
+
+NOTA: después de la actualización, se creará
+una nueva copia de seguridad.
+</translation>
+    </message>
+    <message>
+        <source>Upgrade Wallet</source>
+        <translation>Actualizar Wallet</translation>
+    </message>
+    <message>
+        <source>Wallet unlock cancelled</source>
+        <translation>Desbloqueo de la wallet cancelado.</translation>
+    </message>
+    <message>
+        <source>Tor Active: %1</source>
+        <translation>Tor Activo: %1</translation>
+    </message>
+    <message>
+        <source>Tor Disabled</source>
+        <translation>Tor Desactivado</translation>
+    </message>
+    <message>
+        <source>FAQ</source>
+        <translation>Preguntas Frecuentes </translation>
+    </message>
+    <message>
+        <source>Upgrade to HD Wallet</source>
+        <translation>Actualice a billetera HD</translation>
+    </message>
+    <message>
+        <source>No Connection</source>
+        <translation>Sin Coneccón</translation>
+    </message>
+    <message>
+        <source>Staking Disabled</source>
+        <translation>Staking Desabilitado</translation>
+    </message>
+    <message>
+        <source>Cold Staking Disabled</source>
+        <translation>Staking en frio Deshabilitado</translation>
+    </message>
+    <message>
+        <source> %54 Synchronizing..</source>
+        <translation>%54 Sincronizando...</translation>
+    </message>
+    <message>
+        <source>Light Theme</source>
+        <translation>Tema Claro</translation>
+    </message>
+    <message>
+        <source>Dark Theme</source>
+        <translation>Tema Oscuro</translation>
+    </message>
+    <message>
+        <source>Wallet Locked </source>
+        <translation>Billetera Bloqueada</translation>
+    </message>
+    <message>
+        <source>Wallet Locked</source>
+        <translation>Billetera desbloqueada</translation>
+    </message>
+    <message>
+        <source>Wallet Unlocked</source>
+        <translation>Billetera Desbloqueada</translation>
+    </message>
+    <message>
+        <source>Wallet Unencrypted</source>
+        <translation>Billetera Desencriptada</translation>
+    </message>
+    <message>
+        <source>Available (Locked included)</source>
+        <translation>Disponible (Bloqueado incluido)</translation>
+    </message>
+    <message>
+        <source>The wallet has been successfully upgraded to HD.</source>
+        <translation>La wallet se ha actualizado con éxito a HD.</translation>
+    </message>
+    <message>
+        <source>It is advised to make a backup.</source>
+        <translation>Es recomendado hacer una copia de seguridad.</translation>
+    </message>
+    <message>
+        <source>Do you wish to backup now?</source>
+        <translation>¿Deseas hacer una copia de seguridad ahora?</translation>
+    </message>
+    <message>
+        <source>Backup Wallet</source>
+        <translation>Respaldo de la Wallet</translation>
+    </message>
+    <message>
+        <source>Wallet Data (*.dat)</source>
+        <translation>Datos de la Wallet (*.dat)</translation>
+    </message>
+    <message>
+        <source>Backup created</source>
+        <translation>Respaldo creado</translation>
+    </message>
+    <message>
+        <source>Backup creation failed</source>
+        <translation>Creación de Respaldo fallida</translation>
+    </message>
+    <message>
+        <source>no file selected</source>
+        <translation>ningún archivo seleccionado</translation>
+    </message>
+    <message>
+        <source>Wallet upgraded successfully, but no backup created.</source>
+        <translation>La wallet se actualizó correctamente, pero no se creó ninguna copia de seguridad.</translation>
+    </message>
+    <message>
+        <source>WARNING: remember to make a copy of your wallet file!</source>
+        <translation>ADVERTENCIA: ¡recuerde hacer una copia de su archivo de billetera!</translation>
+    </message>
+    <message>
+        <source>Upgrade Wallet Error</source>
+        <translation>Error al Actualizar Wallet</translation>
+    </message>
+</context>
 <context>
     <name>TrafficGraphWidget</name>
     <message>
         <source>KB/s</source>
         <translation>KB/s</translation>
-    </message>
-</context>
-<context>
-    <name>TransactionDesc</name>
-    <message>
-        <source>Open until %1</source>
-        <translation>Abierto hasta %1</translation>
-    </message>
-    <message>
-        <source>conflicted</source>
-        <translation>conflictivo (bloque huérfano?)</translation>
-    </message>
-    <message>
-        <source>%1/offline</source>
-        <translation>%1/offline</translation>
-    </message>
-    <message>
-        <source>%1/unconfirmed</source>
-        <translation>%1/sin confirmar</translation>
-    </message>
-    <message>
-        <source>%1 confirmations</source>
-        <translation>%1 confirmaciones</translation>
-    </message>
-    <message>
-        <source>%1/offline (verified via SwiftX)</source>
-        <translation>%1/offline (verificado via swifttx)</translation>
-    </message>
-    <message>
-        <source>%1/confirmed (verified via SwiftX)</source>
-        <translation>%1/confirmado (verificado via swifttx)</translation>
-    </message>
-    <message>
-        <source>%1 confirmations (verified via SwiftX)</source>
-        <translation>%1 confirmaciones (verificado via swifttx)</translation>
-    </message>
-    <message>
-        <source>%1/offline (SwiftX verification in progress - %2 of %3 signatures)</source>
-        <translation>%1/offline (verificación SwiftTX en marcha - %2 de %3 firmas)</translation>
-    </message>
-    <message>
-        <source>%1/confirmed (SwiftX verification in progress - %2 of %3 signatures )</source>
-        <translation>%1/confirmado (verificación SwiftTX en marcha - %2 de %3 firmas)</translation>
-    </message>
-    <message>
-        <source>%1 confirmations (SwiftX verification in progress - %2 of %3 signatures)</source>
-        <translation>%1 confirmaciones (verificación SwiftTX en marcha - %2 de %3 firmas)</translation>
-    </message>
-    <message>
-        <source>%1/offline (SwiftX verification failed)</source>
-        <translation>%1/offline (falló la verificación SwiftTX)</translation>
-    </message>
-    <message>
-        <source>%1/confirmed (SwiftX verification failed)</source>
-        <translation>%1/confirmado (falló la verificación SwiftTX)</translation>
-    </message>
-    <message>
-        <source>Status</source>
-        <translation>Estado</translation>
-    </message>
-    <message>
-        <source>, has not been successfully broadcast yet</source>
-        <translation>, no ha sido correctamente transmitida todavía</translation>
-    </message>
-    <message>
-        <source>Date</source>
-        <translation>Fecha</translation>
-    </message>
-    <message>
-        <source>Source</source>
-        <translation>Fuente</translation>
-    </message>
-    <message>
-        <source>Generated</source>
-        <translation>Generado</translation>
-    </message>
-    <message>
-        <source>From</source>
-        <translation>De</translation>
-    </message>
-    <message>
-        <source>unknown</source>
-        <translation>desconocido</translation>
-    </message>
-    <message>
-        <source>To</source>
-        <translation>A</translation>
-    </message>
-    <message>
-        <source>own address</source>
-        <translation>dirección propia</translation>
-    </message>
-    <message>
-        <source>watch-only</source>
-        <translation>sólo-lectura</translation>
-    </message>
-    <message>
-        <source>label</source>
-        <translation>etiqueta</translation>
-    </message>
-    <message>
-        <source>Credit</source>
-        <translation>Crédito</translation>
-    </message>
-    <message>
-        <source>not accepted</source>
-        <translation>rechazado</translation>
-    </message>
-    <message>
-        <source>Debit</source>
-        <translation>Débito</translation>
-    </message>
-    <message>
-        <source>Total debit</source>
-        <translation>Débito total</translation>
-    </message>
-    <message>
-        <source>Total credit</source>
-        <translation>Abonos totales</translation>
-    </message>
-    <message>
-        <source>Transaction fee</source>
-        <translation>Comisión de transacción</translation>
-    </message>
-    <message>
-        <source>Net amount</source>
-        <translation>Cantidad neta</translation>
-    </message>
-    <message>
-        <source>Message</source>
-        <translation>Mensaje</translation>
-    </message>
-    <message>
-        <source>Comment</source>
-        <translation>Comentario</translation>
-    </message>
-    <message>
-        <source>Transaction ID</source>
-        <translation>ID de la transacción</translation>
-    </message>
-    <message>
-        <source>Output index</source>
-        <translation>Índice de salida</translation>
-    </message>
-    <message>
-        <source>Merchant</source>
-        <translation>Comerciante</translation>
-    </message>
-    <message>
-        <source>Debug information</source>
-        <translation>Información de depuración</translation>
-    </message>
-    <message>
-        <source>Transaction</source>
-        <translation>Transacción</translation>
-    </message>
-    <message>
-        <source>Inputs</source>
-        <translation>Entradas</translation>
-    </message>
-    <message>
-        <source>Amount</source>
-        <translation>Cantidad</translation>
-    </message>
-    <message>
-        <source>true</source>
-        <translation>verdad</translation>
-    </message>
-    <message>
-        <source>false</source>
-        <translation>falso</translation>
     </message>
 </context>
 <context>
@@ -4901,10 +4710,6 @@ Are you sure?
     <message>
         <source>Open until %1</source>
         <translation>Abierto hasta %1</translation>
-    </message>
-    <message>
-        <source>Offline</source>
-        <translation>Desconectado</translation>
     </message>
     <message>
         <source>Unconfirmed</source>
@@ -4927,10 +4732,6 @@ Are you sure?
         <translation>Prematuro (%1 confirmaciones, estará disponible después de %2)</translation>
     </message>
     <message>
-        <source>This block was not received by any other nodes and will probably not be accepted!</source>
-        <translation>¡Este bloque no fue recibido por los otros nodos y probablemente no será aceptado!</translation>
-    </message>
-    <message>
         <source>Received with</source>
         <translation>Recibido con</translation>
     </message>
@@ -4943,64 +4744,24 @@ Are you sure?
         <translation>Recibido desde</translation>
     </message>
     <message>
-        <source>Received via Obfuscation</source>
-        <translation>Recibido por medio de Ofuscación</translation>
+        <source>%1 Stake</source>
+        <translation>%1 Apuesta</translation>
     </message>
     <message>
-        <source>BCZ Stake</source>
-        <translation>Stake BCZ</translation>
+        <source>z%1 Stake</source>
+        <translation>z%1 Apuesta</translation>
     </message>
     <message>
-        <source>zBCZ Stake</source>
-        <translation>Stake zBCZ</translation>
+        <source>%1 Cold Stake</source>
+        <translation>%1 apuesta en frio</translation>
     </message>
     <message>
-        <source>BCZ Cold Stake</source>
-        <translation>Cold Stake de BCZ</translation>
-    </message>
-    <message>
-        <source>BCZ Stake in behalf of</source>
-        <translation>Stake de BCZ en nombre de </translation>
+        <source>%1 Stake on behalf of</source>
+        <translation>%1 Participa en nombre de</translation>
     </message>
     <message>
         <source>Stake delegation</source>
         <translation>Delegación de Stake</translation>
-    </message>
-    <message>
-        <source>Obfuscation Denominate</source>
-        <translation>Ofuscación Denominada</translation>
-    </message>
-    <message>
-        <source>Obfuscation Collateral Payment</source>
-        <translation>Pago Colateral de Ofuscación</translation>
-    </message>
-    <message>
-        <source>Obfuscation Make Collateral Inputs</source>
-        <translation>La Ofuscación Crea Entradas Colaterales</translation>
-    </message>
-    <message>
-        <source>Obfuscation Create Denominations</source>
-        <translation>Ofuscación Crea Billetes</translation>
-    </message>
-    <message>
-        <source>Converted BCZ to zBCZ</source>
-        <translation>BCZ convertidos a zBCZ</translation>
-    </message>
-    <message>
-        <source>Spent zBCZ</source>
-        <translation>Gastar zBCZ</translation>
-    </message>
-    <message>
-        <source>Received BCZ from zBCZ</source>
-        <translation>BCZ recibidos desde zBCZ</translation>
-    </message>
-    <message>
-        <source>Minted Change as zBCZ from zBCZ Spend</source>
-        <translation>Cambio de acuñación en zBCZ al Gastar zBCZ</translation>
-    </message>
-    <message>
-        <source>Converted zBCZ to BCZ</source>
-        <translation>zBCZ convertidos a BCZ</translation>
     </message>
     <message>
         <source>Sent to</source>
@@ -5015,12 +4776,32 @@ Are you sure?
         <translation>Pago a usted mismo</translation>
     </message>
     <message>
+        <source>Stake delegation spent by</source>
+        <translation>Delegación de Stake gastada por</translation>
+    </message>
+    <message>
         <source>Mined</source>
         <translation>Minado</translation>
     </message>
     <message>
-        <source>Obfuscated</source>
-        <translation>Ofuscado</translation>
+        <source>Converted %1 to z%1</source>
+        <translation>Convertido %1 a z%1</translation>
+    </message>
+    <message>
+        <source>Spent z%1</source>
+        <translation>Gastado z%1</translation>
+    </message>
+    <message>
+        <source>Received %1 from z%1</source>
+        <translation>Recibido %1 de z%1</translation>
+    </message>
+    <message>
+        <source>Minted Change as z%1 from z%1 Spend</source>
+        <translation>Cambio acuñado como z%1 de z%1 Gasto</translation>
+    </message>
+    <message>
+        <source>Converted z%1 to %1</source>
+        <translation>z%1 convertido a %1</translation>
     </message>
     <message>
         <source>watch-only</source>
@@ -5074,36 +4855,8 @@ Are you sure?
         <translation>Detalles de Transacción</translation>
     </message>
     <message>
-        <source>ID:</source>
-        <translation>ID:</translation>
-    </message>
-    <message>
-        <source>492526e7fa3c810b35016...40a5df85ee227ab00b1156994</source>
-        <translation>492526e7fa3c810b35016...40a5df85ee227ab00b1156994</translation>
-    </message>
-    <message>
-        <source>Sending to: </source>
-        <translation>Enviando a:</translation>
-    </message>
-    <message>
-        <source>B52EagiPxecjS9zwyebbCZz3x3QuYBNezo </source>
-        <translation>B52EagiPxecjS9zwyebbCZz3x3QuYBNezo </translation>
-    </message>
-    <message>
         <source>Total amount</source>
         <translation>Monto total</translation>
-    </message>
-    <message>
-        <source>2 BCZ</source>
-        <translation>2 BCZ</translation>
-    </message>
-    <message>
-        <source>Coin inputs:</source>
-        <translation>Ingreso de monedas:</translation>
-    </message>
-    <message>
-        <source>1 Inputs</source>
-        <translation>1 Entrada</translation>
     </message>
     <message>
         <source>Previous Transaction</source>
@@ -5114,52 +4867,52 @@ Are you sure?
         <translation>Índice de Salida</translation>
     </message>
     <message>
-        <source>Fee:</source>
-        <translation>Comisión:</translation>
-    </message>
-    <message>
-        <source>0.0001 BCZ</source>
-        <translation>0.0001 BCZ</translation>
-    </message>
-    <message>
-        <source>Change address:</source>
-        <translation>Cambiar dirección:</translation>
-    </message>
-    <message>
-        <source>B52EagiPxec…BhjcWJtcfip5krte2Z </source>
-        <translation>B52EagiPxec…BhjcWJtcfip5krte2Z </translation>
-    </message>
-    <message>
-        <source>Confirmations:</source>
-        <translation>Confirmaciones:</translation>
-    </message>
-    <message>
-        <source>12</source>
-        <translation>12</translation>
-    </message>
-    <message>
-        <source>Size:</source>
-        <translation>Tamaño:</translation>
-    </message>
-    <message>
-        <source>2 kB</source>
-        <translation>2 kB</translation>
-    </message>
-    <message>
-        <source>Date:</source>
-        <translation>Fecha:</translation>
+        <source>D7VFR83SQbie…BhjcWJtcfip5krte2Z </source>
+        <translation>D7VFR83SQbie…BhjcWJtcfip5krte2Z </translation>
     </message>
     <message>
         <source>May 25, 2017</source>
         <translation>Mayo 25, 2017</translation>
     </message>
     <message>
-        <source>Status:</source>
-        <translation>Estado:</translation>
+        <source>ID</source>
+        <translation>ID</translation>
+    </message>
+    <message>
+        <source>Sending to</source>
+        <translation>Enviando a:</translation>
+    </message>
+    <message>
+        <source>Coin inputs</source>
+        <translation>Coin inputs</translation>
+    </message>
+    <message>
+        <source>Fee</source>
+        <translation>Comisión</translation>
+    </message>
+    <message>
+        <source>Size</source>
+        <translation>Tamaño:</translation>
+    </message>
+    <message>
+        <source>Change address</source>
+        <translation>Cambiar dirección:</translation>
     </message>
     <message>
         <source>Spendable</source>
         <translation>Para gastar</translation>
+    </message>
+    <message>
+        <source>Confirmations</source>
+        <translation>Confirmaciones</translation>
+    </message>
+    <message>
+        <source>Status</source>
+        <translation>Estado</translation>
+    </message>
+    <message>
+        <source>Date</source>
+        <translation>Fecha</translation>
     </message>
     <message>
         <source>TextLabel</source>
@@ -5186,6 +4939,10 @@ Are you sure?
         <translation>ID copiado</translation>
     </message>
     <message>
+        <source>Delegating to</source>
+        <translation>Delegando a</translation>
+    </message>
+    <message>
         <source>Unknown</source>
         <translation>Desconocido</translation>
     </message>
@@ -5196,18 +4953,6 @@ Are you sure?
         <source>Form</source>
         <translation>Formulario</translation>
     </message>
-    <message>
-        <source>Received from Bob</source>
-        <translation>Recibido de Bob</translation>
-    </message>
-    <message>
-        <source>18/05/18</source>
-        <translation>18/05/18</translation>
-    </message>
-    <message>
-        <source>+0.000585 BCZ</source>
-        <translation>+0.000585 BCZ</translation>
-    </message>
 </context>
 <context>
     <name>WalletModel</name>
@@ -5216,43 +4961,24 @@ Are you sure?
         <translation>Enviar Monedas</translation>
     </message>
     <message>
-        <source>SwiftX doesn't support sending values that high yet. Transactions are currently limited to %1 BCZ.</source>
-        <translation>SwiftTX no soporta el envío de importes tan altos todavía. Las transacciones están actualmente limitadas a %1 BCZ.</translation>
-    </message>
-</context>
-<context>
-    <name>WalletPasswordDialog</name>
-    <message>
-        <source>Dialog</source>
-        <translation>Diálogo</translation>
+        <source>SwiftX doesn't support sending values that high yet. Transactions are currently limited to %1 %2.</source>
+        <translation>SwiftX aún no admite el envío de valores tan altos. Actualmente, las transacciones están limitadas a %1 %2.</translation>
     </message>
     <message>
-        <source>TextLabel</source>
-        <translation>EtiquetaDeTexto</translation>
+        <source>Transaction creation failed!
+%1</source>
+        <translation>Error al crear la transacción!
+%1</translation>
     </message>
     <message>
-        <source>PushButton</source>
-        <translation>Presionar el botón</translation>
-    </message>
-    <message>
-        <source>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim.</source>
-        <translation>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim.</translation>
-    </message>
-    <message>
-        <source>CANCEL</source>
-        <translation>CANCELAR</translation>
-    </message>
-    <message>
-        <source>OK</source>
-        <translation>OK</translation>
+        <source>The size of the transaction is too big.
+Select fewer inputs with coin control.</source>
+        <translation>El tamaño de la transacción es demasiado grande.
+Seleccione menos entradas con control de monedas.</translation>
     </message>
 </context>
 <context>
     <name>WelcomeContentWidget</name>
-    <message>
-        <source>Dialog</source>
-        <translation>Diálogo</translation>
-    </message>
     <message>
         <source>1</source>
         <translation>1</translation>
@@ -5327,6 +5053,10 @@ BCZ Core Wallet</translation>
         <translation>(1= mantener los metadatos tx p.e. dueño de la cuenta e información de la solicitud de pago, 2 = ignorar metadatos tx)</translation>
     </message>
     <message>
+        <source>Accept connections from outside (default: %u if no -proxy or -connect/-noconnect)</source>
+        <translation>Acepta conexiones desde el exterior (predeterminado: %u si no hay -proxy o -connect / -noconnect)</translation>
+    </message>
+    <message>
         <source>Allow JSON-RPC connections from specified source. Valid for &lt;ip&gt; are a single IP (e.g. 1.2.3.4), a network/netmask (e.g. 1.2.3.4/255.255.255.0) or a network/CIDR (e.g. 1.2.3.4/24). This option can be specified multiple times</source>
         <translation>Permitir conexiones JSON-RPC  desde la fuente especificada. Valido para &lt;ip&gt; sea una única IP (ej: 1.2.3.4), una red/mascara de red (ej: 1.2.3.4/255.255.255.0) o una red/CIDR (ej: 1.2.3.4/24). Esta opción puede ser especificada múltiples veces.</translation>
     </message>
@@ -5343,16 +5073,8 @@ BCZ Core Wallet</translation>
         <translation>Escuchar únicamente a la tarjeta de red indicada para conexiones JSON-RPC. Use la notación [host]:puerto para IPv6. Esta opción puede ser especificada varias veces (por defecto: escuchar en todas las tarjetas de red)</translation>
     </message>
     <message>
-        <source>Calculated accumulator checkpoint is not what is recorded by block index</source>
-        <translation>El punto de chequeo del acumulador que hemos calculado no coincide con lo guardado en el índice de bloques</translation>
-    </message>
-    <message>
         <source>Cannot obtain a lock on data directory %s. BCZ Core is probably already running.</source>
         <translation>No se puede obtener un bloqueo sobre el directorio de datos %s. BCZ Core esta probablemente en ejecución.</translation>
-    </message>
-    <message>
-        <source>Change automatic finalized budget voting behavior. mode=auto: Vote for only exact finalized budget match to my generated budget. (string, default: auto)</source>
-        <translation>Cambiar el comportamiento automático de votación de presupuesto final. modo=auto: Votar sólo por coincidencia exacta de un presupuesto finalizado con el generado por mí. (cadena, por defecto: auto)</translation>
     </message>
     <message>
         <source>Continuously rate-limit free transactions to &lt;n&gt;*1000 bytes per minute (default:%u)</source>
@@ -5360,39 +5082,19 @@ BCZ Core Wallet</translation>
     </message>
     <message>
         <source>Create new files with system default permissions, instead of umask 077 (only effective with disabled wallet functionality)</source>
-        <translation>Crear nuevos archivos con el permiso predeterminado del sistema, en vez de umask 077 (solamente efectivo con la funcionalidad del monedero desabilitada)</translation>
+        <translation>Crear nuevos archivos con el permiso predeterminado del sistema, en vez de umask 077 (solamente efectivo con la funcionalidad de la wallet desabilitada)</translation>
     </message>
     <message>
         <source>Delete all wallet transactions and only recover those parts of the blockchain through -rescan on startup</source>
-        <translation>Borrar todas las transacciones del monedero y solo recuperar partes de la cadena de bloque a traves de -rescan al inicio.</translation>
-    </message>
-    <message>
-        <source>Delete all zerocoin spends and mints that have been recorded to the blockchain database and reindex them (0-1, default: %u)</source>
-        <translation>Elimina todos registros de las transferencias y el acuñado de Zerocoin que se hayan registrado en la base de datos de Blockchain y vuelva a indexarlos (0-1, default: %u)</translation>
+        <translation>Borrar todas las transacciones de la wallet y solo recuperar partes de la cadena de bloque a traves de -rescan al inicio.</translation>
     </message>
     <message>
         <source>Distributed under the MIT software license, see the accompanying file COPYING or &lt;http://www.opensource.org/licenses/mit-license.php&gt;.</source>
         <translation>Distribuido bajo licencia MIT software license, ver el archivo adjunto COPYING or &lt;http://www.opensource.org/licenses/mit-license.php&gt;</translation>
     </message>
     <message>
-        <source>Enable automatic Zerocoin minting from specific addresses (0-1, default: %u)</source>
-        <translation>Habilitar acuñado automático de Zerocoin desde una dirección específica (0-1, default: %u)</translation>
-    </message>
-    <message>
-        <source>Enable automatic wallet backups triggered after each zBCZ minting (0-1, default: %u)</source>
-        <translation>Habilite copias de seguridad automáticas del monedero que se activan después de cada acuñación zBCZ (0-1, predeterminado: %u)</translation>
-    </message>
-    <message>
         <source>Enable cold staking functionality (0-1, default: %u). Disabled if staking=0</source>
         <translation>Activar funcionalidad de cold staking (0-1, por defecto: %u). Desactivado si staking=0</translation>
-    </message>
-    <message>
-        <source>Enable or disable staking functionality for BCZ inputs (0-1, default: %u)</source>
-        <translation>Habilitar o deshabilitar la funcionalidad de staking para las entradas BCZ (0-1, predeterminado: %u)</translation>
-    </message>
-    <message>
-        <source>Enable or disable staking functionality for zBCZ inputs (0-1, default: %u)</source>
-        <translation>Habilitar o deshabilitar la funcionalidad de staking para las entradas zBCZ (0-1, predeterminado: %u)</translation>
     </message>
     <message>
         <source>Enable spork administration functionality with the appropriate private key.</source>
@@ -5415,24 +5117,20 @@ BCZ Core Wallet</translation>
         <translation>Error: Argumento -socks no soportado. No se permite utilizar la versión SOCKS, solo proxies de SOCKS5 están soportados.</translation>
     </message>
     <message>
+        <source>Exclude debugging information for a category. Can be used in conjunction with -debug=1 to output debug logs for all categories except one or more specified categories.</source>
+        <translation>Excluir información de depuración para una categoría. Se puede usar junto con -debug=1 para generar registros de depuración para todas las categorías, excepto una o más categorías especificadas.</translation>
+    </message>
+    <message>
         <source>Execute command when a relevant alert is received or we see a really long fork (%s in cmd is replaced by message)</source>
         <translation>Ejecutar un comando cuando una alerta relevante es recibida o estamos teniendo una realmente larga bifurcación (%s en cmd is reemplazado por el mensaje)</translation>
     </message>
     <message>
         <source>Execute command when a wallet transaction changes (%s in cmd is replaced by TxID)</source>
-        <translation>Ejecutar un comando cuando una transacción del monedero cambie (%s en cmd is reemplazado por TxID)</translation>
+        <translation>Ejecutar un comando cuando una transacción de la wallet cambie (%s en cmd is reemplazado por TxID)</translation>
     </message>
     <message>
         <source>Execute command when the best block changes (%s in cmd is replaced by block hash)</source>
         <translation>Ejecutar comando cuando el mejor bloque cambie (%s en cmd es reemplazado por el block hash)</translation>
-    </message>
-    <message>
-        <source>Fees (in BCZ/Kb) smaller than this are considered zero fee for relaying (default: %s)</source>
-        <translation>Comisiones (en BCZ/Kb) menores a esta son consideradas gratuitas para la propagación de la transacción (default: %s)</translation>
-    </message>
-    <message>
-        <source>Fees (in BCZ/Kb) smaller than this are considered zero fee for transaction creation (default: %s)</source>
-        <translation>Comisiones (en BCZ/Kb) menores a esta son consideradas gratuitas para la creación de la transacción (default: %s)</translation>
     </message>
     <message>
         <source>Flush database activity from memory pool to disk log every &lt;n&gt; megabytes (default: %u)</source>
@@ -5453,10 +5151,6 @@ BCZ Core Wallet</translation>
     <message>
         <source>Invalid amount for -maxtxfee=&lt;amount&gt;: '%s' (must be at least the minrelay fee of %s to prevent stuck transactions)</source>
         <translation>Importe inválido para -maxtxfee=&lt;amount&gt;:'%s' (debe ser al menos la comisión minrelay de %s para prevenir transacciones atascadas)</translation>
-    </message>
-    <message>
-        <source>Keep the specified amount available for spending at all times (default: 0)</source>
-        <translation>Mantener la cantidad especificada disponible para gastar en todo momento (por defecto: 0)</translation>
     </message>
     <message>
         <source>Log transaction priority and fee per kB when mining blocks (default: %u)</source>
@@ -5480,23 +5174,15 @@ BCZ Core Wallet</translation>
     </message>
     <message>
         <source>Maximum total fees to use in a single wallet transaction, setting too low may abort large transactions (default: %s)</source>
-        <translation>Comisión máxima total para usar en una única transacción de monedero, definirlo muy bajo puede abortar transacciones largas (predeterminado: %s)</translation>
+        <translation>Comisión máxima total para usar en una única transacción de la wallet, definirlo muy bajo puede abortar transacciones largas (predeterminado: %s)</translation>
     </message>
     <message>
         <source>Number of seconds to keep misbehaving peers from reconnecting (default: %u)</source>
         <translation>Número de segundos a mantener pares con mal comportamiento de reconectarse (predeterminado: %u)</translation>
     </message>
     <message>
-        <source>Obfuscation uses exact denominated amounts to send funds, you might simply need to anonymize some more coins.</source>
-        <translation>La ofuscación utiliza importes en denominaciones exactas para enviar fondos, puedes simplemente necesitar anonimizar algunas monedas mas. </translation>
-    </message>
-    <message>
         <source>Output debugging information (default: %u, supplying &lt;category&gt; is optional)</source>
         <translation>Saluda de información de depuración (predeterminado: %u, proveyendo &lt;category&gt; es opcional)</translation>
-    </message>
-    <message>
-        <source>Query for peer addresses via DNS lookup, if low on addresses (default: 1 unless -connect)</source>
-        <translation>Consultar por direcciones de pares vía búsqueda en DNS, si cantidad de direcciones esta bajo (predeterminado: 1 a menos que se utilice -connect)</translation>
     </message>
     <message>
         <source>Randomize credentials for every proxy connection. This enables Tor stream isolation (default: %u)</source>
@@ -5513,10 +5199,6 @@ BCZ Core Wallet</translation>
     <message>
         <source>Set maximum size of high-priority/low-fee transactions in bytes (default: %d)</source>
         <translation>Define tamaño máximo de transacción alta prioridad/baja comisión en bytes (predeterminado: %d)</translation>
-    </message>
-    <message>
-        <source>Set the number of included blocks to precompute per cycle. (minimum: %d) (maximum: %d) (default: %d)</source>
-        <translation>Configurar el número de bloques incluidos para precalcular por ciclo. (minimum: %d) (maximum: %d) (default: %d)</translation>
     </message>
     <message>
         <source>Set the number of script verification threads (%u to %d, 0 = auto, &lt;0 = leave that many cores free, default: %d)</source>
@@ -5551,18 +5233,6 @@ BCZ Core Wallet</translation>
         <translation>Imposible conectar a %s en esta computadora. Es probable que BCZ Core ya este corriendo.</translation>
     </message>
     <message>
-        <source>Unable to locate enough Obfuscation denominated funds for this transaction.</source>
-        <translation>Imposible localizar suficientes fondos denominados de Ofuscación para esta transacción.</translation>
-    </message>
-    <message>
-        <source>Unable to locate enough Obfuscation non-denominated funds for this transaction that are not equal 5000 BCZ.</source>
-        <translation>Imposible localizar suficientes fondos no-denominados de Ofuscación para esta transacción que no es igual a 5000 BCZ.</translation>
-    </message>
-    <message>
-        <source>Unable to locate enough funds for this transaction that are not equal 5000 BCZ.</source>
-        <translation>Imposible localizar fondos suficientes para esta transacción que no es igual a 5000 BCZ.</translation>
-    </message>
-    <message>
         <source>Use separate SOCKS5 proxy to reach peers via Tor hidden services (default: %s)</source>
         <translation>Utilizar un proxy SOCKS5 diferente para alcanzar pares vía el servicio oculto Tor (predefinido: %s)</translation>
     </message>
@@ -5573,10 +5243,6 @@ BCZ Core Wallet</translation>
     <message>
         <source>Warning: -paytxfee is set very high! This is the transaction fee you will pay if you send a transaction.</source>
         <translation>Advertencia: -paytxfee esta muy alta! Esta es la comisión de transacción que pagarás si envías una transacción.</translation>
-    </message>
-    <message>
-        <source>Warning: Peers are being disconnected due time differences. Please check that your computer's date and time are correct! If your clock is wrong BCZ Core will not work properly.</source>
-        <translation>Advertencia: Los pares están siendo desconectados debido a las diferencias horarias. Por favor, verifica que la fecha y la hora de tu computadora sean correctas! Si tu reloj está fuera de hora, BCZ Core no funcionará correctamente.</translation>
     </message>
     <message>
         <source>Warning: Please check that your computer's date and time are correct! If your clock is wrong BCZ Core will not work properly.</source>
@@ -5591,14 +5257,6 @@ BCZ Core Wallet</translation>
         <translation>Advertencia: No estamos apareciendo totalmente en concordancia con nuestros pares! Podrías necesitar una actualización, o otros nodos pueden necesitar una actualización.</translation>
     </message>
     <message>
-        <source>Warning: error reading wallet.dat! All keys read correctly, but transaction data or address book entries might be missing or incorrect.</source>
-        <translation>Advertencia: error leyendo wallet.dat! Todas las claves leídas correctamente, pero datos de transacción or entradas en el libro de direcciones podrían estar faltando o ser incorrectas.</translation>
-    </message>
-    <message>
-        <source>Warning: wallet.dat corrupt, data salvaged! Original wallet.dat saved as wallet.{timestamp}.bak in %s; if your balance or transactions are incorrect you should restore from a backup.</source>
-        <translation>Advertencia: wallet.dat esta dañado, datos salvados! El wallet.dat original esta grabado como wallet.{timestamp}.bak en %s; si tu saldo o transacciones son incorrectas deberías restaurar de un backup.</translation>
-    </message>
-    <message>
         <source>Whitelist peers connecting from the given netmask or IP address. Can be specified multiple times.</source>
         <translation>Pares de la whitelist conectados desde la mascara de red o direcciones IP dada. Puede ser especificado múltiples veces.</translation>
     </message>
@@ -5611,28 +5269,12 @@ BCZ Core Wallet</translation>
         <translation>Debes especificar un masternodeprivkey en la configuración. Por favor mira la documentación por ayuda.</translation>
     </message>
     <message>
-        <source>(29500 could be used only on mainnet)</source>
-        <translation>(29500 puede ser utilizado solo en mainnet)</translation>
-    </message>
-    <message>
         <source>(default: %s)</source>
         <translation>(predeterminado: %s)</translation>
     </message>
     <message>
-        <source>(default: 1)</source>
-        <translation>(predeterminado: 1)</translation>
-    </message>
-    <message>
-        <source>(must be 29500 for mainnet)</source>
-        <translation>(debe ser 29500 para un mainnet)</translation>
-    </message>
-    <message>
         <source>Accept command line and JSON-RPC commands</source>
         <translation>Aceptar linea de mandato y mandatos JSON-RPC</translation>
-    </message>
-    <message>
-        <source>Accept connections from outside (default: 1 if no -proxy or -connect)</source>
-        <translation>Aceptar conexiones desde afuera (predeterminado: 1 sin opción -proxy o -connect)</translation>
     </message>
     <message>
         <source>Accept public REST requests (default: %u)</source>
@@ -5643,14 +5285,6 @@ BCZ Core Wallet</translation>
         <translation>Agregar un nodo a conectarse y intentar mantener abierta la conexión</translation>
     </message>
     <message>
-        <source>Adding Wrapped Serials supply...</source>
-        <translation>Añadiendo el suministro de Seriales Envueltos...</translation>
-    </message>
-    <message>
-        <source>Allow DNS lookups for -addnode, -seednode and -connect</source>
-        <translation>Permitir búsquedas DNS para -addnode, -seednode y -connect</translation>
-    </message>
-    <message>
         <source>Always query for peer addresses via DNS lookup (default: %u)</source>
         <translation>Siempre consultar por direcciones de pares vía búsqueda DNS (predeterminado: %u)</translation>
     </message>
@@ -5659,44 +5293,12 @@ BCZ Core Wallet</translation>
         <translation>Añadir un comentario a la cadena del agente de usuario</translation>
     </message>
     <message>
-        <source>Attempt to recover private keys from a corrupt wallet.dat</source>
-        <translation>Intentar recuperar claves privadas desde un wallet.dat dañado</translation>
-    </message>
-    <message>
         <source>Automatically create Tor hidden service (default: %d)</source>
         <translation>Crear automáticamente servicio Tor oculto (por defecto: %d)</translation>
     </message>
     <message>
         <source>Block creation options:</source>
         <translation>Opciones de creación de bloque:</translation>
-    </message>
-    <message>
-        <source>Calculating missing accumulators...</source>
-        <translation>Calculando acumuladores pendientes...</translation>
-    </message>
-    <message>
-        <source>Cannot downgrade wallet</source>
-        <translation>No se puede volver a una versión anterior del monedero</translation>
-    </message>
-    <message>
-        <source>Cannot resolve -bind address: '%s'</source>
-        <translation>No se puede resolver la dirección -bind: '%s'</translation>
-    </message>
-    <message>
-        <source>Cannot resolve -externalip address: '%s'</source>
-        <translation>No se puede resolver la dirección -externalip: '%s'</translation>
-    </message>
-    <message>
-        <source>Cannot resolve -whitebind address: '%s'</source>
-        <translation>No se puede resolver la dirección -whitebind: '%s'</translation>
-    </message>
-    <message>
-        <source>CoinSpend: failed check</source>
-        <translation>Gasto de Moneda: verificación fallida</translation>
-    </message>
-    <message>
-        <source>Connect only to the specified node(s)</source>
-        <translation>Conectar solo a el/los nodo(s) especificados</translation>
     </message>
     <message>
         <source>Connect through SOCKS5 proxy</source>
@@ -5731,10 +5333,6 @@ BCZ Core Wallet</translation>
         <translation>No se pudo analizar el contenido de masternode.conf </translation>
     </message>
     <message>
-        <source>Couldn't generate the accumulator witness</source>
-        <translation>No se pudo generar el testigo del acumulador </translation>
-    </message>
-    <message>
         <source>Debugging/Testing options:</source>
         <translation>Opciones de Depuración/Pruebas:</translation>
     </message>
@@ -5747,16 +5345,12 @@ BCZ Core Wallet</translation>
         <translation>Desactivar notificaciones del sistema para transacciones extrantes (por defecto: %u)</translation>
     </message>
     <message>
-        <source>Disable safemode, override a real safe mode event (default: %u)</source>
-        <translation>Desactiva modo seguro, invalida un evento modo seguro real (predeterminado: %u)</translation>
-    </message>
-    <message>
         <source>Discover own IP address (default: 1 when listening and no -externalip)</source>
         <translation>Descubrir direcciones IP propia (predeterminado: 1 cuando se esta a la escucha y sin opción -externalip)</translation>
     </message>
     <message>
         <source>Do not load the wallet and disable wallet RPC calls</source>
-        <translation>No cargar la monedero y desactivar las llamadas RPC del monedero</translation>
+        <translation>No cargar la wallet y desactivar las llamadas RPC de la wallet</translation>
     </message>
     <message>
         <source>Do you want to rebuild the block database now?</source>
@@ -5765,14 +5359,6 @@ BCZ Core Wallet</translation>
     <message>
         <source>Done loading</source>
         <translation>Realizando carga</translation>
-    </message>
-    <message>
-        <source>Enable automatic Zerocoin minting (0-1, default: %u)</source>
-        <translation>Habilitar creación automática de Zerocoin (0-1, por defecto: %u)</translation>
-    </message>
-    <message>
-        <source>Enable precomputation of zBCZ spends and stakes (0-1, default %u)</source>
-        <translation>Habilitar el cálculo previo de los gastos y los stakes de zBCZ (0-1, default %u)</translation>
     </message>
     <message>
         <source>Enable publish hash transaction (locked via SwiftX) in &lt;address&gt;</source>
@@ -5792,23 +5378,11 @@ BCZ Core Wallet</translation>
     </message>
     <message>
         <source>Error initializing wallet database environment %s!</source>
-        <translation>Error al inicializar ambiente %s de base de datos del monedero!</translation>
+        <translation>Error al inicializar ambiente %s de base de datos de la wallet!</translation>
     </message>
     <message>
         <source>Error loading block database</source>
         <translation>Error al cargar base de datos de bloques</translation>
-    </message>
-    <message>
-        <source>Error loading wallet.dat</source>
-        <translation>Error al cargar wallet.dat</translation>
-    </message>
-    <message>
-        <source>Error loading wallet.dat: Wallet corrupted</source>
-        <translation>Error al cargar wallet.dat: Monedero dañado</translation>
-    </message>
-    <message>
-        <source>Error loading wallet.dat: Wallet requires newer version of BCZ Core</source>
-        <translation>Error al cargar wallet.dat: El monedero requiere una nueva versión del BCZ Core</translation>
     </message>
     <message>
         <source>Error opening block database</source>
@@ -5817,10 +5391,6 @@ BCZ Core Wallet</translation>
     <message>
         <source>Error reading from database, shutting down.</source>
         <translation>Error al leer desde la base de datos, apagando.</translation>
-    </message>
-    <message>
-        <source>Error writing zerocoinDB to disk</source>
-        <translation>Error al escribir zerocoinDB en el disco</translation>
     </message>
     <message>
         <source>Error</source>
@@ -5840,11 +5410,7 @@ BCZ Core Wallet</translation>
     </message>
     <message>
         <source>Error: Wallet locked, unable to create transaction!</source>
-        <translation>Error: ¡Monedero bloqueado, imposible crear transacción!</translation>
-    </message>
-    <message>
-        <source>Failed to calculate accumulator checkpoint</source>
-        <translation>Error al calcular el punto de control del acumulador</translation>
+        <translation>Error: ¡Wallet bloqueada, imposible crear transacción!</translation>
     </message>
     <message>
         <source>Failed to listen on any port. Use -listen=0 if you want this.</source>
@@ -5853,14 +5419,6 @@ BCZ Core Wallet</translation>
     <message>
         <source>Failed to parse host:port string</source>
         <translation>Error al analizar el host: cadena del puerto</translation>
-    </message>
-    <message>
-        <source>Failed to read block</source>
-        <translation>Falló al leer el bloque</translation>
-    </message>
-    <message>
-        <source>Fee (in BCZ/kB) to add to transactions you send (default: %s)</source>
-        <translation>Comisión (en BCZ/kB) para agregar a la transacción que envías (predeterminado: %s)</translation>
     </message>
     <message>
         <source>Force safe mode (default: %u)</source>
@@ -5915,28 +5473,8 @@ BCZ Core Wallet</translation>
         <translation>Dirección o nombre de equipo -onion inválido: '%s'</translation>
     </message>
     <message>
-        <source>Invalid amount for -maxtxfee=&lt;amount&gt;: '%s'</source>
-        <translation>Importe inválido para -maxtxfee=&lt;amount&gt;: '%s'</translation>
-    </message>
-    <message>
-        <source>Invalid amount for -minrelaytxfee=&lt;amount&gt;: '%s'</source>
-        <translation>Importe inválido para -minrelaytxfee=&lt;amount&gt;: '%s'</translation>
-    </message>
-    <message>
-        <source>Invalid amount for -mintxfee=&lt;amount&gt;: '%s'</source>
-        <translation>Importe inválido para -mintxfee=&lt;amount&gt;: '%s'</translation>
-    </message>
-    <message>
         <source>Invalid amount for -paytxfee=&lt;amount&gt;: '%s' (must be at least %s)</source>
         <translation>Importe inválido para -paytxfee=&lt;amount&gt;: '%s' (debe ser al menos %s)</translation>
-    </message>
-    <message>
-        <source>Invalid amount for -paytxfee=&lt;amount&gt;: '%s'</source>
-        <translation>Importe inválido para -paytxfee=&lt;amount&gt;: '%s'</translation>
-    </message>
-    <message>
-        <source>Invalid amount for -reservebalance=&lt;amount&gt;</source>
-        <translation>Importe inválido para -reservebalance=&lt;amount&gt;</translation>
     </message>
     <message>
         <source>Invalid amount</source>
@@ -5951,44 +5489,16 @@ BCZ Core Wallet</translation>
         <translation>Máscara de red inválida especificada en -whitelist: '%s'</translation>
     </message>
     <message>
-        <source>Invalid port detected in masternode.conf</source>
-        <translation>Puerto inválido ha sido detectado en masternode.conf</translation>
-    </message>
-    <message>
-        <source>Percentage of automatically minted Zerocoin  (1-100, default: %u)</source>
-        <translation>Porcentaje de Zerocoin creadas automáticamente (10-100, por defecto: %u)</translation>
-    </message>
-    <message>
-        <source>Recalculating BCZ supply...</source>
-        <translation>Recalculando suministro BCZ...</translation>
-    </message>
-    <message>
-        <source>Recalculating minted ZBCZ...</source>
-        <translation>Recalculando acuñado ZBCZ...</translation>
-    </message>
-    <message>
-        <source>Recalculating spent ZBCZ...</source>
-        <translation>Recalculando gasto ZBCZ...</translation>
-    </message>
-    <message>
-        <source>Reindex the BCZ and zBCZ money supply statistics</source>
-        <translation>Reindexar as estatísticas de fornecimento de dinheiro BCZ e zBCZ</translation>
-    </message>
-    <message>
-        <source>Reindexing zerocoin database...</source>
-        <translation>Reindexando la base de datos zerocoin...</translation>
-    </message>
-    <message>
-        <source>Reindexing zerocoin failed</source>
-        <translation>La reindexación zerocoin ha fallado</translation>
-    </message>
-    <message>
         <source>Selected coins value is less than payment target</source>
         <translation>El valor de las monedas seleccionadas es menor que el monto a pagar</translation>
     </message>
     <message>
-        <source>Support the zerocoin light node protocol (default: %u)</source>
-        <translation>Soporta el protocolo de nodo ligero zerocoin (default: %u)</translation>
+        <source>Shutdown requested over the txs scan. Exiting.</source>
+        <translation>Apagado solicitado durante el escaneo de transacciones. Saliendo.</translation>
+    </message>
+    <message>
+        <source>Specify zk params directory (default: %s)</source>
+        <translation>Especifique parametros zk de directorio (predeterminado: %s)</translation>
     </message>
     <message>
         <source>SwiftX options:</source>
@@ -5999,36 +5509,12 @@ BCZ Core Wallet</translation>
         <translation>Esto es una versión pre-release de prueba - use bajo su propia responsabilidad - ¡No lo utilice para recompensa de participación ni aplicaciones de comercio!</translation>
     </message>
     <message>
-        <source> mints deleted
-</source>
-        <translation>creaciones de moneda borradas
-</translation>
-    </message>
-    <message>
-        <source> mints updated, </source>
-        <translation>creaciones de moneda actualizadas,</translation>
-    </message>
-    <message>
-        <source> unconfirmed transactions removed
-</source>
-        <translation>transacciones sin confirmar eliminadas
-</translation>
-    </message>
-    <message>
-        <source>Disable all BCZ specific functionality (Masternodes, Zerocoin, SwiftX, Budgeting) (0-1, default: %u)</source>
-        <translation>Desabilitar toda la funcionalidad especifica BCZ (Masternodes, Obfuscation, SwiftTX, Budgeting) (0-1, predeterminado: %u)</translation>
+        <source>Disable all BCZ specific functionality (Masternodes, SwiftX) (0-1, default: %u)</source>
+        <translation>Desabilitar toda la funcionalidad especifica BCZ (Masternodes, Obfuscation, SwiftTX) (0-1, predeterminado: %u)</translation>
     </message>
     <message>
         <source>Enable SwiftX, show confirmations for locked transactions (bool, default: %s)</source>
         <translation>Activar swifttx, mostrar confirmaciones para transacciones bloqueadas (bool, predeterminado: %s)</translation>
-    </message>
-    <message>
-        <source>Error: The transaction was rejected! This might happen if some of the coins in your wallet were already spent, such as if you used a copy of wallet.dat and coins were spent in the copy but not marked as spent here.</source>
-        <translation>¡La transacción fue rechazada! Esto puede ocurrir si alguna de sus monedas ya se gastó con anterioridad, por ejemplo, si estuvo usted usando una copia de su monedero wallet.dat y gastó allí monedas pero no las marcó como gastadas aquí.</translation>
-    </message>
-    <message>
-        <source>Error: This transaction requires a transaction fee of at least %s because of its amount, complexity, or use of recently received funds!</source>
-        <translation>Error: ¡Esta transacción requiere una tasa de al menos %s debido a la cantidad enviada, su complejidad, o el uso de fondos recibidos recientemente!</translation>
     </message>
     <message>
         <source>Error: Unsupported argument -checklevel found. Checklevel must be level 4.</source>
@@ -6047,36 +5533,40 @@ BCZ Core Wallet</translation>
         <translation>En casos excepcionales, un envío con más de 7 monedas excede el tamaño máximo de transacción permitidas, intente gastar 6 monedas o menos.</translation>
     </message>
     <message>
-        <source>Preferred Denomination for automatically minted Zerocoin  (1/5/10/50/100/500/1000/5000), 0 for no preference. default: %u)</source>
-        <translation>Denominación preferida para acuñado automatico de Zerocoin (1/5/10/50/100/500/1000/5000), 0 para ninguna preferencia. predeterminado: %u)</translation>
-    </message>
-    <message>
-        <source>Specify custom backup path to add a copy of any automatic zBCZ backup. If set as dir, every backup generates a timestamped file. If set as file, will rewrite to that file every backup. If backuppath is set as well, 4 backups will happen</source>
-        <translation>Especifique la ruta de copia de seguridad personalizada para agregar una copia de cualquier copia de seguridad zBCZ automática. Si se establece como directorio, cada copia de seguridad genera un archivo con marcas de tiempo. Si se establece como archivo, se reescribirá en ese archivo cada copia de seguridad. Si también se establece backuppath, se realizarán 4 copias de seguridad</translation>
-    </message>
-    <message>
         <source>Specify custom backup path to add a copy of any wallet backup. If set as dir, every backup generates a timestamped file. If set as file, will rewrite to that file every backup.</source>
-        <translation>Especifique una ruta de copia de seguridad personalizada para agregar una copia de cualquier copia de seguridad de monedero. Si se establece como directorio, cada copia de seguridad genera un archivo con marcas de tiempo. Si se establece como archivo, se reescribirá en ese archivo cada copia de seguridad generada.</translation>
+        <translation>Especifique una ruta de copia de seguridad personalizada para agregar una copia de cualquier copia de seguridad de la wallet. Si se establece como directorio, cada copia de seguridad genera un archivo con marcas de tiempo. Si se establece como archivo, se reescribirá en ese archivo cada copia de seguridad generada.</translation>
     </message>
     <message>
         <source>SwiftX requires inputs with at least 6 confirmations, you might need to wait a few minutes and try again.</source>
         <translation>SwiftX requiere entradas con al menos 6 confirmaciones, es posible que deba esperar unos minutos e intente de nuevo.</translation>
     </message>
     <message>
+        <source>Warning: error reading %s! All keys read correctly, but transaction data or address book entries might be missing or incorrect.</source>
+        <translation>Advertencia: error al leer %s! Todas las claves se leen correctamente, pero los datos de transacciones o las entradas de la libreta de direcciones pueden faltar o ser incorrectos.</translation>
+    </message>
+    <message>
+        <source>Warning: wallet file corrupt, data salvaged! Original %s saved as %s in %s; if your balance or transactions are incorrect you should restore from a backup.</source>
+        <translation>Advertencia: archivo de billetera dañado, datos recuperados. %s original guardado como %s en %s; si su saldo o transacciones son incorrectos, debe restaurar desde una copia de seguridad.</translation>
+    </message>
+    <message>
         <source>&lt;category&gt; can be:</source>
         <translation>&lt;category&gt;puede ser: </translation>
+    </message>
+    <message>
+        <source>Allow DNS lookups for -addnode, -seednode and -connect (default: %u)</source>
+        <translation>Permitir búsquedas de DNS para -addnode, -seednode y -connect (predeterminado: %u)</translation>
     </message>
     <message>
         <source>Attempt to force blockchain corruption recovery</source>
         <translation>Intentar forzar la recuperación de la cadena de bloques corrupta</translation>
     </message>
     <message>
-        <source>Cannot create public spend input</source>
-        <translation>No puede crear insumos para el gasto público</translation>
+        <source>Attempt to recover private keys from a corrupt wallet file</source>
+        <translation>Intente recuperar claves privadas de un archivo de billetera corrupto</translation>
     </message>
     <message>
-        <source>CoinSpend: Accumulator witness does not verify</source>
-        <translation>CoinSpend: El testigo del acumulador no verifica</translation>
+        <source>Cannot create public spend input</source>
+        <translation>No puede crear insumos para el gasto público</translation>
     </message>
     <message>
         <source>Display the stake modifier calculations in the debug.log file.</source>
@@ -6115,36 +5605,20 @@ BCZ Core Wallet</translation>
         <translation>Error: ¡utxo no válido!</translation>
     </message>
     <message>
-        <source>Failed to create mint</source>
-        <translation>Error al acuñar</translation>
-    </message>
-    <message>
-        <source>Failed to find Zerocoins in wallet.dat</source>
-        <translation>Error al encontrar Zerocoins en wallet.dat</translation>
-    </message>
-    <message>
         <source>Failed to parse public spend</source>
         <translation>No se analizó el gasto público</translation>
     </message>
     <message>
-        <source>Failed to select a zerocoin</source>
-        <translation>Error al seleccionar una zerocoin</translation>
-    </message>
-    <message>
-        <source>Failed to wipe zerocoinDB</source>
-        <translation>Error al borrar zerocoinDB</translation>
-    </message>
-    <message>
         <source>Failed to write coin serial number into wallet</source>
-        <translation>Error al escribir el número de serie de la moneda en el monedero</translation>
+        <translation>Error al escribir el número de serie de la moneda en la wallet</translation>
+    </message>
+    <message>
+        <source>Invalid amount for -%s=&lt;amount&gt;: '%s'</source>
+        <translation>Importe inválido para -%s=&lt;amount&gt;: '%s'</translation>
     </message>
     <message>
         <source>Keep at most &lt;n&gt; unconnectable transactions in memory (default: %u)</source>
         <translation>Mantener como máximo &lt;n&gt; transacciones no conectables en memoria (predeterminado: %u)</translation>
-    </message>
-    <message>
-        <source>Limit size of signature cache to &lt;n&gt; entries (default: %u)</source>
-        <translation>Tamaño límite del cache de firmas a &lt;n&gt; entradas (predeterminado: %u)</translation>
     </message>
     <message>
         <source>Line: %d</source>
@@ -6163,12 +5637,12 @@ BCZ Core Wallet</translation>
         <translation>Cargando direcciones...</translation>
     </message>
     <message>
-        <source>Loading block index...</source>
-        <translation>Cargando índice de bloque...</translation>
+        <source>Loading banlist...</source>
+        <translation>Cargando lista de baneados...</translation>
     </message>
     <message>
-        <source>Loading budget cache...</source>
-        <translation>Cargando cache de presupuestos...</translation>
+        <source>Loading block index...</source>
+        <translation>Cargando índice de bloque...</translation>
     </message>
     <message>
         <source>Loading masternode cache...</source>
@@ -6183,12 +5657,8 @@ BCZ Core Wallet</translation>
         <translation>Cargando sporks...</translation>
     </message>
     <message>
-        <source>Loading wallet... (%3.2f %%)</source>
-        <translation>Cargando monedero: (%3.2f %%)</translation>
-    </message>
-    <message>
         <source>Loading wallet...</source>
-        <translation>Cargando monedero...</translation>
+        <translation>Cargando wallet...</translation>
     </message>
     <message>
         <source>Location of the auth cookie (default: data dir)</source>
@@ -6201,6 +5671,10 @@ BCZ Core Wallet</translation>
     <message>
         <source>Lookup(): Invalid -proxy address or hostname: '%s'</source>
         <translation>Lookup(): Inválido -dirección proxy o nombre de host '%s'</translation>
+    </message>
+    <message>
+        <source>MNs synchronization pending...</source>
+        <translation>Sincronización de MNs pendiente...</translation>
     </message>
     <message>
         <source>Maintain at most &lt;n&gt; connections to peers (default: %u)</source>
@@ -6235,12 +5709,12 @@ BCZ Core Wallet</translation>
         <translation>No hay suficientes descriptores de archivo disponibles.</translation>
     </message>
     <message>
-        <source>Number of automatic wallet backups (default: 10)</source>
-        <translation>Número de Copias de seguridad automáticas de monedero (predeterminado: 10)</translation>
-    </message>
-    <message>
         <source>Number of custom location backups to retain (default: %d)</source>
         <translation>Número de copias de seguridad personalizadas que se deben retener (predeterminado: %d)</translation>
+    </message>
+    <message>
+        <source>On first run, create a legacy wallet instead of a HD wallet</source>
+        <translation>En la primera ejecución, cree una wallet heredada en lugar de una wallet HD</translation>
     </message>
     <message>
         <source>Only accept block chain matching built-in checkpoints (default: %u)</source>
@@ -6259,6 +5733,10 @@ BCZ Core Wallet</translation>
         <translation>Contraseña para conexiones JSON-RPC</translation>
     </message>
     <message>
+        <source>Peers are being disconnected due time differences.</source>
+        <translation>Los peers se están desconectando debido a las diferencias en la hora.</translation>
+    </message>
+    <message>
         <source>Unable to find transaction containing mint %s</source>
         <translation>No se ha podido encontrar la transacción que contiene acuñamiento %s </translation>
     </message>
@@ -6271,10 +5749,6 @@ BCZ Core Wallet</translation>
         <translation>Usar el filtro de spam del bloque (default: %u)</translation>
     </message>
     <message>
-        <source>could not get lock on cs_spendcache</source>
-        <translation>no se pudo bloquear cs_spendcache</translation>
-    </message>
-    <message>
         <source>isValid(): Invalid -proxy address or hostname: '%s'</source>
         <translation>isValid(): Inválido -dirección proxy o nombre de host '%s'</translation>
     </message>
@@ -6283,8 +5757,140 @@ BCZ Core Wallet</translation>
         <translation>Preparando para resincronizar...</translation>
     </message>
     <message>
+        <source>Connect only to the specified node(s); -noconnect or -connect=0 alone to disable automatic connections</source>
+        <translation>Conéctese solo a los nodos especificados; -noconnect o -connect = 0 solo para deshabilitar las conexiones automáticas</translation>
+    </message>
+    <message>
+        <source>Fees (in %s/Kb) smaller than this are considered zero fee for relaying, mining and transaction creation (default: %s)</source>
+        <translation>Las tarifas (en %s/Kb) inferiores a esto se consideran tarifa cero por retransmisión, extracción y creación de transacciones (predeterminado: %s)</translation>
+    </message>
+    <message>
+        <source>Fees (in %s/Kb) smaller than this are considered zero fee for transaction creation (default: %s)</source>
+        <translation>Las tarifas (en %s/Kb) inferiores a esto se consideran tarifa cero para la creación de transacciones (predeterminado: %s)</translation>
+    </message>
+    <message>
+        <source>Minimum positive amount (in BCZ) allowed by GUI and RPC for the stake split threshold (default: %s)</source>
+        <translation>Cantidad mínima positiva (en BCZ) permitida por GUI y RPC para el umbral de división de participación (predeterminado: %s)</translation>
+    </message>
+    <message>
+        <source>Please check that your computer's date and time are correct! If your clock is wrong BCZ Core will not work properly.</source>
+        <translation>Por favor verifique que la fecha y hora de su computadora sean correctas! Si su reloj esta fuera de hora BCZ Core no funcionará adecuadamente.</translation>
+    </message>
+    <message>
+        <source>Query for peer addresses via DNS lookup, if low on addresses (default: 1 unless -connect/-noconnect)</source>
+        <translation>Consultar direcciones de pares a través de búsqueda de DNS, si hay pocas direcciones (predeterminado: 1 a menos que -connect/ -noconnect)</translation>
+    </message>
+    <message>
+        <source>Specify location of debug log file: this can be an absolute path or a path relative to the data directory (default: %s)</source>
+        <translation>Especifica la ubicación del archivo de registro de depuración: puede ser una ruta determinada o una ruta relativa al directorio de datos (predeterminado: %s)</translation>
+    </message>
+    <message>
+        <source>WARNING: The transaction has been signed and recorded, so the wallet will try to re-send it. Use 'abandontransaction' to cancel it. (txid: %s)</source>
+        <translation>ADVERTENCIA: La transacción ha sido firmada y registrada, por lo que la billetera intentará reenviarla. Utilice 'abandonartransacción' para cancelarlo. (txid: %s)</translation>
+    </message>
+    <message>
+        <source>(must be %d for %s-net)</source>
+        <translation>(debe ser %d para %s-net)</translation>
+    </message>
+    <message>
+        <source>Active Masternode not initialized.</source>
+        <translation>Masternode activo no inicializado.</translation>
+    </message>
+    <message>
+        <source>Allows deprecated RPC method(s) to be used</source>
+        <translation>Permite el uso de métodos RPC obsoletos</translation>
+    </message>
+    <message>
+        <source>Can't generate a change-address key. Please call keypoolrefill first.</source>
+        <translation>No se puede generar una clave de cambio de dirección. Llame primero a keypoolrefill.</translation>
+    </message>
+    <message>
+        <source>Cannot resolve -%s address: '%s'</source>
+        <translation>No se puede resolver la dirección -%s: '%s'</translation>
+    </message>
+    <message>
+        <source>Change index out of range</source>
+        <translation>Cambiar índice fuera de rango</translation>
+    </message>
+    <message>
+        <source>Error loading %s: Wallet corrupted</source>
+        <translation>Error al cargar %s: billetera dañada</translation>
+    </message>
+    <message>
+        <source>Error loading %s: Wallet requires newer version of BCZ Core</source>
+        <translation>Error al cargar %s: Wallet requiere una versión más reciente de BCZ Core</translation>
+    </message>
+    <message>
+        <source>Error loading %s
+</source>
+        <translation>Error al cargar %s
+</translation>
+    </message>
+    <message>
+        <source>Error upgrading chainstate database</source>
+        <translation>Error al actualizar la base de datos de chainstate</translation>
+    </message>
+    <message>
+        <source>Error: -listen must be true if -masternode is set.</source>
+        <translation>Error: -listen debe ser verdadero si -masternode está configurado.</translation>
+    </message>
+    <message>
+        <source>Error: -maxmempool must be at least %d MB</source>
+        <translation>Error: -maxmempool debe tener al menos %d MB</translation>
+    </message>
+    <message>
+        <source>Error: Invalid port %d for running a masternode.</source>
+        <translation>Error: puerto %d no válido para ejecutar un masternode.</translation>
+    </message>
+    <message>
+        <source>Failed to accept tx in the memory pool (reason: %s)
+</source>
+        <translation>No se pudo aceptar la transaccion en el grupo de memoria (motivo: %s)
+</translation>
+    </message>
+    <message>
+        <source>Fee (in %s/kB) to add to transactions you send (default: %s)</source>
+        <translation>Tarifa (en %s/kB) para agregar a las transacciones que envíe (predeterminado: %s)</translation>
+    </message>
+    <message>
+        <source>Invalid -masternodeaddr address: %s</source>
+        <translation>-masternodeaddr address: %s invalida</translation>
+    </message>
+    <message>
+        <source>Invalid -masternodeaddr port %d, only %d is supported on %s-net.</source>
+        <translation>-masternodeaddr puerto %d no válido, solo %d es compatible con %s-net.</translation>
+    </message>
+    <message>
+        <source>Invalid port %d detected in masternode.conf</source>
+        <translation>Puerto %d no válido detectado en masternode.conf</translation>
+    </message>
+    <message>
+        <source>Invalid status error.</source>
+        <translation>Error de estatus invalido.</translation>
+    </message>
+    <message>
+        <source>Keypool ran out, please call keypoolrefill first, or unlock the wallet.</source>
+        <translation>Keypool se agotó, llame primero a keypoolrefill o desbloquee la billetera.</translation>
+    </message>
+    <message>
+        <source>Masternodes are required to run on port %d for %s-net</source>
+        <translation>Se requieren masternodes para ejecutarse en el puerto %d para %s-net</translation>
+    </message>
+    <message>
+        <source>Mining/Staking options:</source>
+        <translation>Opciones de Mineria/Staking:</translation>
+    </message>
+    <message>
         <source>Need destination or change address because change is not exact</source>
         <translation>Necesitas un destino o cambiar de dirección porque el cambio no es exacto</translation>
+    </message>
+    <message>
+        <source>No error</source>
+        <translation>No error</translation>
+    </message>
+    <message>
+        <source>Number of automatic wallet backups (default: %d)</source>
+        <translation>Número de copias de seguridad automáticas de billetera (predeterminado: %d)</translation>
     </message>
     <message>
         <source>Prepend debug output with timestamp (default: %u)</source>
@@ -6293,10 +5899,6 @@ BCZ Core Wallet</translation>
     <message>
         <source>Print version and exit</source>
         <translation>Mostrar versión y salir</translation>
-    </message>
-    <message>
-        <source>Pubcoin not found in mint tx</source>
-        <translation>Pubcoin no encontrado en acuñamiento tx</translation>
     </message>
     <message>
         <source>RPC server options:</source>
@@ -6315,12 +5917,8 @@ BCZ Core Wallet</translation>
         <translation>Reconstruir el indice de la cadena de bloque desde el corriente archivo blk000??.dat</translation>
     </message>
     <message>
-        <source>Receive and display P2P network alerts (default: %u)</source>
-        <translation>Recibir y mostrar alertas de red P2P (predeterminado: %u)</translation>
-    </message>
-    <message>
-        <source>Reindex the accumulator database</source>
-        <translation>Reindexar la base de datos del acumulador</translation>
+        <source>Reindex the %s and z%s money supply statistics</source>
+        <translation>Vuelva a indexar las estadísticas de oferta monetaria %s y z%s</translation>
     </message>
     <message>
         <source>Relay and mine data carrier transactions (default: %u)</source>
@@ -6332,23 +5930,15 @@ BCZ Core Wallet</translation>
     </message>
     <message>
         <source>Rescan the block chain for missing wallet transactions</source>
-        <translation>Reescanear la cadena de bloques en busca de transacciones perdidas del monedero</translation>
+        <translation>Reescanear la cadena de bloques en busca de transacciones perdidas de la wallet</translation>
     </message>
     <message>
         <source>Rescanning...</source>
         <translation>Reescaneado...</translation>
     </message>
     <message>
-        <source>ResetMintZerocoin finished: </source>
-        <translation>ResetMintZerocoin finalizado:</translation>
-    </message>
-    <message>
-        <source>ResetSpentZerocoin finished: </source>
-        <translation>ResetSpentZerocoin finalizado:</translation>
-    </message>
-    <message>
         <source>Run a thread to flush wallet periodically (default: %u)</source>
-        <translation>Ejecutar un hilo de ejecución para nivelar el monedero periódicamente (predeterminado: %u)</translation>
+        <translation>Ejecutar un hilo de ejecución para nivelar la wallet periódicamente (predeterminado: %u)</translation>
     </message>
     <message>
         <source>Run in the background as a daemon and accept commands</source>
@@ -6357,10 +5947,6 @@ BCZ Core Wallet</translation>
     <message>
         <source>Send transactions as zero-fee transactions if possible (default: %u)</source>
         <translation>Enviar transacciones como transacciones cero-comisión si es posible (predeterminado: %u)</translation>
-    </message>
-    <message>
-        <source>Session timed out.</source>
-        <translation>La sesión expiró.</translation>
     </message>
     <message>
         <source>Set database cache size in megabytes (%d to %d, default: %d)</source>
@@ -6396,7 +5982,7 @@ BCZ Core Wallet</translation>
     </message>
     <message>
         <source>Sets the DB_PRIVATE flag in the wallet db environment (default: %u)</source>
-        <translation>Definir la bandera DB_PRIVATE en la db de la monedero del ambiente (predeterminado: %u)</translation>
+        <translation>Definir la bandera DB_PRIVATE en la db de la wallet del ambiente (predeterminado: %u)</translation>
     </message>
     <message>
         <source>Show all debugging options (usage: --help -help-debug)</source>
@@ -6405,10 +5991,6 @@ BCZ Core Wallet</translation>
     <message>
         <source>Shrink debug.log file on client startup (default: 1 when no -debug)</source>
         <translation>Encojer el archivo debug.log en el cliente al inicio (predeterminado: 1 cuando no hay -debug)</translation>
-    </message>
-    <message>
-        <source>Signing timed out.</source>
-        <translation>Se agotó el tiempo para la firma.</translation>
     </message>
     <message>
         <source>Signing transaction failed</source>
@@ -6436,7 +6018,7 @@ BCZ Core Wallet</translation>
     </message>
     <message>
         <source>Specify wallet file (within data directory)</source>
-        <translation>Especifique el archivo del monedero (dentro del directorio de datos)</translation>
+        <translation>Especifique el archivo de la wallet (dentro del directorio de datos)</translation>
     </message>
     <message>
         <source>Specify your own public address</source>
@@ -6451,10 +6033,6 @@ BCZ Core Wallet</translation>
         <translation>Gastar cambio no confirmado cuando se envían transacciones (predeterminado: %u)</translation>
     </message>
     <message>
-        <source>Staking options:</source>
-        <translation>Opciones de recompensa por participación:</translation>
-    </message>
-    <message>
         <source>Stop running after importing blocks from disk (default: %u)</source>
         <translation>Parar la ejecución después de importar bloques desde el disco (predeterminado: %u)</translation>
     </message>
@@ -6465,14 +6043,6 @@ BCZ Core Wallet</translation>
     <message>
         <source>Synchronization finished</source>
         <translation>Sincronización finalizada!</translation>
-    </message>
-    <message>
-        <source>Synchronization pending...</source>
-        <translation>Sincronización pendiente...</translation>
-    </message>
-    <message>
-        <source>Synchronizing budgets...</source>
-        <translation>Sincronizando presupuestos...</translation>
     </message>
     <message>
         <source>Synchronizing masternode winners...</source>
@@ -6487,16 +6057,12 @@ BCZ Core Wallet</translation>
         <translation>Sincronizando con la red... </translation>
     </message>
     <message>
-        <source>Syncing zBCZ wallet...</source>
-        <translation>Sincronizando el monedero zBCZ...</translation>
+        <source>Syncing BCZ wallet...</source>
+        <translation>Sincronizando la wallet BCZ...</translation>
     </message>
     <message>
-        <source>The coin spend has been used</source>
-        <translation>El gasto de moneda se ha usado</translation>
-    </message>
-    <message>
-        <source>The transaction did not verify</source>
-        <translation>La transacción no se verificó</translation>
+        <source>The threshold value cannot be less than %s</source>
+        <translation>El valor de umbral no puede ser menor que %s</translation>
     </message>
     <message>
         <source>This help message</source>
@@ -6509,6 +6075,14 @@ BCZ Core Wallet</translation>
     <message>
         <source>This is intended for regression testing tools and app development.</source>
         <translation>Esto esta destinado para herramientas de prueba de regresión y desarrollo de aplicaciones.</translation>
+    </message>
+    <message>
+        <source>This is not a masternode. 'local' option disabled.</source>
+        <translation>Este no es un masternode. opción 'local' desactivada.</translation>
+    </message>
+    <message>
+        <source>This is not a masternode.</source>
+        <translation>Este no es un masternode.</translation>
     </message>
     <message>
         <source>Threshold for disconnecting misbehaving peers (default: %u)</source>
@@ -6543,6 +6117,10 @@ BCZ Core Wallet</translation>
         <translation>El monto de la transacción debe ser positivo</translation>
     </message>
     <message>
+        <source>Transaction canceled.</source>
+        <translation>Transacción cancelada.</translation>
+    </message>
+    <message>
         <source>Transaction too large for fee policy</source>
         <translation>La transacción es demasiado grande para la política de comisión.</translation>
     </message>
@@ -6559,8 +6137,8 @@ BCZ Core Wallet</translation>
         <translation>Imposible enlazar %s en esta computadora (enlace retorna error %s)</translation>
     </message>
     <message>
-        <source>Unable to generate initial key</source>
-        <translation>No se puede generar la clave inicial</translation>
+        <source>Unable to generate keys</source>
+        <translation>No se puede generar las llaves</translation>
     </message>
     <message>
         <source>Unable to sign spork message, wrong key?</source>
@@ -6575,20 +6153,16 @@ BCZ Core Wallet</translation>
         <translation>Red especificada desconocida en -onlynet: '%s'</translation>
     </message>
     <message>
+        <source>Unsupported logging category %s=%s.</source>
+        <translation>Categoría de registro no admitida %s =%s.</translation>
+    </message>
+    <message>
         <source>Upgrade wallet to latest format</source>
-        <translation>Actualizar el monedero al último formato</translation>
+        <translation>Actualizar la wallet al último formato</translation>
     </message>
     <message>
         <source>Use UPnP to map the listening port (default: %u)</source>
         <translation>Usar UPnP para mapear el puerto de escucha (predeterminado: %u)</translation>
-    </message>
-    <message>
-        <source>Use UPnP to map the listening port (default: 1 when listening)</source>
-        <translation>Usar UPnP para mapear el puerto de escucha (predeterminado: 1 cuando esta en escucha)</translation>
-    </message>
-    <message>
-        <source>Use a custom max chain reorganization depth (default: %u)</source>
-        <translation>Utilice una profundidad de reorganización de cadena máxima personalizada (valor predeterminado: %u)</translation>
     </message>
     <message>
         <source>Use the test network</source>
@@ -6603,32 +6177,32 @@ BCZ Core Wallet</translation>
         <translation>Nombre de usuario para conexiones JSON-RPC</translation>
     </message>
     <message>
-        <source>Value is below the smallest available denomination (= 1) of zBCZ</source>
-        <translation>El valor está por debajo de la denominación más pequeña disponible (= 1) de zBCZ</translation>
-    </message>
-    <message>
         <source>Verifying blocks...</source>
         <translation>Verificando bloques...</translation>
     </message>
     <message>
         <source>Verifying wallet...</source>
-        <translation>Verificando el monedero...</translation>
+        <translation>Verificando la wallet...</translation>
     </message>
     <message>
         <source>Wallet %s resides outside data directory %s</source>
-        <translation>El monedero %s esta ubicada fuera del directorio de datos %s</translation>
+        <translation>La wallet %s esta ubicada fuera del directorio de datos %s</translation>
+    </message>
+    <message>
+        <source>Wallet debugging/testing options:</source>
+        <translation>Opciones de prueba / depuración de billetera:</translation>
     </message>
     <message>
         <source>Wallet needed to be rewritten: restart BCZ Core to complete</source>
-        <translation>El Monedero necesita ser reescrito: reinicie BCZ Core para completar</translation>
+        <translation>La wallet necesita reescribirse: reinicie la BCZ Core para completarlo</translation>
     </message>
     <message>
         <source>Wallet options:</source>
-        <translation>Opciones del Monedero:</translation>
+        <translation>Opciones de la wallet:</translation>
     </message>
     <message>
         <source>Wallet window title</source>
-        <translation>Monedero titulo de ventana</translation>
+        <translation>Título de la ventana de la wallet</translation>
     </message>
     <message>
         <source>Warning</source>
@@ -6647,32 +6221,20 @@ BCZ Core Wallet</translation>
         <translation>Advertencia: Argumento no soportado -debugnet ignorado, use -debug=net.</translation>
     </message>
     <message>
-        <source>You don't have enough Zerocoins in your wallet</source>
-        <translation>No tienes suficientes Zerocoins en tu monedero</translation>
-    </message>
-    <message>
         <source>You need to rebuild the database using -reindex to change -txindex</source>
         <translation>Usted necesita reconstruir la base de datos usando -reindex para cambiar -txindex</translation>
     </message>
     <message>
         <source>Zapping all transactions from wallet...</source>
-        <translation>Saltando todas las transacciones del monedero...</translation>
+        <translation>Saltando todas las transacciones de la wallet...</translation>
     </message>
     <message>
         <source>ZeroMQ notification options:</source>
         <translation>Opciones de notificación ZeroMQ:</translation>
     </message>
     <message>
-        <source>Zerocoin options:</source>
-        <translation>Opciones Zerocoin:</translation>
-    </message>
-    <message>
         <source>on startup</source>
         <translation>al inicio</translation>
-    </message>
-    <message>
-        <source>wallet.dat corrupt, salvage failed</source>
-        <translation>wallet.dat esta corrupto, fallo al guardar</translation>
     </message>
 </context>
 <context>
@@ -6686,12 +6248,40 @@ BCZ Core Wallet</translation>
         <translation>Enviar</translation>
     </message>
     <message>
-        <source>TextLabel</source>
-        <translation>EtiquetaDeTexto</translation>
+        <source>Send public coins (BCZ)</source>
+        <translation>Enviar monedas públicas (BCZ)</translation>
     </message>
     <message>
-        <source>PushButton</source>
-        <translation>Presionar el botón</translation>
+        <source>BCZ address or contact label</source>
+        <translation>Dirección BCZ o etiqueta de contacto</translation>
+    </message>
+    <message>
+        <source>Amount</source>
+        <translation>Cantidad</translation>
+    </message>
+    <message>
+        <source>Customize fee</source>
+        <translation>Comisión personalizada</translation>
+    </message>
+    <message>
+        <source>Clear all</source>
+        <translation>Borrar todo</translation>
+    </message>
+    <message>
+        <source>Add recipient</source>
+        <translation>Añadir destinatario</translation>
+    </message>
+    <message>
+        <source>Total to send</source>
+        <translation>Total a enviar</translation>
+    </message>
+    <message>
+        <source>Reset to default</source>
+        <translation>Reestablecer los valores predeterminados</translation>
+    </message>
+    <message>
+        <source>Include delegated</source>
+        <translation>Incluir delegado</translation>
     </message>
 </context>
 </TS>

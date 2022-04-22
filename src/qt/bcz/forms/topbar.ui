@@ -119,31 +119,7 @@
                <string notr="true">padding:0px;margin:0px;</string>
               </property>
               <property name="text">
-               <string>480.0685 BCZ</string>
-              </property>
-             </widget>
-            </item>
-            <item alignment="Qt::AlignVCenter">
-             <widget class="QLabel" name="label_16">
-              <property name="minimumSize">
-               <size>
-                <width>1</width>
-                <height>30</height>
-               </size>
-              </property>
-              <property name="maximumSize">
-               <size>
-                <width>1</width>
-                <height>30</height>
-               </size>
-              </property>
-              <property name="styleSheet">
-               <string notr="true">background-color:white;
-padding:0px;
-border:none;</string>
-              </property>
-              <property name="text">
-               <string/>
+               <string notr="true">480.0685 BCZ</string>
               </property>
              </widget>
             </item>
@@ -299,16 +275,6 @@ border:none;</string>
              </property>
             </widget>
            </item>
-           <item>
-            <widget class="ExpandableButton" name="pushButtonFAQ" native="true">
-             <property name="minimumSize">
-              <size>
-               <width>36</width>
-               <height>36</height>
-              </size>
-             </property>
-            </widget>
-           </item>
           </layout>
          </item>
         </layout>
@@ -363,7 +329,7 @@ border:none;</string>
                <item>
                 <widget class="QLabel" name="labelAmountBcz">
                  <property name="text">
-                  <string>480.0685 BCZ</string>
+                  <string notr="true">480.0685 BCZ</string>
                  </property>
                 </widget>
                </item>
@@ -386,7 +352,7 @@ border:none;</string>
                  <item>
                   <widget class="QLabel" name="labelPendingBcz">
                    <property name="text">
-                    <string>6.943 BCZ</string>
+                    <string notr="true">6.943 BCZ</string>
                    </property>
                   </widget>
                  </item>
@@ -420,7 +386,7 @@ border:none;</string>
                  <item>
                   <widget class="QLabel" name="labelImmatureBcz">
                    <property name="text">
-                    <string>10 BCZ</string>
+                    <string notr="true">10 BCZ</string>
                    </property>
                   </widget>
                  </item>
@@ -429,30 +395,6 @@ border:none;</string>
               </layout>
              </item>
             </layout>
-           </item>
-           <item>
-            <widget class="QLabel" name="label_9">
-             <property name="minimumSize">
-              <size>
-               <width>1</width>
-               <height>100</height>
-              </size>
-             </property>
-             <property name="maximumSize">
-              <size>
-               <width>1</width>
-               <height>16777215</height>
-              </size>
-             </property>
-             <property name="styleSheet">
-              <string notr="true">background-color:white;
-padding:0px;
-border:none;</string>
-             </property>
-             <property name="text">
-              <string/>
-             </property>
-            </widget>
            </item>
           </layout>
          </item>

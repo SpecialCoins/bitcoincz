@@ -6,10 +6,6 @@
         <translation>Diyalog</translation>
     </message>
     <message>
-        <source>My Address</source>
-        <translation>Adresim</translation>
-    </message>
-    <message>
         <source>Address</source>
         <translation>Adres</translation>
     </message>
@@ -22,8 +18,8 @@
         <translation>İPTAL</translation>
     </message>
     <message>
-        <source>OK</source>
-        <translation>TAMAM</translation>
+        <source>SAVE</source>
+        <translation>KAYDET</translation>
     </message>
 </context>
 <context>
@@ -33,16 +29,8 @@
         <translation>Diyalog</translation>
     </message>
     <message>
-        <source>TextLabel</source>
-        <translation>TextLabel</translation>
-    </message>
-    <message>
         <source>CANCEL</source>
         <translation>İPTAL</translation>
-    </message>
-    <message>
-        <source>OK</source>
-        <translation>TAMAM</translation>
     </message>
     <message>
         <source>Edit Contact</source>
@@ -51,10 +39,6 @@
     <message>
         <source>Set a label for the selected address</source>
         <translation>Seçili adres için etiket belirleyin</translation>
-    </message>
-    <message>
-        <source>Enter a name for the address (e.g Exchange)</source>
-        <translation>Adres için isim girin (örn. Borsa)</translation>
     </message>
     <message>
         <source>SAVE</source>
@@ -196,6 +180,10 @@
         <translation>Tarih</translation>
     </message>
     <message>
+        <source>Type</source>
+        <translation>Yaz</translation>
+    </message>
+    <message>
         <source>(no label)</source>
         <translation>(etiket yok)</translation>
     </message>
@@ -207,28 +195,12 @@
         <translation>Form</translation>
     </message>
     <message>
-        <source>Send</source>
-        <translation>Gönder</translation>
-    </message>
-    <message>
-        <source>TextLabel</source>
-        <translation>TextLabel</translation>
-    </message>
-    <message>
-        <source>No active Master Node yet</source>
-        <translation>Henüz aktif Masternode bulunmuyor</translation>
-    </message>
-    <message>
         <source>Contact name</source>
         <translation>Kişi İsmi</translation>
     </message>
     <message>
         <source>Enter address</source>
         <translation>Adres girin</translation>
-    </message>
-    <message>
-        <source>OK</source>
-        <translation>TAMAM</translation>
     </message>
     <message>
         <source>Contacts</source>
@@ -241,14 +213,6 @@
     <message>
         <source>No contacts yet</source>
         <translation>Girilmiş bağlantı yok</translation>
-    </message>
-    <message>
-        <source>e.g. John Doe</source>
-        <translation>örn. Ad Soyad</translation>
-    </message>
-    <message>
-        <source>Enter a BCZ address</source>
-        <translation>Bir BCZ adresi girin</translation>
     </message>
     <message>
         <source>SAVE</source>
@@ -368,6 +332,14 @@ Stake için kaldırın</translation>
         <translation>cüzdan şifrelemesini onayla</translation>
     </message>
     <message>
+        <source>WARNING</source>
+        <translation>UYARI</translation>
+    </message>
+    <message>
+        <source>If you encrypt your wallet and lose your passphrase, you will</source>
+        <translation>Cüzdanınızı şifreler ve şifreyi kaybederseniz</translation>
+    </message>
+    <message>
         <source>ENCRYPT</source>
         <translation>ŞİFRELE</translation>
     </message>
@@ -382,10 +354,6 @@ Stake için kaldırın</translation>
     <message>
         <source>Are you sure you wish to encrypt your wallet?</source>
         <translation>Cüzdanınızı şifrelemek istediğinizden emin misiniz?</translation>
-    </message>
-    <message>
-        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR BCZ&lt;/b&gt;!</source>
-        <translation>Dikkat! Eğer cüzdanınızı şifrelerseniz ve şifrenizi unutursanız &lt;b&gt;Tüm Pıvlerinizi kaybedersiniz&lt;/b&gt;!</translation>
     </message>
     <message>
         <source>Wallet encrypted</source>
@@ -427,10 +395,6 @@ Stake için kaldırın</translation>
         <source>Wallet passphrase was successfully changed.</source>
         <translation>Cüzdan parolası başarıyla değiştirildi.</translation>
     </message>
-    <message>
-        <source>Warning: The Caps Lock key is on!</source>
-        <translation>Uyarı: Caps Lock tuşu açık!</translation>
-    </message>
 </context>
 <context>
     <name>BanTableModel</name>
@@ -441,38 +405,6 @@ Stake için kaldırın</translation>
     <message>
         <source>Banned Until</source>
         <translation>Yasaklılık Bitiş Tarihi</translation>
-    </message>
-</context>
-<context>
-    <name>BlockExplorer</name>
-    <message>
-        <source>Blockchain Explorer</source>
-        <translation>Blok zinciri tarayıcı</translation>
-    </message>
-    <message>
-        <source>Back</source>
-        <translation>Geri</translation>
-    </message>
-    <message>
-        <source>Forward</source>
-        <translation>Ileri</translation>
-    </message>
-    <message>
-        <source>Address / Block / Transaction</source>
-        <translation>Adres/Blok/İşlem</translation>
-    </message>
-    <message>
-        <source>Search</source>
-        <translation>Ara</translation>
-    </message>
-    <message>
-        <source>TextLabel</source>
-        <translation>TextLabel</translation>
-    </message>
-    <message>
-        <source>Not all transactions will be shown. To view all transactions you need to set txindex=1 in the configuration file (bcz.conf).</source>
-        <translation>Tüm işlemler gösterilmez. Tüm işlemleri görmek için yapılandırma dosyasında txindex = 1 ayarlamanız gerekir (bcz.conf).
-</translation>
     </message>
 </context>
 <context>
@@ -508,10 +440,6 @@ Stake için kaldırın</translation>
         <source>Total: %1 (IPv4: %2 / IPv6: %3 / Tor: %4 / Unknown: %5)</source>
         <translation>Total: %1 (IPv4: %2 / IPv6: %3 / Tor: %4 / Bilinmeyen: %5)</translation>
     </message>
-    <message>
-        <source>Network Alert</source>
-        <translation>Ağ Uyarısı</translation>
-    </message>
 </context>
 <context>
     <name>CoinControlDialog</name>
@@ -530,6 +458,10 @@ Stake için kaldırın</translation>
     <message>
         <source>Coin Selection</source>
         <translation>Koin Seçimi</translation>
+    </message>
+    <message>
+        <source>Select BCZ Outputs to Spend</source>
+        <translation>Harcama için BCZ Çıktılarını Seçin</translation>
     </message>
     <message>
         <source>Dust:</source>
@@ -554,14 +486,6 @@ Stake için kaldırın</translation>
     <message>
         <source>Amount</source>
         <translation>Miktar</translation>
-    </message>
-    <message>
-        <source>Transaction Details</source>
-        <translation>İşlem Detayları</translation>
-    </message>
-    <message>
-        <source>PushButton</source>
-        <translation>Butona Basın</translation>
     </message>
     <message>
         <source>0.00 BCZ</source>
@@ -601,7 +525,7 @@ Stake için kaldırın</translation>
     </message>
     <message>
         <source>Confirmations</source>
-        <translation>Doğrulamalar</translation>
+        <translation>Onaylar</translation>
     </message>
     <message>
         <source>Confirmed</source>
@@ -632,40 +556,36 @@ Stake için kaldırın</translation>
         <translation>Harcanmamış tutarın kilidini aç</translation>
     </message>
     <message>
-        <source>Copy quantity</source>
-        <translation>Miktarı kopyala</translation>
-    </message>
-    <message>
-        <source>Copy fee</source>
-        <translation>Ücreti kopyala</translation>
-    </message>
-    <message>
-        <source>Copy after fee</source>
-        <translation>Ücret sonrasını kopyala</translation>
-    </message>
-    <message>
-        <source>Copy bytes</source>
-        <translation>bytes kopyala</translation>
-    </message>
-    <message>
-        <source>Copy priority</source>
-        <translation>öncelik kopyala</translation>
-    </message>
-    <message>
-        <source>Copy dust</source>
-        <translation>dust kopyala</translation>
-    </message>
-    <message>
-        <source>Copy change</source>
-        <translation>fark kopyala</translation>
-    </message>
-    <message>
         <source>Unselect all</source>
         <translation>Tüm seçimleri kaldır</translation>
     </message>
     <message>
         <source>Please switch to "List mode" to use this function.</source>
         <translation>Bu fonksiyonu kullanmak için "Liste moduna" geçin.</translation>
+    </message>
+    <message>
+        <source>Quantity Copied</source>
+        <translation>Tutar Kopyalandı</translation>
+    </message>
+    <message>
+        <source>Amount Copied</source>
+        <translation>Miktar Kopyalandı</translation>
+    </message>
+    <message>
+        <source>Fee Copied</source>
+        <translation>İşlem ücreti Kopyalandı</translation>
+    </message>
+    <message>
+        <source>After Fee Copied</source>
+        <translation>İşlem Ücretinden Kalan Kopyalandı</translation>
+    </message>
+    <message>
+        <source>Bytes Copied</source>
+        <translation>Baytlar Kopyalandı</translation>
+    </message>
+    <message>
+        <source>Change Copied</source>
+        <translation>Değişiklik Kopyalandı</translation>
     </message>
     <message>
         <source>highest</source>
@@ -685,7 +605,7 @@ Stake için kaldırın</translation>
     </message>
     <message>
         <source>medium</source>
-        <translation>orta</translation>
+        <translation>Orta</translation>
     </message>
     <message>
         <source>low-medium</source>
@@ -716,6 +636,14 @@ Stake için kaldırın</translation>
         <translation>evet</translation>
     </message>
     <message>
+        <source>delegated to %1 for cold staking</source>
+        <translation>soğuk stakin  için %1'e devredildi</translation>
+    </message>
+    <message>
+        <source>Select All</source>
+        <translation>Tümünü Seç</translation>
+    </message>
+    <message>
         <source>no</source>
         <translation>hayır</translation>
     </message>
@@ -744,10 +672,6 @@ Stake için kaldırın</translation>
         <translation>Herhangi bir alıcı %1 'den küçük bir miktar alırsa, bu etiket kırmızıya döner.</translation>
     </message>
     <message>
-        <source>Can vary +/- %1 ubcz per input.</source>
-        <translation>Her giriş için +/- %1 ubcz farkedebilir.</translation>
-    </message>
-    <message>
         <source>(no label)</source>
         <translation>(etiket yok)</translation>
     </message>
@@ -761,125 +685,18 @@ Stake için kaldırın</translation>
     </message>
 </context>
 <context>
-    <name>CoinControlBczWidget</name>
-    <message>
-        <source>Dialog</source>
-        <translation>Diyalog</translation>
-    </message>
-    <message>
-        <source>Transaction Details</source>
-        <translation>İşlem Detayları</translation>
-    </message>
-    <message>
-        <source>PushButton</source>
-        <translation>Butona Basın</translation>
-    </message>
-    <message>
-        <source>BCZ:</source>
-        <translation>BCZ:</translation>
-    </message>
-    <message>
-        <source>TextLabel</source>
-        <translation>TextLabel</translation>
-    </message>
-    <message>
-        <source>Quantity:</source>
-        <translation>Miktar</translation>
-    </message>
-    <message>
-        <source>Fee:</source>
-        <translation>Ücret:</translation>
-    </message>
-    <message>
-        <source>Amount</source>
-        <translation>Miktar</translation>
-    </message>
-    <message>
-        <source>Label</source>
-        <translation>Etiket</translation>
-    </message>
-    <message>
-        <source>Address</source>
-        <translation>Adres</translation>
-    </message>
-    <message>
-        <source>Type</source>
-        <translation>Yaz</translation>
-    </message>
-    <message>
-        <source>Date</source>
-        <translation>Tarih</translation>
-    </message>
-    <message>
-        <source>Confirmations</source>
-        <translation>Onaylar</translation>
-    </message>
-    <message>
-        <source>CheckBox</source>
-        <translation>CheckBox</translation>
-    </message>
-    <message>
-        <source>Bytes:</source>
-        <translation>Bytes:</translation>
-    </message>
-    <message>
-        <source>Dust:</source>
-        <translation>Dust</translation>
-    </message>
-    <message>
-        <source>Change:</source>
-        <translation>Fark:</translation>
-    </message>
-    <message>
-        <source>After Fee: </source>
-        <translation>Ücret sonrası:</translation>
-    </message>
-    <message>
-        <source>CANCEL</source>
-        <translation>İPTAL</translation>
-    </message>
-    <message>
-        <source>OK</source>
-        <translation>TAMAM</translation>
-    </message>
-</context>
-<context>
     <name>ColdStakingWidget</name>
     <message>
         <source>Form</source>
         <translation>Form</translation>
     </message>
     <message>
-        <source>Title</source>
-        <translation>Başlık</translation>
+        <source>Owner address (optional, if empty a new address will be created)</source>
+        <translation>Sahibinin adresi (isteğe bağlı, boş ise yeni bir adres oluşturulur)</translation>
     </message>
     <message>
-        <source>TextLabel</source>
-        <translation>TextLabel</translation>
-    </message>
-    <message>
-        <source>PushButton</source>
-        <translation>Butona Basın</translation>
-    </message>
-    <message>
-        <source>Owner Address (optional, if empty a new address will be created)</source>
-        <translation>Sahip Adresi (opsiyonel, boş bırakılırsa yeni adres yaratılır)</translation>
-    </message>
-    <message>
-        <source>List of delegated balance by address</source>
-        <translation>Delege edilmiş tutarların adrese göre listesi </translation>
-    </message>
-    <message>
-        <source>Total</source>
-        <translation>Toplam</translation>
-    </message>
-    <message>
-        <source>Unconfirmed balance will not be shown</source>
-        <translation>Onaylanmanış bakiye gösterilmez</translation>
-    </message>
-    <message>
-        <source>No balance delegated</source>
-        <translation>Delege edilmiş tutar bulunmuyor</translation>
+        <source>Total Staking:</source>
+        <translation>Toplam Staking:</translation>
     </message>
     <message>
         <source>Cold Staking</source>
@@ -894,30 +711,12 @@ Stake için kaldırın</translation>
         <translation>Delegasyon</translation>
     </message>
     <message>
-        <source>You can delegate your BCZs and let a hot node (24/7 online node)
-stake in your behalf, keeping the keys in a secure place offline.</source>
-        <translation>BCZ'lerinizi offline olarak güvenli bir yerde anahtarlarınızı saklarken
-(24/7 online düğüm) olan bir sıcak düğüm ile adınıza stakeletebilirsiniz.</translation>
-    </message>
-    <message>
-        <source>Add owner address</source>
-        <translation>Sahip adresi ekle</translation>
-    </message>
-    <message>
-        <source>Delegate or Accept BCZ delegation</source>
-        <translation>Delege et veya BCZ delegasyonu kabul et</translation>
-    </message>
-    <message>
         <source>Delegate</source>
         <translation>Delege et</translation>
     </message>
     <message>
         <source>Clear All</source>
         <translation>Hepsini temizle</translation>
-    </message>
-    <message>
-        <source>Add the staking address</source>
-        <translation>Stakeleme adresi ekle</translation>
     </message>
     <message>
         <source>Delegated balance history</source>
@@ -936,6 +735,16 @@ stake in your behalf, keeping the keys in a secure place offline.</source>
         <translation>Delegasyonların yüklenmesinde hata:%1</translation>
     </message>
     <message>
+        <source>You can delegate your BCZs, letting a hot node (24/7 online node)
+stake on your behalf, while you keep the keys securely offline.</source>
+        <translation>Sıcak bir düğüme izin vererek BCZ'lerinizi devredebilirsiniz (7/24 çevrimiçi düğüm)
+anahtarları çevrimdışı bir şekilde güvenli tutarken, kendi adınıza stake yapın.</translation>
+    </message>
+    <message>
+        <source>Enter owner address</source>
+        <translation>Varlıkların sahibinin adresini girin</translation>
+    </message>
+    <message>
         <source>No contacts available, you can go to the contacts screen and add some there!</source>
         <translation>Uygun adres bulunmuyor, AL ekranına giderek adres ekleyebilirsin.</translation>
     </message>
@@ -944,12 +753,12 @@ stake in your behalf, keeping the keys in a secure place offline.</source>
         <translation>Soğuk Stakeleme ağ üzerinde etkin değil</translation>
     </message>
     <message>
-        <source>Invalid entry</source>
-        <translation>Geçersiz giriş</translation>
+        <source>Coin Control</source>
+        <translation>Koin kontrolü</translation>
     </message>
     <message>
-        <source>Invalid entry, minimum delegable amount is 10 BCZ</source>
-        <translation>Geçersiz giriş, delege edilebilir minimum tutar 10 BCZ</translation>
+        <source>Invalid entry</source>
+        <translation>Geçersiz giriş</translation>
     </message>
     <message>
         <source>Owner address invalid</source>
@@ -986,10 +795,6 @@ Devam etmek istiyor musunuz?</translation>
     <message>
         <source>Coins delegated</source>
         <translation>Koinler delege edildi</translation>
-    </message>
-    <message>
-        <source>You don't have any BCZ to select.</source>
-        <translation>Seçebileceğiniz BCZ'iniz bulunmuyor</translation>
     </message>
     <message>
         <source>URI copied to clipboard</source>
@@ -1072,14 +877,6 @@ kopyala</translation>
         <source>Form</source>
         <translation>Form</translation>
     </message>
-    <message>
-        <source>Bob Allen</source>
-        <translation>Bob Allen</translation>
-    </message>
-    <message>
-        <source>DN6i46dytMPVhV1JMGZFuQBh7BZZ6nNLox</source>
-        <translation>DN6i46dytMPVhV1JMGZFuQBh7BZZ6nNLox</translation>
-    </message>
 </context>
 <context>
     <name>DashboardWidget</name>
@@ -1092,40 +889,12 @@ kopyala</translation>
         <translation>İşlemler</translation>
     </message>
     <message>
-        <source>You can see here the history of your account</source>
-        <translation>Burada hesabınızın geçmişini görebilirsiniz.</translation>
-    </message>
-    <message>
-        <source>Warning</source>
-        <translation>Uyarı</translation>
-    </message>
-    <message>
-        <source>No transactions</source>
-        <translation>İşlem bulunmuyor</translation>
-    </message>
-    <message>
-        <source>PushButton</source>
-        <translation>Butona Basın</translation>
-    </message>
-    <message>
         <source>Staking Rewards</source>
         <translation>Stake ödülleri</translation>
     </message>
     <message>
-        <source>TextLabel</source>
-        <translation>TextLabel</translation>
-    </message>
-    <message>
         <source>Staking statistics</source>
         <translation>Stake İstatistikleri</translation>
-    </message>
-    <message>
-        <source>BCZ</source>
-        <translation>BCZ</translation>
-    </message>
-    <message>
-        <source>zBCZ</source>
-        <translation>zBCZ</translation>
     </message>
     <message>
         <source>Sort by</source>
@@ -1148,60 +917,8 @@ kopyala</translation>
         <translation>Filtrele</translation>
     </message>
     <message>
-        <source>LabelText</source>
-        <translation>LabelText</translation>
-    </message>
-    <message>
-        <source>You can view your account's history</source>
-        <translation>Hesap geçmişinizde görebilirsiniz</translation>
-    </message>
-    <message>
-        <source>Amount of BCZ and zBCZ staked.</source>
-        <translation>Stake edilmiş BCZ ve zBCZ miktarı</translation>
-    </message>
-    <message>
-        <source>All</source>
-        <translation>Tümü</translation>
-    </message>
-    <message>
-        <source>Received</source>
-        <translation>Alındı</translation>
-    </message>
-    <message>
-        <source>Sent</source>
-        <translation>Gönderildi</translation>
-    </message>
-    <message>
-        <source>Mined</source>
-        <translation>Mined </translation>
-    </message>
-    <message>
-        <source>Minted</source>
-        <translation>Mint edildi </translation>
-    </message>
-    <message>
-        <source>MN reward</source>
-        <translation>MN Ödülü</translation>
-    </message>
-    <message>
-        <source>To yourself</source>
-        <translation>Kendine</translation>
-    </message>
-    <message>
-        <source>Cold stakes</source>
-        <translation>Soğuk Stakeler</translation>
-    </message>
-    <message>
-        <source>Hot stakes</source>
-        <translation>Sıcak Stakeler</translation>
-    </message>
-    <message>
-        <source>Delegated</source>
-        <translation>Delege edilmiş</translation>
-    </message>
-    <message>
-        <source>Delegations</source>
-        <translation>Delegasyonlar</translation>
+        <source>Amount of BCZ staked.</source>
+        <translation>Stake edilmiş BCZ miktarı</translation>
     </message>
     <message>
         <source>Please wait until the wallet is fully synced to see your correct balance</source>
@@ -1210,10 +927,6 @@ kopyala</translation>
     <message>
         <source>No transactions yet</source>
         <translation>İşlem bulunmuyor</translation>
-    </message>
-    <message>
-        <source>How to get BCZ or zBCZ</source>
-        <translation>BCZ veya zBCZ nasıl alınır</translation>
     </message>
     <message>
         <source>You can verify the staking activity in the status bar at the top right of the wallet.
@@ -1253,20 +966,12 @@ Cüzdanınız senkronize olduktan ve harcanmamış bakiyeniz yeterli miktarda on
         <translation>Form</translation>
     </message>
     <message>
-        <source>Transaction Details</source>
-        <translation>İşlem Detayları</translation>
-    </message>
-    <message>
-        <source>Text Label</source>
-        <translation>Etiket Yazısı</translation>
+        <source>OK</source>
+        <translation>TAMAM</translation>
     </message>
     <message>
         <source>CANCEL</source>
         <translation>İPTAL</translation>
-    </message>
-    <message>
-        <source>SAVE</source>
-        <translation>KAYDET</translation>
     </message>
 </context>
 <context>
@@ -1362,7 +1067,7 @@ Cüzdanınız senkronize olduktan ve harcanmamış bakiyeniz yeterli miktarda on
     </message>
     <message>
         <source>BCZ Core</source>
-        <translation>BCZ CORE</translation>
+        <translation>BCZ Core</translation>
     </message>
     <message>
         <source>(%1-bit)</source>
@@ -1457,7 +1162,7 @@ Cüzdanınız senkronize olduktan ve harcanmamış bakiyeniz yeterli miktarda on
     </message>
     <message>
         <source>Error</source>
-        <translation>hata</translation>
+        <translation>Hata</translation>
     </message>
     <message>
         <source>%1 GB of free space available</source>
@@ -1466,25 +1171,6 @@ Cüzdanınız senkronize olduktan ve harcanmamış bakiyeniz yeterli miktarda on
     <message>
         <source>(of %1 GB needed)</source>
         <translation>( %1 i GB gerekli)</translation>
-    </message>
-</context>
-<context>
-    <name>LoadingDialog</name>
-    <message>
-        <source>Form</source>
-        <translation>Form</translation>
-    </message>
-    <message>
-        <source>TextLabel</source>
-        <translation>TextLabel</translation>
-    </message>
-    <message>
-        <source>Loading</source>
-        <translation>Yükleniyor</translation>
-    </message>
-    <message>
-        <source>.</source>
-        <translation>.</translation>
     </message>
 </context>
 <context>
@@ -1512,19 +1198,7 @@ Cüzdanınız senkronize olduktan ve harcanmamış bakiyeniz yeterli miktarda on
         <source>Form</source>
         <translation>Form</translation>
     </message>
-    <message>
-        <source>user_masternode</source>
-        <translation>kullanıcı_masternode</translation>
-    </message>
-    <message>
-        <source>Address: 88.26.164.88:29600</source>
-        <translation>Adres: 88.26.164.88:29600</translation>
-    </message>
-    <message>
-        <source>Jan. 19, 2019</source>
-        <translation>Ocak. 12,2019</translation>
-    </message>
-</context>
+    </context>
 <context>
     <name>MasterNodeWizardDialog</name>
     <message>
@@ -1556,28 +1230,12 @@ Cüzdanınız senkronize olduktan ve harcanmamış bakiyeniz yeterli miktarda on
         <translation>Adres</translation>
     </message>
     <message>
-        <source>Create New Master Node Controller</source>
-        <translation>Yeni bir Masternode Kontrolörü Yarat</translation>
-    </message>
-    <message>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;To create a BCZ Masternode you must dedicate 5,000 BCZ (the unit of BCZ) to the network (however, these coins are still yours and will never leave your possession). &lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;You can deactivate the node and unlock the coins at any time.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Yeni bir Masternode yaratmak için ağa 5,000 BCZ (BCZ birimi) ayırmanız gerekmektedir (buna rağmen koinler hala size aittir ve sahipliğini kororsunuz). &lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;İstediğiniz zaman devre dışı bırakabilir ve koinlerinizin kilidini kaldırabilirsiniz.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message>
         <source>Make sure you have this amount of coins.</source>
         <translation>Bu miktarda koininizin olduğundan emin olunuz.</translation>
     </message>
     <message>
-        <source>Set Master Node’s Name</source>
-        <translation>Masternode'unuzun Adını Belirleyin</translation>
-    </message>
-    <message>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;A transaction of 5,000 BCZ will be made&lt;/p&gt;&lt;p&gt;to a new empty address in your wallet.&lt;/p&gt;&lt;p&gt;The Address is labeled under the master node's name.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;5,000 BCZ'lik bir transfer &lt;/p&gt;&lt;p&gt;yeni ve boş bir adrese yapılacaktır.&lt;/p&gt;&lt;p&gt;Adres Masternode'unuz ismi ile etiketlenecektir.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message>
-        <source>Set Master Node’s IP and port</source>
-        <translation>MasterNode'unuzun IP ve Portunu giriniz</translation>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;A transaction of 10,000 BCZ will be made&lt;/p&gt;&lt;p&gt;to a new empty address in your wallet.&lt;/p&gt;&lt;p&gt;The Address is labeled under the master node's name.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;10.000 BCZ'lik bir transfer &lt;/p&gt;&lt;p&gt;yeni ve boş bir adrese yapılacaktır.&lt;/p&gt;&lt;p&gt;Adres Masternode'unuz ismi ile etiketlenecektir.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source>Address of the node that must always be online running the actual master node.</source>
@@ -1586,22 +1244,6 @@ Cüzdanınız senkronize olduktan ve harcanmamış bakiyeniz yeterli miktarda on
     <message>
         <source>Enter IP address</source>
         <translation>IP adresini girin</translation>
-    </message>
-    <message>
-        <source>Enter Port</source>
-        <translation>Port'u girin</translation>
-    </message>
-    <message>
-        <source>CANCEL</source>
-        <translation>İPTAL</translation>
-    </message>
-    <message>
-        <source>OK</source>
-        <translation>TAMAM</translation>
-    </message>
-    <message>
-        <source>e.g user_masternode</source>
-        <translation>örn. kullanıcı_masternode</translation>
     </message>
     <message>
         <source>NEXT</source>
@@ -1620,14 +1262,6 @@ Cüzdanınız senkronize olduktan ve harcanmamış bakiyeniz yeterli miktarda on
         <translation>IP ve Port boş olamaz</translation>
     </message>
     <message>
-        <source>Invalid port number</source>
-        <translation>Geçersiz port numarası</translation>
-    </message>
-    <message>
-        <source>Prepare master node failed..</source>
-        <translation>Masternode hazırlığı başarısız..</translation>
-    </message>
-    <message>
         <source>Invalid masternode.conf file</source>
         <translation>Geçersiz masternode.conf dosyası</translation>
     </message>
@@ -1636,56 +1270,8 @@ Cüzdanınız senkronize olduktan ve harcanmamış bakiyeniz yeterli miktarda on
         <translation> masternode.conf dosyası çözümleme hatası</translation>
     </message>
     <message>
-        <source>Invalid collaterall output index</source>
-        <translation>Geçersiz teminat çıktı endeksi</translation>
-    </message>
-    <message>
-        <source>Master node created!</source>
-        <translation>Masternode yaratıldı!</translation>
-    </message>
-    <message>
         <source>masternode.conf file doesn't exists</source>
         <translation> masternode.conf dosyası bulunamadı</translation>
-    </message>
-    <message>
-        <source>The recipient address is not valid, please recheck.</source>
-        <translation>Alıcı adresi geçerli değil, lütfen tekrar kontrol edin.</translation>
-    </message>
-    <message>
-        <source>The amount to pay must be larger than 0.</source>
-        <translation>Ödenecek tutar 0'dan büyük olmalıdır.</translation>
-    </message>
-    <message>
-        <source>The amount exceeds your balance.</source>
-        <translation>Miktar, bakiyenizi aşıyor.</translation>
-    </message>
-    <message>
-        <source>The total exceeds your balance when the %1 transaction fee is included.</source>
-        <translation>Toplam, %1 işlem ücreti dahil edildiğinde bakiyenizi aşıyor.</translation>
-    </message>
-    <message>
-        <source>Duplicate address found, can only send to each address once per send operation.</source>
-        <translation>Yinelenen adres bulundu, her gönderme işleminde aynı adres birden fazla girilemez.</translation>
-    </message>
-    <message>
-        <source>Transaction creation failed!</source>
-        <translation>İşlem oluşturulamadı!</translation>
-    </message>
-    <message>
-        <source>The transaction was rejected! This might happen if some of the coins in your wallet were already spent, such as if you used a copy of wallet.dat and coins were spent in the copy but not marked as spent here.</source>
-        <translation>İşlem reddedildi! Bu, cüzdanındaki koinlerin bir kısmının harcanması durumunda olabilir; mesela, wallet.dat dosyasının bir kopyasını kullandıysanız ve koinlerinizi harcamış fakat cüzdana harcanmış olarak işaretlenmemişse ortaya çıkabilir.</translation>
-    </message>
-    <message>
-        <source>Error: The wallet was unlocked only to anonymize coins.</source>
-        <translation>Hata: Cüzdan sadece paraları anonimleştirmek için açıldı.</translation>
-    </message>
-    <message>
-        <source>A fee %1 times higher than %2 per kB is considered an insanely high fee.</source>
-        <translation>Bir ücret, kB başına %2'nin %1 katından daha yüksektir, delicesine yüksek bir ücret olarak kabul edilir.</translation>
-    </message>
-    <message>
-        <source>Error: The wallet was unlocked only to anonymize coins. Unlock canceled.</source>
-        <translation>Hata: Cüzdan sadece paraları anonimleştirmek için açıldı. Kilidini açma işlemi iptal edildi.</translation>
     </message>
 </context>
 <context>
@@ -1693,18 +1279,6 @@ Cüzdanınız senkronize olduktan ve harcanmamış bakiyeniz yeterli miktarda on
     <message>
         <source>Form</source>
         <translation>Form</translation>
-    </message>
-    <message>
-        <source>TextLabel</source>
-        <translation>TextLabel</translation>
-    </message>
-    <message>
-        <source>No active Master Node yet</source>
-        <translation>Henüz aktif Masternode bulunmuyor</translation>
-    </message>
-    <message>
-        <source>PushButton</source>
-        <translation>Butona Basın</translation>
     </message>
     <message>
         <source>Masternodes</source>
@@ -1746,14 +1320,12 @@ and vote on the treasury system receiving a periodic reward.</source>
 </translation>
     </message>
     <message>
-        <source>Cannot start masternode, the collateral transaction has not been accepted by the network.
-Please wait few more minutes.</source>
-        <translation>Masternode başlatılamadı, teminat transferi henüz ağ tarafından kabul edilmedi
-Lütfen birkaç dakika bekleyiniz.</translation>
-    </message>
-    <message>
         <source>Remote Masternode Data</source>
         <translation>Uzak Masternode Bilgisi</translation>
+    </message>
+    <message>
+        <source>What is a Masternode?</source>
+        <translation>Masternode nedir?</translation>
     </message>
     <message>
         <source>You are just about to export the required data to run a Masternode
@@ -1772,10 +1344,6 @@ Bilgiyi uzak sunucunuzdaki bcz.conf dosyasına yapıştırmanız ve
  başlatmanız gerekecektir, ondan sonra bu kontrol cüzdanını kullanan
 Masternodu başlatın (Listeden Masternodu seçip "başlat" tuşuna basın).
 </translation>
-    </message>
-    <message>
-        <source>Masternode exported!, check your clipboard</source>
-        <translation>Masternode bilgisi dışarı alındı! Panoyu kontrol edin</translation>
     </message>
     <message>
         <source>Delete Masternode</source>
@@ -1804,10 +1372,6 @@ Emin misiniz?</translation>
         <translation> masternode.conf dosyası bulunamadı</translation>
     </message>
     <message>
-        <source>Not enough balance to create a masternode, 5,000 BCZ required.</source>
-        <translation>Masternode yaratmak için yetersiz bakiye, 5,000 BCZ gerekmektedir.</translation>
-    </message>
-    <message>
         <source>Error creating masternode</source>
         <translation>Masternode yaratma hatası</translation>
     </message>
@@ -1819,24 +1383,12 @@ Emin misiniz?</translation>
         <translation>Form</translation>
     </message>
     <message>
-        <source>Master Node Information</source>
-        <translation>Masternode Bilgisi</translation>
-    </message>
-    <message>
         <source>Public Key:</source>
         <translation>Public Key:</translation>
     </message>
     <message>
-        <source>492526e7fa3c810b35016...40a5df85ee227ab00b1156994</source>
-        <translation>492526e7fa3c810b35016...40a5df85ee227ab00b1156994</translation>
-    </message>
-    <message>
         <source>Address: </source>
         <translation>Adres</translation>
-    </message>
-    <message>
-        <source>127.0.0.2:43223</source>
-        <translation>127.0.0.2:43223</translation>
     </message>
     <message>
         <source>Collaterall tx id:</source>
@@ -1848,38 +1400,18 @@ Emin misiniz?</translation>
     </message>
     <message>
         <source>1 Inputs</source>
-        <translation>1 çıktı</translation>
+        <translation>1 girdi</translation>
     </message>
     <message>
         <source>Status:</source>
         <translation>Durum:</translation>
     </message>
-    <message>
-        <source>MISSING</source>
-        <translation>EKSİK</translation>
-    </message>
-    <message>
-        <source>Export data to run the Master Node on a remote server</source>
-        <translation>Uzak sunucuda Masternode çalıştırmak için bilgiyi dışarı aktar</translation>
-    </message>
-</context>
+    </context>
 <context>
     <name>MyAddressRow</name>
     <message>
         <source>Form</source>
         <translation>Form</translation>
-    </message>
-    <message>
-        <source>Savings</source>
-        <translation>Birikimler</translation>
-    </message>
-    <message>
-        <source>Jan. 19, 2019</source>
-        <translation>Ocak. 12,2019</translation>
-    </message>
-    <message>
-        <source>DN6i46dytMPVhV1JMGZFuQBh7BZZ6nNLox</source>
-        <translation>DN6i46dytMPVhV1JMGZFuQBh7BZZ6nNLox</translation>
     </message>
 </context>
 <context>
@@ -1945,10 +1477,6 @@ Emin misiniz?</translation>
     <message>
         <source>Form</source>
         <translation>Form</translation>
-    </message>
-    <message>
-        <source>TextLabel</source>
-        <translation>TextLabel</translation>
     </message>
 </context>
 <context>
@@ -2204,7 +1732,7 @@ https://www.transifex.com/bcz-project/bcz-project-translations</translation>
     <name>BCZGUI</name>
     <message>
         <source>BCZ Core</source>
-        <translation>BCZ CORE</translation>
+        <translation>BCZ Core</translation>
     </message>
     <message>
         <source>Wallet</source>
@@ -2274,108 +1802,6 @@ Tip: %3
 Adres: %4
 </translation>
     </message>
-    <message>
-        <source>A fatal error occurred. BCZ can no longer continue safely and will quit.</source>
-        <translation>Onarılamaz bir hata oluştu. BCZ güvenli bir şekilde çalışamaz, kapanacaktır.</translation>
-    </message>
-</context>
-<context>
-    <name>PWidget</name>
-    <message>
-        <source>Wallet locked, you need to unlock it to perform this action</source>
-        <translation>Cüzdan kilitli, bu işlemi yapabilmek için cüzdanın kilidini açmalısınız.</translation>
-    </message>
-</context>
-<context>
-    <name>PaymentServer</name>
-    <message>
-        <source>Payment request error</source>
-        <translation>Ödeme isteği hatası</translation>
-    </message>
-    <message>
-        <source>URI handling</source>
-        <translation>URI handling</translation>
-    </message>
-    <message>
-        <source>Payment request fetch URL is invalid: %1</source>
-        <translation>Ödeme isteği getirme URL'si geçersiz: %1</translation>
-    </message>
-    <message>
-        <source>Payment request file handling</source>
-        <translation>Ödeme isteği dosyası işleme</translation>
-    </message>
-    <message>
-        <source>Invalid payment address %1</source>
-        <translation>Geçersiz ödeme adresi %1</translation>
-    </message>
-    <message>
-        <source>Cannot start bcz: click-to-pay handler</source>
-        <translation>BCZ başlatılamıyor: tıkla ve ödeme işleyicisi</translation>
-    </message>
-    <message>
-        <source>URI cannot be parsed! This can be caused by an invalid BCZ address or malformed URI parameters.</source>
-        <translation>URI ayrıştırılamaz! Bunun nedeni, geçersiz bir BCZ adresi veya hatalı biçimlendirilmiş URI parametrelerinden kaynaklanabilir.</translation>
-    </message>
-    <message>
-        <source>Payment request file cannot be read! This can be caused by an invalid payment request file.</source>
-        <translation>Ödeme talebi dosyası okunamıyor! Buna, geçersiz bir ödeme istek dosyası neden olabilir.</translation>
-    </message>
-    <message>
-        <source>Payment request rejected</source>
-        <translation>Ödeme talebi reddedildi</translation>
-    </message>
-    <message>
-        <source>Payment request network doesn't match client network.</source>
-        <translation>Ödeme isteği ağı müşteri ağıyla eşleşmiyor.</translation>
-    </message>
-    <message>
-        <source>Payment request has expired.</source>
-        <translation>Ödeme talebi zamanı doldu.</translation>
-    </message>
-    <message>
-        <source>Payment request is not initialized.</source>
-        <translation>Ödeme talebi başlatılmadı.</translation>
-    </message>
-    <message>
-        <source>Unverified payment requests to custom payment scripts are unsupported.</source>
-        <translation>Özel ödeme komut dosyalarına yönelik onaylanmamış ödeme istekleri desteklenmiyor.</translation>
-    </message>
-    <message>
-        <source>Requested payment amount of %1 is too small (considered dust).</source>
-        <translation>İstenen ödeme tutarı %1 çok küçük (toz olarak kabul edildi).</translation>
-    </message>
-    <message>
-        <source>Refund from %1</source>
-        <translation>%1'den geri ödeme</translation>
-    </message>
-    <message>
-        <source>Payment request %1 is too large (%2 bytes, allowed %3 bytes).</source>
-        <translation>Ödeme isteği %1 çok büyük (%2 bayt, %3 bayta izin verildi).</translation>
-    </message>
-    <message>
-        <source>Payment request DoS protection</source>
-        <translation>Ödeme talebi DoS koruması</translation>
-    </message>
-    <message>
-        <source>Error communicating with %1: %2</source>
-        <translation>iletişim kurulurken hata oluştu %1: %2</translation>
-    </message>
-    <message>
-        <source>Payment request cannot be parsed!</source>
-        <translation>Ödeme talebi ayrıştırılamıyor!</translation>
-    </message>
-    <message>
-        <source>Bad response from server %1</source>
-        <translation>%1 sunucusundan gelen yanlış yanıt</translation>
-    </message>
-    <message>
-        <source>Network request error</source>
-        <translation>Ağ isteği hatası</translation>
-    </message>
-    <message>
-        <source>Payment acknowledged</source>
-        <translation>Ödeme kabul edildi</translation>
-    </message>
 </context>
 <context>
     <name>PeerTableModel</name>
@@ -2391,16 +1817,12 @@ Adres: %4
         <source>Ping Time</source>
         <translation>Ping Time</translation>
     </message>
-</context>
+    </context>
 <context>
     <name>QObject</name>
     <message>
         <source>Amount</source>
         <translation>Miktar</translation>
-    </message>
-    <message>
-        <source>Enter a BCZ address (e.g. %1)</source>
-        <translation>Gir bir BCZ addres (e.g. %1)</translation>
     </message>
     <message>
         <source>%1 d</source>
@@ -2427,10 +1849,6 @@ Adres: %4
         <translation>BLOOM</translation>
     </message>
     <message>
-        <source>ZK_BLOOM</source>
-        <translation>ZK_BLOOM</translation>
-    </message>
-    <message>
         <source>UNKNOWN</source>
         <translation>BİLİNMEYEN</translation>
     </message>
@@ -2447,8 +1865,12 @@ Adres: %4
         <translation>%1 ms</translation>
     </message>
     <message>
+        <source>A fatal error occurred. BCZ can no longer continue safely and will quit.</source>
+        <translation>Onarılamaz bir hata oluştu. BCZ güvenli bir şekilde çalışamaz, kapanacaktır.</translation>
+    </message>
+    <message>
         <source>BCZ Core</source>
-        <translation>BCZ CORE</translation>
+        <translation>BCZ Core</translation>
     </message>
     <message>
         <source>Error: Specified data directory "%1" does not exist.</source>
@@ -2470,7 +1892,63 @@ Adres: %4
         <source>BCZ Core didn't yet exit safely...</source>
         <translation>BCZ Core henüz güvenle kapanmadı..</translation>
     </message>
-</context>
+    <message>
+        <source>Cold Staking</source>
+        <translation>Soğuk Stakleme</translation>
+    </message>
+    <message>
+        <source>Unknown</source>
+        <translation>Bilinmeyen</translation>
+    </message>
+    <message>
+        <source>All</source>
+        <translation>Tümü</translation>
+    </message>
+    <message>
+        <source>Contacts</source>
+        <translation>Kişiler</translation>
+    </message>
+    <message>
+        <source>Received</source>
+        <translation>Alındı</translation>
+    </message>
+    <message>
+        <source>Sent</source>
+        <translation>Gönderildi</translation>
+    </message>
+    <message>
+        <source>Mined</source>
+        <translation>Mined </translation>
+    </message>
+    <message>
+        <source>Minted</source>
+        <translation>Mint edildi </translation>
+    </message>
+    <message>
+        <source>MN reward</source>
+        <translation>MN Ödülü</translation>
+    </message>
+    <message>
+        <source>To yourself</source>
+        <translation>Kendine</translation>
+    </message>
+    <message>
+        <source>Cold stakes</source>
+        <translation>Soğuk Stakeler</translation>
+    </message>
+    <message>
+        <source>Hot stakes</source>
+        <translation>Sıcak Stakeler</translation>
+    </message>
+    <message>
+        <source>Delegated</source>
+        <translation>Delege edilmiş</translation>
+    </message>
+    <message>
+        <source>Delegations</source>
+        <translation>Delegasyonlar</translation>
+    </message>
+    </context>
 <context>
     <name>RPCConsole</name>
     <message>
@@ -2487,7 +1965,7 @@ Adres: %4
     </message>
     <message>
         <source>Name</source>
-        <translation>isim</translation>
+        <translation>İsim</translation>
     </message>
     <message>
         <source>Client name</source>
@@ -2583,7 +2061,7 @@ Adres: %4
     </message>
     <message>
         <source>Sent</source>
-        <translation>Gitti</translation>
+        <translation>Gönderildi</translation>
     </message>
     <message>
         <source>&amp;Peers</source>
@@ -2686,8 +2164,8 @@ Adres: %4
         <translation>Özel Yedekleme Yolu:</translation>
     </message>
     <message>
-        <source>Custom zBCZ Backup Path:</source>
-        <translation>Özel zBCZ Yedekleme Yolu:</translation>
+        <source>Custom BCZ Backup Path:</source>
+        <translation>Özel BCZ Yedekleme Yolu:</translation>
     </message>
     <message>
         <source>Custom Backups Threshold:</source>
@@ -2885,24 +2363,12 @@ Adres: %4
         <translation>Diyalog</translation>
     </message>
     <message>
-        <source>Transaction Details</source>
-        <translation>İşlem Detayları</translation>
-    </message>
-    <message>
-        <source>PushButton</source>
-        <translation>Butona Basın</translation>
-    </message>
-    <message>
-        <source>B52EagiPxecjS9zwyebbCZz3x3QuYBNezo </source>
-        <translation>B52EagiPxecjS9zwyebbCZz3x3QuYBNezo </translation>
+        <source>My Address</source>
+        <translation>Adresim</translation>
     </message>
     <message>
         <source>CANCEL</source>
         <translation>İPTAL</translation>
-    </message>
-    <message>
-        <source>OK</source>
-        <translation>TAMAM</translation>
     </message>
 </context>
 <context>
@@ -2910,10 +2376,6 @@ Adres: %4
     <message>
         <source>Form</source>
         <translation>Form</translation>
-    </message>
-    <message>
-        <source>TextLabel</source>
-        <translation>TextLabel</translation>
     </message>
     <message>
         <source>No address</source>
@@ -2936,14 +2398,6 @@ Adres: %4
         <translation>Al</translation>
     </message>
     <message>
-        <source>Scan the QR code or copy the address to receive BCZ.</source>
-        <translation>BCZ almak için QR kodunu okutun veya adresi kopyalayın</translation>
-    </message>
-    <message>
-        <source>No address </source>
-        <translation>Adres bulunmuyor</translation>
-    </message>
-    <message>
         <source>No available address, try unlocking the wallet</source>
         <translation>Adres bulunmuyor, cüzdan kilidini açarak deneyin</translation>
     </message>
@@ -2952,8 +2406,8 @@ Adres: %4
         <translation>Adres oluşturma hatası</translation>
     </message>
     <message>
-        <source>Change Label</source>
-        <translation>Etiketi Değiştirin</translation>
+        <source>Edit Label</source>
+        <translation>Etiketi Düzenle</translation>
     </message>
     <message>
         <source>Edit Address Label</source>
@@ -3026,14 +2480,6 @@ Adres: %4
         <translation>Diyalog</translation>
     </message>
     <message>
-        <source>New Request Payment</source>
-        <translation>Yeni Ödeme Talebi</translation>
-    </message>
-    <message>
-        <source>Lorem ipsum dolor sit amet, consectur cling elit, sed do </source>
-        <translation>Lorem ipsum dolor sit amet, consectur cling elit, sed do </translation>
-    </message>
-    <message>
         <source>Amount</source>
         <translation>Miktar</translation>
     </message>
@@ -3042,12 +2488,8 @@ Adres: %4
         <translation>BCZ</translation>
     </message>
     <message>
-        <source>TextLabel</source>
-        <translation>TextLabel</translation>
-    </message>
-    <message>
-        <source>B52EagiPxecjS9zwyebbCZz3x3QuYBNezo </source>
-        <translation>B52EagiPxecjS9zwyebbCZz3x3QuYBNezo </translation>
+        <source>D7VFR83SQbiezrW72hjcWJtcfip5krte2Z </source>
+        <translation>D7VFR83SQbiezrW72hjcWJtcfip5krte2Z </translation>
     </message>
     <message>
         <source>COPY ADDRESS</source>
@@ -3062,28 +2504,12 @@ Adres: %4
         <translation>İPTAL</translation>
     </message>
     <message>
-        <source>REQUEST</source>
-        <translation>TALEP ET</translation>
-    </message>
-    <message>
-        <source>Instead of only sharing a BCZ address, you can create a Payment Request message which bundles up more information than is contained in just a BCZ address.</source>
-        <translation>BCZ adresi paylaşmak yerine, BCZ adresinden daha fazla bilgi içeren bir Ödeme Talebi oluşturabilirsin.</translation>
-    </message>
-    <message>
         <source>Label</source>
         <translation>Etiket</translation>
     </message>
     <message>
-        <source>Enter a label to be saved within the address</source>
-        <translation>Adresin içine kaydedilecek bir etiket belirle</translation>
-    </message>
-    <message>
         <source>Description (optional)</source>
         <translation>Açıklama (opsiyonel)</translation>
-    </message>
-    <message>
-        <source>Add description </source>
-        <translation>Açıklama ekle</translation>
     </message>
     <message>
         <source>Error</source>
@@ -3101,7 +2527,11 @@ Adres: %4
         <source>New Cold Staking Address</source>
         <translation>Yeni Stakeleme Adresi</translation>
     </message>
-</context>
+    <message>
+        <source>Invalid amount</source>
+        <translation>Geçersiz miktar</translation>
+    </message>
+    </context>
 <context>
     <name>SendChangeAddressDialog</name>
     <message>
@@ -3109,24 +2539,8 @@ Adres: %4
         <translation>Diyalog</translation>
     </message>
     <message>
-        <source>Transaction Details</source>
-        <translation>İşlem Detayları</translation>
-    </message>
-    <message>
-        <source>PushButton</source>
-        <translation>Butona Basın</translation>
-    </message>
-    <message>
-        <source>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim.</source>
-        <translation>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim.</translation>
-    </message>
-    <message>
         <source>CANCEL</source>
         <translation>İPTAL</translation>
-    </message>
-    <message>
-        <source>OK</source>
-        <translation>TAMAM</translation>
     </message>
     <message>
         <source>Custom Change Address</source>
@@ -3136,7 +2550,15 @@ Adres: %4
         <source>The remainder of the value resultant from the inputs minus the outputs value goes to the "change" BCZ address</source>
         <translation>Giriş ve çıkış değerleri arasındaki kalan tutar "fark" BCZ adresine gider</translation>
     </message>
-</context>
+    <message>
+        <source>SAVE</source>
+        <translation>KAYDET</translation>
+    </message>
+    <message>
+        <source>Invalid address</source>
+        <translation>Geçersiz adres</translation>
+    </message>
+    </context>
 <context>
     <name>SendCustomFeeDialog</name>
     <message>
@@ -3144,16 +2566,8 @@ Adres: %4
         <translation>Form</translation>
     </message>
     <message>
-        <source>Transaction Details</source>
-        <translation>İşlem Detayları</translation>
-    </message>
-    <message>
-        <source>Customize the transaction fee at your to your liking, depending on the fee value your transaction will be included or not in the blockchain.</source>
-        <translation>İsteğiniz gibi transfer masrafını değiştirebilirsiniz, belirlediğiniz değere göre blockchaine yazılır veya yazılmaz. </translation>
-    </message>
-    <message>
-        <source>Recomended</source>
-        <translation>Tavsiye edilir</translation>
+        <source>Recommended</source>
+        <translation>önerilen</translation>
     </message>
     <message>
         <source>0.00 KB</source>
@@ -3164,24 +2578,12 @@ Adres: %4
         <translation>Özel</translation>
     </message>
     <message>
-        <source>Per kilobyte</source>
-        <translation>Kilobyte başına</translation>
-    </message>
-    <message>
         <source>CANCEL</source>
         <translation>İPTAL</translation>
     </message>
     <message>
-        <source>OK</source>
-        <translation>TAMAM</translation>
-    </message>
-    <message>
         <source>Customize Fee</source>
         <translation>Masrafı değiştir</translation>
-    </message>
-    <message>
-        <source>Customize the transaction fee, depending on the fee value your transaction will be included or not in the blockchain.</source>
-        <translation>İsteğiniz gibi transfer masrafını değiştirebilirsiniz, belirlediğiniz değere göre blockchaine yazılır veya yazılmaz. </translation>
     </message>
     <message>
         <source>Normal</source>
@@ -3199,7 +2601,7 @@ Adres: %4
         <source>SAVE</source>
         <translation>KAYDET</translation>
     </message>
-</context>
+    </context>
 <context>
     <name>SendMultiRow</name>
     <message>
@@ -3207,75 +2609,15 @@ Adres: %4
         <translation>Form</translation>
     </message>
     <message>
-        <source>TextLabel</source>
-        <translation>TextLabel</translation>
+        <source>Enter address</source>
+        <translation>Adres girin</translation>
     </message>
-    <message>
-        <source>Add address</source>
-        <translation>Adres ekle</translation>
-    </message>
-    <message>
-        <source>Add description</source>
-        <translation>Açıklama ekle</translation>
-    </message>
-</context>
+    </context>
 <context>
     <name>SendWidget</name>
     <message>
-        <source>Send</source>
-        <translation>Gönder</translation>
-    </message>
-    <message>
-        <source>You can transfer public coins (BCZ) or private coins (zBCZ)</source>
-        <translation>Açık koin BCZ veya gizli koin zBCZ transfer edebilirsiniz</translation>
-    </message>
-    <message>
-        <source>Select coin type to spend</source>
-        <translation>Harcayacağınız koin tipini seçin</translation>
-    </message>
-    <message>
-        <source>Enter a BCZ address or contact label</source>
-        <translation>Bir BCZ adresi veya bağlantı etiketi girin</translation>
-    </message>
-    <message>
-        <source>Amount</source>
-        <translation>Miktar</translation>
-    </message>
-    <message>
-        <source>Customize fee</source>
-        <translation>Masrafı değiştir</translation>
-    </message>
-    <message>
-        <source>Clear all</source>
-        <translation>Hepsini temizle</translation>
-    </message>
-    <message>
-        <source>Add recipient</source>
-        <translation>Alıcı Ekle</translation>
-    </message>
-    <message>
-        <source>Reset to default</source>
-        <translation>Varsayılana konumlandır</translation>
-    </message>
-    <message>
-        <source>Total to send</source>
-        <translation>Gönderilecek toplam</translation>
-    </message>
-    <message>
-        <source>Send BCZ</source>
-        <translation>BCZ Gönder</translation>
-    </message>
-    <message>
-        <source>Send zBCZ</source>
-        <translation>zBCZ gönder</translation>
-    </message>
-    <message>
         <source>Total remaining from the selected UTXO</source>
         <translation>Seçili UTXO'dan kalan toplam</translation>
-    </message>
-    <message>
-        <source>Total remaining</source>
-        <translation>Toplam kalan</translation>
     </message>
     <message>
         <source>Customize Fee</source>
@@ -3318,60 +2660,8 @@ Bu koinler artık soğuk stakelenmeyecektir.</translation>
         <translation>Ödeme gönderildi</translation>
     </message>
     <message>
-        <source>Spend Zerocoin</source>
-        <translation>Harca Zerocoin</translation>
-    </message>
-    <message>
-        <source>zBCZ is currently undergoing maintenance.</source>
-        <translation>zBCZ halen bakım alıyor.</translation>
-    </message>
-    <message>
-        <source>Coin control mint not found</source>
-        <translation>Koin kontrolü min bulunamadı</translation>
-    </message>
-    <message>
-        <source>Sending %1 to address %2
-</source>
-        <translation>%1 adresinden %2 adresine gönderiliyor
-</translation>
-    </message>
-    <message>
-        <source>Sending %1 to addresses:
-%2</source>
-        <translation>%1 adresinden
-%2 adreslerine gönderiliyor</translation>
-    </message>
-    <message>
-        <source>zBCZ transaction sent!</source>
-        <translation>zBCZ ödemesi gönderildi</translation>
-    </message>
-    <message>
-        <source>Version 1 zBCZ require a security level of 100 to successfully spend.</source>
-        <translation>Versiyon 1 olan zBCZ'lerin başarıyla harcanabilmesi için güvenlik seviyesinin 100 olması gerekiyor.</translation>
-    </message>
-    <message>
-        <source>Too much inputs (</source>
-        <translation>Çok fazla girdi (</translation>
-    </message>
-    <message>
-        <source>) needed.
-Maximum allowed: </source>
-        <translation>) gerekli.
-Maksimum bırakılan: </translation>
-    </message>
-    <message>
-        <source>
-Either mint higher denominations (so fewer inputs are needed) or reduce the amount to spend.</source>
-        <translation>
-Ya daha yüksek mezhepleri daraltın (daha az girdi gereklidir) veya harcama miktarını azaltın.</translation>
-    </message>
-    <message>
         <source>Address label update failed for address: %1</source>
         <translation>%1 adresi için adres etiketi güncellemesi başarısız oldu</translation>
-    </message>
-    <message>
-        <source>Invalid change address</source>
-        <translation>Geçersiz fark adresi</translation>
     </message>
     <message>
         <source>Invalid URI</source>
@@ -3386,12 +2676,12 @@ Ya daha yüksek mezhepleri daraltın (daha az girdi gereklidir) veya harcama mik
         <translation>Belirlenmiş masraf %1</translation>
     </message>
     <message>
-        <source>You don't have any BCZ to select.</source>
-        <translation>Seçebileceğiniz BCZ'iniz bulunmuyor</translation>
+        <source>Coin Control</source>
+        <translation>Koin kontrolü</translation>
     </message>
     <message>
-        <source>You don't have any zBCZ in your balance to select.</source>
-        <translation>Bakiyenizde seçebileceğiniz zBCZ'iniz bulunmuyor</translation>
+        <source>Open URI</source>
+        <translation>Open URI</translation>
     </message>
     <message>
         <source>No contacts available, you can go to the contacts screen and add some there!</source>
@@ -3437,44 +2727,12 @@ Ya daha yüksek mezhepleri daraltın (daha az girdi gereklidir) veya harcama mik
         <translation>Form</translation>
     </message>
     <message>
-        <source>TextLabel</source>
-        <translation>TextLabel</translation>
-    </message>
-    <message>
-        <source>PushButton</source>
-        <translation>Butona Basın</translation>
-    </message>
-    <message>
-        <source>Backup Wallet </source>
-        <translation>Cüzdanı Yedekle</translation>
-    </message>
-    <message>
         <source>Change Wallet Passphrase</source>
         <translation>Cüzdan Parolasını Değiştir</translation>
     </message>
     <message>
-        <source>Keep your wallet safe doing regular backups, store your backup file externally.
-This option creates a wallet.dat file that can be used to recover your whole balance (transactions and addresses) from another device.</source>
-        <translation>Düzenli yedekler alarak cüzdanınızı güvende tutun, yedeklerinizi dışarıda saklayın.
-Bu opsiyon tüm bakiyenizi (işlemleri ve adresleri) kurtarmak için kullanacağınız yeni bir wallet.dat dosyası yaratır .</translation>
-    </message>
-    <message>
-        <source>This will decrypt the whole wallet data and encrypt it back with the new passphrase.
-Remember to write it down and store it safely, otherwise you might lose access to your funds.</source>
-        <translation>Bu işlem tüm bilginin şifresini çözecek ve yeni parola ile şifreleyecektir.
-Paranıza erişiminizi kaybetmemek için yazmayı ve güvenli bir yerde saklamayı unutmayın.</translation>
-    </message>
-    <message>
         <source>Where</source>
         <translation>Yer</translation>
-    </message>
-    <message>
-        <source>Set a folder location</source>
-        <translation>Bir dosya klasör yeri belirleyin</translation>
-    </message>
-    <message>
-        <source>Backup</source>
-        <translation>Yedek</translation>
     </message>
     <message>
         <source>Change Passphrase</source>
@@ -3508,24 +2766,8 @@ Paranıza erişiminizi kaybetmemek için yazmayı ve güvenli bir yerde saklamay
         <translation>Form</translation>
     </message>
     <message>
-        <source>TextLabel</source>
-        <translation>TextLabel</translation>
-    </message>
-    <message>
-        <source>PushButton</source>
-        <translation>Butona Basın</translation>
-    </message>
-    <message>
-        <source>Decrypt Address Result</source>
-        <translation>Adres Şifre Çözüm Sonucu</translation>
-    </message>
-    <message>
         <source>Import Address</source>
         <translation>Adres içe aktar</translation>
-    </message>
-    <message>
-        <source>Clear</source>
-        <translation>temizle</translation>
     </message>
     <message>
         <source>BIP38 Tool</source>
@@ -3552,10 +2794,6 @@ Paranıza erişiminizi kaybetmemek için yazmayı ve güvenli bir yerde saklamay
         <translation>Parola</translation>
     </message>
     <message>
-        <source>Enter a passphrase </source>
-        <translation>Bir Parola gir</translation>
-    </message>
-    <message>
         <source>Decrypted address result</source>
         <translation>Adres Şifre Çözüm Sonucu</translation>
     </message>
@@ -3568,16 +2806,12 @@ Paranıza erişiminizi kaybetmemek için yazmayı ve güvenli bir yerde saklamay
         <translation>ŞİFRE ÇÖZME ANAHTARI</translation>
     </message>
     <message>
-        <source>Enter a BCZ address</source>
-        <translation>Bir BCZ adresi girin</translation>
+        <source>Enter address</source>
+        <translation>Adres girin</translation>
     </message>
     <message>
-        <source>Add address</source>
-        <translation>Adres ekle</translation>
-    </message>
-    <message>
-        <source>Write a message</source>
-        <translation>Bir mesaj yaz</translation>
+        <source>Enter passphrase</source>
+        <translation>Şifre sözcüğünüzü girin</translation>
     </message>
     <message>
         <source>Encrypted Key</source>
@@ -3659,20 +2893,12 @@ Paranıza erişiminizi kaybetmemek için yazmayı ve güvenli bir yerde saklamay
         <source>Error adding key to the wallet</source>
         <translation>Cüzdana anahtar ekleme hatası</translation>
     </message>
-    <message>
-        <source>Successfully added private key to the wallet</source>
-        <translation>Özel cüzdana anahtar başarıyla eklendi</translation>
-    </message>
-</context>
+    </context>
 <context>
     <name>SettingsConsoleWidget</name>
     <message>
         <source>Form</source>
         <translation>Form</translation>
-    </message>
-    <message>
-        <source>TextLabel</source>
-        <translation>TextLabel</translation>
     </message>
     <message>
         <source>Console</source>
@@ -3681,10 +2907,6 @@ Paranıza erişiminizi kaybetmemek için yazmayı ve güvenli bir yerde saklamay
     <message>
         <source>Console input</source>
         <translation>Konsol Girişi</translation>
-    </message>
-    <message>
-        <source>Command Line Options </source>
-        <translation>Komut Satırı Seçenekleri</translation>
     </message>
     <message>
         <source>Open Debug File</source>
@@ -3718,14 +2940,6 @@ Verify that you have installed a predetermined text editor.</source>
     <message>
         <source>Form</source>
         <translation>Form</translation>
-    </message>
-    <message>
-        <source>TextLabel</source>
-        <translation>TextLabel</translation>
-    </message>
-    <message>
-        <source>PushButton</source>
-        <translation>Butona Basın</translation>
     </message>
     <message>
         <source>Reset to default</source>
@@ -3769,7 +2983,7 @@ Verify that you have installed a predetermined text editor.</source>
     </message>
     <message>
         <source>default</source>
-        <translation>halihazırda</translation>
+        <translation>varsayılan</translation>
     </message>
     <message>
         <source>Options reset succeed</source>
@@ -3777,14 +2991,53 @@ Verify that you have installed a predetermined text editor.</source>
     </message>
 </context>
 <context>
-    <name>SettingsInformationWidget</name>
+    <name>SettingsExportCSV</name>
     <message>
         <source>Form</source>
         <translation>Form</translation>
     </message>
     <message>
-        <source>TextLabel</source>
-        <translation>TextLabel</translation>
+        <source>Where</source>
+        <translation>Yer</translation>
+    </message>
+    <message>
+        <source>Export Address List</source>
+        <translation>Adres listesini çıkart</translation>
+    </message>
+    <message>
+        <source>Confirmed</source>
+        <translation>Doğrulandı</translation>
+    </message>
+    <message>
+        <source>Watch-only</source>
+        <translation>Sadece izle</translation>
+    </message>
+    <message>
+        <source>Date</source>
+        <translation>Tarih</translation>
+    </message>
+    <message>
+        <source>Type</source>
+        <translation>Yaz</translation>
+    </message>
+    <message>
+        <source>Label</source>
+        <translation>Etiket</translation>
+    </message>
+    <message>
+        <source>Address</source>
+        <translation>Adres</translation>
+    </message>
+    <message>
+        <source>ID</source>
+        <translation>Kimlik</translation>
+    </message>
+    </context>
+<context>
+    <name>SettingsInformationWidget</name>
+    <message>
+        <source>Form</source>
+        <translation>Form</translation>
     </message>
     <message>
         <source>Network Monitor</source>
@@ -3792,31 +3045,15 @@ Verify that you have installed a predetermined text editor.</source>
     </message>
     <message>
         <source>Information</source>
-        <translation>bilgi</translation>
+        <translation>Bilgi</translation>
     </message>
     <message>
         <source>General</source>
         <translation>Genel</translation>
     </message>
     <message>
-        <source>Client Version: </source>
-        <translation>Uygulama versionu</translation>
-    </message>
-    <message>
         <source>User Agent:</source>
         <translation>Kullanıcı Aracısı:</translation>
-    </message>
-    <message>
-        <source>Using BerkeleyDB version:</source>
-        <translation>BerkeleyDB version</translation>
-    </message>
-    <message>
-        <source>Datadir: </source>
-        <translation>Bilgi Dizini:</translation>
-    </message>
-    <message>
-        <source>Startup Time:  </source>
-        <translation>Başlatma zamanı</translation>
     </message>
     <message>
         <source>Network</source>
@@ -3827,28 +3064,12 @@ Verify that you have installed a predetermined text editor.</source>
         <translation>İsim</translation>
     </message>
     <message>
-        <source>Number Connections:</source>
-        <translation>Bağlantı Sayısı:</translation>
-    </message>
-    <message>
         <source>Blockchain</source>
         <translation>Blockchain</translation>
     </message>
     <message>
-        <source>Current Number of Blocks:</source>
-        <translation>Mevcut Blok Sayısı</translation>
-    </message>
-    <message>
-        <source>Last Block Time:</source>
-        <translation>Son Blok Zamanı</translation>
-    </message>
-    <message>
         <source>Memory Pool</source>
         <translation>Hafıza Havuzu</translation>
-    </message>
-    <message>
-        <source>Current Number of Transactions:</source>
-        <translation>Mevcut İşlem Sayısı:</translation>
     </message>
     <message>
         <source>Main</source>
@@ -3890,20 +3111,12 @@ Verify that you have installed a predetermined text editor.</source>
         <translation>Form</translation>
     </message>
     <message>
-        <source>TextLabel</source>
-        <translation>TextLabel</translation>
-    </message>
-    <message>
         <source>Window</source>
         <translation>Pencere</translation>
     </message>
     <message>
         <source>Customize the application window options</source>
         <translation>Uygulama Penceresi seçeneklerini değiştir</translation>
-    </message>
-    <message>
-        <source>CheckBox</source>
-        <translation>CheckBox</translation>
     </message>
     <message>
         <source>Reset to default</source>
@@ -3987,14 +3200,6 @@ Emin misiniz?
         <translation>ÇokluGönder için yeni alıcı</translation>
     </message>
     <message>
-        <source>Label (optional)</source>
-        <translation>Etiket (Opsiyonel)</translation>
-    </message>
-    <message>
-        <source>Enter a label to add this address in your address book</source>
-        <translation>Adres defterinize kaydetmek için bir etiket girin</translation>
-    </message>
-    <message>
         <source>Percentage</source>
         <translation>Yüzde</translation>
     </message>
@@ -4010,8 +3215,8 @@ Emin misiniz?
         <translation>TextLabel</translation>
     </message>
     <message>
-        <source>No active Master Node yet</source>
-        <translation>Henüz aktif Masternode bulunmuyor</translation>
+        <source>N/A</source>
+        <translation>N/A</translation>
     </message>
     <message>
         <source>CheckBox</source>
@@ -4023,7 +3228,7 @@ Emin misiniz?
     </message>
     <message>
         <source>Active</source>
-        <translation>aktif</translation>
+        <translation>Aktif</translation>
     </message>
     <message>
         <source>Disable</source>
@@ -4060,7 +3265,7 @@ Emin misiniz?
     <message>
         <source>The entered address: %1 is invalid.
 Please check the address and try again.</source>
-        <translation>Girili adres: %1 geçersiz.
+        <translation>Girilmiş adres: %1 geçersiz.
 Lütfen adresi kontrol ediniz ve tekrar deneyiniz.</translation>
     </message>
     <message>
@@ -4113,28 +3318,8 @@ Check one or both of the check boxes to send on stake and/or masternode rewards<
         <translation>Form</translation>
     </message>
     <message>
-        <source>TextLabel</source>
-        <translation>TextLabel</translation>
-    </message>
-    <message>
-        <source>PushButton</source>
-        <translation>Butona Basın</translation>
-    </message>
-    <message>
-        <source>Clear</source>
-        <translation>temizle</translation>
-    </message>
-    <message>
         <source>Sign/Verify Message</source>
         <translation>Mesaj İmza/Onay</translation>
-    </message>
-    <message>
-        <source>Enter a BCZ address or contact label</source>
-        <translation>Bir BCZ adresi veya bağlantı etiketi girin</translation>
-    </message>
-    <message>
-        <source>Add address</source>
-        <translation>Adres ekle</translation>
     </message>
     <message>
         <source>Sign</source>
@@ -4153,8 +3338,8 @@ Check one or both of the check boxes to send on stake and/or masternode rewards<
         <translation>Mesaj</translation>
     </message>
     <message>
-        <source>Write a message</source>
-        <translation>Bir mesaj yaz</translation>
+        <source>Enter address</source>
+        <translation>Adres girin</translation>
     </message>
     <message>
         <source>Signature</source>
@@ -4240,18 +3425,6 @@ Check one or both of the check boxes to send on stake and/or masternode rewards<
         <translation>Form</translation>
     </message>
     <message>
-        <source>TextLabel</source>
-        <translation>TextLabel</translation>
-    </message>
-    <message>
-        <source>CheckBox</source>
-        <translation>CheckBox</translation>
-    </message>
-    <message>
-        <source>RadioButton</source>
-        <translation>RadioButton</translation>
-    </message>
-    <message>
         <source>Reset to default</source>
         <translation>Varsayılana konumlandır</translation>
     </message>
@@ -4260,20 +3433,12 @@ Check one or both of the check boxes to send on stake and/or masternode rewards<
         <translation>Değişikliklerden vazgeç</translation>
     </message>
     <message>
-        <source>PushButton</source>
-        <translation>Butona Basın</translation>
-    </message>
-    <message>
         <source>Wallet</source>
-        <translation>cüzdan</translation>
+        <translation>Cüzdan</translation>
     </message>
     <message>
         <source>Customize the internal wallet options</source>
         <translation>Cüzdan içi opsiyonları özelleştir</translation>
-    </message>
-    <message>
-        <source>Stake split threshold:</source>
-        <translation>Stake bölme eşiği</translation>
     </message>
     <message>
         <source>Spend unconfirmed change</source>
@@ -4288,16 +3453,8 @@ Check one or both of the check boxes to send on stake and/or masternode rewards<
         <translation>Düğüm ağ opsiyonlarını özelleştir</translation>
     </message>
     <message>
-        <source>Proxy IP:</source>
-        <translation>Proksi IP:</translation>
-    </message>
-    <message>
         <source>Enter proxy IP</source>
         <translation>Proksi IP'sini gir</translation>
-    </message>
-    <message>
-        <source>Port:</source>
-        <translation>Port:</translation>
     </message>
     <message>
         <source>Map port using UPnP</source>
@@ -4306,10 +3463,6 @@ Check one or both of the check boxes to send on stake and/or masternode rewards<
     <message>
         <source>Allow incoming connections</source>
         <translation>Gelen bağlantılara izin ver</translation>
-    </message>
-    <message>
-        <source>Connect through SOCKS5 proxy (default proxy):</source>
-        <translation>SOCKS5 proksisi üzerinden bağlan (varsayılan proksi)</translation>
     </message>
     <message>
         <source>SAVE</source>
@@ -4327,52 +3480,20 @@ Check one or both of the check boxes to send on stake and/or masternode rewards<
         <translation>Form</translation>
     </message>
     <message>
-        <source>TextLabel</source>
-        <translation>TextLabel</translation>
-    </message>
-    <message>
-        <source>PushButton</source>
-        <translation>Butona Basın</translation>
-    </message>
-    <message>
         <source>Wallet Repair</source>
         <translation>Cüzdan Onarımı</translation>
-    </message>
-    <message>
-        <source>The buttons below will restart the wallet with command-line options to repair this wallet, fix issues with corrupt blockchain files or missing/obsolete transactions.</source>
-        <translation>Aşağıdaki düğmeleri kullanarak cüzdanı tekrar başlattığınızda cüzdan onarımı, bozuk blockchain dosyaları veya eksik/süresi geçmiş işlemlerden kaynaklı hataları düzeltmek için komut satırı opsiyonlarıyla açılacaktır.</translation>
-    </message>
-    <message>
-        <source>Attempt to recover private keys from a corrupt wallet.dat.</source>
-        <translation>Bozuk bir wallet.dat'tan özel anahtarları kurtarmayı deneyin.</translation>
-    </message>
-    <message>
-        <source>Rescan the blockchain for missing wallet transactions.</source>
-        <translation>Eksik cüzdan transferleri için blockchaini tekrar tara.</translation>
-    </message>
-    <message>
-        <source>Recover transactions from blockchain (keep-meta-data, e.g. account owner).</source>
-        <translation>Blockchainden işlemleri kurtarın (meta verileri koru, örn. hesap sahibi)</translation>
-    </message>
-    <message>
-        <source>Recover transactions from blockchain (drop meta-data).</source>
-        <translation>İşlemleri blok zincirden kurtarın (meta verileri bırakın).</translation>
     </message>
     <message>
         <source>Upgrade wallet to latest format on startup. (Note: this is NOT an update of the wallet itself)</source>
         <translation>Cüzdanı başlangıçta en yeni formata yükseltin. (Not: Bu, cüzdanın kendisinin güncellemesi değildir!)</translation>
     </message>
     <message>
-        <source>Rebuild blockchain index from current blk000???.dat files.</source>
-        <translation>Blok zinciri dizinini mevcut blk000 ?? dat dosyalarından yeniden oluştur.</translation>
-    </message>
-    <message>
-        <source>Deletes all local blockchain folders so the wallet synchronizes from scratch.</source>
-        <translation>Cüzdan sıfırdan eşleştirmek için tüm yerel blok zincir klasörlerini siler.</translation>
-    </message>
-    <message>
         <source>Salvage wallet</source>
         <translation>Kurtarma cüzdanı</translation>
+    </message>
+    <message>
+        <source>Attempt to recover private keys from a corrupt wallet.dat</source>
+        <translation>Bozuk wallet.dat dosyasından gizli anahtarları kurtar</translation>
     </message>
     <message>
         <source>Rescan blockchain file</source>
@@ -4395,16 +3516,12 @@ Check one or both of the check boxes to send on stake and/or masternode rewards<
         <translation>Dizini yeniden oluştur</translation>
     </message>
     <message>
-        <source>Delete local blockchain </source>
-        <translation>Yerel Blockchain'i sil</translation>
-    </message>
-    <message>
         <source>This will delete your local blockchain folders and the wallet will synchronize the complete Blockchain from scratch.&lt;br /&gt;&lt;br /&gt;</source>
         <translation>Bu, yerel blok zincir klasörlerini silecek ve cüzdan tüm Blockchain'i sıfırdan senkronize edecektir..&lt;br /&gt;&lt;br /&gt;</translation>
     </message>
     <message>
         <source>This needs quite some time and downloads a lot of data.&lt;br /&gt;&lt;br /&gt;</source>
-        <translation>Bu biraz zaman nalacak ve birçok veri indirecektir.&lt;br /&gt;&lt;br /&gt;</translation>
+        <translation>Bu biraz zaman alacak ve birçok veri indirecektir.&lt;br /&gt;&lt;br /&gt;</translation>
     </message>
     <message>
         <source>Your transactions and funds will be visible again after the download has completed.&lt;br /&gt;&lt;br /&gt;</source>
@@ -4426,16 +3543,12 @@ Check one or both of the check boxes to send on stake and/or masternode rewards<
         <translation>Form</translation>
     </message>
     <message>
-        <source>TextLabel</source>
-        <translation>TextLabel</translation>
-    </message>
-    <message>
         <source>Wallet Data</source>
         <translation>Cüzdan Bilgisi</translation>
     </message>
     <message>
         <source>Wallet</source>
-        <translation>cüzdan</translation>
+        <translation>Cüzdan</translation>
     </message>
     <message>
         <source>Multisend</source>
@@ -4471,7 +3584,7 @@ Check one or both of the check boxes to send on stake and/or masternode rewards<
     </message>
     <message>
         <source>Information</source>
-        <translation>bilgi</translation>
+        <translation>Bilgi</translation>
     </message>
     <message>
         <source>Console</source>
@@ -4503,7 +3616,7 @@ Check one or both of the check boxes to send on stake and/or masternode rewards<
     </message>
     <message>
         <source>Client restart required to activate changes.</source>
-        <translation>Değişiklikleri etkinleştirmek için istemci yeniden başlatılması gerekiyor.</translation>
+        <translation>Değişiklikleri etkinleştirmek için programın yeniden başlatılması gerekiyor.</translation>
     </message>
     <message>
         <source>Client will be shutdown, do you want to proceed?</source>
@@ -4594,26 +3707,6 @@ Emin misiniz?
 <context>
     <name>SplashScreen</name>
     <message>
-        <source>BCZ Core</source>
-        <translation>BCZ CORE</translation>
-    </message>
-    <message>
-        <source>Version %1</source>
-        <translation>Version %1</translation>
-    </message>
-    <message>
-        <source>The Bitcoin Core developers</source>
-        <translation>The Bitcoin Core developers</translation>
-    </message>
-    <message>
-        <source>The Dash Core developers</source>
-        <translation>The Dash Core developers</translation>
-    </message>
-    <message>
-        <source>The BCZ Core developers</source>
-        <translation>The BCZ Core developers</translation>
-    </message>
-    <message>
         <source>[testnet]</source>
         <translation>[testnet]</translation>
     </message>
@@ -4648,14 +3741,6 @@ Emin misiniz?
         <translation>Form</translation>
     </message>
     <message>
-        <source>480.0685 BCZ</source>
-        <translation>480.0685 BCZ</translation>
-    </message>
-    <message>
-        <source>1,000 zBCZ</source>
-        <translation>1,000 zBCZ</translation>
-    </message>
-    <message>
         <source>Available</source>
         <translation>Uygun</translation>
     </message>
@@ -4664,24 +3749,8 @@ Emin misiniz?
         <translation>Beklemede</translation>
     </message>
     <message>
-        <source>6.943 BCZ</source>
-        <translation>6.943 BCZ</translation>
-    </message>
-    <message>
         <source>Immature</source>
         <translation>Olgunlaşmamış</translation>
-    </message>
-    <message>
-        <source>10 BCZ</source>
-        <translation>10 BCZ</translation>
-    </message>
-    <message>
-        <source>60 zBCZ</source>
-        <translation>60 zBCZ</translation>
-    </message>
-    <message>
-        <source>10 zBCZ</source>
-        <translation>10 zBCZ</translation>
     </message>
     <message>
         <source>Wallet Unlocked for staking</source>
@@ -4703,223 +3772,40 @@ Emin misiniz?
         <source>Staking not active</source>
         <translation>Stake kapalı</translation>
     </message>
-    <message numerus="yes">
-        <source>%n active connection(s)</source>
-        <translation><numerusform>%n aktif bağlantı(lar) mevcut BCZ ağına</numerusform><numerusform>%n aktif bağlantı(lar)</numerusform></translation>
-    </message>
-    <message>
-        <source>Synchronized</source>
-        <translation>Senkron</translation>
-    </message>
-    <message numerus="yes">
-        <source>%n hour(s)</source>
-        <translation><numerusform>%n saat</numerusform><numerusform>%n saat</numerusform></translation>
-    </message>
-    <message numerus="yes">
-        <source>%n day(s)</source>
-        <translation><numerusform>%n gün</numerusform><numerusform>%n gün</numerusform></translation>
-    </message>
-    <message numerus="yes">
-        <source>%n week(s)</source>
-        <translation><numerusform>%n hafta</numerusform><numerusform>%n hafta</numerusform></translation>
-    </message>
     <message>
         <source>%1 and %2</source>
         <translation>%1 ve %2</translation>
     </message>
-    <message numerus="yes">
-        <source>%n year(s)</source>
-        <translation><numerusform>%n yıl</numerusform><numerusform>%n yıl</numerusform></translation>
+    <message>
+        <source>FAQ</source>
+        <translation>SSS</translation>
     </message>
-</context>
+    <message>
+        <source>Wallet Locked</source>
+        <translation>Cüzdan Kilitlendi</translation>
+    </message>
+    <message>
+        <source>Backup Wallet</source>
+        <translation>Cüzdanı Yedekle</translation>
+    </message>
+    <message>
+        <source>Wallet Data (*.dat)</source>
+        <translation>Wallet Data (*.dat)</translation>
+    </message>
+    <message>
+        <source>Backup created</source>
+        <translation>Yedek oluşturuldu</translation>
+    </message>
+    <message>
+        <source>Backup creation failed</source>
+        <translation>Yedek oluşturma başarısız</translation>
+    </message>
+    </context>
 <context>
     <name>TrafficGraphWidget</name>
     <message>
         <source>KB/s</source>
         <translation>KB/s</translation>
-    </message>
-</context>
-<context>
-    <name>TransactionDesc</name>
-    <message numerus="yes">
-        <source>Open for %n more block(s)</source>
-        <translation><numerusform>%n blok daha için açık tut</numerusform><numerusform>%n blok daha için açık tut</numerusform></translation>
-    </message>
-    <message>
-        <source>Open until %1</source>
-        <translation>Açık %1 e dek</translation>
-    </message>
-    <message>
-        <source>conflicted</source>
-        <translation>çatışmalı</translation>
-    </message>
-    <message>
-        <source>%1/offline</source>
-        <translation>%1 / çevrimdışı</translation>
-    </message>
-    <message>
-        <source>%1/unconfirmed</source>
-        <translation>%1 / doğrulanmamış</translation>
-    </message>
-    <message>
-        <source>%1 confirmations</source>
-        <translation>%1 doğrulama</translation>
-    </message>
-    <message>
-        <source>%1/offline (verified via SwiftX)</source>
-        <translation>%1 / çevrimdışı (SwiftX ile doğrulanmış)</translation>
-    </message>
-    <message>
-        <source>%1/confirmed (verified via SwiftX)</source>
-        <translation>%1 / doğrulandı (SwiftX ile doğrulandı)</translation>
-    </message>
-    <message>
-        <source>%1 confirmations (verified via SwiftX)</source>
-        <translation>%1 doğrulama (SwiftX ile doğrulandı)</translation>
-    </message>
-    <message>
-        <source>%1/offline (SwiftX verification in progress - %2 of %3 signatures)</source>
-        <translation>%1 / çevrimdışı (SwiftX doğrulama işlemi devam ediyor - %3 imzalardan %2 si)</translation>
-    </message>
-    <message>
-        <source>%1/confirmed (SwiftX verification in progress - %2 of %3 signatures )</source>
-        <translation>%1 / onaylandı (SwiftX doğrulama işlemi - %3 imzalardan %2 si)</translation>
-    </message>
-    <message>
-        <source>%1 confirmations (SwiftX verification in progress - %2 of %3 signatures)</source>
-        <translation>%1 doğrulama (SwiftX doğrulama işlemi - %3 imzalardan %2 si)</translation>
-    </message>
-    <message>
-        <source>%1/offline (SwiftX verification failed)</source>
-        <translation>%1 / çevrimdışı (SwiftX doğrulama başarısız)</translation>
-    </message>
-    <message>
-        <source>%1/confirmed (SwiftX verification failed)</source>
-        <translation>%1 / onaylandı (SwiftX doğrulama başarısız oldu)</translation>
-    </message>
-    <message>
-        <source>Status</source>
-        <translation>Durum</translation>
-    </message>
-    <message>
-        <source>, has not been successfully broadcast yet</source>
-        <translation>, henüz başarıyla yayınlanmamış</translation>
-    </message>
-    <message numerus="yes">
-        <source>, broadcast through %n node(s)</source>
-        <translation><numerusform>, %n düğüm üzerinden yayın</numerusform><numerusform>, %n düğüm üzerinden yayın</numerusform></translation>
-    </message>
-    <message>
-        <source>Date</source>
-        <translation>Tarih</translation>
-    </message>
-    <message>
-        <source>Source</source>
-        <translation>Kaynak</translation>
-    </message>
-    <message>
-        <source>Generated</source>
-        <translation>Oluşturuldu</translation>
-    </message>
-    <message>
-        <source>From</source>
-        <translation>Tarafından</translation>
-    </message>
-    <message>
-        <source>unknown</source>
-        <translation>Bilinmeyen</translation>
-    </message>
-    <message>
-        <source>To</source>
-        <translation>Şuna</translation>
-    </message>
-    <message>
-        <source>own address</source>
-        <translation>Kendi adresin</translation>
-    </message>
-    <message>
-        <source>watch-only</source>
-        <translation>sadece-izle </translation>
-    </message>
-    <message>
-        <source>label</source>
-        <translation>Etiket</translation>
-    </message>
-    <message>
-        <source>Credit</source>
-        <translation>Kredi</translation>
-    </message>
-    <message numerus="yes">
-        <source>matures in %n more block(s)</source>
-        <translation><numerusform>%n blok sonra olgunlaşacak</numerusform><numerusform>%n blok sonra olgunlaşacak</numerusform></translation>
-    </message>
-    <message>
-        <source>not accepted</source>
-        <translation>kabul edilmez</translation>
-    </message>
-    <message>
-        <source>Debit</source>
-        <translation>Debit</translation>
-    </message>
-    <message>
-        <source>Total debit</source>
-        <translation>Total debit</translation>
-    </message>
-    <message>
-        <source>Total credit</source>
-        <translation>Total Kredi</translation>
-    </message>
-    <message>
-        <source>Transaction fee</source>
-        <translation>İşlem ücreti</translation>
-    </message>
-    <message>
-        <source>Net amount</source>
-        <translation>Net miktar</translation>
-    </message>
-    <message>
-        <source>Message</source>
-        <translation>Mesaj</translation>
-    </message>
-    <message>
-        <source>Comment</source>
-        <translation>Yorum</translation>
-    </message>
-    <message>
-        <source>Transaction ID</source>
-        <translation>İşlem ID si</translation>
-    </message>
-    <message>
-        <source>Output index</source>
-        <translation>Çıktı İndeksi</translation>
-    </message>
-    <message>
-        <source>Merchant</source>
-        <translation>Satıcı</translation>
-    </message>
-    <message>
-        <source>Debug information</source>
-        <translation>Debug bilgisi</translation>
-    </message>
-    <message>
-        <source>Transaction</source>
-        <translation>İşlem</translation>
-    </message>
-    <message>
-        <source>Inputs</source>
-        <translation>Girdiler</translation>
-    </message>
-    <message>
-        <source>Amount</source>
-        <translation>Miktar</translation>
-    </message>
-    <message>
-        <source>true</source>
-        <translation>true</translation>
-    </message>
-    <message>
-        <source>false</source>
-        <translation>false</translation>
     </message>
 </context>
 <context>
@@ -4930,23 +3816,15 @@ Emin misiniz?
     </message>
     <message>
         <source>Type</source>
-        <translation>yaz</translation>
+        <translation>Yaz</translation>
     </message>
     <message>
         <source>Address</source>
-        <translation>adres</translation>
-    </message>
-    <message numerus="yes">
-        <source>Open for %n more block(s)</source>
-        <translation><numerusform>%n blok daha için açık </numerusform><numerusform>%n blok daha için açık </numerusform></translation>
+        <translation>Adres</translation>
     </message>
     <message>
         <source>Open until %1</source>
         <translation>Açık %1 e dek</translation>
-    </message>
-    <message>
-        <source>Offline</source>
-        <translation>Çevrimdışı</translation>
     </message>
     <message>
         <source>Unconfirmed</source>
@@ -4969,10 +3847,6 @@ Emin misiniz?
         <translation>Olgunlaşmamış (%1 doğrulama, %2'den sonra mevcut olacak)</translation>
     </message>
     <message>
-        <source>This block was not received by any other nodes and will probably not be accepted!</source>
-        <translation>Bu blok diğer düğümler tarafından alınmadı ve muhtemelen kabul edilmeyecek!</translation>
-    </message>
-    <message>
         <source>Received with</source>
         <translation>ile Alınmış</translation>
     </message>
@@ -4985,64 +3859,8 @@ Emin misiniz?
         <translation>Tarafından alındı</translation>
     </message>
     <message>
-        <source>Received via Obfuscation</source>
-        <translation>Şaşırtma yoluyla Alınan</translation>
-    </message>
-    <message>
-        <source>BCZ Stake</source>
-        <translation>BCZ Stake</translation>
-    </message>
-    <message>
-        <source>zBCZ Stake</source>
-        <translation>zBCZ Stake</translation>
-    </message>
-    <message>
-        <source>BCZ Cold Stake</source>
-        <translation>BCZ Soğuk Stake</translation>
-    </message>
-    <message>
-        <source>BCZ Stake in behalf of</source>
-        <translation>Yerine BCZ stake </translation>
-    </message>
-    <message>
         <source>Stake delegation</source>
         <translation>Stake delegasyonu</translation>
-    </message>
-    <message>
-        <source>Obfuscation Denominate</source>
-        <translation>Şaşırtmaca denominate</translation>
-    </message>
-    <message>
-        <source>Obfuscation Collateral Payment</source>
-        <translation>Soruna Katılma Teminat Ödemesi</translation>
-    </message>
-    <message>
-        <source>Obfuscation Make Collateral Inputs</source>
-        <translation>Şaşırtma yan girdiler yapar</translation>
-    </message>
-    <message>
-        <source>Obfuscation Create Denominations</source>
-        <translation>Obfuscation Oluşturma Adları</translation>
-    </message>
-    <message>
-        <source>Converted BCZ to zBCZ</source>
-        <translation>BCZ'den zBCZ'e dönüştürülen</translation>
-    </message>
-    <message>
-        <source>Spent zBCZ</source>
-        <translation>zBCZ Harca</translation>
-    </message>
-    <message>
-        <source>Received BCZ from zBCZ</source>
-        <translation>zBCZ'den BCZ olarak alınan</translation>
-    </message>
-    <message>
-        <source>Minted Change as zBCZ from zBCZ Spend</source>
-        <translation>zBCZ harcamasından kaynaklanan zBCZ mint farkı</translation>
-    </message>
-    <message>
-        <source>Converted zBCZ to BCZ</source>
-        <translation>zBCZ'den BCZ' dönüştürülen</translation>
     </message>
     <message>
         <source>Sent to</source>
@@ -5059,10 +3877,6 @@ Emin misiniz?
     <message>
         <source>Mined</source>
         <translation>Mined </translation>
-    </message>
-    <message>
-        <source>Obfuscated</source>
-        <translation>Şaşırtıldı </translation>
     </message>
     <message>
         <source>watch-only</source>
@@ -5116,36 +3930,8 @@ Emin misiniz?
         <translation>İşlem Detayları</translation>
     </message>
     <message>
-        <source>ID:</source>
-        <translation>ID:</translation>
-    </message>
-    <message>
-        <source>492526e7fa3c810b35016...40a5df85ee227ab00b1156994</source>
-        <translation>492526e7fa3c810b35016...40a5df85ee227ab00b1156994</translation>
-    </message>
-    <message>
-        <source>Sending to: </source>
-        <translation>Gönderiliyor: </translation>
-    </message>
-    <message>
-        <source>B52EagiPxecjS9zwyebbCZz3x3QuYBNezo </source>
-        <translation>B52EagiPxecjS9zwyebbCZz3x3QuYBNezo </translation>
-    </message>
-    <message>
         <source>Total amount</source>
         <translation>Toplam Tutar:</translation>
-    </message>
-    <message>
-        <source>2 BCZ</source>
-        <translation>2 BCZ</translation>
-    </message>
-    <message>
-        <source>Coin inputs:</source>
-        <translation>Koin girdileri:</translation>
-    </message>
-    <message>
-        <source>1 Inputs</source>
-        <translation>1 girdi</translation>
     </message>
     <message>
         <source>Previous Transaction</source>
@@ -5156,52 +3942,32 @@ Emin misiniz?
         <translation>Çıktı Endeksi</translation>
     </message>
     <message>
-        <source>Fee:</source>
-        <translation>Ücret:</translation>
-    </message>
-    <message>
-        <source>0.0001 BCZ</source>
-        <translation>0.0001 BCZ</translation>
-    </message>
-    <message>
-        <source>Change address:</source>
-        <translation>Değişim Adresi</translation>
-    </message>
-    <message>
-        <source>B52EagiPxec…BhjcWJtcfip5krte2Z </source>
-        <translation>B52EagiPxec…BhjcWJtcfip5krte2Z </translation>
-    </message>
-    <message>
-        <source>Confirmations:</source>
-        <translation>Onaylar:</translation>
-    </message>
-    <message>
-        <source>12</source>
-        <translation>12</translation>
-    </message>
-    <message>
-        <source>Size:</source>
-        <translation>Büyüklük:</translation>
-    </message>
-    <message>
-        <source>2 kB</source>
-        <translation>2 kB</translation>
-    </message>
-    <message>
-        <source>Date:</source>
-        <translation>Tarih:</translation>
+        <source>D7VFR83SQbie…BhjcWJtcfip5krte2Z </source>
+        <translation>D7VFR83SQbie…BhjcWJtcfip5krte2Z </translation>
     </message>
     <message>
         <source>May 25, 2017</source>
         <translation>May 25, 2017</translation>
     </message>
     <message>
-        <source>Status:</source>
-        <translation>Durum:</translation>
+        <source>ID</source>
+        <translation>Kimlik</translation>
     </message>
     <message>
         <source>Spendable</source>
         <translation>Harcanabilir</translation>
+    </message>
+    <message>
+        <source>Confirmations</source>
+        <translation>Onaylar</translation>
+    </message>
+    <message>
+        <source>Status</source>
+        <translation>Durum</translation>
+    </message>
+    <message>
+        <source>Date</source>
+        <translation>Tarih</translation>
     </message>
     <message>
         <source>TextLabel</source>
@@ -5238,18 +4004,6 @@ Emin misiniz?
         <source>Form</source>
         <translation>Form</translation>
     </message>
-    <message>
-        <source>Received from Bob</source>
-        <translation>Bob'tan geldi</translation>
-    </message>
-    <message>
-        <source>18/05/18</source>
-        <translation>18/05/18</translation>
-    </message>
-    <message>
-        <source>+0.000585 BCZ</source>
-        <translation>+0.000585 BCZ</translation>
-    </message>
 </context>
 <context>
     <name>WalletModel</name>
@@ -5257,44 +4011,9 @@ Emin misiniz?
         <source>Send Coins</source>
         <translation>Koinleri göder</translation>
     </message>
-    <message>
-        <source>SwiftX doesn't support sending values that high yet. Transactions are currently limited to %1 BCZ.</source>
-        <translation>SwiftX yüksek değerler göndermeyi desteklemiyor. İşlemler şu anda %1 BCZ ile sınırlıdır.</translation>
-    </message>
-</context>
-<context>
-    <name>WalletPasswordDialog</name>
-    <message>
-        <source>Dialog</source>
-        <translation>Diyalog</translation>
-    </message>
-    <message>
-        <source>TextLabel</source>
-        <translation>TextLabel</translation>
-    </message>
-    <message>
-        <source>PushButton</source>
-        <translation>Butona Basın</translation>
-    </message>
-    <message>
-        <source>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim.</source>
-        <translation>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim.</translation>
-    </message>
-    <message>
-        <source>CANCEL</source>
-        <translation>İPTAL</translation>
-    </message>
-    <message>
-        <source>OK</source>
-        <translation>TAMAM</translation>
-    </message>
-</context>
+    </context>
 <context>
     <name>WelcomeContentWidget</name>
-    <message>
-        <source>Dialog</source>
-        <translation>Diyalog</translation>
-    </message>
     <message>
         <source>1</source>
         <translation>1</translation>
@@ -5385,16 +4104,8 @@ Hoşgeldiniz</translation>
         <translation>JSON-RPC bağlantılarını dinlemek için verilen adrese bağlanın. IPv6 için [host]: port gösterimini kullanın. Bu seçenek birden çok kez belirtilebilir (varsayılan: tüm arabirimlere bağlanır)</translation>
     </message>
     <message>
-        <source>Calculated accumulator checkpoint is not what is recorded by block index</source>
-        <translation>Hesaplanan akümülatör kontrol noktası, blok indeksiyle kaydedilen kontrol noktası değildir.</translation>
-    </message>
-    <message>
         <source>Cannot obtain a lock on data directory %s. BCZ Core is probably already running.</source>
         <translation>Veri dizini %s üzerinde bir kilit elde edemiyor. BCZ Core muhtemelen zaten çalışıyor.</translation>
-    </message>
-    <message>
-        <source>Change automatic finalized budget voting behavior. mode=auto: Vote for only exact finalized budget match to my generated budget. (string, default: auto)</source>
-        <translation>Otomatik sonuçlandırılmış bütçe oylama davranışını değiştirin. mode = auto: Yalnızca kesin bütçelendirilmiş bütçeyi, oluşturulan bütçemle eşleştirmek için oy verin. (dize, varsayılan: otomatik)</translation>
     </message>
     <message>
         <source>Continuously rate-limit free transactions to &lt;n&gt;*1000 bytes per minute (default:%u)</source>
@@ -5409,32 +4120,12 @@ Hoşgeldiniz</translation>
         <translation>Tüm cüzdan işlemlerini sil ve sadece -rescan on startup komutuyla ilgili kısmımları sadece kurtar</translation>
     </message>
     <message>
-        <source>Delete all zerocoin spends and mints that have been recorded to the blockchain database and reindex them (0-1, default: %u)</source>
-        <translation>Blockchain'e kaydedilmiş tüm zerocoin ve mintleri sil ve tekrar endeksle (0-1, varsayılan: %u)</translation>
-    </message>
-    <message>
         <source>Distributed under the MIT software license, see the accompanying file COPYING or &lt;http://www.opensource.org/licenses/mit-license.php&gt;.</source>
         <translation>MIT yazılım lisansı altında dağıtılmıştır, eşlik eden KOPYALAMA dosyasına bakın veya &lt;http://www.opensource.org/licenses/mit-license.php&gt;.</translation>
     </message>
     <message>
-        <source>Enable automatic Zerocoin minting from specific addresses (0-1, default: %u)</source>
-        <translation>Belirli bir adresten otomatik zBCZ minting yapılmasını etkinleştir (0-1, varsayılan: %u)</translation>
-    </message>
-    <message>
-        <source>Enable automatic wallet backups triggered after each zBCZ minting (0-1, default: %u)</source>
-        <translation>Her zBCZ mintleme sonrası otomatik cüzdan yedeklemesini aktifleştir (0-1, varsayılan:%u)</translation>
-    </message>
-    <message>
         <source>Enable cold staking functionality (0-1, default: %u). Disabled if staking=0</source>
         <translation>Soğuk stakeleme fonksiyonunu etkinleştirin (0-1, varsayılan: %u). Staking=0 ise etkin değildir</translation>
-    </message>
-    <message>
-        <source>Enable or disable staking functionality for BCZ inputs (0-1, default: %u)</source>
-        <translation>BCZ girişleri için stake fonksiyonunu aç veya kapat (0-1, varsayılan: %u)</translation>
-    </message>
-    <message>
-        <source>Enable or disable staking functionality for zBCZ inputs (0-1, default: %u)</source>
-        <translation>zBCZ girişleri için stake fonksiyonunu aç veya kapat (0-1, varsayılan: %u)</translation>
     </message>
     <message>
         <source>Enable spork administration functionality with the appropriate private key.</source>
@@ -5469,14 +4160,6 @@ Hoşgeldiniz</translation>
         <translation>En iyi blok değiştirildiğinde komutu yürütün (cmd'deki %s yerine blok karması verilir)</translation>
     </message>
     <message>
-        <source>Fees (in BCZ/Kb) smaller than this are considered zero fee for relaying (default: %s)</source>
-        <translation>Bundan daha küçük ücretler (BCZ / Kb cinsinden), aktarma için sıfır ücret olarak kabul edilir (varsayılan: %s)</translation>
-    </message>
-    <message>
-        <source>Fees (in BCZ/Kb) smaller than this are considered zero fee for transaction creation (default: %s)</source>
-        <translation>Bundan daha küçük ücretler (BCZ / Kb cinsinden), işlem yaratmada sıfır ücret olarak kabul edilir (varsayılan: %s)</translation>
-    </message>
-    <message>
         <source>Flush database activity from memory pool to disk log every &lt;n&gt; megabytes (default: %u)</source>
         <translation>Bellek havuzundan disk günlüğüne her veritabanı aktivitesini temizle&lt;n&gt; megabytes (default: %u)</translation>
     </message>
@@ -5495,10 +4178,6 @@ Hoşgeldiniz</translation>
     <message>
         <source>Invalid amount for -maxtxfee=&lt;amount&gt;: '%s' (must be at least the minrelay fee of %s to prevent stuck transactions)</source>
         <translation>Yetersiz miktar için -maxtxfee=&lt;amount&gt;: '%s' (sıkışmış işlemleri önlemek için en az %s'lik minrelay ücreti olmalıdır)</translation>
-    </message>
-    <message>
-        <source>Keep the specified amount available for spending at all times (default: 0)</source>
-        <translation>Belirlenen tutarı her zaman harcamaya hazır durumda tut. (varsayılan:0)</translation>
     </message>
     <message>
         <source>Log transaction priority and fee per kB when mining blocks (default: %u)</source>
@@ -5529,16 +4208,8 @@ Hoşgeldiniz</translation>
         <translation>Uyumsuz davranan eşleri tekrar bağlanmaktan saniye cinsinden uzak tutma süresi (varsayılan: %u)</translation>
     </message>
     <message>
-        <source>Obfuscation uses exact denominated amounts to send funds, you might simply need to anonymize some more coins.</source>
-        <translation>Gizleme özelliği gönderilecek tutarın kesin bölümlemelerini kullanır, sadece daha fazla koin anonimleştirmeniz gerekiyor.</translation>
-    </message>
-    <message>
         <source>Output debugging information (default: %u, supplying &lt;category&gt; is optional)</source>
         <translation>Hata ayıklama bilgisini dışarı aktar (varsayılan: %u, sağlamak&lt;category&gt;  opsiyoneldir)</translation>
-    </message>
-    <message>
-        <source>Query for peer addresses via DNS lookup, if low on addresses (default: 1 unless -connect)</source>
-        <translation>Adresler azsa eş adreslerini DNS lookup yoluyla ara (varsayılan: 1 unless -connect)</translation>
     </message>
     <message>
         <source>Randomize credentials for every proxy connection. This enables Tor stream isolation (default: %u)</source>
@@ -5555,10 +4226,6 @@ Hoşgeldiniz</translation>
     <message>
         <source>Set maximum size of high-priority/low-fee transactions in bytes (default: %d)</source>
         <translation>Yüksek öncelik/düşük maliyet işlemlerin maksimum blok büyüklüğünü belirle (varsayılan: %d)</translation>
-    </message>
-    <message>
-        <source>Set the number of included blocks to precompute per cycle. (minimum: %d) (maximum: %d) (default: %d)</source>
-        <translation>Her döngüde eklenen blokların ön işlemeye alınacak sayısını belirle. (minimum: %d) (maksimum: %d) (varsayılan: %d)</translation>
     </message>
     <message>
         <source>Set the number of script verification threads (%u to %d, 0 = auto, &lt;0 = leave that many cores free, default: %d)</source>
@@ -5593,18 +4260,6 @@ Hoşgeldiniz</translation>
         <translation>Bu bilgisayarda %s 'e bağlanılamıyor. BCZ Core muhtemelen zaten çalışıyor.</translation>
     </message>
     <message>
-        <source>Unable to locate enough Obfuscation denominated funds for this transaction.</source>
-        <translation>Bu işlem için gereken yeterli bölünmüş gizleme fonu bulunamadı.</translation>
-    </message>
-    <message>
-        <source>Unable to locate enough Obfuscation non-denominated funds for this transaction that are not equal 5000 BCZ.</source>
-        <translation>5000 BCZ'e eşit olmayan bu işlem için gereken yeterli bölünmemiş gizleme fonu bulunamadı.</translation>
-    </message>
-    <message>
-        <source>Unable to locate enough funds for this transaction that are not equal 5000 BCZ.</source>
-        <translation>5000 BCZ'e eşit olmayan bu işlem için yeterli bakiye tespit edilemedi</translation>
-    </message>
-    <message>
         <source>Use separate SOCKS5 proxy to reach peers via Tor hidden services (default: %s)</source>
         <translation>Eşlere Tor gizli servisleri üzerinden ulaşmak için ayrı SOCKS5 proksisi kullan (varsayılan: %s)</translation>
     </message>
@@ -5615,10 +4270,6 @@ Hoşgeldiniz</translation>
     <message>
         <source>Warning: -paytxfee is set very high! This is the transaction fee you will pay if you send a transaction.</source>
         <translation>Uyarı: paytxfee değeri çok yüksek ayarlanmış! Bu para gönderirken ödeyeceğiniz transfer ücretidir.</translation>
-    </message>
-    <message>
-        <source>Warning: Peers are being disconnected due time differences. Please check that your computer's date and time are correct! If your clock is wrong BCZ Core will not work properly.</source>
-        <translation>Uyarı: Zaman farkı sebebiyle eşlerin bağlantısı koptı. Bilgisayarınızın tarih ve saat ayarlarının doğruluğunu kontrol edin! Saatiniz yanlış ise BCZ Core düzgün çalışmayacaktır. </translation>
     </message>
     <message>
         <source>Warning: Please check that your computer's date and time are correct! If your clock is wrong BCZ Core will not work properly.</source>
@@ -5633,14 +4284,6 @@ Hoşgeldiniz</translation>
         <translation>Uyarı: Diğer eşlerle anlaşamıyor gibiyiz.! Sizin yada diğer düğümlerin güncelleme yapması gerekiyor. </translation>
     </message>
     <message>
-        <source>Warning: error reading wallet.dat! All keys read correctly, but transaction data or address book entries might be missing or incorrect.</source>
-        <translation>Uyarı: wallet.dat dosyası okunurken hata oluştu. Tüm anahtarlar doğru şekilde okundu, fakat işlemler bilgisi veya adres defteri girişleri eksik veya yanlış olabilir.</translation>
-    </message>
-    <message>
-        <source>Warning: wallet.dat corrupt, data salvaged! Original wallet.dat saved as wallet.{timestamp}.bak in %s; if your balance or transactions are incorrect you should restore from a backup.</source>
-        <translation>Uyarı: wallet.dat dosyası bozuk, bilgi kurtarıldı! Orjinal cüzdan wallet.{timestamp}.bak adıyla  %s içine kaydedildiİ bakiyeniz veya işlemler yanlış ise yedekten yükleme yapmalısınız.</translation>
-    </message>
-    <message>
         <source>Whitelist peers connecting from the given netmask or IP address. Can be specified multiple times.</source>
         <translation>Verilen netmask veya IP adresinden gelen bağlantıları güvenli listeye ekle. Birden çok defa belirlenebilir.</translation>
     </message>
@@ -5653,28 +4296,12 @@ Hoşgeldiniz</translation>
         <translation>Konfigürasyonda bir masternodeprivkey belirlemelisiniz.  Lütfen dokümantasyona bakınız.</translation>
     </message>
     <message>
-        <source>(29500 could be used only on mainnet)</source>
-        <translation>(29500 sadece mainnet üzerinde kullanılabilir)</translation>
-    </message>
-    <message>
         <source>(default: %s)</source>
         <translation>(default: %s)</translation>
     </message>
     <message>
-        <source>(default: 1)</source>
-        <translation>(default: 1)</translation>
-    </message>
-    <message>
-        <source>(must be 29500 for mainnet)</source>
-        <translation>(mainnet için 29500 olmalıdır)</translation>
-    </message>
-    <message>
         <source>Accept command line and JSON-RPC commands</source>
         <translation>JSON-RPC ve komut satırı komutlarını kabul et</translation>
-    </message>
-    <message>
-        <source>Accept connections from outside (default: 1 if no -proxy or -connect)</source>
-        <translation>Dış bağlantıları kabul et (varsayılan:1 eğer -proxy veya -connect yoksa)</translation>
     </message>
     <message>
         <source>Accept public REST requests (default: %u)</source>
@@ -5685,14 +4312,6 @@ Hoşgeldiniz</translation>
         <translation>Bağlanmak için bir düğüm ekle ve bağlantıyı açık tut</translation>
     </message>
     <message>
-        <source>Adding Wrapped Serials supply...</source>
-        <translation>Paketlenmiş seri temini ekleniyor...</translation>
-    </message>
-    <message>
-        <source>Allow DNS lookups for -addnode, -seednode and -connect</source>
-        <translation>DNS lookup ile -addnode, -seednode ve -connect işlemlerine izin ver</translation>
-    </message>
-    <message>
         <source>Always query for peer addresses via DNS lookup (default: %u)</source>
         <translation>Eş adreslerini her zaman DNS lookup yoluyla ara (varsayılan: %u)</translation>
     </message>
@@ -5701,44 +4320,12 @@ Hoşgeldiniz</translation>
         <translation>Kullanıcı gereç dizisine yorumu ekle ekle</translation>
     </message>
     <message>
-        <source>Attempt to recover private keys from a corrupt wallet.dat</source>
-        <translation>Bozuk wallet.dat dosyasından gizli anahtarları kurtar</translation>
-    </message>
-    <message>
         <source>Automatically create Tor hidden service (default: %d)</source>
         <translation>Tor gizli servislerini otomatik olarak oluştur (varsayılan: %d)</translation>
     </message>
     <message>
         <source>Block creation options:</source>
         <translation>Blok oluşturma seçenekleri:</translation>
-    </message>
-    <message>
-        <source>Calculating missing accumulators...</source>
-        <translation>Eksik toplayıcılar hesaplanıyor...</translation>
-    </message>
-    <message>
-        <source>Cannot downgrade wallet</source>
-        <translation>Cüzdan alt versiyona düşürülemiyor</translation>
-    </message>
-    <message>
-        <source>Cannot resolve -bind address: '%s'</source>
-        <translation>Bind adres: '%s' çözümlenemiyor</translation>
-    </message>
-    <message>
-        <source>Cannot resolve -externalip address: '%s'</source>
-        <translation>Dış IP adresi: '%s' çözümlenemiyor</translation>
-    </message>
-    <message>
-        <source>Cannot resolve -whitebind address: '%s'</source>
-        <translation>Whitebind address: '%s' çözümlenemiyor</translation>
-    </message>
-    <message>
-        <source>CoinSpend: failed check</source>
-        <translation>KoinHarcama: kontrol başarısız</translation>
-    </message>
-    <message>
-        <source>Connect only to the specified node(s)</source>
-        <translation>Sadece belirtilmiş düğüm(lere) bağlan</translation>
     </message>
     <message>
         <source>Connect through SOCKS5 proxy</source>
@@ -5773,10 +4360,6 @@ Hoşgeldiniz</translation>
         <translation>masternode.conf çözümlenemedi</translation>
     </message>
     <message>
-        <source>Couldn't generate the accumulator witness</source>
-        <translation>Toplayıcı tanığı -accumulator witness - oluşturulamadı</translation>
-    </message>
-    <message>
         <source>Debugging/Testing options:</source>
         <translation>Hata Ayıklama/Test seçenekleri:</translation>
     </message>
@@ -5787,10 +4370,6 @@ Hoşgeldiniz</translation>
     <message>
         <source>Disable OS notifications for incoming transactions (default: %u)</source>
         <translation>Gelen işlemler için işletim sistemi uyarılarını devre dışı bırak (varsayılan: %u)</translation>
-    </message>
-    <message>
-        <source>Disable safemode, override a real safe mode event (default: %u)</source>
-        <translation>Güvenli modu devre dışı bırak, gerçek bir güvenli mode durumunu üstüne yaz (varsayılan: %u)</translation>
     </message>
     <message>
         <source>Discover own IP address (default: 1 when listening and no -externalip)</source>
@@ -5807,14 +4386,6 @@ Hoşgeldiniz</translation>
     <message>
         <source>Done loading</source>
         <translation>Yükleme tamamlandı</translation>
-    </message>
-    <message>
-        <source>Enable automatic Zerocoin minting (0-1, default: %u)</source>
-        <translation>zBCZ minting yapılmasını etkinleştir (0-1, varsayılan: %u)</translation>
-    </message>
-    <message>
-        <source>Enable precomputation of zBCZ spends and stakes (0-1, default %u)</source>
-        <translation>zBCZ harcamalarının ve stakelerinin önhesaplamasını etkinleştir (0-1, varsayılan %u)</translation>
     </message>
     <message>
         <source>Enable publish hash transaction (locked via SwiftX) in &lt;address&gt;</source>
@@ -5841,18 +4412,6 @@ Hoşgeldiniz</translation>
         <translation>Blok veritabanı yüklenirken hata oluştu</translation>
     </message>
     <message>
-        <source>Error loading wallet.dat</source>
-        <translation>Wallet.dat yüklenirken hata oluştu</translation>
-    </message>
-    <message>
-        <source>Error loading wallet.dat: Wallet corrupted</source>
-        <translation>Wallet.dat yüklenirken hata oluştu: Cüzdan dosyası bozuk</translation>
-    </message>
-    <message>
-        <source>Error loading wallet.dat: Wallet requires newer version of BCZ Core</source>
-        <translation>Wallet.dat yüklenirken hata oluştu: Cüzdan daha yeni bir BCZ Core versiyonuna ihtiyaç duyuyor</translation>
-    </message>
-    <message>
         <source>Error opening block database</source>
         <translation>Block veritabanını açarken hata oluştu</translation>
     </message>
@@ -5861,12 +4420,8 @@ Hoşgeldiniz</translation>
         <translation>Veritabanı okunurken hata oluştu, kapatılıyorç</translation>
     </message>
     <message>
-        <source>Error writing zerocoinDB to disk</source>
-        <translation>ZerocoinDB diske yazılırken hata oluştu</translation>
-    </message>
-    <message>
         <source>Error</source>
-        <translation>hata</translation>
+        <translation>Hata</translation>
     </message>
     <message>
         <source>Error: A fatal internal error occured, see debug.log for details</source>
@@ -5885,24 +4440,12 @@ Hoşgeldiniz</translation>
         <translation>Hata: Cüzdan kilitli, transfer yaratılamıyor!</translation>
     </message>
     <message>
-        <source>Failed to calculate accumulator checkpoint</source>
-        <translation>Toplayıcı kontrol noktası hesaplanamadı</translation>
-    </message>
-    <message>
         <source>Failed to listen on any port. Use -listen=0 if you want this.</source>
         <translation>Port dinleme başarısız oldu. Bunu istiyorsanız -listen=0 şeklinde kullanın</translation>
     </message>
     <message>
         <source>Failed to parse host:port string</source>
         <translation>host:port string çözümlenemedi</translation>
-    </message>
-    <message>
-        <source>Failed to read block</source>
-        <translation>Blok okuma hatası</translation>
-    </message>
-    <message>
-        <source>Fee (in BCZ/kB) to add to transactions you send (default: %s)</source>
-        <translation>Gönderdiğiniz transfere (BCZ/kb cinsinden) bir masraf ekleyin (varsayılan: %s) </translation>
     </message>
     <message>
         <source>Force safe mode (default: %u)</source>
@@ -5938,7 +4481,7 @@ Hoşgeldiniz</translation>
     </message>
     <message>
         <source>Information</source>
-        <translation>bilgi</translation>
+        <translation>Bilgi</translation>
     </message>
     <message>
         <source>Initialization sanity check failed. BCZ Core is shutting down.</source>
@@ -5957,28 +4500,8 @@ Hoşgeldiniz</translation>
         <translation>Geçersiz onion veya hostname: !%s!</translation>
     </message>
     <message>
-        <source>Invalid amount for -maxtxfee=&lt;amount&gt;: '%s'</source>
-        <translation>Maxtxfee=&lt;amount&gt;: '%s' için geçersiz tutar</translation>
-    </message>
-    <message>
-        <source>Invalid amount for -minrelaytxfee=&lt;amount&gt;: '%s'</source>
-        <translation>Minrelaytxfee=&lt;amount&gt;: '%s' için geçersiz tutar</translation>
-    </message>
-    <message>
-        <source>Invalid amount for -mintxfee=&lt;amount&gt;: '%s'</source>
-        <translation>Mintxfee=&lt;amount&gt;: '%s'  için geçersiz tutar</translation>
-    </message>
-    <message>
         <source>Invalid amount for -paytxfee=&lt;amount&gt;: '%s' (must be at least %s)</source>
         <translation>Paytxfee=&lt;amount&gt;: '%s' için geçersiz tutar (en az %s olmalıdır)</translation>
-    </message>
-    <message>
-        <source>Invalid amount for -paytxfee=&lt;amount&gt;: '%s'</source>
-        <translation>Paytxfee=&lt;amount&gt;: '%s' için geçersiz tutar</translation>
-    </message>
-    <message>
-        <source>Invalid amount for -reservebalance=&lt;amount&gt;</source>
-        <translation>Reservebalance=&lt;amount&gt; için geçersiz tutar</translation>
     </message>
     <message>
         <source>Invalid amount</source>
@@ -5993,44 +4516,12 @@ Hoşgeldiniz</translation>
         <translation>Whitelist içinde belirtilen geçersiz netmask: '%s'</translation>
     </message>
     <message>
-        <source>Invalid port detected in masternode.conf</source>
-        <translation>masternode.conf dosyasında geçersiz port tespit edildi</translation>
-    </message>
-    <message>
-        <source>Percentage of automatically minted Zerocoin  (1-100, default: %u)</source>
-        <translation>Otomatik olarak mint edilen Zerocoin yüzdesi (1-100, varsayılan: %u)</translation>
-    </message>
-    <message>
         <source>Recalculating BCZ supply...</source>
         <translation>BCZ tedariği tekrar hesaplanıyor...</translation>
     </message>
     <message>
-        <source>Recalculating minted ZBCZ...</source>
-        <translation>Mint edilmiş zBCZ'ler tekrar hesaplanıyor...</translation>
-    </message>
-    <message>
-        <source>Recalculating spent ZBCZ...</source>
-        <translation>Harcanmış zBCZ'ler tekrar hesaplanıyor...</translation>
-    </message>
-    <message>
-        <source>Reindex the BCZ and zBCZ money supply statistics</source>
-        <translation>BCZ ve zBCZ para tedarik istatistiklerini tekrar endeksle</translation>
-    </message>
-    <message>
-        <source>Reindexing zerocoin database...</source>
-        <translation>Zerocoin veritabanı tekrar endeksleniyor...</translation>
-    </message>
-    <message>
-        <source>Reindexing zerocoin failed</source>
-        <translation>Zerocoin tekrar endekslemesi başarısız</translation>
-    </message>
-    <message>
         <source>Selected coins value is less than payment target</source>
         <translation>Seçili koinlerin değeri hedeflenen ödeme tutarından düşük</translation>
-    </message>
-    <message>
-        <source>Support the zerocoin light node protocol (default: %u)</source>
-        <translation>Zerocoin light node protocolünü destekle (varsayılan: %u)</translation>
     </message>
     <message>
         <source>SwiftX options:</source>
@@ -6041,36 +4532,12 @@ Hoşgeldiniz</translation>
         <translation>Bu ön-sürümdeki bir test programıdır - riski kabullenerek kullanınız - staking ve ticaret uygulamalarında kullanmayın.</translation>
     </message>
     <message>
-        <source> mints deleted
-</source>
-        <translation>mintler silindi
-</translation>
-    </message>
-    <message>
-        <source> mints updated, </source>
-        <translation> mints güncellendi</translation>
-    </message>
-    <message>
-        <source> unconfirmed transactions removed
-</source>
-        <translation>Doğrulanmamış işlemler kaldırıldı
-</translation>
-    </message>
-    <message>
-        <source>Disable all BCZ specific functionality (Masternodes, Zerocoin, SwiftX, Budgeting) (0-1, default: %u)</source>
-        <translation>BCZ spesifik tüm fonksiyonaliteyi devre dışı bırak (Masternodes, Zerocoin, SwiftX, Budgeting) (0-1, varsayılan: %u)</translation>
+        <source>Disable all BCZ specific functionality (Masternodes, SwiftX) (0-1, default: %u)</source>
+        <translation>BCZ spesifik tüm fonksiyonaliteyi devre dışı bırak (Masternodes, SwiftX) (0-1, varsayılan: %u)</translation>
     </message>
     <message>
         <source>Enable SwiftX, show confirmations for locked transactions (bool, default: %s)</source>
         <translation>SwiftX'i etkinleştir, kilitli işlemler için doğrulamaları göster (bool, varsayılan: %s)</translation>
-    </message>
-    <message>
-        <source>Error: The transaction was rejected! This might happen if some of the coins in your wallet were already spent, such as if you used a copy of wallet.dat and coins were spent in the copy but not marked as spent here.</source>
-        <translation>İşlem reddedildi! Bu, cüzdanındaki koinlerin bir kısmının harcanması durumunda olabilir; mesela, wallet.dat dosyasının bir kopyasını kullandıysanız ve koinlerinizi harcamış fakat cüzdana harcanmış olarak işaretlenmemişse ortaya çıkabilir.</translation>
-    </message>
-    <message>
-        <source>Error: This transaction requires a transaction fee of at least %s because of its amount, complexity, or use of recently received funds!</source>
-        <translation>Hata: Bu işlem en az %s kadar bir transfer üzreti gerektirir, sebebi tutar, karmaşıklık veya son alınmış tutar kullanımı olabilir!</translation>
     </message>
     <message>
         <source>Error: Unsupported argument -checklevel found. Checklevel must be level 4.</source>
@@ -6087,14 +4554,6 @@ Hoşgeldiniz</translation>
     <message>
         <source>In rare cases, a spend with 7 coins exceeds our maximum allowable transaction size, please retry spend using 6 or less coins</source>
         <translation>Bazı nadir durumlarda 7 koin bulunan bir harcama maksimum izin verilmiş işlem büyüklüğü sınırını aşar, lütfen 6 veya daha az koin ile tekrar deneyin</translation>
-    </message>
-    <message>
-        <source>Preferred Denomination for automatically minted Zerocoin  (1/5/10/50/100/500/1000/5000), 0 for no preference. default: %u)</source>
-        <translation>Otomatik mint edilmiş Zerocoin için tercih edilen bölümler (1/5/10/50/100/500/1000/5000), tercih yoksa 0. varsayılan: %u)</translation>
-    </message>
-    <message>
-        <source>Specify custom backup path to add a copy of any automatic zBCZ backup. If set as dir, every backup generates a timestamped file. If set as file, will rewrite to that file every backup. If backuppath is set as well, 4 backups will happen</source>
-        <translation>Otomatik bir zBCZ yedek kopyası eklemek için bir yedekleme özel yolu belirleyin. Eğer dizin olarak belirlerseniz her yedek zaman damgası adı ile dosyalanır. Dosya olarak belirlerseniz, her yedeklemede üstüne yazar. Eğer yedek yolu da belirlenmişse, 4 yedek oluşur.</translation>
     </message>
     <message>
         <source>Specify custom backup path to add a copy of any wallet backup. If set as dir, every backup generates a timestamped file. If set as file, will rewrite to that file every backup.</source>
@@ -6115,10 +4574,6 @@ Hoşgeldiniz</translation>
     <message>
         <source>Cannot create public spend input</source>
         <translation>Açık harcama girişi oluşturulamıyor</translation>
-    </message>
-    <message>
-        <source>CoinSpend: Accumulator witness does not verify</source>
-        <translation>KoinHarcama: Toplayıcı şahidi -Accumulator witness- onaylamıyor</translation>
     </message>
     <message>
         <source>Display the stake modifier calculations in the debug.log file.</source>
@@ -6157,24 +4612,8 @@ Hoşgeldiniz</translation>
         <translation>Hata: Geçerli utxo yok!</translation>
     </message>
     <message>
-        <source>Failed to create mint</source>
-        <translation>Mint oluşturulamadı</translation>
-    </message>
-    <message>
-        <source>Failed to find Zerocoins in wallet.dat</source>
-        <translation>Wallet.dat dosyasından Zerocoin bulunamadı.</translation>
-    </message>
-    <message>
         <source>Failed to parse public spend</source>
         <translation>Açık harcama çözümlemesi başarısız</translation>
-    </message>
-    <message>
-        <source>Failed to select a zerocoin</source>
-        <translation>Zerocoin seçimi başarısız</translation>
-    </message>
-    <message>
-        <source>Failed to wipe zerocoinDB</source>
-        <translation>ZerocoinDB silinmesi başarısız</translation>
     </message>
     <message>
         <source>Failed to write coin serial number into wallet</source>
@@ -6183,10 +4622,6 @@ Hoşgeldiniz</translation>
     <message>
         <source>Keep at most &lt;n&gt; unconnectable transactions in memory (default: %u)</source>
         <translation>Hafızada en fazla &lt;n&gt; bağlanamaz işlem tut (varsayılan: %u)</translation>
-    </message>
-    <message>
-        <source>Limit size of signature cache to &lt;n&gt; entries (default: %u)</source>
-        <translation>İmza ön bellek büyüklüğü &lt;n&gt; girişle limitle (varsayılan: %u)</translation>
     </message>
     <message>
         <source>Line: %d</source>
@@ -6209,10 +4644,6 @@ Hoşgeldiniz</translation>
         <translation>Blok endeksi yükleniyor...</translation>
     </message>
     <message>
-        <source>Loading budget cache...</source>
-        <translation>Bütçe ön belleği yükleniyor...</translation>
-    </message>
-    <message>
         <source>Loading masternode cache...</source>
         <translation>Masternode ön belleği yükleniyor...</translation>
     </message>
@@ -6223,10 +4654,6 @@ Hoşgeldiniz</translation>
     <message>
         <source>Loading sporks...</source>
         <translation>Sporklar yükleniyor...</translation>
-    </message>
-    <message>
-        <source>Loading wallet... (%3.2f %%)</source>
-        <translation>Cüzdan yükleniyor... (%3.2f%%)</translation>
     </message>
     <message>
         <source>Loading wallet...</source>
@@ -6277,10 +4704,6 @@ Hoşgeldiniz</translation>
         <translation>Yeterli dosya tanımlayıcısı bulunmuyor.</translation>
     </message>
     <message>
-        <source>Number of automatic wallet backups (default: 10)</source>
-        <translation>Otomatik olarak yedeklenmiş cüzdan sayısı</translation>
-    </message>
-    <message>
         <source>Number of custom location backups to retain (default: %d)</source>
         <translation>Tutulacak özel lokasyonlu yedek sayısı (varsayılan: %d)</translation>
     </message>
@@ -6313,10 +4736,6 @@ Hoşgeldiniz</translation>
         <translation>Blok spam filtresini kullan (varsayılan: %u)</translation>
     </message>
     <message>
-        <source>could not get lock on cs_spendcache</source>
-        <translation>cs_spendcache'e kilitlenilemedi</translation>
-    </message>
-    <message>
         <source>isValid(): Invalid -proxy address or hostname: '%s'</source>
         <translation>Lookup(): Geçersiz proxy adresi veya hostname: '%s'</translation>
     </message>
@@ -6337,10 +4756,6 @@ Hoşgeldiniz</translation>
         <translation>Versiyonu bas ve çık</translation>
     </message>
     <message>
-        <source>Pubcoin not found in mint tx</source>
-        <translation>Mint tx içinde Pubcoin bulunamadı</translation>
-    </message>
-    <message>
         <source>RPC server options:</source>
         <translation>RPC sunucu opsiyonları:</translation>
     </message>
@@ -6355,14 +4770,6 @@ Hoşgeldiniz</translation>
     <message>
         <source>Rebuild block chain index from current blk000??.dat files</source>
         <translation>Blok zinciri dizinini mevcut blk000 ?? dat dosyalarından yeniden oluştur.</translation>
-    </message>
-    <message>
-        <source>Receive and display P2P network alerts (default: %u)</source>
-        <translation>P2P ağ uyarılarını al ve göster (varsayılan:%u)</translation>
-    </message>
-    <message>
-        <source>Reindex the accumulator database</source>
-        <translation>Toplayıcı veritabanını tekrar endeksle</translation>
     </message>
     <message>
         <source>Relay and mine data carrier transactions (default: %u)</source>
@@ -6381,14 +4788,6 @@ Hoşgeldiniz</translation>
         <translation>Yeniden taranıyor...</translation>
     </message>
     <message>
-        <source>ResetMintZerocoin finished: </source>
-        <translation>ResetMintZerocoin tamamlandı: </translation>
-    </message>
-    <message>
-        <source>ResetSpentZerocoin finished: </source>
-        <translation>ResetSpentZerocoin tamamlandı: </translation>
-    </message>
-    <message>
         <source>Run a thread to flush wallet periodically (default: %u)</source>
         <translation>Cüzdanı periyodik olarak düzenlemek için bir işlem çalıştır (varsayılan: %u)</translation>
     </message>
@@ -6399,10 +4798,6 @@ Hoşgeldiniz</translation>
     <message>
         <source>Send transactions as zero-fee transactions if possible (default: %u)</source>
         <translation>Mümkünse transferleri sıfır-maliyetli olarak gönder (varsayılan: %u)</translation>
-    </message>
-    <message>
-        <source>Session timed out.</source>
-        <translation>Oturum zaman aşımına uğradı</translation>
     </message>
     <message>
         <source>Set database cache size in megabytes (%d to %d, default: %d)</source>
@@ -6449,10 +4844,6 @@ Hoşgeldiniz</translation>
         <translation>Program başlatılırken debug.log dosyasını sıkıştır. (varsayılan: 1 debug olmadığında)</translation>
     </message>
     <message>
-        <source>Signing timed out.</source>
-        <translation>İmzalama zaman aşımına uğradı</translation>
-    </message>
-    <message>
         <source>Signing transaction failed</source>
         <translation>İşlem imzalama başarısız</translation>
     </message>
@@ -6493,10 +4884,6 @@ Hoşgeldiniz</translation>
         <translation>Transfer yapılırken onaylanmamış farkları kullan (varsayılan: %u)</translation>
     </message>
     <message>
-        <source>Staking options:</source>
-        <translation>Staking seçenekleri:</translation>
-    </message>
-    <message>
         <source>Stop running after importing blocks from disk (default: %u)</source>
         <translation>Disk üzerinden bloklar içer aktarıldıktan sonra çalışmayı durdur (varsayılan: %u)</translation>
     </message>
@@ -6507,14 +4894,6 @@ Hoşgeldiniz</translation>
     <message>
         <source>Synchronization finished</source>
         <translation>Eşzamanlama tamamlandı</translation>
-    </message>
-    <message>
-        <source>Synchronization pending...</source>
-        <translation>Eşzamanlama bekleniyor</translation>
-    </message>
-    <message>
-        <source>Synchronizing budgets...</source>
-        <translation>Bütçe eşzamanlanıyor..</translation>
     </message>
     <message>
         <source>Synchronizing masternode winners...</source>
@@ -6529,16 +4908,8 @@ Hoşgeldiniz</translation>
         <translation>Sporklar eşzamanlanıyor..</translation>
     </message>
     <message>
-        <source>Syncing zBCZ wallet...</source>
-        <translation>zBCZ cüzdanı eşzamanlanıyor..</translation>
-    </message>
-    <message>
-        <source>The coin spend has been used</source>
-        <translation>Koin harcaması kullanıldı</translation>
-    </message>
-    <message>
-        <source>The transaction did not verify</source>
-        <translation>Bu ödeme onaylanmadı</translation>
+        <source>Syncing BCZ wallet...</source>
+        <translation>BCZ cüzdanı eşzamanlanıyor..</translation>
     </message>
     <message>
         <source>This help message</source>
@@ -6601,10 +4972,6 @@ Hoşgeldiniz</translation>
         <translation>Bu bilgisayarda %s 'e bağlanılamıyor (bağlantıdan dönen hata %s )</translation>
     </message>
     <message>
-        <source>Unable to generate initial key</source>
-        <translation>Başlangıç anahtarı oluşturulamadı</translation>
-    </message>
-    <message>
         <source>Unable to sign spork message, wrong key?</source>
         <translation>Spork mesajı imzalanamıyor, yanlış anahtar?</translation>
     </message>
@@ -6625,14 +4992,6 @@ Hoşgeldiniz</translation>
         <translation>Dinleme portunu belirlemek için UPnP kullanın (varsayılan: %u)</translation>
     </message>
     <message>
-        <source>Use UPnP to map the listening port (default: 1 when listening)</source>
-        <translation>Dinleme portunu belirlemek için UPnP kullanın (varsayılan: 1 dinlerken)</translation>
-    </message>
-    <message>
-        <source>Use a custom max chain reorganization depth (default: %u)</source>
-        <translation>Özel bir maksimum zincir re-organizasyon derinliği kullanın (varsayılan: %u)</translation>
-    </message>
-    <message>
         <source>Use the test network</source>
         <translation>Test ağını kullanın</translation>
     </message>
@@ -6643,10 +5002,6 @@ Hoşgeldiniz</translation>
     <message>
         <source>Username for JSON-RPC connections</source>
         <translation>JSON-RPC bağlantısı için kullanıcı adı</translation>
-    </message>
-    <message>
-        <source>Value is below the smallest available denomination (= 1) of zBCZ</source>
-        <translation>Aşağıdaki değer zBCZ'in mümkün olan en küçük bölüm değeridir (=1)</translation>
     </message>
     <message>
         <source>Verifying blocks...</source>
@@ -6689,10 +5044,6 @@ Hoşgeldiniz</translation>
         <translation>Hata: Desteklenmeyen argüman -debugnet yok sayıldı, -debug=net kullanın.</translation>
     </message>
     <message>
-        <source>You don't have enough Zerocoins in your wallet</source>
-        <translation>Cüzdanınızda yeterli miktarda Zerocoin bulunmuyor</translation>
-    </message>
-    <message>
         <source>You need to rebuild the database using -reindex to change -txindex</source>
         <translation>Tx endeksini değiştirmek için veritabanını -reindex kullanarak tekrar oluşturmanız gerekmektedir </translation>
     </message>
@@ -6705,16 +5056,8 @@ Hoşgeldiniz</translation>
         <translation>ZeroMQ bildirim seçenekleri:</translation>
     </message>
     <message>
-        <source>Zerocoin options:</source>
-        <translation>Zerocoin seçenekleri:</translation>
-    </message>
-    <message>
         <source>on startup</source>
         <translation>Başlangıçta</translation>
-    </message>
-    <message>
-        <source>wallet.dat corrupt, salvage failed</source>
-        <translation>wallte.dat dosyası bozuk, kurtarma başarız</translation>
     </message>
 </context>
 <context>
@@ -6728,12 +5071,28 @@ Hoşgeldiniz</translation>
         <translation>Gönder</translation>
     </message>
     <message>
-        <source>TextLabel</source>
-        <translation>TextLabel</translation>
+        <source>Amount</source>
+        <translation>Miktar</translation>
     </message>
     <message>
-        <source>PushButton</source>
-        <translation>Butona Basın</translation>
+        <source>Customize fee</source>
+        <translation>Masrafı değiştir</translation>
     </message>
-</context>
+    <message>
+        <source>Clear all</source>
+        <translation>Hepsini temizle</translation>
+    </message>
+    <message>
+        <source>Add recipient</source>
+        <translation>Alıcı Ekle</translation>
+    </message>
+    <message>
+        <source>Total to send</source>
+        <translation>Gönderilecek toplam</translation>
+    </message>
+    <message>
+        <source>Reset to default</source>
+        <translation>Varsayılana konumlandır</translation>
+    </message>
+    </context>
 </TS>

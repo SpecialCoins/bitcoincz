@@ -1,4 +1,4 @@
-// Copyright (c) 2020 The BCZ developers
+// Copyright (c) 2017-2020 The BCZ developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -47,6 +47,7 @@ bool CheckBlockSignature(const CBlock& block)
         return error("%s: vchBlockSig is empty!", __func__);
 
     CPubKey pubkey;
+    {
         txnouttype whichType;
         std::vector<valtype> vSolutions;
         const CTxOut& txout = block.vtx[1].vout[1];
@@ -62,6 +63,7 @@ bool CheckBlockSignature(const CBlock& block)
             start += 1 + (int) *(txin.scriptSig.begin()+start); // skip flag
             pubkey = CPubKey(txin.scriptSig.begin()+start+1, txin.scriptSig.end());
         }
+    }
 
     if (!pubkey.IsValid())
         return error("%s: invalid pubkey %s", __func__, HexStr(pubkey));

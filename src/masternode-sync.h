@@ -1,5 +1,5 @@
 // Copyright (c) 2014-2015 The Dash developers
-// Copyright (c) 2020 The BCZ developers
+// Copyright (c) 2015-2020 The BCZ developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -58,13 +58,15 @@ public:
     void AddedMasternodeList(uint256 hash);
     void AddedMasternodeWinner(uint256 hash);
     void GetNextAsset();
-    std::string GetAssetName();
     std::string GetSyncStatus();
     void ProcessMessage(CNode* pfrom, std::string& strCommand, CDataStream& vRecv);
 
     void Reset();
     void Process();
     bool IsSynced();
+    bool NotCompleted();
+    bool IsSporkListSynced();
+    bool IsMasternodeListSynced();
     bool IsBlockchainSynced();
     void ClearFulfilledRequest();
 };

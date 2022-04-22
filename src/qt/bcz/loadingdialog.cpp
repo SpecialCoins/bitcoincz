@@ -1,4 +1,4 @@
-// Copyright (c) 2020 The BCZ developers
+// Copyright (c) 2019-2020 The BCZ developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -35,7 +35,6 @@ LoadingDialog::LoadingDialog(QWidget *parent) :
 
     ui->frame->setProperty("cssClass", "container-loading");
 
-    ui->labelMessage->setText(tr("Loading"));
     ui->labelMessage->setProperty("cssClass", "text-loading");
     ui->labelDots->setProperty("cssClass", "text-loading");
 }

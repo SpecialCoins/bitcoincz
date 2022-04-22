@@ -1,5 +1,5 @@
 // Copyright (c) 2014-2018 The Dash Core developers
-// Copyright (c) 2020 The BCZ developers
+// Copyright (c) 2018-2020 The BCZ developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -13,13 +13,11 @@
 
 bool CMessageSigner::GetKeysFromSecret(const std::string& strSecret, CKey& keyRet, CPubKey& pubkeyRet)
 {
-    CBitcoinSecret vchSecret;
+    keyRet = DecodeSecret(strSecret);
+    if (!keyRet.IsValid())
+        return false;
 
-    if(!vchSecret.SetString(strSecret)) return false;
-
-    keyRet = vchSecret.GetKey();
     pubkeyRet = keyRet.GetPubKey();
-
     return true;
 }
 
@@ -66,7 +64,7 @@ bool CHashSigner::VerifyHash(const uint256& hash, const CKeyID& keyID, const std
 
     if(pubkeyFromSig.GetID() != keyID) {
         strErrorRet = strprintf("Keys don't match: pubkey=%s, pubkeyFromSig=%s, hash=%s, vchSig=%s",
-                CBitcoinAddress(keyID).ToString(), CBitcoinAddress(pubkeyFromSig.GetID()).ToString(),
+                EncodeDestination(keyID), EncodeDestination(pubkeyFromSig.GetID()),
                 hash.ToString(), EncodeBase64(&vchSig[0], vchSig.size()));
         return false;
     }
@@ -80,9 +78,8 @@ bool CHashSigner::VerifyHash(const uint256& hash, const CKeyID& keyID, const std
 
 bool CSignedMessage::Sign(const CKey& key, const CPubKey& pubKey)
 {
-    std::string strError = "";
-
     nMessVersion = MessageVersion::MESS_VER_HASH;
+    std::string strError = "";
     uint256 hash = GetSignatureHash();
 
     if(!CHashSigner::SignHash(hash, key, vchSig)) {

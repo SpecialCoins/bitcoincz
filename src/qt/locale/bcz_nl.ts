@@ -6,8 +6,8 @@
         <translation>Dialoog</translation>
     </message>
     <message>
-        <source>My Address</source>
-        <translation>Mijn Adres</translation>
+        <source>New Address</source>
+        <translation>Nieuw Adres</translation>
     </message>
     <message>
         <source>Address</source>
@@ -15,15 +15,15 @@
     </message>
     <message>
         <source>PushButton</source>
-        <translation>Druk Knop</translation>
+        <translation>DrukKnop</translation>
     </message>
     <message>
         <source>CANCEL</source>
         <translation>Annuleren</translation>
     </message>
     <message>
-        <source>OK</source>
-        <translation>Akkoord</translation>
+        <source>SAVE</source>
+        <translation>Opslaan</translation>
     </message>
 </context>
 <context>
@@ -33,16 +33,8 @@
         <translation>Dialoog</translation>
     </message>
     <message>
-        <source>TextLabel</source>
-        <translation>TextLabel</translation>
-    </message>
-    <message>
         <source>CANCEL</source>
         <translation>Annuleren</translation>
-    </message>
-    <message>
-        <source>OK</source>
-        <translation>Akkoord</translation>
     </message>
     <message>
         <source>Edit Contact</source>
@@ -53,8 +45,8 @@
         <translation>Stel een label in voor het geselecteerde adres</translation>
     </message>
     <message>
-        <source>Enter a name for the address (e.g Exchange)</source>
-        <translation>Voeg een naam toe bij het behorende adres</translation>
+        <source>Enter a label for the address (e.g. Exchange)</source>
+        <translation>Voer een label in voor het adres (bv. Beurs)</translation>
     </message>
     <message>
         <source>SAVE</source>
@@ -163,7 +155,7 @@
     </message>
     <message>
         <source>There was an error trying to save the address list to %1. Please try again.</source>
-        <translation>Er was een fout opgetreden tijdens het opslaan van deze adreslijst naar %1. Probeer het nogmaals.</translation>
+        <translation>Er is een fout opgetreden tijdens het opslaan van de adreslijst naar %1. Probeer het opnieuw.</translation>
     </message>
 </context>
 <context>
@@ -196,6 +188,10 @@
         <translation>Datum</translation>
     </message>
     <message>
+        <source>Type</source>
+        <translation>Type</translation>
+    </message>
+    <message>
         <source>(no label)</source>
         <translation>(geen label)</translation>
     </message>
@@ -207,28 +203,12 @@
         <translation>Formulier</translation>
     </message>
     <message>
-        <source>Send</source>
-        <translation>Zenden</translation>
-    </message>
-    <message>
-        <source>TextLabel</source>
-        <translation>TextLabel</translation>
-    </message>
-    <message>
-        <source>No active Master Node yet</source>
-        <translation>Nog geen actieve Master Node</translation>
-    </message>
-    <message>
         <source>Contact name</source>
         <translation>Contactpersoon</translation>
     </message>
     <message>
         <source>Enter address</source>
         <translation>Voeg adres toe</translation>
-    </message>
-    <message>
-        <source>OK</source>
-        <translation>Akkoord</translation>
     </message>
     <message>
         <source>Contacts</source>
@@ -243,16 +223,16 @@
         <translation>Nog geen contacten</translation>
     </message>
     <message>
-        <source>e.g. John Doe</source>
-        <translation>bv. Jan Jansen</translation>
-    </message>
-    <message>
-        <source>Enter a BCZ address</source>
-        <translation>Voeg een BCZ adres toe</translation>
-    </message>
-    <message>
         <source>SAVE</source>
         <translation>Opslaan</translation>
+    </message>
+    <message>
+        <source>Add new contact</source>
+        <translation>Nieuw contact toevoegen</translation>
+    </message>
+    <message>
+        <source>Generate a new address to receive tokens.</source>
+        <translation>Genereer een nieuw adres om tokens te ontvangen.</translation>
     </message>
     <message>
         <source>Invalid Contact Address</source>
@@ -296,7 +276,7 @@ Are you sure?</source>
 
 %1
 
-Weet U het zeker?</translation>
+Weet u het zeker?</translation>
     </message>
     <message>
         <source>Contact Deleted</source>
@@ -323,7 +303,7 @@ Weet U het zeker?</translation>
     </message>
     <message>
         <source>PushButton</source>
-        <translation>Druk Knop</translation>
+        <translation>DrukKnop</translation>
     </message>
     <message>
         <source>Enter the new passphrase to the wallet.&lt;br/&gt;Please use a passphrase of &lt;b&gt;ten or more random characters&lt;/b&gt;, or &lt;b&gt;eight or more words&lt;/b&gt;.</source>
@@ -368,6 +348,14 @@ voor bewijs van Inzet</translation>
         <translation>Bevestig versleuteling van de portemonnee</translation>
     </message>
     <message>
+        <source>WARNING</source>
+        <translation>WAARSCHUWING</translation>
+    </message>
+    <message>
+        <source>If you encrypt your wallet and lose your passphrase, you will</source>
+        <translation>Als u uw portemonnee versleutelt en uw wachtwoord vergeet, zal u</translation>
+    </message>
+    <message>
         <source>ENCRYPT</source>
         <translation>Versleutelen</translation>
     </message>
@@ -384,12 +372,20 @@ voor bewijs van Inzet</translation>
         <translation>Weet u zeker dat u uw portemonnee wilt versleutelen?</translation>
     </message>
     <message>
-        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR BCZ&lt;/b&gt;!</source>
-        <translation>Waarschuwing: Als u uw portemonnee versleutelt en uw wachtwoord vergeet, zult u &lt;b&gt;AL UW BCZ VERLIEZEN&lt;/b&gt;!</translation>
-    </message>
-    <message>
         <source>Wallet encrypted</source>
         <translation>Portemonnee versleuteld</translation>
+    </message>
+    <message>
+        <source>WARNING:</source>
+        <translation>WAARSCHUWING:</translation>
+    </message>
+    <message>
+        <source>The caps lock key is on!</source>
+        <translation>De caps Lock-toets staat aan!</translation>
+    </message>
+    <message>
+        <source>Passphrases do not match!</source>
+        <translation>Wachtwoorden komen niet overeen!</translation>
     </message>
     <message>
         <source>IMPORTANT: Any previous backups you have made of your wallet file should be replaced with the newly generated, encrypted wallet file. For security reasons, previous backups of the unencrypted wallet file will become useless as soon as you start using the new, encrypted wallet.</source>
@@ -412,6 +408,10 @@ voor bewijs van Inzet</translation>
         <translation>De opgegeven wachtwoordzinnen komen niet overeen.</translation>
     </message>
     <message>
+        <source>LOSE ALL OF YOUR COINS</source>
+        <translation>VERLIES VAN AL UW MUNTEN</translation>
+    </message>
+    <message>
         <source>Wallet unlock failed</source>
         <translation>Portemonnee openen mislukt</translation>
     </message>
@@ -427,10 +427,6 @@ voor bewijs van Inzet</translation>
         <source>Wallet passphrase was successfully changed.</source>
         <translation>Portemonnee wachtwoordzin is met succes gewijzigd.</translation>
     </message>
-    <message>
-        <source>Warning: The Caps Lock key is on!</source>
-        <translation>Waarschuwing: De Caps-Lock-toets staat aan!</translation>
-    </message>
 </context>
 <context>
     <name>BanTableModel</name>
@@ -441,37 +437,6 @@ voor bewijs van Inzet</translation>
     <message>
         <source>Banned Until</source>
         <translation>Verboden tot</translation>
-    </message>
-</context>
-<context>
-    <name>BlockExplorer</name>
-    <message>
-        <source>Blockchain Explorer</source>
-        <translation>Blockchain Verkenner</translation>
-    </message>
-    <message>
-        <source>Back</source>
-        <translation>Terug</translation>
-    </message>
-    <message>
-        <source>Forward</source>
-        <translation>Volgende</translation>
-    </message>
-    <message>
-        <source>Address / Block / Transaction</source>
-        <translation>Adres / Block / Transactie</translation>
-    </message>
-    <message>
-        <source>Search</source>
-        <translation>Zoeken</translation>
-    </message>
-    <message>
-        <source>TextLabel</source>
-        <translation>TextLabel</translation>
-    </message>
-    <message>
-        <source>Not all transactions will be shown. To view all transactions you need to set txindex=1 in the configuration file (bcz.conf).</source>
-        <translation>Niet alle transacties zullen worden getoond. Om alle transacties te bekijken moet u txindex=1 instellen in het configuratie bestand (bcz.conf).</translation>
     </message>
 </context>
 <context>
@@ -507,10 +472,6 @@ voor bewijs van Inzet</translation>
         <source>Total: %1 (IPv4: %2 / IPv6: %3 / Tor: %4 / Unknown: %5)</source>
         <translation>Totaal: %1 (IPv4: %2 / IPv6: %3 / Tor: %4 / Onbekend: %5)</translation>
     </message>
-    <message>
-        <source>Network Alert</source>
-        <translation>Netwerk waarschuwing</translation>
-    </message>
 </context>
 <context>
     <name>CoinControlDialog</name>
@@ -529,6 +490,10 @@ voor bewijs van Inzet</translation>
     <message>
         <source>Coin Selection</source>
         <translation>Munt Selectie</translation>
+    </message>
+    <message>
+        <source>Select BCZ Outputs to Spend</source>
+        <translation>Selecteer BCZ Outputs om te besteden</translation>
     </message>
     <message>
         <source>Dust:</source>
@@ -553,14 +518,6 @@ voor bewijs van Inzet</translation>
     <message>
         <source>Amount</source>
         <translation>Bedrag</translation>
-    </message>
-    <message>
-        <source>Transaction Details</source>
-        <translation>Transactie details</translation>
-    </message>
-    <message>
-        <source>PushButton</source>
-        <translation>Druk Knop</translation>
     </message>
     <message>
         <source>0.00 BCZ</source>
@@ -631,40 +588,40 @@ voor bewijs van Inzet</translation>
         <translation>Unlock niet besteed</translation>
     </message>
     <message>
-        <source>Copy quantity</source>
-        <translation>Kopieer kwantiteit</translation>
-    </message>
-    <message>
-        <source>Copy fee</source>
-        <translation>Kopieer fee</translation>
-    </message>
-    <message>
-        <source>Copy after fee</source>
-        <translation>Kopieer na fee</translation>
-    </message>
-    <message>
-        <source>Copy bytes</source>
-        <translation>Kopieer bytes</translation>
-    </message>
-    <message>
-        <source>Copy priority</source>
-        <translation>Kopieer prioriteit</translation>
-    </message>
-    <message>
-        <source>Copy dust</source>
-        <translation>Kopieer dust</translation>
-    </message>
-    <message>
-        <source>Copy change</source>
-        <translation>Kopieer wisselgeld</translation>
-    </message>
-    <message>
         <source>Unselect all</source>
         <translation>Deselecteer alles</translation>
     </message>
     <message>
         <source>Please switch to "List mode" to use this function.</source>
         <translation>Schakel alsjeblieft over naar "Lijst modus" om deze functie te gebruiken.</translation>
+    </message>
+    <message>
+        <source>Quantity Copied</source>
+        <translation>Aantal gekopieerd</translation>
+    </message>
+    <message>
+        <source>Amount Copied</source>
+        <translation>Hoeveelheid gekopieerd</translation>
+    </message>
+    <message>
+        <source>Fee Copied</source>
+        <translation>Kost gekopieerd</translation>
+    </message>
+    <message>
+        <source>After Fee Copied</source>
+        <translation>Na Vergoeding Gekopieerd</translation>
+    </message>
+    <message>
+        <source>Bytes Copied</source>
+        <translation>Bytes gekopieerd</translation>
+    </message>
+    <message>
+        <source>Dust Copied</source>
+        <translation>Dust Gekopieerd</translation>
+    </message>
+    <message>
+        <source>Change Copied</source>
+        <translation>Wissel Gekopieerd</translation>
     </message>
     <message>
         <source>highest</source>
@@ -715,6 +672,18 @@ voor bewijs van Inzet</translation>
         <translation>ja</translation>
     </message>
     <message>
+        <source>Can vary +/- %1 u%2 per input.</source>
+        <translation>Kan +/- %1 u%2 per invoer verschillen.</translation>
+    </message>
+    <message>
+        <source>delegated to %1 for cold staking</source>
+        <translation>gedelegeerd naar %1 voor cold staking</translation>
+    </message>
+    <message>
+        <source>Select All</source>
+        <translation>Selecteer Alles</translation>
+    </message>
+    <message>
         <source>no</source>
         <translation>nee</translation>
     </message>
@@ -743,10 +712,6 @@ voor bewijs van Inzet</translation>
         <translation>Dit label wordt rood, als een ontvanger een hoeveelheid kleiner dan %1 ontvangt.</translation>
     </message>
     <message>
-        <source>Can vary +/- %1 ubcz per input.</source>
-        <translation>Kan +/-%1 ubcz per invoer variëren.</translation>
-    </message>
-    <message>
         <source>(no label)</source>
         <translation>(geen label)</translation>
     </message>
@@ -760,125 +725,18 @@ voor bewijs van Inzet</translation>
     </message>
 </context>
 <context>
-    <name>CoinControlBczWidget</name>
-    <message>
-        <source>Dialog</source>
-        <translation>Dialoog</translation>
-    </message>
-    <message>
-        <source>Transaction Details</source>
-        <translation>Transactie details</translation>
-    </message>
-    <message>
-        <source>PushButton</source>
-        <translation>Druk Knop</translation>
-    </message>
-    <message>
-        <source>BCZ:</source>
-        <translation>BCZ:</translation>
-    </message>
-    <message>
-        <source>TextLabel</source>
-        <translation>TextLabel</translation>
-    </message>
-    <message>
-        <source>Quantity:</source>
-        <translation>Kwantiteit:</translation>
-    </message>
-    <message>
-        <source>Fee:</source>
-        <translation>Fee:</translation>
-    </message>
-    <message>
-        <source>Amount</source>
-        <translation>Bedrag</translation>
-    </message>
-    <message>
-        <source>Label</source>
-        <translation>Label</translation>
-    </message>
-    <message>
-        <source>Address</source>
-        <translation>Adres</translation>
-    </message>
-    <message>
-        <source>Type</source>
-        <translation>Type</translation>
-    </message>
-    <message>
-        <source>Date</source>
-        <translation>Datum</translation>
-    </message>
-    <message>
-        <source>Confirmations</source>
-        <translation>Bevestigingen</translation>
-    </message>
-    <message>
-        <source>CheckBox</source>
-        <translation>Selectievakje</translation>
-    </message>
-    <message>
-        <source>Bytes:</source>
-        <translation>Bytes:</translation>
-    </message>
-    <message>
-        <source>Dust:</source>
-        <translation>Dust:</translation>
-    </message>
-    <message>
-        <source>Change:</source>
-        <translation>Wisselgeld:</translation>
-    </message>
-    <message>
-        <source>After Fee: </source>
-        <translation>Na kosten</translation>
-    </message>
-    <message>
-        <source>CANCEL</source>
-        <translation>Annuleren</translation>
-    </message>
-    <message>
-        <source>OK</source>
-        <translation>Akkoord</translation>
-    </message>
-</context>
-<context>
     <name>ColdStakingWidget</name>
     <message>
         <source>Form</source>
         <translation>Formulier</translation>
     </message>
     <message>
-        <source>Title</source>
-        <translation>Tietel</translation>
+        <source>Owner address (optional, if empty a new address will be created)</source>
+        <translation>Eigenaarsadres (optioneel, indien leeg wordt er een nieuw adres aangemaakt)</translation>
     </message>
     <message>
-        <source>TextLabel</source>
-        <translation>TextLabel</translation>
-    </message>
-    <message>
-        <source>PushButton</source>
-        <translation>Druk Knop</translation>
-    </message>
-    <message>
-        <source>Owner Address (optional, if empty a new address will be created)</source>
-        <translation>Eigenaarsadres (optioneel, indien leeg zal er een nieuw adres aangemaakt worden)</translation>
-    </message>
-    <message>
-        <source>List of delegated balance by address</source>
-        <translation>Lijst van gedelegeerde balans gesorteerd op adres</translation>
-    </message>
-    <message>
-        <source>Total</source>
-        <translation>Totaal</translation>
-    </message>
-    <message>
-        <source>Unconfirmed balance will not be shown</source>
-        <translation>Onbevestigde saldi zal niet getoond worden</translation>
-    </message>
-    <message>
-        <source>No balance delegated</source>
-        <translation>Geen balans gedelegeerd</translation>
+        <source>Total Staking:</source>
+        <translation>Totaal Staking:</translation>
     </message>
     <message>
         <source>Cold Staking</source>
@@ -893,30 +751,12 @@ voor bewijs van Inzet</translation>
         <translation>Delegatie</translation>
     </message>
     <message>
-        <source>You can delegate your BCZs and let a hot node (24/7 online node)
-stake in your behalf, keeping the keys in a secure place offline.</source>
-        <translation>Je kan jouw BCZs delegeren en een hot node (24/7 online node)
-laten staken in jouw naam, waardoor de sleutels in een veilige offline opslag bewaard worden.</translation>
-    </message>
-    <message>
-        <source>Add owner address</source>
-        <translation>Eigenaarsadres toevoegen</translation>
-    </message>
-    <message>
-        <source>Delegate or Accept BCZ delegation</source>
-        <translation>Delegeer of Accepteer BCZ delegatie</translation>
-    </message>
-    <message>
         <source>Delegate</source>
         <translation>Delegeer</translation>
     </message>
     <message>
         <source>Clear All</source>
         <translation>Alles wissen</translation>
-    </message>
-    <message>
-        <source>Add the staking address</source>
-        <translation>Staking-adres toevoegen</translation>
     </message>
     <message>
         <source>Delegated balance history</source>
@@ -935,20 +775,72 @@ laten staken in jouw naam, waardoor de sleutels in een veilige offline opslag be
         <translation>Fout bij laden delegaties: %1</translation>
     </message>
     <message>
+        <source>You can delegate your BCZs, letting a hot node (24/7 online node)
+stake on your behalf, while you keep the keys securely offline.</source>
+        <translation>Je kan jouw BCZs delegeren en een hot node (24/7 online node)
+voor je laten staken, terwijl je de sleutels veilig offline opslag bewaart.</translation>
+    </message>
+    <message>
+        <source>Enter owner address</source>
+        <translation>Voer eigenaarsadres in</translation>
+    </message>
+    <message>
+        <source>Accept BCZ delegation / Delegate BCZ</source>
+        <translation>Accepteer BCZ delegatie / Delegeer BCZ</translation>
+    </message>
+    <message>
+        <source>Cold Staking address</source>
+        <translation>Cold Staking adres</translation>
+    </message>
+    <message>
+        <source>No receive addresses available, you can go to the receive screen and create some there!</source>
+        <translation>Geen ontvangstadressen beschikbare, je kan naar het ontvangstscherm gaan en daar enkele toevoegen!</translation>
+    </message>
+    <message>
         <source>No contacts available, you can go to the contacts screen and add some there!</source>
         <translation>Geen beschikbare contacten, je kan naar het contactscherm gaan en daar enkele toevoegen!</translation>
+    </message>
+    <message>
+        <source>Cannot send delegation, wallet locked</source>
+        <translation>Kan delegatie niet versturen, portemonnee vergrendeld</translation>
     </message>
     <message>
         <source>Cold staking is networkely disabled</source>
         <translation>Cold staking is uitgeschakeld</translation>
     </message>
     <message>
+        <source>Coin Control</source>
+        <translation>Munt Controle</translation>
+    </message>
+    <message>
+        <source>Select %1 outputs to delegate.</source>
+        <translation>Selecteer %1 uitvoeren om te delegeren.</translation>
+    </message>
+    <message>
+        <source>Create Cold Staking Address</source>
+        <translation>Cold Staking Adres aanmaken</translation>
+    </message>
+    <message>
+        <source>Creates an address to receive delegated coins
+and stake them on their owner's behalf.</source>
+        <translation>Maak een adres aan om muntdelegaties te ontvangen
+en deze te kunnen staken namens hun eigenaar.</translation>
+    </message>
+    <message>
+        <source>My Cold Staking Addresses</source>
+        <translation>Mijn Cold Staking Adressen</translation>
+    </message>
+    <message>
+        <source>List your own cold staking addresses.</source>
+        <translation>Oplijsten van uw cold staking adressen.</translation>
+    </message>
+    <message>
         <source>Invalid entry</source>
         <translation>Ongeldige invoer</translation>
     </message>
     <message>
-        <source>Invalid entry, minimum delegable amount is 10 BCZ</source>
-        <translation>Ongeldige invoer, de minimum gedelegeerde hoeveelheid is 10 BCZ</translation>
+        <source>Invalid entry, minimum delegable amount is </source>
+        <translation>Ongeldige invoer, minimaal te delegeren bedrag is</translation>
     </message>
     <message>
         <source>Owner address invalid</source>
@@ -987,8 +879,12 @@ Wil je verdergaan?</translation>
         <translation>Gedelegeerde Munten</translation>
     </message>
     <message>
-        <source>You don't have any BCZ to select.</source>
-        <translation>Je hebt geen BCZ om te selecteren</translation>
+        <source>You don't have any %1 to select.</source>
+        <translation>Je hebt geen %1 om te selecteren.</translation>
+    </message>
+    <message>
+        <source>Cannot perform operation, wallet locked</source>
+        <translation>Kan deze actie niet uitvoeren, portemonnee vergrendeld</translation>
     </message>
     <message>
         <source>URI copied to clipboard</source>
@@ -1070,14 +966,6 @@ address</source>
         <source>Form</source>
         <translation>Formulier</translation>
     </message>
-    <message>
-        <source>Bob Allen</source>
-        <translation>Bob Allen</translation>
-    </message>
-    <message>
-        <source>DN6i46dytMPVhV1JMGZFuQBh7BZZ6nNLox</source>
-        <translation>DN6i46dytMPVhV1JMGZFuQBh7BZZ6nNLox</translation>
-    </message>
 </context>
 <context>
     <name>DashboardWidget</name>
@@ -1090,40 +978,16 @@ address</source>
         <translation>Transacties</translation>
     </message>
     <message>
-        <source>You can see here the history of your account</source>
-        <translation>U kunt hier de geschiedenis van uw account bekijken</translation>
-    </message>
-    <message>
-        <source>Warning</source>
-        <translation>Waarschuwing</translation>
-    </message>
-    <message>
-        <source>No transactions</source>
-        <translation>Geen transacties</translation>
-    </message>
-    <message>
-        <source>PushButton</source>
-        <translation>Druk Knop</translation>
-    </message>
-    <message>
         <source>Staking Rewards</source>
         <translation>Staking Beloningen</translation>
-    </message>
-    <message>
-        <source>TextLabel</source>
-        <translation>TextLabel</translation>
     </message>
     <message>
         <source>Staking statistics</source>
         <translation>Staking statistieken</translation>
     </message>
     <message>
-        <source>BCZ</source>
-        <translation>BCZ</translation>
-    </message>
-    <message>
-        <source>zBCZ</source>
-        <translation>zBCZ</translation>
+        <source>View your account's history</source>
+        <translation>Bekijk de geschiedenis van uw account</translation>
     </message>
     <message>
         <source>Sort by</source>
@@ -1146,60 +1010,8 @@ address</source>
         <translation>Filter volgens</translation>
     </message>
     <message>
-        <source>LabelText</source>
-        <translation>LabelText</translation>
-    </message>
-    <message>
-        <source>You can view your account's history</source>
-        <translation>U kunt de geschiedenis van uw account bekijken</translation>
-    </message>
-    <message>
-        <source>Amount of BCZ and zBCZ staked.</source>
-        <translation>Hoeveelheid aan gestaked BCZ en zBCZ.</translation>
-    </message>
-    <message>
-        <source>All</source>
-        <translation>Alle</translation>
-    </message>
-    <message>
-        <source>Received</source>
-        <translation>Ontvangen</translation>
-    </message>
-    <message>
-        <source>Sent</source>
-        <translation>Verstuurd</translation>
-    </message>
-    <message>
-        <source>Mined</source>
-        <translation>Mined</translation>
-    </message>
-    <message>
-        <source>Minted</source>
-        <translation>Minted</translation>
-    </message>
-    <message>
-        <source>MN reward</source>
-        <translation>MN beloning</translation>
-    </message>
-    <message>
-        <source>To yourself</source>
-        <translation>Naar jezelf</translation>
-    </message>
-    <message>
-        <source>Cold stakes</source>
-        <translation>Cold stakes</translation>
-    </message>
-    <message>
-        <source>Hot stakes</source>
-        <translation>Hot stakes</translation>
-    </message>
-    <message>
-        <source>Delegated</source>
-        <translation>Gedelegeerd</translation>
-    </message>
-    <message>
-        <source>Delegations</source>
-        <translation>Delegaties</translation>
+        <source>Amount of BCZ staked.</source>
+        <translation>Hoeveelheid aan gestaked BCZ.</translation>
     </message>
     <message>
         <source>Please wait until the wallet is fully synced to see your correct balance</source>
@@ -1208,10 +1020,6 @@ address</source>
     <message>
         <source>No transactions yet</source>
         <translation>Nog geen transacties</translation>
-    </message>
-    <message>
-        <source>How to get BCZ or zBCZ</source>
-        <translation>Hoe BCZ of zBCZ verkrijgen</translation>
     </message>
     <message>
         <source>You can verify the staking activity in the status bar at the top right of the wallet.
@@ -1251,20 +1059,12 @@ Het zal automatisch starten zodra de portemonnee voldoende bevestigingen heeft o
         <translation>Formulier</translation>
     </message>
     <message>
-        <source>Transaction Details</source>
-        <translation>Transactie details</translation>
-    </message>
-    <message>
-        <source>Text Label</source>
-        <translation>Text Label</translation>
+        <source>OK</source>
+        <translation>Akkoord</translation>
     </message>
     <message>
         <source>CANCEL</source>
         <translation>Annuleren</translation>
-    </message>
-    <message>
-        <source>SAVE</source>
-        <translation>Opslaan</translation>
     </message>
 </context>
 <context>
@@ -1395,6 +1195,10 @@ Het zal automatisch starten zodra de portemonnee voldoende bevestigingen heeft o
         <translation>Toon splash scherm bij opstarten (standaard: %u)</translation>
     </message>
     <message>
+        <source>Hide QT staking charts on startup (default: %u)</source>
+        <translation>Verberg QT stakinggrafieken bij opstarten (standaard: %u)</translation>
+    </message>
+    <message>
         <source>Set language, for example "de_DE" (default: system locale)</source>
         <translation>Stel taal in, bijvoorbeeld "de_DE" (standaard: systeem locale)</translation>
     </message>
@@ -1467,25 +1271,6 @@ Het zal automatisch starten zodra de portemonnee voldoende bevestigingen heeft o
     </message>
 </context>
 <context>
-    <name>LoadingDialog</name>
-    <message>
-        <source>Form</source>
-        <translation>Formulier</translation>
-    </message>
-    <message>
-        <source>TextLabel</source>
-        <translation>TextLabel</translation>
-    </message>
-    <message>
-        <source>Loading</source>
-        <translation>Aan het laden</translation>
-    </message>
-    <message>
-        <source>.</source>
-        <translation>.</translation>
-    </message>
-</context>
-<context>
     <name>LockUnlock</name>
     <message>
         <source>Form</source>
@@ -1511,16 +1296,12 @@ Het zal automatisch starten zodra de portemonnee voldoende bevestigingen heeft o
         <translation>Formulier</translation>
     </message>
     <message>
-        <source>user_masternode</source>
-        <translation>user_masternode</translation>
+        <source>Collateral tx not found</source>
+        <translation>Terugbetalingstransactie niet gevonden</translation>
     </message>
     <message>
-        <source>Address: 88.26.164.88:29600</source>
-        <translation>Adres: 88.26.164.88:29600</translation>
-    </message>
-    <message>
-        <source>Jan. 19, 2019</source>
-        <translation>Jan. 19, 2019</translation>
+        <source>Status: %1</source>
+        <translation>Status: %1</translation>
     </message>
 </context>
 <context>
@@ -1554,28 +1335,32 @@ Het zal automatisch starten zodra de portemonnee voldoende bevestigingen heeft o
         <translation>Adres</translation>
     </message>
     <message>
-        <source>Create New Master Node Controller</source>
-        <translation>Creëer een Nieuwe Masternode Controller</translation>
+        <source>Create New Masternode Controller</source>
+        <translation>Creëer Nieuwe Masternode Controller</translation>
     </message>
     <message>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;To create a BCZ Masternode you must dedicate 5,000 BCZ (the unit of BCZ) to the network (however, these coins are still yours and will never leave your possession). &lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;You can deactivate the node and unlock the coins at any time.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Om een BCZ Masternode te maken moet u 5,000 BCZ (de eenheid van BCZ) aan het netwerk wijden (deze munten zijn echter nog steeds van u en zullen nooit uw bezit verlaten). &lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;U kunt de node op elk gewenst moment deactiveren en de munten ontgrendelen.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;To create a BCZ Masternode you must dedicate 10,000 BCZ (the unit of BCZ) to the network (however, these coins are still yours and will never leave your possession). &lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;You can deactivate the node and unlock the coins at any time.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Om een BCZ Masternode te creëren moet u 10.000 BCZ (de eenheid van BCZ) aan het netwerk wijden (deze munten zijn echter nog steeds van u en zullen nooit uw bezit verlaten). &lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;U kunt de node op elk gewenst moment deactiveren en de munten ontgrendelen.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
+        <source>Set Masternode Name</source>
+        <translation>Stel de naam voor de Masternode in</translation>
+    </message>
+    <message>
+        <source>Set Masternode IP and Port</source>
+        <translation>Stel het IP-adres en de Poort voor de Masternode in</translation>
+    </message>
+    <message>
+        <source>Enter port</source>
+        <translation>Voer poort in</translation>
     </message>
     <message>
         <source>Make sure you have this amount of coins.</source>
         <translation>Zorg ervoor dat je deze hoeveelheid munten hebt.</translation>
     </message>
     <message>
-        <source>Set Master Node’s Name</source>
-        <translation>Masternode's Naam instellen</translation>
-    </message>
-    <message>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;A transaction of 5,000 BCZ will be made&lt;/p&gt;&lt;p&gt;to a new empty address in your wallet.&lt;/p&gt;&lt;p&gt;The Address is labeled under the master node's name.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Een transactie van 5,000 BCZ zal gemaakt worden&lt;/p&gt;&lt;p&gt;naar een nieuw leeg adres in uw portemonnee.&lt;/p&gt;&lt;p&gt;Het adres is gelabeld onder de masternode's naam.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message>
-        <source>Set Master Node’s IP and port</source>
-        <translation>Masternode's IP en poort instellen</translation>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;A transaction of 10,000 BCZ will be made&lt;/p&gt;&lt;p&gt;to a new empty address in your wallet.&lt;/p&gt;&lt;p&gt;The Address is labeled under the master node's name.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Een transactie van 10,000 BCZ zal gemaakt worden&lt;/p&gt;&lt;p&gt;naar een nieuw leeg adres in uw portemonnee.&lt;/p&gt;&lt;p&gt;Het adres is gelabeld onder de masternode's naam.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source>Address of the node that must always be online running the actual master node.</source>
@@ -1584,22 +1369,6 @@ Het zal automatisch starten zodra de portemonnee voldoende bevestigingen heeft o
     <message>
         <source>Enter IP address</source>
         <translation>Voer IP-adres in</translation>
-    </message>
-    <message>
-        <source>Enter Port</source>
-        <translation>Voer Poort In</translation>
-    </message>
-    <message>
-        <source>CANCEL</source>
-        <translation>Annuleren</translation>
-    </message>
-    <message>
-        <source>OK</source>
-        <translation>Akkoord</translation>
-    </message>
-    <message>
-        <source>e.g user_masternode</source>
-        <translation>e.g user_masternode</translation>
     </message>
     <message>
         <source>NEXT</source>
@@ -1618,12 +1387,42 @@ Het zal automatisch starten zodra de portemonnee voldoende bevestigingen heeft o
         <translation>IP of poort kan niet leeg zijn</translation>
     </message>
     <message>
-        <source>Invalid port number</source>
-        <translation>Ongeldige poortnummer</translation>
+        <source>Invalid IP address</source>
+        <translation>Ongeldig IP-adres</translation>
     </message>
     <message>
-        <source>Prepare master node failed..</source>
-        <translation>Voorbereiden masternode mislukt..</translation>
+        <source>Unknown error</source>
+        <translation>Ongekend probleem</translation>
+    </message>
+    <message>
+        <source>Prepare master node failed.
+
+%1
+</source>
+        <translation>Voorbereiden masternode mislukt.
+
+%1
+</translation>
+    </message>
+    <message>
+        <source>Invalid collateral output index</source>
+        <translation>Ongeldige Collaterale Outputindex</translation>
+    </message>
+    <message>
+        <source>Master node created! Wait %1 confirmations before starting it.</source>
+        <translation>Masternode gecreëerd! Wacht op %1 bevestigingen vooraleer je het start. </translation>
+    </message>
+    <message>
+        <source>Cannot send collateral transaction.
+
+%1</source>
+        <translation>Kan geen collaterale transactie versturen.
+
+%1</translation>
+    </message>
+    <message>
+        <source>walletModel not set</source>
+        <translation>walletModel niet ingesteld</translation>
     </message>
     <message>
         <source>Invalid masternode.conf file</source>
@@ -1634,56 +1433,8 @@ Het zal automatisch starten zodra de portemonnee voldoende bevestigingen heeft o
         <translation>Fout opgelopen bij het parsen van het masternode.conf bestand</translation>
     </message>
     <message>
-        <source>Invalid collaterall output index</source>
-        <translation>Ongeldige Collaterale Outputindex</translation>
-    </message>
-    <message>
-        <source>Master node created!</source>
-        <translation>Masternode aangemaakt!</translation>
-    </message>
-    <message>
         <source>masternode.conf file doesn't exists</source>
         <translation>masternode.conf bestand bestaat niet</translation>
-    </message>
-    <message>
-        <source>The recipient address is not valid, please recheck.</source>
-        <translation>Het ontvangstadres is niet geldig, controleer deze.</translation>
-    </message>
-    <message>
-        <source>The amount to pay must be larger than 0.</source>
-        <translation>Het te betalen bedrag moet groter zijn dan 0.</translation>
-    </message>
-    <message>
-        <source>The amount exceeds your balance.</source>
-        <translation>Het bedrag overschrijdt uw saldo.</translation>
-    </message>
-    <message>
-        <source>The total exceeds your balance when the %1 transaction fee is included.</source>
-        <translation>Het totaal overschrijdt uw saldo wanneer de transactievergoeding %1 is inbegrepen.</translation>
-    </message>
-    <message>
-        <source>Duplicate address found, can only send to each address once per send operation.</source>
-        <translation>Dubbel adres gevonden, kan alleen per keer per verzendoperatie naar elk adres versturen.</translation>
-    </message>
-    <message>
-        <source>Transaction creation failed!</source>
-        <translation>Transactie creatie mislukt!</translation>
-    </message>
-    <message>
-        <source>The transaction was rejected! This might happen if some of the coins in your wallet were already spent, such as if you used a copy of wallet.dat and coins were spent in the copy but not marked as spent here.</source>
-        <translation>De transactie is afgewezen! Dit kan gebeuren als sommige munten in je portemonnee al waren uitgegeven, zoals als je een kopie van de wallet.dat en munten in de kopie waren besteed maar niet gemarkeerd zoals hier besteed.</translation>
-    </message>
-    <message>
-        <source>Error: The wallet was unlocked only to anonymize coins.</source>
-        <translation>Fout: De portemonnee was alleen geopend om munten te anonimiseren.</translation>
-    </message>
-    <message>
-        <source>A fee %1 times higher than %2 per kB is considered an insanely high fee.</source>
-        <translation>Een vergoeding %1 keer hoger dan %2 per kB wordt beschouwd als een zwaar hoge vergoeding.</translation>
-    </message>
-    <message>
-        <source>Error: The wallet was unlocked only to anonymize coins. Unlock canceled.</source>
-        <translation>Fout: De portemonnee was alleen geopend om munten te anonimiseren. Ontgrendelen geannuleerd.</translation>
     </message>
 </context>
 <context>
@@ -1693,16 +1444,12 @@ Het zal automatisch starten zodra de portemonnee voldoende bevestigingen heeft o
         <translation>Formulier</translation>
     </message>
     <message>
-        <source>TextLabel</source>
-        <translation>TextLabel</translation>
+        <source>Start All</source>
+        <translation>Alles starten</translation>
     </message>
     <message>
-        <source>No active Master Node yet</source>
-        <translation>Nog geen actieve Master Node</translation>
-    </message>
-    <message>
-        <source>PushButton</source>
-        <translation>Druk Knop</translation>
+        <source>Start Inactive/s</source>
+        <translation>Start Inactieve/s</translation>
     </message>
     <message>
         <source>Masternodes</source>
@@ -1735,6 +1482,10 @@ en stemmen over het treasury systeem met een periodieke beloning.</translation>
         <translation>Info</translation>
     </message>
     <message>
+        <source>Please wait until the node is fully synced</source>
+        <translation>Wacht tot de node volledig gesynchroniseerd is</translation>
+    </message>
+    <message>
         <source>Start Masternode</source>
         <translation>Start Masternode</translation>
     </message>
@@ -1745,14 +1496,70 @@ en stemmen over het treasury systeem met een periodieke beloning.</translation>
 </translation>
     </message>
     <message>
-        <source>Cannot start masternode, the collateral transaction has not been accepted by the network.
-Please wait few more minutes.</source>
-        <translation>Kan de masternode niet starten, de collaterale transactie is niet geaccepteerd door het netwerk.
-Gelieve nog enkele minuten te wachten.</translation>
+        <source>Cannot edit masternode, wallet locked</source>
+        <translation>Kan de masternode niet bewerken, portemonnee vergrendeld</translation>
+    </message>
+    <message>
+        <source>Cannot start masternode, the collateral transaction has not been confirmed by the network yet.
+Please wait few more minutes (masternode collaterals require %1 confirmations).</source>
+        <translation>Kan de masternode niet starten, de collaterale transactie is nog niet bevestigd door het netwerk.
+Gelieve nog enkele minuten te wachten (het onderpand van een masternode vereist %1 bevestigingen).</translation>
+    </message>
+    <message>
+        <source>Background task is being executed, please wait</source>
+        <translation>Achtergrondopdracht wordt nu uitgevoerd, even geduld</translation>
+    </message>
+    <message>
+        <source>Start ALL masternodes failed</source>
+        <translation>Opstarten van ALLE masternodes mislukt</translation>
+    </message>
+    <message>
+        <source>Wallet unlock cancelled</source>
+        <translation>Portemonnee ontgrendeling geannuleerd </translation>
+    </message>
+    <message>
+        <source>Cannot perform Masternodes start</source>
+        <translation>Kan geen Masternode opstart uitvoeren</translation>
+    </message>
+    <message>
+        <source>%1 Masternodes failed to start, %2 started</source>
+        <translation>%1 Masternodes niet succesvol opgestart, %2 opgestart</translation>
+    </message>
+    <message>
+        <source>All Masternodes started!</source>
+        <translation>Alle Masternodes zijn opgestart!</translation>
+    </message>
+    <message>
+        <source>Cannot show Masternode information, wallet locked</source>
+        <translation>Kan geen Masternode-informatie tonen, portemonnee vergrendeld</translation>
+    </message>
+    <message>
+        <source>Masternode data copied to the clipboard.</source>
+        <translation>Masternodegegevens gekopieerd naar het klembord</translation>
+    </message>
+    <message>
+        <source>Not enough balance to create a masternode, 10,000 %1 required.</source>
+        <translation>Niet genoeg balans om een masternode te creëren, 10,000 %1 vereist.</translation>
     </message>
     <message>
         <source>Remote Masternode Data</source>
         <translation>Remote Masternodegegevens</translation>
+    </message>
+    <message>
+        <source>What is a Masternode?</source>
+        <translation>Wat is een Masternode?</translation>
+    </message>
+    <message>
+        <source>FAQ explaining what Masternodes are</source>
+        <translation>FAQ legt uit wat Masternodes zijn</translation>
+    </message>
+    <message>
+        <source>What is a Controller?</source>
+        <translation>Wat is een Controller?</translation>
+    </message>
+    <message>
+        <source>FAQ explaining what is a Masternode Controller</source>
+        <translation>FAQ legt uit wat een Masternode Controller is</translation>
     </message>
     <message>
         <source>You are just about to export the required data to run a Masternode
@@ -1769,11 +1576,8 @@ op een externe server aan uw klembord.
 
 U hoeft alleen de gegevens in het bcz.conf bestand te plakken
 van uw externe server en start deze vervolgens de Masternode met
-deze controller portemonnee (selecteer de Masternode in de lijst en druk op "start").</translation>
-    </message>
-    <message>
-        <source>Masternode exported!, check your clipboard</source>
-        <translation>Masternode geëxporteerd, controleer uw klembord</translation>
+deze controller portemonnee (selecteer de Masternode in de lijst en druk op "start").
+</translation>
     </message>
     <message>
         <source>Delete Masternode</source>
@@ -1802,8 +1606,8 @@ Weet je het zeker?</translation>
         <translation>masternode.conf bestand bestaat niet</translation>
     </message>
     <message>
-        <source>Not enough balance to create a masternode, 5,000 BCZ required.</source>
-        <translation>Niet genoeg balans om een masternode te creëren, 5,000 BCZ vereist.</translation>
+        <source>Cannot create Masternode controller, wallet locked</source>
+        <translation>Kan geen Masternode controller aanmaken, portemonnee vergrendeld</translation>
     </message>
     <message>
         <source>Error creating masternode</source>
@@ -1817,24 +1621,16 @@ Weet je het zeker?</translation>
         <translation>Formulier</translation>
     </message>
     <message>
-        <source>Master Node Information</source>
-        <translation>Masternode Informatie</translation>
+        <source>Masternode Information</source>
+        <translation>Masternode informatie</translation>
     </message>
     <message>
         <source>Public Key:</source>
         <translation>Publieke Sleutel:</translation>
     </message>
     <message>
-        <source>492526e7fa3c810b35016...40a5df85ee227ab00b1156994</source>
-        <translation>492526e7fa3c810b35016...40a5df85ee227ab00b1156994</translation>
-    </message>
-    <message>
         <source>Address: </source>
         <translation>Adres:</translation>
-    </message>
-    <message>
-        <source>127.0.0.2:43223</source>
-        <translation>127.0.0.2:43223</translation>
     </message>
     <message>
         <source>Collaterall tx id:</source>
@@ -1853,12 +1649,16 @@ Weet je het zeker?</translation>
         <translation>Status:</translation>
     </message>
     <message>
-        <source>MISSING</source>
-        <translation>ONTBREKEND</translation>
+        <source>Export data to run the Masternode on a remote server</source>
+        <translation>Exporteer gegevens om de Masternode op een externe server uit te voeren</translation>
     </message>
     <message>
-        <source>Export data to run the Master Node on a remote server</source>
-        <translation>Exporteer data om de Masternode uit te voeren op een externe server</translation>
+        <source>Masternode public key copied</source>
+        <translation>Masternode publieke sleutel gekopieerd</translation>
+    </message>
+    <message>
+        <source>Collateral tx id copied</source>
+        <translation>ID terugbetalingstransactie gekopieerd</translation>
     </message>
 </context>
 <context>
@@ -1867,24 +1667,54 @@ Weet je het zeker?</translation>
         <source>Form</source>
         <translation>Formulier</translation>
     </message>
-    <message>
-        <source>Savings</source>
-        <translation>Besparingen</translation>
-    </message>
-    <message>
-        <source>Jan. 19, 2019</source>
-        <translation>Jan. 19, 2019</translation>
-    </message>
-    <message>
-        <source>DN6i46dytMPVhV1JMGZFuQBh7BZZ6nNLox</source>
-        <translation>DN6i46dytMPVhV1JMGZFuQBh7BZZ6nNLox</translation>
-    </message>
 </context>
 <context>
     <name>NavMenuWidget</name>
     <message>
         <source>Form</source>
         <translation>Formulier</translation>
+    </message>
+    <message>
+        <source>HOME
+</source>
+        <translation>THUIS
+</translation>
+    </message>
+    <message>
+        <source>SEND
+</source>
+        <translation>VERSTUREN
+</translation>
+    </message>
+    <message>
+        <source>RECEIVE
+</source>
+        <translation>ONTVANGEN
+</translation>
+    </message>
+    <message>
+        <source>CONTACTS
+</source>
+        <translation>CONTACTEN
+</translation>
+    </message>
+    <message>
+        <source>MASTER
+NODES</source>
+        <translation>MASTER
+NODES</translation>
+    </message>
+    <message>
+        <source>COLD
+STAKING</source>
+        <translation>COLD
+STAKING</translation>
+    </message>
+    <message>
+        <source>SETTINGS
+</source>
+        <translation>INSTELLINGEN
+</translation>
     </message>
     <message>
         <source>V 1.0.0</source>
@@ -1943,10 +1773,6 @@ Weet je het zeker?</translation>
     <message>
         <source>Form</source>
         <translation>Formulier</translation>
-    </message>
-    <message>
-        <source>TextLabel</source>
-        <translation>TextLabel</translation>
     </message>
 </context>
 <context>
@@ -2051,7 +1877,7 @@ https://www.transifex.com/bcz-project/bcz-project-translations</translation>
     </message>
     <message>
         <source>Stake split threshold:</source>
-        <translation>Inzet splitdrempel:</translation>
+        <translation>Stake splitsdrempel:</translation>
     </message>
     <message>
         <source>Connect to the BCZ network through a SOCKS5 proxy.</source>
@@ -2272,108 +2098,6 @@ Type: %3
 Adres: %4
 </translation>
     </message>
-    <message>
-        <source>A fatal error occurred. BCZ can no longer continue safely and will quit.</source>
-        <translation>Een kritieke fout is opgelopen. BCZ kan niet langer veilig uitgevoerd worden en zal afsluiten.</translation>
-    </message>
-</context>
-<context>
-    <name>PWidget</name>
-    <message>
-        <source>Wallet locked, you need to unlock it to perform this action</source>
-        <translation>Portemonnee vergrendeld, je moet deze ontgrendelen om deze actie te kunnen uitvoeren</translation>
-    </message>
-</context>
-<context>
-    <name>PaymentServer</name>
-    <message>
-        <source>Payment request error</source>
-        <translation>Fout bij betalingsverzoek</translation>
-    </message>
-    <message>
-        <source>URI handling</source>
-        <translation>URL behandeling</translation>
-    </message>
-    <message>
-        <source>Payment request fetch URL is invalid: %1</source>
-        <translation>Betalingsverzoek ophalen URL is ongeldig: %1</translation>
-    </message>
-    <message>
-        <source>Payment request file handling</source>
-        <translation>Betalingsaanvraag bestandsverwerking</translation>
-    </message>
-    <message>
-        <source>Invalid payment address %1</source>
-        <translation>Ongeldig betalingsadres %1</translation>
-    </message>
-    <message>
-        <source>Cannot start bcz: click-to-pay handler</source>
-        <translation>Kan bcz niet starten: click-to-pay handler</translation>
-    </message>
-    <message>
-        <source>URI cannot be parsed! This can be caused by an invalid BCZ address or malformed URI parameters.</source>
-        <translation>URL kan niet ontleed worden! Dit kan worden veroorzaakt door een ongeldig BCZ adres of misvormde URL parameters.</translation>
-    </message>
-    <message>
-        <source>Payment request file cannot be read! This can be caused by an invalid payment request file.</source>
-        <translation>Uw betalingsverzoek kan niet worden gelezen! Dit kan worden veroorzaakt door een ongeldig betalingsverzoek bestand.</translation>
-    </message>
-    <message>
-        <source>Payment request rejected</source>
-        <translation>Betalingsverzoek afgewezen</translation>
-    </message>
-    <message>
-        <source>Payment request network doesn't match client network.</source>
-        <translation>Het betalingsverzoek netwerk komt niet overeen met het client netwerk.</translation>
-    </message>
-    <message>
-        <source>Payment request has expired.</source>
-        <translation>Betalingsverzoek is verlopen.</translation>
-    </message>
-    <message>
-        <source>Payment request is not initialized.</source>
-        <translation>Betalingsverzoek is niet geïnitialiseerd. </translation>
-    </message>
-    <message>
-        <source>Unverified payment requests to custom payment scripts are unsupported.</source>
-        <translation>Niet geverifieerde betalingsverzoeken naar aangepaste betaal scripts worden niet ondersteund.</translation>
-    </message>
-    <message>
-        <source>Requested payment amount of %1 is too small (considered dust).</source>
-        <translation>Gevraagd betalingsbedrag van %1 is te klein (beschouwd als dust).</translation>
-    </message>
-    <message>
-        <source>Refund from %1</source>
-        <translation>Terugbetaling van %1</translation>
-    </message>
-    <message>
-        <source>Payment request %1 is too large (%2 bytes, allowed %3 bytes).</source>
-        <translation>Betalingsverzoek %1 is te groot (%2 bytes, toegestaan %3 bytes).</translation>
-    </message>
-    <message>
-        <source>Payment request DoS protection</source>
-        <translation>Betalingsverzoek DoS bescherming</translation>
-    </message>
-    <message>
-        <source>Error communicating with %1: %2</source>
-        <translation>Fout communiceren met %1: %2</translation>
-    </message>
-    <message>
-        <source>Payment request cannot be parsed!</source>
-        <translation>Betalingsaanvraag kan niet worden geanalyseerd!</translation>
-    </message>
-    <message>
-        <source>Bad response from server %1</source>
-        <translation>Bad response van server %1</translation>
-    </message>
-    <message>
-        <source>Network request error</source>
-        <translation>Netwerkverzoek fout</translation>
-    </message>
-    <message>
-        <source>Payment acknowledged</source>
-        <translation>Betaling erkend</translation>
-    </message>
 </context>
 <context>
     <name>PeerTableModel</name>
@@ -2389,7 +2113,7 @@ Adres: %4
         <source>Ping Time</source>
         <translation>Pingtijd</translation>
     </message>
-</context>
+    </context>
 <context>
     <name>QObject</name>
     <message>
@@ -2397,7 +2121,7 @@ Adres: %4
         <translation>Bedrag</translation>
     </message>
     <message>
-        <source>Enter a BCZ address (e.g. %1)</source>
+        <source>Enter BCZ address (e.g. %1)</source>
         <translation>Voer een BCZ adres in (b.v. %1)</translation>
     </message>
     <message>
@@ -2425,10 +2149,6 @@ Adres: %4
         <translation>BLOOM</translation>
     </message>
     <message>
-        <source>ZK_BLOOM</source>
-        <translation>ZK_BLOOM</translation>
-    </message>
-    <message>
         <source>UNKNOWN</source>
         <translation>ONBEKEND</translation>
     </message>
@@ -2443,6 +2163,10 @@ Adres: %4
     <message>
         <source>%1 ms</source>
         <translation>%1 ms</translation>
+    </message>
+    <message>
+        <source>A fatal error occurred. BCZ can no longer continue safely and will quit.</source>
+        <translation>Een kritieke fout is opgelopen. BCZ kan niet langer veilig uitgevoerd worden en zal afsluiten.</translation>
     </message>
     <message>
         <source>BCZ Core</source>
@@ -2467,6 +2191,170 @@ Adres: %4
     <message>
         <source>BCZ Core didn't yet exit safely...</source>
         <translation>BCZ Core is nog niet veilig afgesloten...</translation>
+    </message>
+    <message>
+        <source>Contact</source>
+        <translation>Contacteer</translation>
+    </message>
+    <message>
+        <source>Receiving</source>
+        <translation>Ontvangen</translation>
+    </message>
+    <message>
+        <source>Delegator</source>
+        <translation>Delegator</translation>
+    </message>
+    <message>
+        <source>Delegable</source>
+        <translation>Delegeerbaar</translation>
+    </message>
+    <message>
+        <source>Cold Staking</source>
+        <translation>Cold Staking</translation>
+    </message>
+    <message>
+        <source>Cold Staking Contact</source>
+        <translation>Cold Staking Contact</translation>
+    </message>
+    <message>
+        <source>Hidden</source>
+        <translation>Verborgen</translation>
+    </message>
+    <message>
+        <source>Unknown</source>
+        <translation>Ongekend</translation>
+    </message>
+    <message>
+        <source>All</source>
+        <translation>Alle</translation>
+    </message>
+    <message>
+        <source>Contacts</source>
+        <translation>Contacten</translation>
+    </message>
+    <message>
+        <source>Staking Contacts</source>
+        <translation>Staking Contacten</translation>
+    </message>
+    <message>
+        <source>Date desc</source>
+        <translation>Datum aflopend</translation>
+    </message>
+    <message>
+        <source>Date asc</source>
+        <translation>Datum oplopend</translation>
+    </message>
+    <message>
+        <source>Amount desc</source>
+        <translation>Aantal aflopend</translation>
+    </message>
+    <message>
+        <source>Amount asc</source>
+        <translation>Aantal oplopend</translation>
+    </message>
+    <message>
+        <source>Received</source>
+        <translation>Ontvangen</translation>
+    </message>
+    <message>
+        <source>Sent</source>
+        <translation>Verstuurd</translation>
+    </message>
+    <message>
+        <source>Mined</source>
+        <translation>Mined</translation>
+    </message>
+    <message>
+        <source>Minted</source>
+        <translation>Minted</translation>
+    </message>
+    <message>
+        <source>MN reward</source>
+        <translation>MN beloning</translation>
+    </message>
+    <message>
+        <source>To yourself</source>
+        <translation>Naar jezelf</translation>
+    </message>
+    <message>
+        <source>Cold stakes</source>
+        <translation>Cold stakes</translation>
+    </message>
+    <message>
+        <source>Hot stakes</source>
+        <translation>Hot stakes</translation>
+    </message>
+    <message>
+        <source>Delegated</source>
+        <translation>Gedelegeerd</translation>
+    </message>
+    <message>
+        <source>Delegations</source>
+        <translation>Delegaties</translation>
+    </message>
+    <message>
+        <source>by Label</source>
+        <translation>per Label</translation>
+    </message>
+    <message>
+        <source>by Address</source>
+        <translation>per Adres</translation>
+    </message>
+    <message>
+        <source>by Date</source>
+        <translation>per Datum</translation>
+    </message>
+    <message>
+        <source>Jan</source>
+        <translation>Jan</translation>
+    </message>
+    <message>
+        <source>Feb</source>
+        <translation>Feb</translation>
+    </message>
+    <message>
+        <source>Mar</source>
+        <translation>Mrt</translation>
+    </message>
+    <message>
+        <source>Apr</source>
+        <translation>Apr</translation>
+    </message>
+    <message>
+        <source>May</source>
+        <translation>Mei</translation>
+    </message>
+    <message>
+        <source>Jun</source>
+        <translation>Jun</translation>
+    </message>
+    <message>
+        <source>Jul</source>
+        <translation>Jul</translation>
+    </message>
+    <message>
+        <source>Aug</source>
+        <translation>Aug</translation>
+    </message>
+    <message>
+        <source>Sep</source>
+        <translation>Sep</translation>
+    </message>
+    <message>
+        <source>Oct</source>
+        <translation>Okt</translation>
+    </message>
+    <message>
+        <source>Nov</source>
+        <translation>Nov</translation>
+    </message>
+    <message>
+        <source>Dec</source>
+        <translation>Dec</translation>
+    </message>
+    <message>
+        <source>Address with no label</source>
+        <translation>Adres zonder label</translation>
     </message>
 </context>
 <context>
@@ -2684,8 +2572,8 @@ Adres: %4
         <translation>Aangepast back-up pad:</translation>
     </message>
     <message>
-        <source>Custom zBCZ Backup Path:</source>
-        <translation>Aangepast zBCZ back-up pad:</translation>
+        <source>Custom BCZ Backup Path:</source>
+        <translation>Aangepast BCZ back-up pad:</translation>
     </message>
     <message>
         <source>Custom Backups Threshold:</source>
@@ -2883,24 +2771,16 @@ Adres: %4
         <translation>Dialoog</translation>
     </message>
     <message>
-        <source>Transaction Details</source>
-        <translation>Transactie details</translation>
+        <source>My Address</source>
+        <translation>Mijn Adres</translation>
     </message>
     <message>
-        <source>PushButton</source>
-        <translation>Druk Knop</translation>
-    </message>
-    <message>
-        <source>B52EagiPxecjS9zwyebbCZz3x3QuYBNezo </source>
-        <translation>B52EagiPxecjS9zwyebbCZz3x3QuYBNezo</translation>
+        <source>COPY</source>
+        <translation>KOPIEER</translation>
     </message>
     <message>
         <source>CANCEL</source>
         <translation>Annuleren</translation>
-    </message>
-    <message>
-        <source>OK</source>
-        <translation>Akkoord</translation>
     </message>
 </context>
 <context>
@@ -2910,12 +2790,12 @@ Adres: %4
         <translation>Formulier</translation>
     </message>
     <message>
-        <source>TextLabel</source>
-        <translation>TextLabel</translation>
-    </message>
-    <message>
         <source>No address</source>
         <translation>Geen adres</translation>
+    </message>
+    <message>
+        <source>Scan the QR code or copy the address to receive BCZ</source>
+        <translation>Scan de QR code of kopieer het adres om BCZ te ontvangen</translation>
     </message>
     <message>
         <source>Add Label</source>
@@ -2934,12 +2814,20 @@ Adres: %4
         <translation>Ontvangen</translation>
     </message>
     <message>
-        <source>Scan the QR code or copy the address to receive BCZ.</source>
-        <translation>Scan de QR code of kopieer het adres om BCZ te ontvangen.</translation>
+        <source>My Addresses</source>
+        <translation>Mijn Adressen</translation>
     </message>
     <message>
-        <source>No address </source>
-        <translation>Geen adres</translation>
+        <source>List your own addresses</source>
+        <translation>Oplijsten van uw adressen</translation>
+    </message>
+    <message>
+        <source>Create Request</source>
+        <translation>Verzoek aanmaken</translation>
+    </message>
+    <message>
+        <source>Request payment with a fixed amount</source>
+        <translation>Verzoek tot betaling met een vaste waarde</translation>
     </message>
     <message>
         <source>No available address, try unlocking the wallet</source>
@@ -2950,8 +2838,8 @@ Adres: %4
         <translation>Genereren van adres misgelopen</translation>
     </message>
     <message>
-        <source>Change Label</source>
-        <translation>Wijzig Label</translation>
+        <source>Edit Label</source>
+        <translation>Label wijzigen</translation>
     </message>
     <message>
         <source>Edit Address Label</source>
@@ -2966,12 +2854,20 @@ Adres: %4
         <translation>Fout bij bewaren adreslabel</translation>
     </message>
     <message>
+        <source>Cannot create new address, wallet locked</source>
+        <translation>Kan geen nieuw adres aanmaken, portemonnee vergrendeld</translation>
+    </message>
+    <message>
         <source>New address created</source>
         <translation>Nieuw adres gecreëerd</translation>
     </message>
     <message>
         <source>Address copied</source>
         <translation>Adres gekopieerd</translation>
+    </message>
+    <message>
+        <source>Cannot perform operation, wallet locked</source>
+        <translation>Kan deze actie niet uitvoeren, portemonnee vergrendeld</translation>
     </message>
     <message>
         <source>URI copied to clipboard</source>
@@ -3024,14 +2920,6 @@ Adres: %4
         <translation>Dialoog</translation>
     </message>
     <message>
-        <source>New Request Payment</source>
-        <translation>Nieuw Betalingsverzoek</translation>
-    </message>
-    <message>
-        <source>Lorem ipsum dolor sit amet, consectur cling elit, sed do </source>
-        <translation>Lorem ipsum dolor sit amet, consectur cling elit, sed do </translation>
-    </message>
-    <message>
         <source>Amount</source>
         <translation>Bedrag</translation>
     </message>
@@ -3040,12 +2928,12 @@ Adres: %4
         <translation>BCZ</translation>
     </message>
     <message>
-        <source>TextLabel</source>
-        <translation>TextLabel</translation>
+        <source>Instead of sharing only a BCZ address, you can create a payment request, bundling up more information</source>
+        <translation>In plaats van een BCZ-adres te delen, kunt u een betalingsverzoek creëren dat meer informatie bundelt.</translation>
     </message>
     <message>
-        <source>B52EagiPxecjS9zwyebbCZz3x3QuYBNezo </source>
-        <translation>B52EagiPxecjS9zwyebbCZz3x3QuYBNezo</translation>
+        <source>D7VFR83SQbiezrW72hjcWJtcfip5krte2Z </source>
+        <translation>D7VFR83SQbiezrW72hjcWJtcfip5krte2Z</translation>
     </message>
     <message>
         <source>COPY ADDRESS</source>
@@ -3060,28 +2948,24 @@ Adres: %4
         <translation>Annuleren</translation>
     </message>
     <message>
-        <source>REQUEST</source>
-        <translation>VERZOEK</translation>
-    </message>
-    <message>
-        <source>Instead of only sharing a BCZ address, you can create a Payment Request message which bundles up more information than is contained in just a BCZ address.</source>
-        <translation>In plaats van een BCZ-adres te delen, kunt u een bericht voor een betalingsverzoek maken dat meer informatie bundelt dan alleen in een BCZ-adres.</translation>
-    </message>
-    <message>
         <source>Label</source>
         <translation>Label</translation>
-    </message>
-    <message>
-        <source>Enter a label to be saved within the address</source>
-        <translation>Voer een label in dat bij het adres moet worden opgeslagen</translation>
     </message>
     <message>
         <source>Description (optional)</source>
         <translation>Omschrijving (optioneel)</translation>
     </message>
     <message>
-        <source>Add description </source>
-        <translation>Voeg beschrijving toe</translation>
+        <source>New Payment Request</source>
+        <translation>Nieuw Betalingsverzoek</translation>
+    </message>
+    <message>
+        <source>Enter a label for the address</source>
+        <translation>Voer een label in voor het adres</translation>
+    </message>
+    <message>
+        <source>Enter description</source>
+        <translation>Beschrijving toevoegen</translation>
     </message>
     <message>
         <source>Error</source>
@@ -3099,6 +2983,26 @@ Adres: %4
         <source>New Cold Staking Address</source>
         <translation>Nieuw Cold Staking Adres</translation>
     </message>
+    <message>
+        <source>Amount (optional)</source>
+        <translation>Bedrag (optioneel)</translation>
+    </message>
+    <message>
+        <source>Address label cannot be empty</source>
+        <translation>Adreslabel kan niet leeg zijn</translation>
+    </message>
+    <message>
+        <source>Invalid amount</source>
+        <translation>Ongeldige hoeveelheid</translation>
+    </message>
+    <message>
+        <source>Request for </source>
+        <translation>Verzoek voor</translation>
+    </message>
+    <message>
+        <source>Cold Staking Address Generated</source>
+        <translation>Colg Staking Adres gegenereerd</translation>
+    </message>
 </context>
 <context>
     <name>SendChangeAddressDialog</name>
@@ -3107,24 +3011,8 @@ Adres: %4
         <translation>Dialoog</translation>
     </message>
     <message>
-        <source>Transaction Details</source>
-        <translation>Transactie details</translation>
-    </message>
-    <message>
-        <source>PushButton</source>
-        <translation>Druk Knop</translation>
-    </message>
-    <message>
-        <source>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim.</source>
-        <translation>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim.</translation>
-    </message>
-    <message>
         <source>CANCEL</source>
         <translation>Annuleren</translation>
-    </message>
-    <message>
-        <source>OK</source>
-        <translation>Akkoord</translation>
     </message>
     <message>
         <source>Custom Change Address</source>
@@ -3134,6 +3022,22 @@ Adres: %4
         <source>The remainder of the value resultant from the inputs minus the outputs value goes to the "change" BCZ address</source>
         <translation>De rest van de waarde die resulteert uit de ingangen minus de waarde van de uitgangen gaat naar het "wijzig" BCZ-adres</translation>
     </message>
+    <message>
+        <source>SAVE</source>
+        <translation>Opslaan</translation>
+    </message>
+    <message>
+        <source>RESET</source>
+        <translation>RESETTEN</translation>
+    </message>
+    <message>
+        <source>Invalid address</source>
+        <translation>Ongeldig adres</translation>
+    </message>
+    <message>
+        <source>Cannot use cold staking addresses for change</source>
+        <translation>Kan geen colg staking adressen gebruiken voor specie</translation>
+    </message>
 </context>
 <context>
     <name>SendCustomFeeDialog</name>
@@ -3142,44 +3046,32 @@ Adres: %4
         <translation>Formulier</translation>
     </message>
     <message>
-        <source>Transaction Details</source>
-        <translation>Transactie details</translation>
-    </message>
-    <message>
-        <source>Customize the transaction fee at your to your liking, depending on the fee value your transaction will be included or not in the blockchain.</source>
-        <translation>Pas de transactiekosten naar wens aan, afhankelijk van de kostenwaarde die uw transactie wel of niet in de blockchain zal opnemen.</translation>
-    </message>
-    <message>
-        <source>Recomended</source>
+        <source>Recommended</source>
         <translation>Aanbevolen</translation>
+    </message>
+    <message>
+        <source>BCZ/kilobyte</source>
+        <translation>BCZ/kilobyte</translation>
     </message>
     <message>
         <source>0.00 KB</source>
         <translation>0.00 KB</translation>
     </message>
     <message>
-        <source>Custom</source>
-        <translation>Aangepast</translation>
+        <source>Customize the transaction fee, depending on the fee value your transaction might be included faster in the blockchain</source>
+        <translation>Pas de transactie aan, afhankelijk van de kostenwaarde zal uw transactie mogelijks sneller opgenomen worden in de blockchain</translation>
     </message>
     <message>
-        <source>Per kilobyte</source>
-        <translation>Per kilobyte</translation>
+        <source>Custom</source>
+        <translation>Aangepast</translation>
     </message>
     <message>
         <source>CANCEL</source>
         <translation>Annuleren</translation>
     </message>
     <message>
-        <source>OK</source>
-        <translation>Akkoord</translation>
-    </message>
-    <message>
         <source>Customize Fee</source>
         <translation>Kost Aanpassen</translation>
-    </message>
-    <message>
-        <source>Customize the transaction fee, depending on the fee value your transaction will be included or not in the blockchain.</source>
-        <translation>Pas de transactiekosten aan, afhankelijk van de kostenwaarde die uw transactie wel of niet in de blockchain zal opnemen.</translation>
     </message>
     <message>
         <source>Normal</source>
@@ -3197,6 +3089,14 @@ Adres: %4
         <source>SAVE</source>
         <translation>Opslaan</translation>
     </message>
+    <message>
+        <source>Fee too high. Must be below: %1</source>
+        <translation>Kost te hoog. Moet lager zijn dan: %1</translation>
+    </message>
+    <message>
+        <source>Fee too low. Must be at least: %1</source>
+        <translation>Kost te laag. Moet minstens: %1 zijn</translation>
+    </message>
 </context>
 <context>
     <name>SendMultiRow</name>
@@ -3205,75 +3105,35 @@ Adres: %4
         <translation>Formulier</translation>
     </message>
     <message>
-        <source>TextLabel</source>
-        <translation>TextLabel</translation>
+        <source>Enter address</source>
+        <translation>Voeg adres toe</translation>
     </message>
     <message>
-        <source>Add address</source>
-        <translation>Adres toevoegen</translation>
+        <source>Address label (optional)</source>
+        <translation>Adreslabel (optioneel)</translation>
     </message>
     <message>
-        <source>Add description</source>
-        <translation>Beschrijving toevoegen</translation>
+        <source>Enter label</source>
+        <translation>Label toevoegen</translation>
     </message>
 </context>
 <context>
     <name>SendWidget</name>
     <message>
-        <source>Send</source>
-        <translation>Zenden</translation>
-    </message>
-    <message>
-        <source>You can transfer public coins (BCZ) or private coins (zBCZ)</source>
-        <translation>Je kan publieke munten (BCZ) of private munten (zBCZ) overdragen</translation>
-    </message>
-    <message>
-        <source>Select coin type to spend</source>
-        <translation>Selecteer munttype om te spenderen</translation>
-    </message>
-    <message>
-        <source>Enter a BCZ address or contact label</source>
-        <translation>Voer een BCZ-adres of contactlabel in</translation>
-    </message>
-    <message>
-        <source>Amount</source>
-        <translation>Bedrag</translation>
-    </message>
-    <message>
-        <source>Customize fee</source>
-        <translation>Kosten aanpassen</translation>
-    </message>
-    <message>
-        <source>Clear all</source>
-        <translation>Alles wissen</translation>
-    </message>
-    <message>
-        <source>Add recipient</source>
-        <translation>Voeg bestemmeling toe</translation>
-    </message>
-    <message>
-        <source>Reset to default</source>
-        <translation>Terugzetten naar standaardinstelling</translation>
-    </message>
-    <message>
-        <source>Total to send</source>
-        <translation>Totaal te versturen</translation>
-    </message>
-    <message>
-        <source>Send BCZ</source>
-        <translation>BCZ Versturen</translation>
-    </message>
-    <message>
-        <source>Send zBCZ</source>
-        <translation>zBCZ Versturen</translation>
-    </message>
-    <message>
         <source>Total remaining from the selected UTXO</source>
         <translation>Totaal resterende van de geselecteerde UTXO</translation>
     </message>
     <message>
-        <source>Total remaining</source>
-        <translation>Totaal resterende</translation>
+        <source>Warning!</source>
+        <translation>Waarschuwing!</translation>
+    </message>
+    <message>
+        <source>The change address doesn't belong to this wallet.
+
+Do you want to continue?</source>
+        <translation>Het wisseladres behoort niet toe tot deze portemonnee.
+
+Wilt u verdergaan?</translation>
     </message>
     <message>
         <source>Customize Fee</source>
@@ -3286,6 +3146,10 @@ Adres: %4
     <message>
         <source>Invalid entry, previous entries must be valid before add a new one</source>
         <translation>Ongeldige invoer, vorige invoeren moeten geldig zijn voordat je een nieuwe kan toevoegen</translation>
+    </message>
+    <message>
+        <source>Possibly spend coins delegated for cold-staking (currently available: %1</source>
+        <translation>Mogelijks besteedde munten gedelegeerd voor cold-staking (momenteel beschikbaar: %1</translation>
     </message>
     <message>
         <source>Invalid entry</source>
@@ -3316,60 +3180,8 @@ Deze munten zullen niet langer cold-staked zijn.</translation>
         <translation>Transactie verstuurd</translation>
     </message>
     <message>
-        <source>Spend Zerocoin</source>
-        <translation>Besteed Zerocoin</translation>
-    </message>
-    <message>
-        <source>zBCZ is currently undergoing maintenance.</source>
-        <translation>zBCZ wordt momenteel onderhouden.</translation>
-    </message>
-    <message>
-        <source>Coin control mint not found</source>
-        <translation>Muntcontrole munting niet gevonden</translation>
-    </message>
-    <message>
-        <source>Sending %1 to address %2
-</source>
-        <translation>Versturen van %1 naar adres %2
-</translation>
-    </message>
-    <message>
-        <source>Sending %1 to addresses:
-%2</source>
-        <translation>Versturen van %1 naar adressen:
-%2</translation>
-    </message>
-    <message>
-        <source>zBCZ transaction sent!</source>
-        <translation>zBCZ transactie verzonden!</translation>
-    </message>
-    <message>
-        <source>Version 1 zBCZ require a security level of 100 to successfully spend.</source>
-        <translation>Versie 1 zBCZ vereist een beveiligingsniveau van 100 om succesvol te besteden.</translation>
-    </message>
-    <message>
-        <source>Too much inputs (</source>
-        <translation>Teveel invoer (</translation>
-    </message>
-    <message>
-        <source>) needed.
-Maximum allowed: </source>
-        <translation>) vereist.
-Maximaal toegestaan:</translation>
-    </message>
-    <message>
-        <source>
-Either mint higher denominations (so fewer inputs are needed) or reduce the amount to spend.</source>
-        <translation>
-Ofwel het munten van hogere denominaties (dus minder invoer nodig) of het te besteden bedrag verminderen.</translation>
-    </message>
-    <message>
         <source>Address label update failed for address: %1</source>
         <translation>Adreslabel bijwerken mislukt voor adres: %1</translation>
-    </message>
-    <message>
-        <source>Invalid change address</source>
-        <translation>Ongeldig wisseladres</translation>
     </message>
     <message>
         <source>Invalid URI</source>
@@ -3384,12 +3196,36 @@ Ofwel het munten van hogere denominaties (dus minder invoer nodig) of het te bes
         <translation>Aangepaste Kost %1</translation>
     </message>
     <message>
-        <source>You don't have any BCZ to select.</source>
-        <translation>Je hebt geen BCZ om te selecteren</translation>
+        <source>Coin Control</source>
+        <translation>Munt Controle</translation>
     </message>
     <message>
-        <source>You don't have any zBCZ in your balance to select.</source>
-        <translation>Je hebt geen zBCZ in je balans om te selecteren.</translation>
+        <source>Select the source of the coins</source>
+        <translation>Selecteer de herkomst van de munten</translation>
+    </message>
+    <message>
+        <source>Change Address</source>
+        <translation>Wijzig adres</translation>
+    </message>
+    <message>
+        <source>Customize the change address</source>
+        <translation>Aangepast wisselgeldadres</translation>
+    </message>
+    <message>
+        <source>Open URI</source>
+        <translation>URI openen</translation>
+    </message>
+    <message>
+        <source>Parse a payment request</source>
+        <translation>Verwerk een betalingsverzoek</translation>
+    </message>
+    <message>
+        <source>Unlocked remaining</source>
+        <translation>Ontgrendeld resterende</translation>
+    </message>
+    <message>
+        <source>You don't have any %1 to select.</source>
+        <translation>Je hebt geen %1 om te selecteren.</translation>
     </message>
     <message>
         <source>No contacts available, you can go to the contacts screen and add some there!</source>
@@ -3435,44 +3271,28 @@ Ofwel het munten van hogere denominaties (dus minder invoer nodig) of het te bes
         <translation>Formulier</translation>
     </message>
     <message>
-        <source>TextLabel</source>
-        <translation>TextLabel</translation>
-    </message>
-    <message>
-        <source>PushButton</source>
-        <translation>Druk Knop</translation>
-    </message>
-    <message>
-        <source>Backup Wallet </source>
-        <translation>Wallet Back-uppen</translation>
-    </message>
-    <message>
         <source>Change Wallet Passphrase</source>
         <translation>Wijzig Portemonnee Wachtwoord</translation>
-    </message>
-    <message>
-        <source>Keep your wallet safe doing regular backups, store your backup file externally.
-This option creates a wallet.dat file that can be used to recover your whole balance (transactions and addresses) from another device.</source>
-        <translation>Bewaar uw portemonnee veilig door middel van regelmatige back-ups, bewaar uw back-upbestand extern.
-Deze optie maakt een portemonnee.datbbestand aan dat kan worden gebruikt om uw volledige saldo (transacties en adressen) van een ander apparaat terug te krijgen.</translation>
-    </message>
-    <message>
-        <source>This will decrypt the whole wallet data and encrypt it back with the new passphrase.
-Remember to write it down and store it safely, otherwise you might lose access to your funds.</source>
-        <translation>Dit zal de gehele portemonneegegevens decrypteren en zal opnieuw encrypteren met een nieuwe wachtwoordzin.
-Vergeet deze niet op te schrijven en veilig te bewaren, anders verlies je mogelijks de toegang tot uw geld.</translation>
     </message>
     <message>
         <source>Where</source>
         <translation>Waar</translation>
     </message>
     <message>
-        <source>Set a folder location</source>
-        <translation>Maplocatie instellen</translation>
+        <source>Keep your wallet safe by doing regular backups and storing your backup file externally.
+This option creates a wallet.dat file that can be used to recover your whole balance (transactions and addresses) on another device</source>
+        <translation>Bewaar uw portemonnee veilig door middel van regelmatige back-ups, bewaar uw back-upbestand extern.
+Deze optie maakt een wallet.dat bestand aan dat gebruikt kan worden om uw volledige saldo (transacties en adressen) van een ander apparaat terug te krijgen</translation>
     </message>
     <message>
-        <source>Backup</source>
-        <translation>Back-up</translation>
+        <source>Select folder...</source>
+        <translation>Map Selecteren...</translation>
+    </message>
+    <message>
+        <source>This will decrypt the whole wallet data and encrypt it back with the new passphrase.
+Remember to write it down and store it safely, otherwise you might lose access to your funds</source>
+        <translation>Dit zal de gehele portemonneegegevens decrypteren en zal opnieuw encrypteren met een nieuwe wachtwoordzin.
+Vergeet deze niet op te schrijven en veilig te bewaren, anders verlies je mogelijks de toegang tot uw geld</translation>
     </message>
     <message>
         <source>Change Passphrase</source>
@@ -3506,28 +3326,18 @@ Vergeet deze niet op te schrijven en veilig te bewaren, anders verlies je mogeli
         <translation>Formulier</translation>
     </message>
     <message>
-        <source>TextLabel</source>
-        <translation>TextLabel</translation>
-    </message>
-    <message>
-        <source>PushButton</source>
-        <translation>Druk Knop</translation>
-    </message>
-    <message>
-        <source>Decrypt Address Result</source>
-        <translation>Decrypteer Adresresultaat</translation>
-    </message>
-    <message>
         <source>Import Address</source>
         <translation>Adres Importeren</translation>
     </message>
     <message>
-        <source>Clear</source>
-        <translation>Leegmaken</translation>
-    </message>
-    <message>
         <source>BIP38 Tool</source>
         <translation>BIP38 Tool</translation>
+    </message>
+    <message>
+        <source>Encrypt your BCZ addresses (key pair actually) using BIP38 encryption.
+Using this mechanism you can share your keys without middle-man risk, only need to store your passphrase safely</source>
+        <translation>Encrypteer uw BCZ-adressen (met key pair) gebruikmakende van BIP38 versleuteling.
+Door gebruik te maken van dit mechanisme kan je jouw sleutels delen zonder het risico van een tussenpersoon, je moet enkel je wachtwoordzin veilig opbergen</translation>
     </message>
     <message>
         <source>Encrypt</source>
@@ -3550,10 +3360,6 @@ Vergeet deze niet op te schrijven en veilig te bewaren, anders verlies je mogeli
         <translation>Wachtwoord</translation>
     </message>
     <message>
-        <source>Enter a passphrase </source>
-        <translation>Voer wachtwoord in</translation>
-    </message>
-    <message>
         <source>Decrypted address result</source>
         <translation>Gedecrypteerd Adresresultaat</translation>
     </message>
@@ -3566,16 +3372,16 @@ Vergeet deze niet op te schrijven en veilig te bewaren, anders verlies je mogeli
         <translation>DECRYPTEER SLEUTEL</translation>
     </message>
     <message>
-        <source>Enter a BCZ address</source>
-        <translation>Voeg een BCZ adres toe</translation>
+        <source>BCZ address</source>
+        <translation>BCZ adres</translation>
     </message>
     <message>
-        <source>Add address</source>
-        <translation>Adres toevoegen</translation>
+        <source>Enter address</source>
+        <translation>Voeg adres toe</translation>
     </message>
     <message>
-        <source>Write a message</source>
-        <translation>Schrijf een bericht</translation>
+        <source>Enter passphrase</source>
+        <translation>Voer wachtwoordzin in</translation>
     </message>
     <message>
         <source>Encrypted Key</source>
@@ -3588,6 +3394,10 @@ Vergeet deze niet op te schrijven en veilig te bewaren, anders verlies je mogeli
     <message>
         <source>CLEAR ALL</source>
         <translation>WIS ALLES</translation>
+    </message>
+    <message>
+        <source>Enter a passphrase</source>
+        <translation>Voer wachtwoordzin in</translation>
     </message>
     <message>
         <source>CLEAR</source>
@@ -3659,7 +3469,7 @@ Vergeet deze niet op te schrijven en veilig te bewaren, anders verlies je mogeli
     </message>
     <message>
         <source>Successfully added private key to the wallet</source>
-        <translation>Geheime sleutel succesvol toegevoegd aan de portemonnee</translation>
+        <translation>Privésleutel succesvol toegevoegd aan de portemonnee</translation>
     </message>
 </context>
 <context>
@@ -3667,10 +3477,6 @@ Vergeet deze niet op te schrijven en veilig te bewaren, anders verlies je mogeli
     <message>
         <source>Form</source>
         <translation>Formulier</translation>
-    </message>
-    <message>
-        <source>TextLabel</source>
-        <translation>TextLabel</translation>
     </message>
     <message>
         <source>Console</source>
@@ -3681,12 +3487,16 @@ Vergeet deze niet op te schrijven en veilig te bewaren, anders verlies je mogeli
         <translation>Console invoer</translation>
     </message>
     <message>
-        <source>Command Line Options </source>
+        <source>Open Debug File</source>
+        <translation>Open debugbestand</translation>
+    </message>
+    <message>
+        <source>Command Line Options</source>
         <translation>Command Line Opties</translation>
     </message>
     <message>
-        <source>Open Debug File</source>
-        <translation>Open debugbestand</translation>
+        <source>Clear history</source>
+        <translation>Geschiedenis verwijderen</translation>
     </message>
     <message>
         <source>Cannot open debug file.
@@ -3718,12 +3528,8 @@ Controleer of u een vooraf bepaalde teksteditor hebt geïnstalleerd.</translatio
         <translation>Formulier</translation>
     </message>
     <message>
-        <source>TextLabel</source>
-        <translation>TextLabel</translation>
-    </message>
-    <message>
-        <source>PushButton</source>
-        <translation>Druk Knop</translation>
+        <source>Hide stake charts in the dashboard</source>
+        <translation>Verberg stakegrafieken in het dashboard</translation>
     </message>
     <message>
         <source>Reset to default</source>
@@ -3775,14 +3581,113 @@ Controleer of u een vooraf bepaalde teksteditor hebt geïnstalleerd.</translatio
     </message>
 </context>
 <context>
-    <name>SettingsInformationWidget</name>
+    <name>SettingsExportCSV</name>
     <message>
         <source>Form</source>
         <translation>Formulier</translation>
     </message>
     <message>
-        <source>TextLabel</source>
-        <translation>TextLabel</translation>
+        <source>Export Accounting</source>
+        <translation>Exporteer Accounting</translation>
+    </message>
+    <message>
+        <source>Export your wallet's accounting data to a csv file.</source>
+        <translation>Exporteer je portemonnee's accountinggegevens naar een csv bestand.</translation>
+    </message>
+    <message>
+        <source>Where</source>
+        <translation>Waar</translation>
+    </message>
+    <message>
+        <source>Select folder...</source>
+        <translation>Map Selecteren...</translation>
+    </message>
+    <message>
+        <source>Export Address Book</source>
+        <translation>Adreslijst Exporteren</translation>
+    </message>
+    <message>
+        <source>Export CSV</source>
+        <translation>CSV Exporteren</translation>
+    </message>
+    <message>
+        <source>Export Address List</source>
+        <translation>Exporteer Adreslijst</translation>
+    </message>
+    <message>
+        <source>BCZ_tx_csv_export(*.csv)</source>
+        <translation>BCZ_tx_csv_export(*.csv)</translation>
+    </message>
+    <message>
+        <source>BCZ_addresses_csv_export(*.csv)</source>
+        <translation>BCZ_addresses_csv_export(*.csv)</translation>
+    </message>
+    <message>
+        <source>Please select a folder to export the csv file first.</source>
+        <translation>Selecteer eerst een map om het csv te exporteren te exporteren.</translation>
+    </message>
+    <message>
+        <source>Confirmed</source>
+        <translation>Bevestigd</translation>
+    </message>
+    <message>
+        <source>Watch-only</source>
+        <translation>Watch-only</translation>
+    </message>
+    <message>
+        <source>Date</source>
+        <translation>Datum</translation>
+    </message>
+    <message>
+        <source>Type</source>
+        <translation>Type</translation>
+    </message>
+    <message>
+        <source>Label</source>
+        <translation>Label</translation>
+    </message>
+    <message>
+        <source>Address</source>
+        <translation>Adres</translation>
+    </message>
+    <message>
+        <source>ID</source>
+        <translation>ID</translation>
+    </message>
+    <message>
+        <source>Exporting Successful
+The transaction history was successfully saved to %1.</source>
+        <translation>Export Succesvol
+De transactiegeschiedenis is succesvol bewaard in %1.</translation>
+    </message>
+    <message>
+        <source>Exporting Failed
+There was an error trying to save the transaction history to %1.</source>
+        <translation>Export Mislukt
+Er is een fout opgetreden om de transactiegeschiedenis te bewaren naar %1.</translation>
+    </message>
+    <message>
+        <source>No available addresses to export under the selected filter</source>
+        <translation>Geen beschikbare adressen om te exporteren onder de geselecteerde filter</translation>
+    </message>
+    <message>
+        <source>Exporting Successful
+The address book was successfully saved to %1.</source>
+        <translation>Export Succesvol
+Het adresboek is succesvol bewaard in %1.</translation>
+    </message>
+    <message>
+        <source>Exporting Failed
+There was an error trying to save the address list to %1. Please try again.</source>
+        <translation>Export Mislukt
+Er was een fout opgetreden tijdens het opslaan van deze adreslijst naar %1. Probeer het nogmaals.</translation>
+    </message>
+</context>
+<context>
+    <name>SettingsInformationWidget</name>
+    <message>
+        <source>Form</source>
+        <translation>Formulier</translation>
     </message>
     <message>
         <source>Network Monitor</source>
@@ -3797,24 +3702,48 @@ Controleer of u een vooraf bepaalde teksteditor hebt geïnstalleerd.</translatio
         <translation>Algemeen</translation>
     </message>
     <message>
-        <source>Client Version: </source>
+        <source>Client Version:</source>
         <translation>Client Versie:</translation>
+    </message>
+    <message>
+        <source>BerkeleyDB version:</source>
+        <translation>BerkeleyDB versie:</translation>
+    </message>
+    <message>
+        <source>Datadir:</source>
+        <translation>Datadir:</translation>
+    </message>
+    <message>
+        <source>Startup time:</source>
+        <translation>Opstarttijd:</translation>
+    </message>
+    <message>
+        <source>Connections:</source>
+        <translation>Verbindingen:</translation>
+    </message>
+    <message>
+        <source>Number of Masternodes:</source>
+        <translation>Aantal Masternodes:</translation>
+    </message>
+    <message>
+        <source>Current number of blocks:</source>
+        <translation>Huidige aantal blocks:</translation>
+    </message>
+    <message>
+        <source>Last block time:</source>
+        <translation>Laatste blocktijd:</translation>
+    </message>
+    <message>
+        <source>Last block hash:</source>
+        <translation>Laatste blockhash:</translation>
+    </message>
+    <message>
+        <source>Current number of transactions:</source>
+        <translation>Huidig aantal transacties:</translation>
     </message>
     <message>
         <source>User Agent:</source>
         <translation>User Agent:</translation>
-    </message>
-    <message>
-        <source>Using BerkeleyDB version:</source>
-        <translation>Gebruikt BerkeleyDB versie:</translation>
-    </message>
-    <message>
-        <source>Datadir: </source>
-        <translation>Datadir: </translation>
-    </message>
-    <message>
-        <source>Startup Time:  </source>
-        <translation>Starttijd:</translation>
     </message>
     <message>
         <source>Network</source>
@@ -3825,28 +3754,12 @@ Controleer of u een vooraf bepaalde teksteditor hebt geïnstalleerd.</translatio
         <translation>Naam:</translation>
     </message>
     <message>
-        <source>Number Connections:</source>
-        <translation>Nummer Verbindingen:</translation>
-    </message>
-    <message>
         <source>Blockchain</source>
         <translation>Blockchain</translation>
     </message>
     <message>
-        <source>Current Number of Blocks:</source>
-        <translation>Huidige nummer van blokken:</translation>
-    </message>
-    <message>
-        <source>Last Block Time:</source>
-        <translation>Laatste Bloktijd:</translation>
-    </message>
-    <message>
         <source>Memory Pool</source>
         <translation>Geheugenpool</translation>
-    </message>
-    <message>
-        <source>Current Number of Transactions:</source>
-        <translation>Huidige nummer van transacties:</translation>
     </message>
     <message>
         <source>Main</source>
@@ -3888,20 +3801,12 @@ Controleer of u een vooraf bepaalde teksteditor hebt geïnstalleerd.</translatio
         <translation>Formulier</translation>
     </message>
     <message>
-        <source>TextLabel</source>
-        <translation>TextLabel</translation>
-    </message>
-    <message>
         <source>Window</source>
         <translation>Venster</translation>
     </message>
     <message>
         <source>Customize the application window options</source>
         <translation>De opties van het toepassingsvenster aanpassen</translation>
-    </message>
-    <message>
-        <source>CheckBox</source>
-        <translation>Selectievakje</translation>
     </message>
     <message>
         <source>Reset to default</source>
@@ -3918,6 +3823,10 @@ Controleer of u een vooraf bepaalde teksteditor hebt geïnstalleerd.</translatio
     <message>
         <source>Main</source>
         <translation>Hoofd</translation>
+    </message>
+    <message>
+        <source>Customize the main application options</source>
+        <translation>De opties van de hoofdtoepassing aanpassen</translation>
     </message>
     <message>
         <source>Size of database cache</source>
@@ -3985,12 +3894,12 @@ Weet u het zeker?
         <translation>Nieuwe ontvanger voor multisend</translation>
     </message>
     <message>
-        <source>Label (optional)</source>
-        <translation>Label (optioneel)</translation>
+        <source>Address Label (optional)</source>
+        <translation>Adreslabel (optioneel)</translation>
     </message>
     <message>
-        <source>Enter a label to add this address in your address book</source>
-        <translation>Voer een label in om dit adres toe te voegen aan uw adresboek.</translation>
+        <source>Enter label to be saved with this address</source>
+        <translation>Voer een label in dat bij het adres opgeslagen moet worden </translation>
     </message>
     <message>
         <source>Percentage</source>
@@ -4008,8 +3917,8 @@ Weet u het zeker?
         <translation>TextLabel</translation>
     </message>
     <message>
-        <source>No active Master Node yet</source>
-        <translation>Nog geen actieve Master Node</translation>
+        <source>N/A</source>
+        <translation>NB</translation>
     </message>
     <message>
         <source>CheckBox</source>
@@ -4048,12 +3957,20 @@ Weet u het zeker?
         <translation>WIS ALLES</translation>
     </message>
     <message>
+        <source>Cannot perform operation, wallet locked</source>
+        <translation>Kan deze actie niet uitvoeren, portemonnee vergrendeld</translation>
+    </message>
+    <message>
         <source>Clear succeed</source>
         <translation>Wissen geslaagd</translation>
     </message>
     <message>
         <source>Clear all failed, could not locate address in wallet file</source>
         <translation>Alles wissen mislukt, kon geen adres terugvinden in het portemonnee bestand</translation>
+    </message>
+    <message>
+        <source>Cannot add multisend recipient, wallet locked</source>
+        <translation>Kan geen multisendontvanger toevoegen, portemonnee vergrendeld</translation>
     </message>
     <message>
         <source>The entered address: %1 is invalid.
@@ -4111,28 +4028,8 @@ Vink één of beide selectievakjes aan om beloningen op de inzet en/of masternod
         <translation>Formulier</translation>
     </message>
     <message>
-        <source>TextLabel</source>
-        <translation>TextLabel</translation>
-    </message>
-    <message>
-        <source>PushButton</source>
-        <translation>Druk Knop</translation>
-    </message>
-    <message>
-        <source>Clear</source>
-        <translation>Leegmaken</translation>
-    </message>
-    <message>
         <source>Sign/Verify Message</source>
         <translation>Onderteken/Verifiëer Bericht</translation>
-    </message>
-    <message>
-        <source>Enter a BCZ address or contact label</source>
-        <translation>Voer een BCZ-adres of contactlabel in</translation>
-    </message>
-    <message>
-        <source>Add address</source>
-        <translation>Adres toevoegen</translation>
     </message>
     <message>
         <source>Sign</source>
@@ -4143,6 +4040,10 @@ Vink één of beide selectievakjes aan om beloningen op de inzet en/of masternod
         <translation>Verifiëer</translation>
     </message>
     <message>
+        <source>Write message here...</source>
+        <translation>Schrijf hier een bericht...</translation>
+    </message>
+    <message>
         <source>Select mode</source>
         <translation>Selecteer mode</translation>
     </message>
@@ -4151,8 +4052,12 @@ Vink één of beide selectievakjes aan om beloningen op de inzet en/of masternod
         <translation>Bericht</translation>
     </message>
     <message>
-        <source>Write a message</source>
-        <translation>Schrijf een bericht</translation>
+        <source>BCZ address or contact label</source>
+        <translation>BCZ adres of contactlabel</translation>
+    </message>
+    <message>
+        <source>Enter address</source>
+        <translation>Voeg adres toe</translation>
     </message>
     <message>
         <source>Signature</source>
@@ -4238,28 +4143,12 @@ Vink één of beide selectievakjes aan om beloningen op de inzet en/of masternod
         <translation>Formulier</translation>
     </message>
     <message>
-        <source>TextLabel</source>
-        <translation>TextLabel</translation>
-    </message>
-    <message>
-        <source>CheckBox</source>
-        <translation>Selectievakje</translation>
-    </message>
-    <message>
-        <source>RadioButton</source>
-        <translation>RadioButton</translation>
-    </message>
-    <message>
         <source>Reset to default</source>
         <translation>Terugzetten naar standaardinstelling</translation>
     </message>
     <message>
         <source>Discard changes</source>
         <translation>Wijzigingen ongedaan maken</translation>
-    </message>
-    <message>
-        <source>PushButton</source>
-        <translation>Druk Knop</translation>
     </message>
     <message>
         <source>Wallet</source>
@@ -4270,8 +4159,8 @@ Vink één of beide selectievakjes aan om beloningen op de inzet en/of masternod
         <translation>Pas de interne portemonnee-opties aan</translation>
     </message>
     <message>
-        <source>Stake split threshold:</source>
-        <translation>Inzet splitdrempel:</translation>
+        <source>Stake split threshold</source>
+        <translation>Stake splitsdrempel</translation>
     </message>
     <message>
         <source>Spend unconfirmed change</source>
@@ -4286,16 +4175,24 @@ Vink één of beide selectievakjes aan om beloningen op de inzet en/of masternod
         <translation>Pas de nodenetwerkopties aan</translation>
     </message>
     <message>
-        <source>Proxy IP:</source>
-        <translation>Proxy IP:</translation>
+        <source>Connect through SOCKS5 proxy (default proxy)</source>
+        <translation>Connecteer via SOCKS5 proxy (standaardproxy)</translation>
+    </message>
+    <message>
+        <source>Proxy IP</source>
+        <translation>Proxy IP</translation>
+    </message>
+    <message>
+        <source>Port</source>
+        <translation>Poort</translation>
+    </message>
+    <message>
+        <source>Enter port</source>
+        <translation>Voer poort in</translation>
     </message>
     <message>
         <source>Enter proxy IP</source>
         <translation>Proxy IP invoeren</translation>
-    </message>
-    <message>
-        <source>Port:</source>
-        <translation>Poort:</translation>
     </message>
     <message>
         <source>Map port using UPnP</source>
@@ -4304,10 +4201,6 @@ Vink één of beide selectievakjes aan om beloningen op de inzet en/of masternod
     <message>
         <source>Allow incoming connections</source>
         <translation>Sta inkomende connecties toe</translation>
-    </message>
-    <message>
-        <source>Connect through SOCKS5 proxy (default proxy):</source>
-        <translation>Connecteer via SOCKS5 proxy (standaardproxy):</translation>
     </message>
     <message>
         <source>SAVE</source>
@@ -4325,64 +4218,48 @@ Vink één of beide selectievakjes aan om beloningen op de inzet en/of masternod
         <translation>Formulier</translation>
     </message>
     <message>
-        <source>TextLabel</source>
-        <translation>TextLabel</translation>
-    </message>
-    <message>
-        <source>PushButton</source>
-        <translation>Druk Knop</translation>
-    </message>
-    <message>
         <source>Wallet Repair</source>
         <translation>Portemonnee Herstel</translation>
-    </message>
-    <message>
-        <source>The buttons below will restart the wallet with command-line options to repair this wallet, fix issues with corrupt blockchain files or missing/obsolete transactions.</source>
-        <translation>De knoppen hieronder herstarten de portemonnee met commandoregelopties om deze portemonnee te repareren, problemen met corrupte blockchain bestanden of ontbrekende/verouderde transacties op te lossen.</translation>
-    </message>
-    <message>
-        <source>Attempt to recover private keys from a corrupt wallet.dat.</source>
-        <translation>Poog om privé sleutels terug te halen uit een corrupte wallet.dat.</translation>
-    </message>
-    <message>
-        <source>Rescan the blockchain for missing wallet transactions.</source>
-        <translation>Scan de blockchain opnieuw voor ontbrekende portemonneetransacties.</translation>
-    </message>
-    <message>
-        <source>Recover transactions from blockchain (keep-meta-data, e.g. account owner).</source>
-        <translation>Herstel transacties uit de blockchain (keep-meta-data, bijvoorbeeld van de rekeninghouder).</translation>
-    </message>
-    <message>
-        <source>Recover transactions from blockchain (drop meta-data).</source>
-        <translation>Herstel transacties van blockchain (laat meta-data vallen).</translation>
     </message>
     <message>
         <source>Upgrade wallet to latest format on startup. (Note: this is NOT an update of the wallet itself)</source>
         <translation>Upgrade de portemonnee naar het laatste formaat bij het opstarten. (Opmerking: dit is GEEN update van de portemonnee zelf).</translation>
     </message>
     <message>
-        <source>Rebuild blockchain index from current blk000???.dat files.</source>
-        <translation>Bouw de blockchain index opnieuw vanuit huidige blk000???.dat bestanden.</translation>
-    </message>
-    <message>
-        <source>Deletes all local blockchain folders so the wallet synchronizes from scratch.</source>
-        <translation>Verwijder alle lokale blockchain mappen zodat de portemonnee alles opnieuw kan hersynchroniseren.</translation>
+        <source>The buttons below will restart the wallet with command-line options to repair this wallet, fix issues with corrupt blockchain files or missing/obsolete transactions</source>
+        <translation>De knoppen hieronder herstarten de portemonnee met commandoregelopties om deze portemonnee te repareren, problemen met beschadigde blockchain bestanden of ontbrekende/verouderde transacties op te lossen</translation>
     </message>
     <message>
         <source>Salvage wallet</source>
         <translation>Red portemonnee</translation>
     </message>
     <message>
+        <source>Attempt to recover private keys from a corrupt wallet.dat</source>
+        <translation>Poog om privé sleutels te herstellen van een corrupte wallet.dat</translation>
+    </message>
+    <message>
         <source>Rescan blockchain file</source>
         <translation>Blockchainbestand opnieuw scannen</translation>
+    </message>
+    <message>
+        <source>Rescan the blockchain for missing wallet transactions</source>
+        <translation>Scan de blockchain opnieuw voor ontbrekende portemonneetransacties</translation>
     </message>
     <message>
         <source>Recover transactions 1</source>
         <translation>Herstel transacties 1</translation>
     </message>
     <message>
+        <source>Recover transactions from blockchain (keep-meta-data, e.g. account owner)</source>
+        <translation>Herstel transacties uit de blockchain (keep-meta-data, bijvoorbeeld van de rekeninghouder)</translation>
+    </message>
+    <message>
         <source>Recover transactions 2</source>
         <translation>Herstel transacties 2</translation>
+    </message>
+    <message>
+        <source>Recover transactions from blockchain (drop meta-data)</source>
+        <translation>Herstel transacties van blockchain (laat meta-data vallen)</translation>
     </message>
     <message>
         <source>Upgrade wallet format</source>
@@ -4393,8 +4270,16 @@ Vink één of beide selectievakjes aan om beloningen op de inzet en/of masternod
         <translation>Herbouw index</translation>
     </message>
     <message>
-        <source>Delete local blockchain </source>
+        <source>Rebuild blockchain index from current blk000???.dat files</source>
+        <translation>Bouw de blockchain index opnieuw vanuit huidige blk000???.dat bestanden</translation>
+    </message>
+    <message>
+        <source>Delete local blockchain</source>
         <translation>Verwijder lokale blockchain</translation>
+    </message>
+    <message>
+        <source>Deletes all local blockchain folders so the wallet synchronizes from scratch</source>
+        <translation>Verwijder alle lokale blockchain mappen zodat de portemonnee alles opnieuw kan hersynchroniseren</translation>
     </message>
     <message>
         <source>This will delete your local blockchain folders and the wallet will synchronize the complete Blockchain from scratch.&lt;br /&gt;&lt;br /&gt;</source>
@@ -4424,10 +4309,6 @@ Vink één of beide selectievakjes aan om beloningen op de inzet en/of masternod
         <translation>Formulier</translation>
     </message>
     <message>
-        <source>TextLabel</source>
-        <translation>TextLabel</translation>
-    </message>
-    <message>
         <source>Wallet Data</source>
         <translation>Portemonnee Data</translation>
     </message>
@@ -4438,6 +4319,10 @@ Vink één of beide selectievakjes aan om beloningen op de inzet en/of masternod
     <message>
         <source>Multisend</source>
         <translation>Multisend</translation>
+    </message>
+    <message>
+        <source>Export Accounting</source>
+        <translation>Exporteer Accounting</translation>
     </message>
     <message>
         <source>Tools</source>
@@ -4477,7 +4362,7 @@ Vink één of beide selectievakjes aan om beloningen op de inzet en/of masternod
     </message>
     <message>
         <source>Wallet Repair</source>
-        <translation>Portemonnee Herstellen</translation>
+        <translation>Portemonnee Herstel</translation>
     </message>
     <message>
         <source>Help</source>
@@ -4506,6 +4391,10 @@ Vink één of beide selectievakjes aan om beloningen op de inzet en/of masternod
     <message>
         <source>Client will be shutdown, do you want to proceed?</source>
         <translation>Client wordt uitgeschakeld, wil je doorgaan?</translation>
+    </message>
+    <message>
+        <source>Stake Split too low, it shall be either &gt;= %1 or equal to 0 (to disable stake splitting)</source>
+        <translation>Stake split te laag, het moet ofwel &gt;= %1 of gelijk zijn aan 0 (om stake splitsing uit te schakelen)</translation>
     </message>
     <message>
         <source>Restart required</source>
@@ -4592,26 +4481,6 @@ Weet je zeker dat?
 <context>
     <name>SplashScreen</name>
     <message>
-        <source>BCZ Core</source>
-        <translation>BCZ Core</translation>
-    </message>
-    <message>
-        <source>Version %1</source>
-        <translation>Versie %1</translation>
-    </message>
-    <message>
-        <source>The Bitcoin Core developers</source>
-        <translation>De Bitcoin Kernontwikkelaars</translation>
-    </message>
-    <message>
-        <source>The Dash Core developers</source>
-        <translation>De Dash Kernontwikkelaars</translation>
-    </message>
-    <message>
-        <source>The BCZ Core developers</source>
-        <translation>De BCZ Kernontwikkelaars</translation>
-    </message>
-    <message>
         <source>[testnet]</source>
         <translation>[testnet]</translation>
     </message>
@@ -4646,14 +4515,6 @@ Weet je zeker dat?
         <translation>Formulier</translation>
     </message>
     <message>
-        <source>480.0685 BCZ</source>
-        <translation>480.0685 BCZ</translation>
-    </message>
-    <message>
-        <source>1,000 zBCZ</source>
-        <translation>1,000 zBCZ</translation>
-    </message>
-    <message>
         <source>Available</source>
         <translation>Beschikbaar</translation>
     </message>
@@ -4662,24 +4523,8 @@ Weet je zeker dat?
         <translation>In afwachting</translation>
     </message>
     <message>
-        <source>6.943 BCZ</source>
-        <translation>6.943 BCZ</translation>
-    </message>
-    <message>
         <source>Immature</source>
         <translation>Onverwerkt</translation>
-    </message>
-    <message>
-        <source>10 BCZ</source>
-        <translation>10 BCZ</translation>
-    </message>
-    <message>
-        <source>60 zBCZ</source>
-        <translation>60 zBCZ</translation>
-    </message>
-    <message>
-        <source>10 zBCZ</source>
-        <translation>10 zBCZ</translation>
     </message>
     <message>
         <source>Wallet Unlocked for staking</source>
@@ -4701,33 +4546,141 @@ Weet je zeker dat?
         <source>Staking not active</source>
         <translation>Staking niet actief</translation>
     </message>
-    <message numerus="yes">
-        <source>%n active connection(s)</source>
-        <translation><numerusform>%n actieve verbinding</numerusform><numerusform>%n actieve verbindingen</numerusform></translation>
-    </message>
     <message>
-        <source>Synchronized</source>
-        <translation>Gesynchroniseerd</translation>
-    </message>
-    <message numerus="yes">
-        <source>%n hour(s)</source>
-        <translation><numerusform>%n uur</numerusform><numerusform>%n uren</numerusform></translation>
-    </message>
-    <message numerus="yes">
-        <source>%n day(s)</source>
-        <translation><numerusform>%n dag</numerusform><numerusform>%n dagen</numerusform></translation>
-    </message>
-    <message numerus="yes">
-        <source>%n week(s)</source>
-        <translation><numerusform>%n week</numerusform><numerusform>%n weken</numerusform></translation>
+        <source>Synchronized - Block: %1</source>
+        <translation>Gesynchroniseerd - Block: %1</translation>
     </message>
     <message>
         <source>%1 and %2</source>
         <translation>%1 en %2</translation>
     </message>
-    <message numerus="yes">
-        <source>%n year(s)</source>
-        <translation><numerusform>%n jaar</numerusform><numerusform>%n jaren</numerusform></translation>
+    <message>
+        <source>Wallet Upgrade</source>
+        <translation>Portemonneeupgrade</translation>
+    </message>
+    <message>
+        <source>Upgrading to HD wallet will improve
+the wallet's reliability and security.
+
+
+NOTE: after the upgrade, a new
+backup will be created.
+</source>
+        <translation>Upgrade naar HD portemonnee zal
+de portemonnee's betrouwbaarheid en veiligheid verbeteren.
+
+
+OPMERKING: na de upgrade, zal een
+nieuwe back-up aangemaakt worden.
+</translation>
+    </message>
+    <message>
+        <source>Upgrade Wallet</source>
+        <translation>Portemonnee upgraden</translation>
+    </message>
+    <message>
+        <source>Wallet unlock cancelled</source>
+        <translation>Portemonnee ontgrendeling geannuleerd </translation>
+    </message>
+    <message>
+        <source>Tor Active: %1</source>
+        <translation>Tor Actief: %1</translation>
+    </message>
+    <message>
+        <source>Tor Disabled</source>
+        <translation>Tor Uitgeschakeld</translation>
+    </message>
+    <message>
+        <source>FAQ</source>
+        <translation>Veelgestelde vragen</translation>
+    </message>
+    <message>
+        <source>Upgrade to HD Wallet</source>
+        <translation>Naar HD Portemonnee upgraden</translation>
+    </message>
+    <message>
+        <source>No Connection</source>
+        <translation>Geen Verbinding</translation>
+    </message>
+    <message>
+        <source>Staking Disabled</source>
+        <translation>Staking uitgeschakeld</translation>
+    </message>
+    <message>
+        <source>Cold Staking Disabled</source>
+        <translation>Cold Staking uitgeschakeld</translation>
+    </message>
+    <message>
+        <source> %54 Synchronizing..</source>
+        <translation>%54 Synchroniseren..</translation>
+    </message>
+    <message>
+        <source>Light Theme</source>
+        <translation>Light Thema</translation>
+    </message>
+    <message>
+        <source>Dark Theme</source>
+        <translation>Donker Thema</translation>
+    </message>
+    <message>
+        <source>Wallet Locked </source>
+        <translation>Portemonnee Vergrendeld</translation>
+    </message>
+    <message>
+        <source>Wallet Locked</source>
+        <translation>Portemonnee Vergrendeld</translation>
+    </message>
+    <message>
+        <source>Wallet Unlocked</source>
+        <translation>Portemonnee Ontgrendeld</translation>
+    </message>
+    <message>
+        <source>Wallet Unencrypted</source>
+        <translation>Portemonnee Onversleuteld</translation>
+    </message>
+    <message>
+        <source>Available (Locked included)</source>
+        <translation>Beschikbaar (inclusief vergrendelde)</translation>
+    </message>
+    <message>
+        <source>The wallet has been successfully upgraded to HD.</source>
+        <translation>De portemonnee is succesvol geüpgraded naar HD.</translation>
+    </message>
+    <message>
+        <source>It is advised to make a backup.</source>
+        <translation>Het is geadviseerd om een back-up te maken.</translation>
+    </message>
+    <message>
+        <source>Do you wish to backup now?</source>
+        <translation>Wilt u nu een back-up maken?</translation>
+    </message>
+    <message>
+        <source>Backup Wallet</source>
+        <translation>Backup portemonnee</translation>
+    </message>
+    <message>
+        <source>Wallet Data (*.dat)</source>
+        <translation>Portemonneegegevens (*.dat)</translation>
+    </message>
+    <message>
+        <source>Backup created</source>
+        <translation>Back-up aangemaakt</translation>
+    </message>
+    <message>
+        <source>Backup creation failed</source>
+        <translation>Aanmaak back-up mislukt</translation>
+    </message>
+    <message>
+        <source>no file selected</source>
+        <translation>geen bestand geselecteerd</translation>
+    </message>
+    <message>
+        <source>Wallet upgraded successfully, but no backup created.</source>
+        <translation>Portemonnee succesvol geüpgraded, maar geen back-up aangemaakt.</translation>
+    </message>
+    <message>
+        <source>Upgrade Wallet Error</source>
+        <translation>Upgrade Portemonnee Error</translation>
     </message>
 </context>
 <context>
@@ -4735,189 +4688,6 @@ Weet je zeker dat?
     <message>
         <source>KB/s</source>
         <translation>KB/s</translation>
-    </message>
-</context>
-<context>
-    <name>TransactionDesc</name>
-    <message numerus="yes">
-        <source>Open for %n more block(s)</source>
-        <translation><numerusform>Open voor nog %n blok</numerusform><numerusform>Open voor nog %n blokken</numerusform></translation>
-    </message>
-    <message>
-        <source>Open until %1</source>
-        <translation>Open tot %1</translation>
-    </message>
-    <message>
-        <source>conflicted</source>
-        <translation>conflicteert</translation>
-    </message>
-    <message>
-        <source>%1/offline</source>
-        <translation>%1/offline</translation>
-    </message>
-    <message>
-        <source>%1/unconfirmed</source>
-        <translation>%1/onbevestigd</translation>
-    </message>
-    <message>
-        <source>%1 confirmations</source>
-        <translation>%1 bevestigingen</translation>
-    </message>
-    <message>
-        <source>%1/offline (verified via SwiftX)</source>
-        <translation>%1/offline (gecontroleerd via SwiftX)</translation>
-    </message>
-    <message>
-        <source>%1/confirmed (verified via SwiftX)</source>
-        <translation>%1/bevestigd (gecontroleerd via swifttx)</translation>
-    </message>
-    <message>
-        <source>%1 confirmations (verified via SwiftX)</source>
-        <translation>%1 bevestigingen (gecontroleerd via swifttx)</translation>
-    </message>
-    <message>
-        <source>%1/offline (SwiftX verification in progress - %2 of %3 signatures)</source>
-        <translation>%1/offline (SwiftTX controle in uitvoering - %2 van %3 handtekeningen)</translation>
-    </message>
-    <message>
-        <source>%1/confirmed (SwiftX verification in progress - %2 of %3 signatures )</source>
-        <translation>%1/bevestigd (SwiftTX controle in uitvoering - %2 van %3 handtekeningen)</translation>
-    </message>
-    <message>
-        <source>%1 confirmations (SwiftX verification in progress - %2 of %3 signatures)</source>
-        <translation>%1 bevestigingen (SwiftTX controle in uitvoering -%2 van %3 handtekeningen)</translation>
-    </message>
-    <message>
-        <source>%1/offline (SwiftX verification failed)</source>
-        <translation>%1/offline (SwiftTX verificatie mislukt)</translation>
-    </message>
-    <message>
-        <source>%1/confirmed (SwiftX verification failed)</source>
-        <translation>%1/bevestigd (SwiftTX verificatie mislukt)</translation>
-    </message>
-    <message>
-        <source>Status</source>
-        <translation>Status</translation>
-    </message>
-    <message>
-        <source>, has not been successfully broadcast yet</source>
-        <translation>, is nog niet succesvol uitgezonden</translation>
-    </message>
-    <message numerus="yes">
-        <source>, broadcast through %n node(s)</source>
-        <translation><numerusform>, broadcast via %n node</numerusform><numerusform>, broadcast via %n nodes</numerusform></translation>
-    </message>
-    <message>
-        <source>Date</source>
-        <translation>Datum</translation>
-    </message>
-    <message>
-        <source>Source</source>
-        <translation>Bron</translation>
-    </message>
-    <message>
-        <source>Generated</source>
-        <translation>Gegeneerd</translation>
-    </message>
-    <message>
-        <source>From</source>
-        <translation>Van</translation>
-    </message>
-    <message>
-        <source>unknown</source>
-        <translation>ongekend</translation>
-    </message>
-    <message>
-        <source>To</source>
-        <translation>Naar</translation>
-    </message>
-    <message>
-        <source>own address</source>
-        <translation>eigen adres</translation>
-    </message>
-    <message>
-        <source>watch-only</source>
-        <translation>watch-only</translation>
-    </message>
-    <message>
-        <source>label</source>
-        <translation>label</translation>
-    </message>
-    <message>
-        <source>Credit</source>
-        <translation>Credit</translation>
-    </message>
-    <message numerus="yes">
-        <source>matures in %n more block(s)</source>
-        <translation><numerusform>Volgroeid in %n blok</numerusform><numerusform>volgroeid in %n blokken</numerusform></translation>
-    </message>
-    <message>
-        <source>not accepted</source>
-        <translation>niet geaccepteerd</translation>
-    </message>
-    <message>
-        <source>Debit</source>
-        <translation>Debet</translation>
-    </message>
-    <message>
-        <source>Total debit</source>
-        <translation>Totaal debet</translation>
-    </message>
-    <message>
-        <source>Total credit</source>
-        <translation>Totaal credit</translation>
-    </message>
-    <message>
-        <source>Transaction fee</source>
-        <translation>Transactiekosten</translation>
-    </message>
-    <message>
-        <source>Net amount</source>
-        <translation>Netto bedrag</translation>
-    </message>
-    <message>
-        <source>Message</source>
-        <translation>Bericht</translation>
-    </message>
-    <message>
-        <source>Comment</source>
-        <translation>Reactie</translation>
-    </message>
-    <message>
-        <source>Transaction ID</source>
-        <translation>Transactie ID</translation>
-    </message>
-    <message>
-        <source>Output index</source>
-        <translation>Output index</translation>
-    </message>
-    <message>
-        <source>Merchant</source>
-        <translation>Winkelier</translation>
-    </message>
-    <message>
-        <source>Debug information</source>
-        <translation>Debug informatie</translation>
-    </message>
-    <message>
-        <source>Transaction</source>
-        <translation>Transactie</translation>
-    </message>
-    <message>
-        <source>Inputs</source>
-        <translation>Inputs</translation>
-    </message>
-    <message>
-        <source>Amount</source>
-        <translation>Bedrag</translation>
-    </message>
-    <message>
-        <source>true</source>
-        <translation>waar</translation>
-    </message>
-    <message>
-        <source>false</source>
-        <translation>onwaar</translation>
     </message>
 </context>
 <context>
@@ -4934,17 +4704,9 @@ Weet je zeker dat?
         <source>Address</source>
         <translation>Adres</translation>
     </message>
-    <message numerus="yes">
-        <source>Open for %n more block(s)</source>
-        <translation><numerusform>Open voor nog %n blok</numerusform><numerusform>Open voor nog %n blokken</numerusform></translation>
-    </message>
     <message>
         <source>Open until %1</source>
         <translation>Open tot %1</translation>
-    </message>
-    <message>
-        <source>Offline</source>
-        <translation>Offline</translation>
     </message>
     <message>
         <source>Unconfirmed</source>
@@ -4967,10 +4729,6 @@ Weet je zeker dat?
         <translation>Onvolwassen (%1 bevestigingen, zullen beschikbaar zijn na %2)</translation>
     </message>
     <message>
-        <source>This block was not received by any other nodes and will probably not be accepted!</source>
-        <translation>Dit blok is niet ontvangen door andere noden en wordt waarschijnlijk niet geaccepteerd!</translation>
-    </message>
-    <message>
         <source>Received with</source>
         <translation>Ontvangen met</translation>
     </message>
@@ -4983,64 +4741,24 @@ Weet je zeker dat?
         <translation>Ontvangen van</translation>
     </message>
     <message>
-        <source>Received via Obfuscation</source>
-        <translation>Verkregen via verduistering</translation>
+        <source>%1 Stake</source>
+        <translation>%1 Stake</translation>
     </message>
     <message>
-        <source>BCZ Stake</source>
-        <translation>BCZ Stake</translation>
+        <source>z%1 Stake</source>
+        <translation>z%1 Stake</translation>
     </message>
     <message>
-        <source>zBCZ Stake</source>
-        <translation>zBCZ Stake</translation>
+        <source>%1 Cold Stake</source>
+        <translation>%1 Cold Stake</translation>
     </message>
     <message>
-        <source>BCZ Cold Stake</source>
-        <translation>BCZ Cold Stake</translation>
-    </message>
-    <message>
-        <source>BCZ Stake in behalf of</source>
-        <translation>BCZ Stake in naam van</translation>
+        <source>%1 Stake on behalf of</source>
+        <translation>%1 Stake in naam van</translation>
     </message>
     <message>
         <source>Stake delegation</source>
         <translation>Stake delegatie</translation>
-    </message>
-    <message>
-        <source>Obfuscation Denominate</source>
-        <translation>Verduistering denominatie</translation>
-    </message>
-    <message>
-        <source>Obfuscation Collateral Payment</source>
-        <translation>Verduistering zijdelingse betaling</translation>
-    </message>
-    <message>
-        <source>Obfuscation Make Collateral Inputs</source>
-        <translation>Verduistering maakt zijdelingse inputs</translation>
-    </message>
-    <message>
-        <source>Obfuscation Create Denominations</source>
-        <translation>Verduistering creëert denominaties</translation>
-    </message>
-    <message>
-        <source>Converted BCZ to zBCZ</source>
-        <translation>Geconverteerde BCZ naar zBCZ</translation>
-    </message>
-    <message>
-        <source>Spent zBCZ</source>
-        <translation>Bestede zBCZ</translation>
-    </message>
-    <message>
-        <source>Received BCZ from zBCZ</source>
-        <translation>Ontvangen BCZ van zBCZ</translation>
-    </message>
-    <message>
-        <source>Minted Change as zBCZ from zBCZ Spend</source>
-        <translation>Gemint wisselgeld als zBCZ van bestede zBCZ</translation>
-    </message>
-    <message>
-        <source>Converted zBCZ to BCZ</source>
-        <translation>Geconverteerde zBCZ naar BCZ</translation>
     </message>
     <message>
         <source>Sent to</source>
@@ -5055,12 +4773,32 @@ Weet je zeker dat?
         <translation>Betaling naar jezelf</translation>
     </message>
     <message>
+        <source>Stake delegation spent by</source>
+        <translation>Stake delegatie gespendeerd door</translation>
+    </message>
+    <message>
         <source>Mined</source>
         <translation>Mined</translation>
     </message>
     <message>
-        <source>Obfuscated</source>
-        <translation>Verduisterd</translation>
+        <source>Converted %1 to z%1</source>
+        <translation>Geconverteerde %1 naar z%1</translation>
+    </message>
+    <message>
+        <source>Spent z%1</source>
+        <translation>Beste z%1</translation>
+    </message>
+    <message>
+        <source>Received %1 from z%1</source>
+        <translation>Ontvangen %1 van z%1</translation>
+    </message>
+    <message>
+        <source>Minted Change as z%1 from z%1 Spend</source>
+        <translation>Gemunt wisselgeld als z%1 van bestede z%1</translation>
+    </message>
+    <message>
+        <source>Converted z%1 to %1</source>
+        <translation>Geconverteerde z%1 naar %1</translation>
     </message>
     <message>
         <source>watch-only</source>
@@ -5114,36 +4852,8 @@ Weet je zeker dat?
         <translation>Transactie details</translation>
     </message>
     <message>
-        <source>ID:</source>
-        <translation>ID:</translation>
-    </message>
-    <message>
-        <source>492526e7fa3c810b35016...40a5df85ee227ab00b1156994</source>
-        <translation>492526e7fa3c810b35016...40a5df85ee227ab00b1156994</translation>
-    </message>
-    <message>
-        <source>Sending to: </source>
-        <translation>Versturen naar:</translation>
-    </message>
-    <message>
-        <source>B52EagiPxecjS9zwyebbCZz3x3QuYBNezo </source>
-        <translation>B52EagiPxecjS9zwyebbCZz3x3QuYBNezo</translation>
-    </message>
-    <message>
         <source>Total amount</source>
         <translation>Totale hoeveelheid</translation>
-    </message>
-    <message>
-        <source>2 BCZ</source>
-        <translation>2 BCZ</translation>
-    </message>
-    <message>
-        <source>Coin inputs:</source>
-        <translation>Munt invoeren:</translation>
-    </message>
-    <message>
-        <source>1 Inputs</source>
-        <translation>1 Invoer</translation>
     </message>
     <message>
         <source>Previous Transaction</source>
@@ -5154,52 +4864,52 @@ Weet je zeker dat?
         <translation>Outputindex</translation>
     </message>
     <message>
-        <source>Fee:</source>
-        <translation>Fee:</translation>
-    </message>
-    <message>
-        <source>0.0001 BCZ</source>
-        <translation>0.0001 BCZ</translation>
-    </message>
-    <message>
-        <source>Change address:</source>
-        <translation>Wijzig adres:</translation>
-    </message>
-    <message>
-        <source>B52EagiPxec…BhjcWJtcfip5krte2Z </source>
-        <translation>B52EagiPxec…BhjcWJtcfip5krte2Z </translation>
-    </message>
-    <message>
-        <source>Confirmations:</source>
-        <translation>Bevestigingen:</translation>
-    </message>
-    <message>
-        <source>12</source>
-        <translation>12</translation>
-    </message>
-    <message>
-        <source>Size:</source>
-        <translation>Grootte:</translation>
-    </message>
-    <message>
-        <source>2 kB</source>
-        <translation>2 kB</translation>
-    </message>
-    <message>
-        <source>Date:</source>
-        <translation>Datum:</translation>
+        <source>D7VFR83SQbie…BhjcWJtcfip5krte2Z </source>
+        <translation>D7VFR83SQbie…BhjcWJtcfip5krte2Z </translation>
     </message>
     <message>
         <source>May 25, 2017</source>
         <translation>25 Mei, 2017</translation>
     </message>
     <message>
-        <source>Status:</source>
-        <translation>Status:</translation>
+        <source>ID</source>
+        <translation>ID</translation>
+    </message>
+    <message>
+        <source>Sending to</source>
+        <translation>Versturen naar:</translation>
+    </message>
+    <message>
+        <source>Coin inputs</source>
+        <translation>Munt invoeringen</translation>
+    </message>
+    <message>
+        <source>Fee</source>
+        <translation>Onkost</translation>
+    </message>
+    <message>
+        <source>Size</source>
+        <translation>Grootte</translation>
+    </message>
+    <message>
+        <source>Change address</source>
+        <translation>Wijzig adres</translation>
     </message>
     <message>
         <source>Spendable</source>
         <translation>Uitgeefbaar</translation>
+    </message>
+    <message>
+        <source>Confirmations</source>
+        <translation>Bevestigingen</translation>
+    </message>
+    <message>
+        <source>Status</source>
+        <translation>Status</translation>
+    </message>
+    <message>
+        <source>Date</source>
+        <translation>Datum</translation>
     </message>
     <message>
         <source>TextLabel</source>
@@ -5226,6 +4936,10 @@ Weet je zeker dat?
         <translation>ID gekopieerd</translation>
     </message>
     <message>
+        <source>Delegating to</source>
+        <translation>Gedelegeerd naar</translation>
+    </message>
+    <message>
         <source>Unknown</source>
         <translation>Ongekend</translation>
     </message>
@@ -5236,18 +4950,6 @@ Weet je zeker dat?
         <source>Form</source>
         <translation>Formulier</translation>
     </message>
-    <message>
-        <source>Received from Bob</source>
-        <translation>Ontvangen van Bob</translation>
-    </message>
-    <message>
-        <source>18/05/18</source>
-        <translation>18/05/18</translation>
-    </message>
-    <message>
-        <source>+0.000585 BCZ</source>
-        <translation>+0.000585 BCZ</translation>
-    </message>
 </context>
 <context>
     <name>WalletModel</name>
@@ -5256,43 +4958,24 @@ Weet je zeker dat?
         <translation>Verzend Munten</translation>
     </message>
     <message>
-        <source>SwiftX doesn't support sending values that high yet. Transactions are currently limited to %1 BCZ.</source>
-        <translation>SwiftTX ondersteunt geen verzendwaarden die zo hoog zijn. Transacties zijn momenteel beperkt tot %1 BCZ.</translation>
-    </message>
-</context>
-<context>
-    <name>WalletPasswordDialog</name>
-    <message>
-        <source>Dialog</source>
-        <translation>Dialoog</translation>
+        <source>SwiftX doesn't support sending values that high yet. Transactions are currently limited to %1 %2.</source>
+        <translation>SwiftTX ondersteunt geen verzendwaarden die zo hoog zijn. Transacties zijn momenteel beperkt tot %1 %2.</translation>
     </message>
     <message>
-        <source>TextLabel</source>
-        <translation>TextLabel</translation>
+        <source>Transaction creation failed!
+%1</source>
+        <translation>Transactie creatie mislukt!
+%1</translation>
     </message>
     <message>
-        <source>PushButton</source>
-        <translation>Druk Knop</translation>
-    </message>
-    <message>
-        <source>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim.</source>
-        <translation>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim.</translation>
-    </message>
-    <message>
-        <source>CANCEL</source>
-        <translation>Annuleren</translation>
-    </message>
-    <message>
-        <source>OK</source>
-        <translation>Akkoord</translation>
+        <source>The size of the transaction is too big.
+Select fewer inputs with coin control.</source>
+        <translation>De grootte van de transactie is te groot.
+Selecteer minder invoeren met muntcontrole.</translation>
     </message>
 </context>
 <context>
     <name>WelcomeContentWidget</name>
-    <message>
-        <source>Dialog</source>
-        <translation>Dialoog</translation>
-    </message>
     <message>
         <source>1</source>
         <translation>1</translation>
@@ -5383,16 +5066,8 @@ BCZ Core Portemonnee</translation>
         <translation>Bind naar het opgegeven adres om te luisteren naar JSON-RPC verbindingen. Gebruik [host]:poort notatie voor IPv6. Deze optie kan meerdere keren worden opgegeven (standaard: bind aan alle interfaces)</translation>
     </message>
     <message>
-        <source>Calculated accumulator checkpoint is not what is recorded by block index</source>
-        <translation>Het berekende accumulatie controlepunt is niet wat wordt geregistreerd door de blokindex</translation>
-    </message>
-    <message>
         <source>Cannot obtain a lock on data directory %s. BCZ Core is probably already running.</source>
         <translation>Kan geen vergrendeling op data directory %s verkrijgen. BCZ Core loopt waarschijnlijk al.</translation>
-    </message>
-    <message>
-        <source>Change automatic finalized budget voting behavior. mode=auto: Vote for only exact finalized budget match to my generated budget. (string, default: auto)</source>
-        <translation>Verander automatisch gefinaliseerd budget voting gedrag. modus=auto: Stem enkel voor exact gefinaliseerde budget overeenkomend met mijn gegenereerde budget. (tekenreeks, standaard: auto)</translation>
     </message>
     <message>
         <source>Continuously rate-limit free transactions to &lt;n&gt;*1000 bytes per minute (default:%u)</source>
@@ -5407,32 +5082,12 @@ BCZ Core Portemonnee</translation>
         <translation>Verwijder alle portemonnee transacties en herstel alleen die delen van de blockchain via -rescan bij opstarten</translation>
     </message>
     <message>
-        <source>Delete all zerocoin spends and mints that have been recorded to the blockchain database and reindex them (0-1, default: %u)</source>
-        <translation>Verwijder alle bestede Zerocoin en mints die zijn geregistreerd in de blockchain database en her-indexeer ze (0-1, standaard: %u)</translation>
-    </message>
-    <message>
         <source>Distributed under the MIT software license, see the accompanying file COPYING or &lt;http://www.opensource.org/licenses/mit-license.php&gt;.</source>
         <translation>Gedistribueerd onder de MIT software licentie, zie het bijgevoegde bestand COPYING of &lt;http://www.opensource.org/licenses/mit-license.php&gt;.</translation>
     </message>
     <message>
-        <source>Enable automatic Zerocoin minting from specific addresses (0-1, default: %u)</source>
-        <translation>Schakel automatische Zerocoin munting vanuit specifieke adressen in (0-1, standaard %u) </translation>
-    </message>
-    <message>
-        <source>Enable automatic wallet backups triggered after each zBCZ minting (0-1, default: %u)</source>
-        <translation>Schakel automatische portemonnee back-ups in geactiveerd na elke geminte zBCZ (0-1, standaard: %u)</translation>
-    </message>
-    <message>
         <source>Enable cold staking functionality (0-1, default: %u). Disabled if staking=0</source>
         <translation>Activeer cold staking functionaliteit (0-1, standaard: %u). Uitgeschakeld als staking=0</translation>
-    </message>
-    <message>
-        <source>Enable or disable staking functionality for BCZ inputs (0-1, default: %u)</source>
-        <translation>In- of uitschakelen staking functionaliteit voor BCZ inputs (0-1, standaard: %u)</translation>
-    </message>
-    <message>
-        <source>Enable or disable staking functionality for zBCZ inputs (0-1, default: %u)</source>
-        <translation>In- of uitschakelen staking functionaliteit voor zBCZ inputs (0-1, standaard: %u)</translation>
     </message>
     <message>
         <source>Enable spork administration functionality with the appropriate private key.</source>
@@ -5455,6 +5110,10 @@ BCZ Core Portemonnee</translation>
         <translation>Fout: Niet ondersteund argument -socks gevonden. Het instellen van SOCKS versie is niet meer mogelijk, alleen SOCKS5 proxy's worden ondersteund.</translation>
     </message>
     <message>
+        <source>Exclude debugging information for a category. Can be used in conjunction with -debug=1 to output debug logs for all categories except one or more specified categories.</source>
+        <translation>Sluit informatie voor een categorie uit. Kan worden gebruikt in combinatie met -debug=1 om foutopsporingslogboeken uit te voeren voor alle categorieën behalve een of meer gespecificeerde categorieën.</translation>
+    </message>
+    <message>
         <source>Execute command when a relevant alert is received or we see a really long fork (%s in cmd is replaced by message)</source>
         <translation>Uitvoeren commando wanneer een relevante waarschuwing is ontvangen of we zien een echt lange fork (%s in cmd wordt vervangen door bericht)</translation>
     </message>
@@ -5465,14 +5124,6 @@ BCZ Core Portemonnee</translation>
     <message>
         <source>Execute command when the best block changes (%s in cmd is replaced by block hash)</source>
         <translation>Uitvoeren commando wanneer het beste blok verandert (%s in cmd is vervangen door block hash)</translation>
-    </message>
-    <message>
-        <source>Fees (in BCZ/Kb) smaller than this are considered zero fee for relaying (default: %s)</source>
-        <translation>Kosten (in BCZ/Kb) kleiner dan dit worden beschouwd als zero fee voor heruitzending (standaard: %s)</translation>
-    </message>
-    <message>
-        <source>Fees (in BCZ/Kb) smaller than this are considered zero fee for transaction creation (default: %s)</source>
-        <translation>Kosten (in BCZ/Kb) kleiner dan dit worden beschouwd als zero fee voor transactie verrichting (standaard: %s)</translation>
     </message>
     <message>
         <source>Flush database activity from memory pool to disk log every &lt;n&gt; megabytes (default: %u)</source>
@@ -5493,10 +5144,6 @@ BCZ Core Portemonnee</translation>
     <message>
         <source>Invalid amount for -maxtxfee=&lt;amount&gt;: '%s' (must be at least the minrelay fee of %s to prevent stuck transactions)</source>
         <translation>Ongeldige hoeveelheid voor -maxtxfee=&lt;amount&gt;: '%s' (moet ten minste de minimale vergoeding van %s zijn om hangende transacties te voorkomen)</translation>
-    </message>
-    <message>
-        <source>Keep the specified amount available for spending at all times (default: 0)</source>
-        <translation>Houd het gespecificeerde bedrag altijd beschikbaar voor uitgaven te allen tijde (standaard: 0)</translation>
     </message>
     <message>
         <source>Log transaction priority and fee per kB when mining blocks (default: %u)</source>
@@ -5527,16 +5174,8 @@ BCZ Core Portemonnee</translation>
         <translation>Aantal seconden om te voorkomen dat misdragende peers opnieuw connectoren (standaard: %u)</translation>
     </message>
     <message>
-        <source>Obfuscation uses exact denominated amounts to send funds, you might simply need to anonymize some more coins.</source>
-        <translation>Verduistering maakt gebruik van exacte gedenomineerde bedragen om fondsen te verzenden, je zou misschien nog wat munten moeten anonimiseren.</translation>
-    </message>
-    <message>
         <source>Output debugging information (default: %u, supplying &lt;category&gt; is optional)</source>
         <translation>Output debugging informatie (default: %u, verschaffen &lt;category&gt; is optioneel)</translation>
-    </message>
-    <message>
-        <source>Query for peer addresses via DNS lookup, if low on addresses (default: 1 unless -connect)</source>
-        <translation>Query voor peer adressen via DNS lookup, als er weinig adressen zijn (standaard: 1 tenzij -connect)</translation>
     </message>
     <message>
         <source>Randomize credentials for every proxy connection. This enables Tor stream isolation (default: %u)</source>
@@ -5553,10 +5192,6 @@ BCZ Core Portemonnee</translation>
     <message>
         <source>Set maximum size of high-priority/low-fee transactions in bytes (default: %d)</source>
         <translation>Stel maximale grootte van transacties met hoge prioriteit/low-fee in bytes in (standaard: %d)</translation>
-    </message>
-    <message>
-        <source>Set the number of included blocks to precompute per cycle. (minimum: %d) (maximum: %d) (default: %d)</source>
-        <translation>Stel het aantal ingesloten blokken in om vooraf te berekenen per cyclus. (minimum: %d) (maximum: %d) (standaard: %d)</translation>
     </message>
     <message>
         <source>Set the number of script verification threads (%u to %d, 0 = auto, &lt;0 = leave that many cores free, default: %d)</source>
@@ -5591,18 +5226,6 @@ BCZ Core Portemonnee</translation>
         <translation>Niet mogelijk te binden aan %s op deze computer. BCZ Core loopt waarschijnlijk al.</translation>
     </message>
     <message>
-        <source>Unable to locate enough Obfuscation denominated funds for this transaction.</source>
-        <translation>Kan niet genoeg verduistering gedenomineerde fondsen voor deze transactie vinden.</translation>
-    </message>
-    <message>
-        <source>Unable to locate enough Obfuscation non-denominated funds for this transaction that are not equal 5000 BCZ.</source>
-        <translation>Kan niet genoeg verduistering niet gedenomineerde fondsen voor deze transactie vinden die niet gelijk zijn aan 5000 BCZ.</translation>
-    </message>
-    <message>
-        <source>Unable to locate enough funds for this transaction that are not equal 5000 BCZ.</source>
-        <translation>Kan niet genoeg fondsen voor deze transactie vinden die niet gelijk zijn aan 5000 BCZ.</translation>
-    </message>
-    <message>
         <source>Use separate SOCKS5 proxy to reach peers via Tor hidden services (default: %s)</source>
         <translation>Gebruik aparte SOCKS5 proxy om peers via Tor verborgen services te bereiken (standaard: %s)</translation>
     </message>
@@ -5613,10 +5236,6 @@ BCZ Core Portemonnee</translation>
     <message>
         <source>Warning: -paytxfee is set very high! This is the transaction fee you will pay if you send a transaction.</source>
         <translation>Waarschuwing: -paytxfee is zeer hoog ingesteld! Dit zijn de transactie kosten die je betaalt als je een transactie verstuurt.</translation>
-    </message>
-    <message>
-        <source>Warning: Peers are being disconnected due time differences. Please check that your computer's date and time are correct! If your clock is wrong BCZ Core will not work properly.</source>
-        <translation>Waarschuwing: Peers zijn afgesloten als gevolg van tijdsverschillen. Controleer of de datum en tijd van je computer juist zijn! Als je klok verkeerd staat, werkt BCZ Core niet goed.</translation>
     </message>
     <message>
         <source>Warning: Please check that your computer's date and time are correct! If your clock is wrong BCZ Core will not work properly.</source>
@@ -5631,14 +5250,6 @@ BCZ Core Portemonnee</translation>
         <translation>Waarschuwing: Wij lijken het er niet helemaal eens te zijn met onze peers! Mogelijk moet je upgraden, of andere nodes moeten mogelijk upgraden.</translation>
     </message>
     <message>
-        <source>Warning: error reading wallet.dat! All keys read correctly, but transaction data or address book entries might be missing or incorrect.</source>
-        <translation>Waarschuwing: fout lezen wallet.dat! Alle sleutels lezen correct, maar transactie gegevens of adresboek invoeringen kunnen missen of niet correct zijn.</translation>
-    </message>
-    <message>
-        <source>Warning: wallet.dat corrupt, data salvaged! Original wallet.dat saved as wallet.{timestamp}.bak in %s; if your balance or transactions are incorrect you should restore from a backup.</source>
-        <translation>Waarschuwing: wallet.dat corrupt, data gered! Originele wallet.dat opgeslagen als wallet.{timestamp}.bak in %s; als je saldo of transacties onjuist zijn, moet je een back-up herstellen.</translation>
-    </message>
-    <message>
         <source>Whitelist peers connecting from the given netmask or IP address. Can be specified multiple times.</source>
         <translation>Whitelist peers verbinden van het opgegeven netmask of IP adres. Kan meerdere keren worden opgegeven.</translation>
     </message>
@@ -5651,28 +5262,12 @@ BCZ Core Portemonnee</translation>
         <translation>Je moet een masternodeprivkey opgeven in de configuratie. Raadpleeg de documentatie voor hulp.</translation>
     </message>
     <message>
-        <source>(29500 could be used only on mainnet)</source>
-        <translation>(29500 kan alleen op mainnet worden gebruikt)</translation>
-    </message>
-    <message>
         <source>(default: %s)</source>
         <translation>(standaard: %s)</translation>
     </message>
     <message>
-        <source>(default: 1)</source>
-        <translation>(standaard: 1)</translation>
-    </message>
-    <message>
-        <source>(must be 29500 for mainnet)</source>
-        <translation>(moet 29500 voor mainnet zijn)</translation>
-    </message>
-    <message>
         <source>Accept command line and JSON-RPC commands</source>
         <translation>Accepteer command line en JSON-RPC commando's</translation>
-    </message>
-    <message>
-        <source>Accept connections from outside (default: 1 if no -proxy or -connect)</source>
-        <translation>Accepteer verbindingen van buitenaf (standaard: 1 als geen -proxy of -connect)</translation>
     </message>
     <message>
         <source>Accept public REST requests (default: %u)</source>
@@ -5683,14 +5278,6 @@ BCZ Core Portemonnee</translation>
         <translation>Voeg een node toe om verbinding mee te maken en probeer de verbinding open te houden</translation>
     </message>
     <message>
-        <source>Adding Wrapped Serials supply...</source>
-        <translation>Toevoegen van Wrapped Serialvoorraad...</translation>
-    </message>
-    <message>
-        <source>Allow DNS lookups for -addnode, -seednode and -connect</source>
-        <translation>DNS lookups toestaan voor -addnode, -seednode en -connect</translation>
-    </message>
-    <message>
         <source>Always query for peer addresses via DNS lookup (default: %u)</source>
         <translation>Vraag altijd naar peer adressen via DNS lookup (standaard: %u)</translation>
     </message>
@@ -5699,44 +5286,12 @@ BCZ Core Portemonnee</translation>
         <translation>Voeg opmerking toe aan de user agent string</translation>
     </message>
     <message>
-        <source>Attempt to recover private keys from a corrupt wallet.dat</source>
-        <translation>Poog om privé sleutels te herstellen van een corrupte wallet.dat</translation>
-    </message>
-    <message>
         <source>Automatically create Tor hidden service (default: %d)</source>
         <translation>Creëer automatisch de Tor verborgen service (standaard: %d)</translation>
     </message>
     <message>
         <source>Block creation options:</source>
         <translation>Block creatie opties:</translation>
-    </message>
-    <message>
-        <source>Calculating missing accumulators...</source>
-        <translation>Calculeren van ontbrekende accumulators...</translation>
-    </message>
-    <message>
-        <source>Cannot downgrade wallet</source>
-        <translation>Kan de portemonnee niet downgraden</translation>
-    </message>
-    <message>
-        <source>Cannot resolve -bind address: '%s'</source>
-        <translation>Kan -bind adres niet oplossen: '%s'</translation>
-    </message>
-    <message>
-        <source>Cannot resolve -externalip address: '%s'</source>
-        <translation>Kan -externalip adres niet oplossen: '%s'</translation>
-    </message>
-    <message>
-        <source>Cannot resolve -whitebind address: '%s'</source>
-        <translation>Kan -whitebind adres niet oplossen: '%s'</translation>
-    </message>
-    <message>
-        <source>CoinSpend: failed check</source>
-        <translation>CoinSpend: controle mislukt</translation>
-    </message>
-    <message>
-        <source>Connect only to the specified node(s)</source>
-        <translation>Verbind alleen met de opgegeven node(s)</translation>
     </message>
     <message>
         <source>Connect through SOCKS5 proxy</source>
@@ -5771,10 +5326,6 @@ BCZ Core Portemonnee</translation>
         <translation>Kan masternode.conf niet parsen</translation>
     </message>
     <message>
-        <source>Couldn't generate the accumulator witness</source>
-        <translation>Kon de accumulator witness niet genereren</translation>
-    </message>
-    <message>
         <source>Debugging/Testing options:</source>
         <translation>Debugging/Test opties:</translation>
     </message>
@@ -5785,10 +5336,6 @@ BCZ Core Portemonnee</translation>
     <message>
         <source>Disable OS notifications for incoming transactions (default: %u)</source>
         <translation>Schakel OS notificaties uit voor inkomende transacties (standaard: %u)</translation>
-    </message>
-    <message>
-        <source>Disable safemode, override a real safe mode event (default: %u)</source>
-        <translation>Schakel safe mode uit, override een echte safe mode gebeurtenis (standaard: %u)</translation>
     </message>
     <message>
         <source>Discover own IP address (default: 1 when listening and no -externalip)</source>
@@ -5805,14 +5352,6 @@ BCZ Core Portemonnee</translation>
     <message>
         <source>Done loading</source>
         <translation>Klaar met laden</translation>
-    </message>
-    <message>
-        <source>Enable automatic Zerocoin minting (0-1, default: %u)</source>
-        <translation>Zet automatische Zerocoin minting aan (0-1, standaard: %u)</translation>
-    </message>
-    <message>
-        <source>Enable precomputation of zBCZ spends and stakes (0-1, default %u)</source>
-        <translation>Schakel de precomputatie van zBCZ-uitgaven en stakes in (0-1, standaard %u) </translation>
     </message>
     <message>
         <source>Enable publish hash transaction (locked via SwiftX) in &lt;address&gt;</source>
@@ -5839,28 +5378,12 @@ BCZ Core Portemonnee</translation>
         <translation>Error tijdens het laden van de block database</translation>
     </message>
     <message>
-        <source>Error loading wallet.dat</source>
-        <translation>Error tijdens het laden van wallet.dat</translation>
-    </message>
-    <message>
-        <source>Error loading wallet.dat: Wallet corrupted</source>
-        <translation>Error tijdens het laden van wallet.dat: Portemonnee corrupt</translation>
-    </message>
-    <message>
-        <source>Error loading wallet.dat: Wallet requires newer version of BCZ Core</source>
-        <translation>Fout bij het laden van wallet.dat: Portemonnee vereist een nieuwere versie van BCZ Core</translation>
-    </message>
-    <message>
         <source>Error opening block database</source>
         <translation>Error tijdens het openen van de block database</translation>
     </message>
     <message>
         <source>Error reading from database, shutting down.</source>
         <translation>Error tijdens het lezen van de database, aan het afsluiten.</translation>
-    </message>
-    <message>
-        <source>Error writing zerocoinDB to disk</source>
-        <translation>Fout bij het schrijven van zerocoinDB naar schijf</translation>
     </message>
     <message>
         <source>Error</source>
@@ -5883,24 +5406,12 @@ BCZ Core Portemonnee</translation>
         <translation>Fout: Portemonnee vergrendeld, niet in staat om transactie te creëren!</translation>
     </message>
     <message>
-        <source>Failed to calculate accumulator checkpoint</source>
-        <translation>Kon het controlepunt van de accumulator niet berekenen</translation>
-    </message>
-    <message>
         <source>Failed to listen on any port. Use -listen=0 if you want this.</source>
         <translation>Niet gelukt om te luisteren op een poort. Gebruik -listen=0 als je dit wilt.</translation>
     </message>
     <message>
         <source>Failed to parse host:port string</source>
         <translation>Kan host: poortreeks niet parseren</translation>
-    </message>
-    <message>
-        <source>Failed to read block</source>
-        <translation>Mislukt om block te lezen</translation>
-    </message>
-    <message>
-        <source>Fee (in BCZ/kB) to add to transactions you send (default: %s)</source>
-        <translation>Fee (in BCZ/kB) om toe te voegen aan transacties die je verzendt (standaard: %s)</translation>
     </message>
     <message>
         <source>Force safe mode (default: %u)</source>
@@ -5955,28 +5466,8 @@ BCZ Core Portemonnee</translation>
         <translation>Ongeldig -onion adres of hostnaam: '%s'</translation>
     </message>
     <message>
-        <source>Invalid amount for -maxtxfee=&lt;amount&gt;: '%s'</source>
-        <translation>Ongeldige hoeveelheid voor -maxtxfee=&lt;amount&gt;: '%s'</translation>
-    </message>
-    <message>
-        <source>Invalid amount for -minrelaytxfee=&lt;amount&gt;: '%s'</source>
-        <translation>Ongeldige hoeveelheid voor -minrelaytxfee=&lt;amount&gt;: '%s'</translation>
-    </message>
-    <message>
-        <source>Invalid amount for -mintxfee=&lt;amount&gt;: '%s'</source>
-        <translation>Ongeldige hoeveelheid voor -mintxfee=&lt;amount&gt;: '%s'</translation>
-    </message>
-    <message>
         <source>Invalid amount for -paytxfee=&lt;amount&gt;: '%s' (must be at least %s)</source>
         <translation>Ongeldige hoeveelheid voor -paytxfee=&lt;amount&gt;: '%s' (moet tenminste %s zijn)</translation>
-    </message>
-    <message>
-        <source>Invalid amount for -paytxfee=&lt;amount&gt;: '%s'</source>
-        <translation>Ongeldige hoeveelheid voor -paytxfee=&lt;amount&gt;: '%s'</translation>
-    </message>
-    <message>
-        <source>Invalid amount for -reservebalance=&lt;amount&gt;</source>
-        <translation>Ongeldige hoeveelheid voor -reservebalance=&lt;amount&gt;</translation>
     </message>
     <message>
         <source>Invalid amount</source>
@@ -5991,44 +5482,12 @@ BCZ Core Portemonnee</translation>
         <translation>Ongeldige netmask opgegeven in -whitelist: '%s'</translation>
     </message>
     <message>
-        <source>Invalid port detected in masternode.conf</source>
-        <translation>Ongeldige poort gedetecteerd in masternode.conf</translation>
-    </message>
-    <message>
-        <source>Percentage of automatically minted Zerocoin  (1-100, default: %u)</source>
-        <translation>Percentage automatisch geminte Zerocoin (10-100, standaard: %u)</translation>
-    </message>
-    <message>
         <source>Recalculating BCZ supply...</source>
         <translation>Hercalculatie van BCZ aanbod...</translation>
     </message>
     <message>
-        <source>Recalculating minted ZBCZ...</source>
-        <translation>Herberekenen van gemunte ZBCZ....</translation>
-    </message>
-    <message>
-        <source>Recalculating spent ZBCZ...</source>
-        <translation>Herberekenen van bestede ZBCZ....</translation>
-    </message>
-    <message>
-        <source>Reindex the BCZ and zBCZ money supply statistics</source>
-        <translation>Indexeer de BCZ- en zBCZ-geldvoorraadstatistieken opnieuw</translation>
-    </message>
-    <message>
-        <source>Reindexing zerocoin database...</source>
-        <translation>Her-indexeren Zerocoin database...</translation>
-    </message>
-    <message>
-        <source>Reindexing zerocoin failed</source>
-        <translation>Her-indexeren Zerocoin database mislukt</translation>
-    </message>
-    <message>
         <source>Selected coins value is less than payment target</source>
         <translation>Geselecteerde munt waarde is minder dan het betalingsdoel</translation>
-    </message>
-    <message>
-        <source>Support the zerocoin light node protocol (default: %u)</source>
-        <translation>Ondersteuning van het zerocoin light node protocol (standaard: %u)</translation>
     </message>
     <message>
         <source>SwiftX options:</source>
@@ -6039,36 +5498,12 @@ BCZ Core Portemonnee</translation>
         <translation>Dit is een pre-release test build - gebruik op eigen risico - niet gebruiken voor staking of handel applicaties!</translation>
     </message>
     <message>
-        <source> mints deleted
-</source>
-        <translation>mints verwijderd
-</translation>
-    </message>
-    <message>
-        <source> mints updated, </source>
-        <translation>mints bijgewerkt,</translation>
-    </message>
-    <message>
-        <source> unconfirmed transactions removed
-</source>
-        <translation>onbevestigde transacties verwijderd
-</translation>
-    </message>
-    <message>
-        <source>Disable all BCZ specific functionality (Masternodes, Zerocoin, SwiftX, Budgeting) (0-1, default: %u)</source>
-        <translation>Schakel alle specifieke BCZ functionaliteit uit (Masternodes, Zerocoin, SwiftTX, Budgeting) (0-1, standaard: %u)</translation>
+        <source>Disable all BCZ specific functionality (Masternodes, SwiftX) (0-1, default: %u)</source>
+        <translation>Schakel alle specifieke BCZ functionaliteit uit (Masternodes, SwiftTX) (0-1, standaard: %u)</translation>
     </message>
     <message>
         <source>Enable SwiftX, show confirmations for locked transactions (bool, default: %s)</source>
         <translation>Schakel SwiftX in, toon bevestigingen voor vergrendelde transacties (bool, standaard: %s)</translation>
-    </message>
-    <message>
-        <source>Error: The transaction was rejected! This might happen if some of the coins in your wallet were already spent, such as if you used a copy of wallet.dat and coins were spent in the copy but not marked as spent here.</source>
-        <translation>Fout: De transactie is afgewezen! Dit kan gebeuren als sommige munten in je portemonnee al waren uitgegeven, bijvoorbeeld als je een kopie van wallet.dat gebruikt en munten in de kopie waren besteed maar hier niet als zodanig gemarkeerd.</translation>
-    </message>
-    <message>
-        <source>Error: This transaction requires a transaction fee of at least %s because of its amount, complexity, or use of recently received funds!</source>
-        <translation>Fout: Deze transactie vereist transactiekosten van ten minste %s vanwege de hoeveelheid, de complexiteit of het gebruik van recent ontvangen fondsen!</translation>
     </message>
     <message>
         <source>Error: Unsupported argument -checklevel found. Checklevel must be level 4.</source>
@@ -6085,14 +5520,6 @@ BCZ Core Portemonnee</translation>
     <message>
         <source>In rare cases, a spend with 7 coins exceeds our maximum allowable transaction size, please retry spend using 6 or less coins</source>
         <translation>In zeldzame gevallen overschrijdt een besteding met 7 munten uw maximaal toegestane transactiegrootte. Probeer het opnieuw met 6 of minder munten</translation>
-    </message>
-    <message>
-        <source>Preferred Denomination for automatically minted Zerocoin  (1/5/10/50/100/500/1000/5000), 0 for no preference. default: %u)</source>
-        <translation>Voorkeur denominatie voor automatisch minted Zerocoin (1/5/10/50/100/500/1000/5000), 0 voor geen voorkeur. standaard: %u)</translation>
-    </message>
-    <message>
-        <source>Specify custom backup path to add a copy of any automatic zBCZ backup. If set as dir, every backup generates a timestamped file. If set as file, will rewrite to that file every backup. If backuppath is set as well, 4 backups will happen</source>
-        <translation>Specificeer aangepast back-up pad om een kopie van elke automatische zBCZ back-up toe te voegen. Indien ingesteld als dir zal elke back-up een bestand genereren met een tijdstempel. Indien ingesteld als file zal elke back-up herschreven worden naar dat bestand. Indien backuppath ook is ingesteld zullen 4 back-ups gedaan worden.</translation>
     </message>
     <message>
         <source>Specify custom backup path to add a copy of any wallet backup. If set as dir, every backup generates a timestamped file. If set as file, will rewrite to that file every backup.</source>
@@ -6113,10 +5540,6 @@ BCZ Core Portemonnee</translation>
     <message>
         <source>Cannot create public spend input</source>
         <translation>Kon geen publiek besteedadres aanmaken</translation>
-    </message>
-    <message>
-        <source>CoinSpend: Accumulator witness does not verify</source>
-        <translation>CoinSpend: Accumulator witness controleert niet</translation>
     </message>
     <message>
         <source>Display the stake modifier calculations in the debug.log file.</source>
@@ -6155,36 +5578,20 @@ BCZ Core Portemonnee</translation>
         <translation>Fout: geen geldige utxo!</translation>
     </message>
     <message>
-        <source>Failed to create mint</source>
-        <translation>Het is niet gelukt om mint te maken</translation>
-    </message>
-    <message>
-        <source>Failed to find Zerocoins in wallet.dat</source>
-        <translation>Niet gelukt om Zerocoins in wallet.dat te vinden.</translation>
-    </message>
-    <message>
         <source>Failed to parse public spend</source>
         <translation>Parsen van publieke uitgaven mislukt</translation>
-    </message>
-    <message>
-        <source>Failed to select a zerocoin</source>
-        <translation>Het is niet gelukt om een zerocoin te selecteren</translation>
-    </message>
-    <message>
-        <source>Failed to wipe zerocoinDB</source>
-        <translation>Mislukt om zerocoinDB te legen.</translation>
     </message>
     <message>
         <source>Failed to write coin serial number into wallet</source>
         <translation>Het serienummer van het muntstuk kan niet in de portemonnee worden geschreven</translation>
     </message>
     <message>
-        <source>Keep at most &lt;n&gt; unconnectable transactions in memory (default: %u)</source>
-        <translation>Houd maximaal &lt;n&gt;niet te verbinden transacties in het geheugen (standaard: %u)</translation>
+        <source>Invalid amount for -%s=&lt;amount&gt;: '%s'</source>
+        <translation>Ongeldige hoeveelheid voor -%s=&lt;amount&gt;: '%s'</translation>
     </message>
     <message>
-        <source>Limit size of signature cache to &lt;n&gt; entries (default: %u)</source>
-        <translation>Limiet grootte van signature cache naar &lt;n&gt; invoer (standaard: %u)</translation>
+        <source>Keep at most &lt;n&gt; unconnectable transactions in memory (default: %u)</source>
+        <translation>Houd maximaal &lt;n&gt;niet te verbinden transacties in het geheugen (standaard: %u)</translation>
     </message>
     <message>
         <source>Line: %d</source>
@@ -6203,12 +5610,12 @@ BCZ Core Portemonnee</translation>
         <translation>Adressen laden...</translation>
     </message>
     <message>
-        <source>Loading block index...</source>
-        <translation>Blockindex laden...</translation>
+        <source>Loading banlist...</source>
+        <translation>Banlijst aan het laden...</translation>
     </message>
     <message>
-        <source>Loading budget cache...</source>
-        <translation>Budget cache laden...</translation>
+        <source>Loading block index...</source>
+        <translation>Blockindex laden...</translation>
     </message>
     <message>
         <source>Loading masternode cache...</source>
@@ -6221,10 +5628,6 @@ BCZ Core Portemonnee</translation>
     <message>
         <source>Loading sporks...</source>
         <translation>Sporks laden...</translation>
-    </message>
-    <message>
-        <source>Loading wallet... (%3.2f %%)</source>
-        <translation>Portemonnee laden... (%3.2f %%)</translation>
     </message>
     <message>
         <source>Loading wallet...</source>
@@ -6241,6 +5644,10 @@ BCZ Core Portemonnee</translation>
     <message>
         <source>Lookup(): Invalid -proxy address or hostname: '%s'</source>
         <translation>Lookup (): ongeldig -proxy-adres of hostnaam: '%s'</translation>
+    </message>
+    <message>
+        <source>MNs synchronization pending...</source>
+        <translation>Synchronisatie van MN's in afwachting...</translation>
     </message>
     <message>
         <source>Maintain at most &lt;n&gt; connections to peers (default: %u)</source>
@@ -6275,12 +5682,12 @@ BCZ Core Portemonnee</translation>
         <translation>Niet genoeg bestandsbeschrijvingen beschikbaar.</translation>
     </message>
     <message>
-        <source>Number of automatic wallet backups (default: 10)</source>
-        <translation>Aantal automatische portemonnee backups (standaard: 10)</translation>
-    </message>
-    <message>
         <source>Number of custom location backups to retain (default: %d)</source>
         <translation>Aantal aangepaste locatie back-ups om te behouden (standaard: %d)</translation>
+    </message>
+    <message>
+        <source>On first run, create a legacy wallet instead of a HD wallet</source>
+        <translation>Bij de initiële uitvoering, maak een legacy portemonnee aan in plaats van een HD portemonnee</translation>
     </message>
     <message>
         <source>Only accept block chain matching built-in checkpoints (default: %u)</source>
@@ -6299,6 +5706,10 @@ BCZ Core Portemonnee</translation>
         <translation>Wachtwoord voor JSON-RPC connecties</translation>
     </message>
     <message>
+        <source>Peers are being disconnected due time differences.</source>
+        <translation>Peers worden verbroken vanwege tijdsverschillen.</translation>
+    </message>
+    <message>
         <source>Unable to find transaction containing mint %s</source>
         <translation>Kan geen transactie terugvinden die munting %s bevat</translation>
     </message>
@@ -6311,10 +5722,6 @@ BCZ Core Portemonnee</translation>
         <translation>Gebruik block-spamfilter (standaard: %u)</translation>
     </message>
     <message>
-        <source>could not get lock on cs_spendcache</source>
-        <translation>kon niet op cs_spendcache terecht komen</translation>
-    </message>
-    <message>
         <source>isValid(): Invalid -proxy address or hostname: '%s'</source>
         <translation>isValid (): ongeldig -proxy-adres of hostnaam: '%s'</translation>
     </message>
@@ -6323,8 +5730,142 @@ BCZ Core Portemonnee</translation>
         <translation>Voorbereiden van hersynchronisatie...</translation>
     </message>
     <message>
+        <source>Connect only to the specified node(s); -noconnect or -connect=0 alone to disable automatic connections</source>
+        <translation>Connecteer enkel naar specifieke node(s); -noconnect of -connect=0 enkel om de automatische verbindingen uit te schakelen</translation>
+    </message>
+    <message>
+        <source>Do not accept transactions if any ancestor would have &lt;n&gt; or more in-mempool descendants (default: %u)</source>
+        <translation>Accepteer geen transacties als een voorouder &lt;n&gt; of meer nazaten in mempool zou hebben (standaard: %u)</translation>
+    </message>
+    <message>
+        <source>Do not accept transactions if any ancestor would have more than &lt;n&gt; kilobytes of in-mempool descendants (default: %u).</source>
+        <translation>Accepteer geen transacties als een voorouder &lt;n&gt; of meer nazaten van kilobytes in mempool zou hebben (standaard: %u)</translation>
+    </message>
+    <message>
+        <source>Do not accept transactions if number of in-mempool ancestors is &lt;n&gt; or more (default: %u)</source>
+        <translation>Accepteer geen transacties als het nummer &lt;n&gt; of meer aan afkomsten van in-mempool is (standaard: %u)</translation>
+    </message>
+    <message>
+        <source>Do not accept transactions whose size with all in-mempool ancestors exceeds &lt;n&gt; kilobytes (default: %u)</source>
+        <translation>Accepteer geen transacties als de grootte van alle in-mempool afkomsten &lt;n&gt;kilobytes overschrijdt (standaard: %u)</translation>
+    </message>
+    <message>
+        <source>Do not keep transactions in the mempool longer than &lt;n&gt; hours (default: %u)</source>
+        <translation>Bewaar geen transacties in de mempool langer dan &lt;n&gt; uren (standaard: %u)</translation>
+    </message>
+    <message>
+        <source>Fees (in %s/Kb) smaller than this are considered zero fee for relaying, mining and transaction creation (default: %s)</source>
+        <translation>Kosten (in %s/Kb) kleiner dan dit worden beschouwd als zero fee voor het heruitzenden, minen en een transactie te verrichting (standaard: %s)</translation>
+    </message>
+    <message>
+        <source>Fees (in %s/Kb) smaller than this are considered zero fee for transaction creation (default: %s)</source>
+        <translation>Kosten (in %s/Kb) kleiner dan dit worden beschouwd als zero fee voor transactie verrichting (standaard: %s)</translation>
+    </message>
+    <message>
+        <source>Minimum positive amount (in BCZ) allowed by GUI and RPC for the stake split threshold (default: %s)</source>
+        <translation>Minimum geldige waarde (in BCZ) toegestaan bij GUI en RPC voor de staking splitsdrempel (standaard: %s)</translation>
+    </message>
+    <message>
+        <source>Please check that your computer's date and time are correct! If your clock is wrong BCZ Core will not work properly.</source>
+        <translation>Controleer of de datum en tijd van je computer juist zijn! Als je klok verkeerd ingesteld staat, werkt BCZ Core niet goed.</translation>
+    </message>
+    <message>
+        <source>Query for peer addresses via DNS lookup, if low on addresses (default: 1 unless -connect/-noconnect)</source>
+        <translation>Query voor peer adressen via DNS lookup, als er weinig adressen zijn (standaard: 1 tenzij -connect/-noconnect)</translation>
+    </message>
+    <message>
+        <source>Specify location of debug log file: this can be an absolute path or a path relative to the data directory (default: %s)</source>
+        <translation>Geef de locatie van het foutopsporingslogboek op: dit kan een absoluut pad zijn of een pad ten opzichte van de gegevensmap (standaard: %s)</translation>
+    </message>
+    <message>
+        <source>WARNING: The transaction has been signed and recorded, so the wallet will try to re-send it. Use 'abandontransaction' to cancel it. (txid: %s)</source>
+        <translation>WAARSCHUWING: De transactie is ondertekend en opgenomen, dus de portemonnee zal deze opnieuw proberen te versturen. Gebruik 'abandontransaction' om deze te annuleren. (txid: %s)</translation>
+    </message>
+    <message>
+        <source>(must be %d for %s-net)</source>
+        <translation>(moet %d voor %s-net zijn)</translation>
+    </message>
+    <message>
+        <source>Active Masternode not initialized.</source>
+        <translation>Actieve Masternode niet geïnitialiseerd.</translation>
+    </message>
+    <message>
+        <source>Allows deprecated RPC method(s) to be used</source>
+        <translation>Sta verouderde RPC methode(s) toe om gebruikt te worden</translation>
+    </message>
+    <message>
+        <source>Can't generate a change-address key. Please call keypoolrefill first.</source>
+        <translation>Kan geen wisselgeldadressleutel genereren. Roep eerst de keypoolrefill op.</translation>
+    </message>
+    <message>
+        <source>Cannot resolve -%s address: '%s'</source>
+        <translation>Kan oplossing -%s niet voltooien voor adres: '%s'</translation>
+    </message>
+    <message>
+        <source>Change index out of range</source>
+        <translation>Wissel buiten het bereik</translation>
+    </message>
+    <message>
+        <source>Error: -listen must be true if -masternode is set.</source>
+        <translation>Error: -listen moet op true staan als de -masternode is ingesteld.</translation>
+    </message>
+    <message>
+        <source>Error: -maxmempool must be at least %d MB</source>
+        <translation>Error: -maxmempool moet minsten %d MB groot zijn</translation>
+    </message>
+    <message>
+        <source>Error: Invalid port %d for running a masternode.</source>
+        <translation>Error: Ongeldige poort %d voor het uitvoeren van een masternode.</translation>
+    </message>
+    <message>
+        <source>Failed to accept tx in the memory pool (reason: %s)
+</source>
+        <translation>Mislukt om transactie in memorypool te accepteren (reden: %s)
+</translation>
+    </message>
+    <message>
+        <source>Fee (in %s/kB) to add to transactions you send (default: %s)</source>
+        <translation>Kosten (in %s/kB) om toe te voegen aan de transactie die je verstuurd (standaard: %s)</translation>
+    </message>
+    <message>
+        <source>Invalid -masternodeaddr address: %s</source>
+        <translation>Ongeldig -masternodeaddr adres: %s</translation>
+    </message>
+    <message>
+        <source>Invalid -masternodeaddr port %d, only %d is supported on %s-net.</source>
+        <translation>Ongeldig -masternodeaddr poort %d, enkel %d is ondersteund op %s-net.</translation>
+    </message>
+    <message>
+        <source>Invalid port %d detected in masternode.conf</source>
+        <translation>Ongeldige poort %d gedetecteerd in masternode.conf</translation>
+    </message>
+    <message>
+        <source>Invalid status error.</source>
+        <translation>Ongeldige statuserror.</translation>
+    </message>
+    <message>
+        <source>Keep the transaction memory pool below &lt;n&gt; megabytes (default: %u)</source>
+        <translation>Hou de transactiememorypool lager dan &lt;n&gt; megabytes (standaard: %u)</translation>
+    </message>
+    <message>
+        <source>Keypool ran out, please call keypoolrefill first, or unlock the wallet.</source>
+        <translation>Keypool is opgeraakt, roep eerst keypoolrefill op of ontgrendel de portemonnee.</translation>
+    </message>
+    <message>
+        <source>Limit size of signature cache to &lt;n&gt; MiB (default: %u)</source>
+        <translation>Limietgrootte van signature cache naar &lt;n&gt; MiB (standaard: %u)</translation>
+    </message>
+    <message>
+        <source>Masternodes are required to run on port %d for %s-net</source>
+        <translation>Masternodes zijn vereist om te draaien op poort %d voor %s-net</translation>
+    </message>
+    <message>
         <source>Need destination or change address because change is not exact</source>
         <translation>Bestemmings- of wisseladres nodig omdat wissel niet exact is</translation>
+    </message>
+    <message>
+        <source>No error</source>
+        <translation>Geen error</translation>
     </message>
     <message>
         <source>Prepend debug output with timestamp (default: %u)</source>
@@ -6333,10 +5874,6 @@ BCZ Core Portemonnee</translation>
     <message>
         <source>Print version and exit</source>
         <translation>Print versie en verlaat</translation>
-    </message>
-    <message>
-        <source>Pubcoin not found in mint tx</source>
-        <translation>Pubcoin niet gevonden in mint tx</translation>
     </message>
     <message>
         <source>RPC server options:</source>
@@ -6355,12 +5892,8 @@ BCZ Core Portemonnee</translation>
         <translation>Herstel blockchain index van huidige blk000??.dat bestanden</translation>
     </message>
     <message>
-        <source>Receive and display P2P network alerts (default: %u)</source>
-        <translation>Ontvang en laat P2P netwerkmeldingen zien (standaard: %u)</translation>
-    </message>
-    <message>
-        <source>Reindex the accumulator database</source>
-        <translation>Herindexeer de verzameldatabase</translation>
+        <source>Reindex the %s and z%s money supply statistics</source>
+        <translation>Indexeer de %s en z%s geldvoorraadstatistieken opnieuw</translation>
     </message>
     <message>
         <source>Relay and mine data carrier transactions (default: %u)</source>
@@ -6379,14 +5912,6 @@ BCZ Core Portemonnee</translation>
         <translation>Opnieuw scannen...</translation>
     </message>
     <message>
-        <source>ResetMintZerocoin finished: </source>
-        <translation>ResetMintZerocoin voltooid: </translation>
-    </message>
-    <message>
-        <source>ResetSpentZerocoin finished: </source>
-        <translation>ResetSpentZerocoin voltooid: </translation>
-    </message>
-    <message>
         <source>Run a thread to flush wallet periodically (default: %u)</source>
         <translation>Voer regelmatig een thread om de portemonnee te spoelen uit (standaard: %u)</translation>
     </message>
@@ -6397,10 +5922,6 @@ BCZ Core Portemonnee</translation>
     <message>
         <source>Send transactions as zero-fee transactions if possible (default: %u)</source>
         <translation>Zend transacties als zero fee transacties indien mogelijk (standaard: %u)</translation>
-    </message>
-    <message>
-        <source>Session timed out.</source>
-        <translation>Sessie verlopen.</translation>
     </message>
     <message>
         <source>Set database cache size in megabytes (%d to %d, default: %d)</source>
@@ -6447,10 +5968,6 @@ BCZ Core Portemonnee</translation>
         <translation>Krimp debug.log bestand bij client startup (standaard: 1 wanneer geen -debug)</translation>
     </message>
     <message>
-        <source>Signing timed out.</source>
-        <translation>Ondertekening time out.</translation>
-    </message>
-    <message>
         <source>Signing transaction failed</source>
         <translation>Ondertekening transactie mislukt.</translation>
     </message>
@@ -6491,10 +6008,6 @@ BCZ Core Portemonnee</translation>
         <translation>Onbevestigd wisselgeld besteden bij het verzenden van transacties (standaard: %u)</translation>
     </message>
     <message>
-        <source>Staking options:</source>
-        <translation>Staking opties:</translation>
-    </message>
-    <message>
         <source>Stop running after importing blocks from disk (default: %u)</source>
         <translation>Stop na het importeren van blokken van schijf (standaard: %u)</translation>
     </message>
@@ -6505,14 +6018,6 @@ BCZ Core Portemonnee</translation>
     <message>
         <source>Synchronization finished</source>
         <translation>Synchronisatie voltooid</translation>
-    </message>
-    <message>
-        <source>Synchronization pending...</source>
-        <translation>Synchronisatie in afwachting...</translation>
-    </message>
-    <message>
-        <source>Synchronizing budgets...</source>
-        <translation>Budgeten synchroniseren...</translation>
     </message>
     <message>
         <source>Synchronizing masternode winners...</source>
@@ -6527,16 +6032,12 @@ BCZ Core Portemonnee</translation>
         <translation>Synchroniseren sporks...</translation>
     </message>
     <message>
-        <source>Syncing zBCZ wallet...</source>
-        <translation>Synchroniseren zBCZ portemonnee...</translation>
+        <source>Syncing BCZ wallet...</source>
+        <translation>Synchroniseren BCZ portemonnee...</translation>
     </message>
     <message>
-        <source>The coin spend has been used</source>
-        <translation>De muntuitgaven zijn gebruikt</translation>
-    </message>
-    <message>
-        <source>The transaction did not verify</source>
-        <translation>De transactie heeft niet geverifieerd</translation>
+        <source>The threshold value cannot be less than %s</source>
+        <translation>De drempelwaarde kan niet lager zijn dan %s</translation>
     </message>
     <message>
         <source>This help message</source>
@@ -6549,6 +6050,14 @@ BCZ Core Portemonnee</translation>
     <message>
         <source>This is intended for regression testing tools and app development.</source>
         <translation>Dit is bedoeld voor regressie test tools en app ontwikkeling.</translation>
+    </message>
+    <message>
+        <source>This is not a masternode. 'local' option disabled.</source>
+        <translation>Dit is geen masternode. 'Lokaal' optie uitgeschakeld.</translation>
+    </message>
+    <message>
+        <source>This is not a masternode.</source>
+        <translation>Dit is geen Masternode.</translation>
     </message>
     <message>
         <source>Threshold for disconnecting misbehaving peers (default: %u)</source>
@@ -6583,6 +6092,10 @@ BCZ Core Portemonnee</translation>
         <translation>Transactie bedragen moeten positief zijn</translation>
     </message>
     <message>
+        <source>Transaction canceled.</source>
+        <translation>Transactie geannuleerd.</translation>
+    </message>
+    <message>
         <source>Transaction too large for fee policy</source>
         <translation>Transactie te groot voor kosten beleid</translation>
     </message>
@@ -6599,8 +6112,8 @@ BCZ Core Portemonnee</translation>
         <translation>Niet mogelijk te binden aan %s op deze computer (bind stuurt fout %s terug)</translation>
     </message>
     <message>
-        <source>Unable to generate initial key</source>
-        <translation>Niet mogelijke om de initiële sleutel te genereren.</translation>
+        <source>Unable to generate keys</source>
+        <translation>Niet mogelijke om sleutels te genereren.</translation>
     </message>
     <message>
         <source>Unable to sign spork message, wrong key?</source>
@@ -6615,20 +6128,16 @@ BCZ Core Portemonnee</translation>
         <translation>Onbekend netwerk gespecificeerd in -onlynet: '%s'</translation>
     </message>
     <message>
+        <source>Unsupported logging category %s=%s.</source>
+        <translation>Niet-ondersteunde logboekcategorie %s=%s.</translation>
+    </message>
+    <message>
         <source>Upgrade wallet to latest format</source>
         <translation>Upgrade portemonnee naar nieuwste formaat</translation>
     </message>
     <message>
         <source>Use UPnP to map the listening port (default: %u)</source>
         <translation>Gebruik UPnP om de luisterpoort te mappen (standaard: %u)</translation>
-    </message>
-    <message>
-        <source>Use UPnP to map the listening port (default: 1 when listening)</source>
-        <translation>Gebruik UPnP om de luisterpoort te mappen (standaard: 1 bij het luisteren)</translation>
-    </message>
-    <message>
-        <source>Use a custom max chain reorganization depth (default: %u)</source>
-        <translation>Gebruik een aangepaste max chain reorganisatie diepte (standaard: %u)</translation>
     </message>
     <message>
         <source>Use the test network</source>
@@ -6641,10 +6150,6 @@ BCZ Core Portemonnee</translation>
     <message>
         <source>Username for JSON-RPC connections</source>
         <translation>Gebruikersnaam voor JSON-RPC verbindingen</translation>
-    </message>
-    <message>
-        <source>Value is below the smallest available denomination (= 1) of zBCZ</source>
-        <translation>Waarde is minder dan de kleinst beschikbare denominatie (=1) van zBCZ</translation>
     </message>
     <message>
         <source>Verifying blocks...</source>
@@ -6687,10 +6192,6 @@ BCZ Core Portemonnee</translation>
         <translation>Waarschuwing: Niet ondersteunde argument -debugnet genegeerd, gebruik -debug=net.</translation>
     </message>
     <message>
-        <source>You don't have enough Zerocoins in your wallet</source>
-        <translation>Je hebt niet genoeg Zerocoins in je portemonnee</translation>
-    </message>
-    <message>
         <source>You need to rebuild the database using -reindex to change -txindex</source>
         <translation>Je moet de database herbouwen met -reindex om -txindex te wijzigen</translation>
     </message>
@@ -6703,16 +6204,8 @@ BCZ Core Portemonnee</translation>
         <translation>ZeroMQ notificatie opties:</translation>
     </message>
     <message>
-        <source>Zerocoin options:</source>
-        <translation>Zerocoin opties:</translation>
-    </message>
-    <message>
         <source>on startup</source>
         <translation>tijdens het opstarten</translation>
-    </message>
-    <message>
-        <source>wallet.dat corrupt, salvage failed</source>
-        <translation>wallet.dat corrupt, redding mislukt</translation>
     </message>
 </context>
 <context>
@@ -6726,12 +6219,40 @@ BCZ Core Portemonnee</translation>
         <translation>Zenden</translation>
     </message>
     <message>
-        <source>TextLabel</source>
-        <translation>TextLabel</translation>
+        <source>Send public coins (BCZ)</source>
+        <translation>Verstuur publieke munten (BCZ)</translation>
     </message>
     <message>
-        <source>PushButton</source>
-        <translation>Druk Knop</translation>
+        <source>BCZ address or contact label</source>
+        <translation>BCZ adres of contactlabel</translation>
+    </message>
+    <message>
+        <source>Amount</source>
+        <translation>Bedrag</translation>
+    </message>
+    <message>
+        <source>Customize fee</source>
+        <translation>Kosten aanpassen</translation>
+    </message>
+    <message>
+        <source>Clear all</source>
+        <translation>Alles wissen</translation>
+    </message>
+    <message>
+        <source>Add recipient</source>
+        <translation>Voeg bestemmeling toe</translation>
+    </message>
+    <message>
+        <source>Total to send</source>
+        <translation>Totaal te versturen</translation>
+    </message>
+    <message>
+        <source>Reset to default</source>
+        <translation>Terugzetten naar standaardinstelling</translation>
+    </message>
+    <message>
+        <source>Include delegated</source>
+        <translation>Reken delegatie mee</translation>
     </message>
 </context>
 </TS>

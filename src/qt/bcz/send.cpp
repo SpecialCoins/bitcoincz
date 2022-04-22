@@ -1,4 +1,4 @@
-// Copyright (c) 2020 The BCZ developers
+// Copyright (c) 2019-2020 The BCZ developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -39,56 +39,33 @@ SendWidget::SendWidget(BCZGUI* parent) :
     fontLight.setWeight(QFont::Light);
 
     /* Title */
-    ui->labelTitle->setText(tr("Send"));
     setCssProperty(ui->labelTitle, "text-title-screen");
     ui->labelTitle->setFont(fontLight);
 
-    /* Button Group */
-    ui->pushLeft->setText("BCZ");
-    setCssProperty(ui->pushLeft, "btn-check-left");
-    ui->pushLeft->setChecked(true);
-
     /* Subtitle */
-    ui->labelSubtitle1->setText(tr("You can transfer public coins (BCZ)"));
     setCssProperty(ui->labelSubtitle1, "text-subtitle");
 
-    ui->labelSubtitle2->setText(tr("Select coin type to spend"));
-    setCssProperty(ui->labelSubtitle2, "text-subtitle");
-
-    /* Address */
-    ui->labelSubtitleAddress->setText(tr("BCZ address or contact label"));
-    setCssProperty(ui->labelSubtitleAddress, "text-title");
-
-
-    /* Amount */
-    ui->labelSubtitleAmount->setText(tr("Amount"));
-    setCssProperty(ui->labelSubtitleAmount, "text-title");
+    /* Address - Amount*/
+    setCssProperty({ui->labelSubtitleAddress, ui->labelSubtitleAmount}, "text-title");
 
     /* Buttons */
-    ui->pushButtonFee->setText(tr("Customize fee"));
     setCssBtnSecondary(ui->pushButtonFee);
-
-    ui->pushButtonClear->setText(tr("Clear all"));
     setCssProperty(ui->pushButtonClear, "btn-secundary-clear");
-
-    ui->pushButtonAddRecipient->setText(tr("Add recipient"));
     setCssProperty(ui->pushButtonAddRecipient, "btn-secundary-add");
-
     setCssBtnPrimary(ui->pushButtonSave);
-    ui->pushButtonReset->setText(tr("Reset to default"));
     setCssBtnSecondary(ui->pushButtonReset);
 
     // Coin control
-    ui->btnCoinControl->setTitleClassAndText("btn-title-grey", "Coin Control");
-    ui->btnCoinControl->setSubTitleClassAndText("text-subtitle", "Select the source of the coins.");
+    ui->btnCoinControl->setTitleClassAndText("btn-title-grey", tr("Coin Control"));
+    ui->btnCoinControl->setSubTitleClassAndText("text-subtitle", tr("Select the source of the coins"));
 
     // Change address option
-    ui->btnChangeAddress->setTitleClassAndText("btn-title-grey", "Change Address");
-    ui->btnChangeAddress->setSubTitleClassAndText("text-subtitle", "Customize the change address.");
+    ui->btnChangeAddress->setTitleClassAndText("btn-title-grey", tr("Change Address"));
+    ui->btnChangeAddress->setSubTitleClassAndText("text-subtitle", tr("Customize the change address"));
 
     // Uri
-    ui->btnUri->setTitleClassAndText("btn-title-grey", "Open URI");
-    ui->btnUri->setSubTitleClassAndText("text-subtitle", "Parse a payment request.");
+    ui->btnUri->setTitleClassAndText("btn-title-grey", tr("Open URI"));
+    ui->btnUri->setSubTitleClassAndText("text-subtitle", tr("Parse a payment request"));
 
     connect(ui->pushButtonFee, &QPushButton::clicked, this, &SendWidget::onChangeCustomFeeClicked);
     connect(ui->btnCoinControl, &OptionButton::clicked, this, &SendWidget::onCoinControlClicked);
@@ -102,15 +79,11 @@ SendWidget::SendWidget(BCZGUI* parent) :
 
 
     // Total Send
-    ui->labelTitleTotalSend->setText(tr("Total to send"));
     setCssProperty(ui->labelTitleTotalSend, "text-title");
-
-    ui->labelAmountSend->setText("0.00 BCZ");
     setCssProperty(ui->labelAmountSend, "text-body1");
 
     // Total Remaining
     setCssProperty(ui->labelTitleTotalRemaining, "text-title");
-
     setCssProperty(ui->labelAmountRemaining, "text-body1");
 
     // Icon Send
@@ -118,7 +91,7 @@ SendWidget::SendWidget(BCZGUI* parent) :
     coinIcon->show();
     coinIcon->raise();
 
-    setCssProperty(coinIcon, "coin-icon");
+    setCssProperty(coinIcon, "coin-icon-bcz");
 
     QSize BUTTON_SIZE = QSize(24, 24);
     coinIcon->setMinimumSize(BUTTON_SIZE);
@@ -135,17 +108,11 @@ SendWidget::SendWidget(BCZGUI* parent) :
     setCustomFeeSelected(false);
 
     // Connect
-    connect(ui->pushLeft, &QPushButton::clicked, [this](){onBCZSelected();});
     connect(ui->pushButtonSave, &QPushButton::clicked, this, &SendWidget::onSendClicked);
     connect(ui->pushButtonAddRecipient, &QPushButton::clicked, this, &SendWidget::onAddEntryClicked);
     connect(ui->pushButtonClear, &QPushButton::clicked, [this](){clearAll(true);});
-}
 
-void SendWidget::refreshView()
-{
-    ui->pushButtonSave->setText("Send BCZ");
-    ui->pushButtonAddRecipient->setVisible(true);
-    refreshAmounts();
+    coinControlDialog = new CoinControlDialog();
 }
 
 void SendWidget::refreshAmounts()
@@ -164,14 +131,14 @@ void SendWidget::refreshAmounts()
     ui->labelAmountSend->setText(GUIUtil::formatBalance(total, nDisplayUnit));
 
     CAmount totalAmount = 0;
-    if (CoinControlDialog::coinControl->HasSelected()) {
+    if (coinControlDialog->coinControl->HasSelected()) {
         // Set remaining balance to the sum of the coinControl selected inputs
-        totalAmount = walletModel->getBalance(CoinControlDialog::coinControl) - total;
+        totalAmount = walletModel->getBalance(coinControlDialog->coinControl) - total;
         ui->labelTitleTotalRemaining->setText(tr("Total remaining from the selected UTXO"));
     } else {
-        // Wallet's balance
-        totalAmount = (walletModel->getBalance(nullptr, fDelegationsChecked)) - total;
-        ui->labelTitleTotalRemaining->setText(tr("Total remaining"));
+        // Wallet's unlocked balance
+        totalAmount = walletModel->getUnlockedBalance(nullptr, fDelegationsChecked) - total;
+        ui->labelTitleTotalRemaining->setText(tr("Unlocked remaining"));
     }
     ui->labelAmountRemaining->setText(
             GUIUtil::formatBalance(
@@ -195,6 +162,7 @@ void SendWidget::loadClientModel()
 void SendWidget::loadWalletModel()
 {
     if (walletModel) {
+        coinControlDialog->setModel(walletModel);
         if (walletModel->getOptionsModel()) {
             // display unit
             nDisplayUnit = walletModel->getOptionsModel()->getDisplayUnit();
@@ -213,8 +181,8 @@ void SendWidget::loadWalletModel()
             setCustomFeeSelected(true, nCustomFee);
         }
 
-        // Refresh view
-        refreshView();
+        // Refresh
+        refreshAmounts();
 
         // TODO: This only happen when the coin control features are modified in other screen, check before do this if the wallet has another screen modifying it.
         // Coin Control
@@ -241,7 +209,7 @@ void SendWidget::onResetSettings()
 
 void SendWidget::onResetCustomOptions(bool fRefreshAmounts)
 {
-    CoinControlDialog::coinControl->SetNull();
+    coinControlDialog->coinControl->SetNull();
     ui->btnChangeAddress->setActive(false);
     ui->btnCoinControl->setActive(false);
     if (ui->checkBoxDelegations->isChecked()) ui->checkBoxDelegations->setChecked(false);
@@ -332,9 +300,9 @@ void SendWidget::setFocusOnLastEntry()
 
 void SendWidget::showHideCheckBoxDelegations()
 {
-    // Show checkbox only when there is any available owned delegation,
-    // coincontrol is not selected
-    const bool isCControl = CoinControlDialog::coinControl->HasSelected();
+    // Show checkbox only when there is any available owned delegation and
+    // coincontrol is not selected.
+    const bool isCControl = coinControlDialog->coinControl->HasSelected();
     const bool hasDel = cachedDelegatedBalance > 0;
 
     const bool showCheckBox = !isCControl && hasDel;
@@ -369,8 +337,6 @@ void SendWidget::onSendClicked()
         return;
     }
 
-    bool sendBcz = ui->pushLeft->isChecked();
-
     WalletModel::UnlockContext ctx(walletModel->requestUnlock());
     if (!ctx.isValid()) {
         // Unlock wallet was cancelled
@@ -390,7 +356,7 @@ bool SendWidget::send(QList<SendCoinsRecipient> recipients)
     WalletModelTransaction currentTransaction(recipients);
     WalletModel::SendCoinsReturn prepareStatus;
 
-    prepareStatus = walletModel->prepareTransaction(currentTransaction, CoinControlDialog::coinControl, fDelegationsChecked);
+    prepareStatus = walletModel->prepareTransaction(currentTransaction, coinControlDialog->coinControl, fDelegationsChecked);
 
     // process prepareStatus and on error generate message shown to user
     GuiTransactionsUtils::ProcessSendCoinsReturnAndInform(
@@ -460,7 +426,7 @@ void SendWidget::updateEntryLabels(QList<SendCoinsRecipient> recipients)
         if (!label.isNull()) {
             QString labelOld = walletModel->getAddressTableModel()->labelForAddress(rec.address);
             if (label.compare(labelOld) != 0) {
-                CTxDestination dest = CBitcoinAddress(rec.address.toStdString()).Get();
+                CTxDestination dest = DecodeDestination(rec.address.toStdString());
                 if (!walletModel->updateAddressBookLabels(dest, label.toStdString(),
                                                           this->walletModel->isMine(dest) ?
                                                                   AddressBook::AddressBookPurpose::RECEIVE :
@@ -475,28 +441,32 @@ void SendWidget::updateEntryLabels(QList<SendCoinsRecipient> recipients)
     }
 }
 
-
 void SendWidget::onChangeAddressClicked()
 {
     showHideOp(true);
     SendChangeAddressDialog* dialog = new SendChangeAddressDialog(window, walletModel);
-    if (!boost::get<CNoDestination>(&CoinControlDialog::coinControl->destChange)) {
-        dialog->setAddress(QString::fromStdString(CBitcoinAddress(CoinControlDialog::coinControl->destChange).ToString()));
+    if (IsValidDestination(coinControlDialog->coinControl->destChange)) {
+        dialog->setAddress(QString::fromStdString(EncodeDestination(coinControlDialog->coinControl->destChange)));
     }
-    if (openDialogWithOpaqueBackgroundY(dialog, window, 3, 5)) {
-        CBitcoinAddress address(dialog->getAddress().toStdString());
 
-        // Ask if it's what the user really wants
-        if (!walletModel->isMine(address) &&
-            !ask(tr("Warning!"), tr("The change address doesn't belong to this wallet.\n\nDo you want to continue?"))) {
+    CTxDestination destChange = (openDialogWithOpaqueBackgroundY(dialog, window, 3, 5) ?
+                                 dialog->getDestination() : CNoDestination());
+
+    if (!IsValidDestination(destChange)) {
+        // no change address set
+        ui->btnChangeAddress->setActive(false);
+    } else {
+        // Ask confirmation if external address
+        if (!walletModel->isMine(destChange) && !ask(tr("Warning!"),
+                tr("The change address doesn't belong to this wallet.\n\nDo you want to continue?"))) {
+            dialog->deleteLater();
             return;
         }
-        CoinControlDialog::coinControl->destChange = address.Get();
         ui->btnChangeAddress->setActive(true);
     }
-    // check if changeAddress has been reset to NoDestination (or wasn't set at all)
-    if (boost::get<CNoDestination>(&CoinControlDialog::coinControl->destChange))
-        ui->btnChangeAddress->setActive(false);
+
+    // save change address in coin control
+    coinControlDialog->coinControl->destChange = destChange;
     dialog->deleteLater();
 }
 
@@ -550,19 +520,25 @@ void SendWidget::onChangeCustomFeeClicked()
 
 void SendWidget::onCoinControlClicked()
 {
-        if (walletModel->getBalance() > 0) {
-            if (!coinControlDialog) {
-                coinControlDialog = new CoinControlDialog();
-                coinControlDialog->setModel(walletModel);
-            } else {
-                coinControlDialog->refreshDialog();
-            }
-            coinControlDialog->exec();
-            ui->btnCoinControl->setActive(CoinControlDialog::coinControl->HasSelected());
-            refreshAmounts();
-        } else {
-            inform(tr("You don't have any BCZ to select."));
-        }
+    if (walletModel->getBalance() > 0) {
+        coinControlDialog->refreshDialog();
+        setCoinControlPayAmounts();
+        coinControlDialog->exec();
+        ui->btnCoinControl->setActive(coinControlDialog->coinControl->HasSelected());
+        refreshAmounts();
+    } else {
+        inform(tr("You don't have any %1 to select.").arg(CURRENCY_UNIT.c_str()));
+    }
+}
+
+void SendWidget::setCoinControlPayAmounts()
+{
+    if (!coinControlDialog) return;
+    coinControlDialog->clearPayAmounts();
+    QMutableListIterator<SendMultiRow*> it(entries);
+    while (it.hasNext()) {
+        coinControlDialog->addPayAmount(it.next()->getAmountValue());
+    }
 }
 
 void SendWidget::onValueChanged()
@@ -577,13 +553,6 @@ void SendWidget::onCheckBoxChanged()
         fDelegationsChecked = checked;
         refreshAmounts();
     }
-}
-
-void SendWidget::onBCZSelected()
-{
-    setCssProperty(coinIcon, "coin-icon");
-    refreshView();
-    updateStyle(coinIcon);
 }
 
 void SendWidget::onContactsClicked(SendMultiRow* entry)
@@ -678,7 +647,7 @@ void SendWidget::onContactMultiClicked()
             inform(tr("Invalid address"));
             return;
         }
-        CBitcoinAddress bczAdd = CBitcoinAddress(address.toStdString());
+        CTxDestination bczAdd = DecodeDestination(address.toStdString());
         if (walletModel->isMine(bczAdd)) {
             inform(tr("Cannot store your own address as contact"));
             return;
@@ -699,7 +668,7 @@ void SendWidget::onContactMultiClicked()
             if (label == dialog->getLabel()) {
                 return;
             }
-            if (walletModel->updateAddressBookLabels(bczAdd.Get(), dialog->getLabel().toStdString(),
+            if (walletModel->updateAddressBookLabels(bczAdd, dialog->getLabel().toStdString(),
                     AddressBook::AddressBookPurpose::SEND)) {
                 inform(tr("New Contact Stored"));
             } else {
@@ -768,10 +737,11 @@ void SendWidget::setCustomFeeSelected(bool isSelected, const CAmount& customFee)
 
 void SendWidget::changeTheme(bool isLightTheme, QString& theme)
 {
-    if (coinControlDialog) coinControlDialog->setStyleSheet(theme);
+    coinControlDialog->setStyleSheet(theme);
 }
 
 SendWidget::~SendWidget()
 {
     delete ui;
+    delete coinControlDialog;
 }

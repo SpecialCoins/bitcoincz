@@ -1,17 +1,17 @@
-// Copyright (c) 2020 The BCZ developers
+// Copyright (c) 2019-2020 The BCZ developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #ifndef DEFAULTDIALOG_H
 #define DEFAULTDIALOG_H
 
-#include <QDialog>
+#include "qt/bcz/focuseddialog.h"
 
 namespace Ui {
 class DefaultDialog;
 }
 
-class DefaultDialog : public QDialog
+class DefaultDialog : public FocusedDialog
 {
     Q_OBJECT
 
@@ -19,7 +19,6 @@ public:
     explicit DefaultDialog(QWidget *parent = nullptr);
     ~DefaultDialog();
 
-    void showEvent(QShowEvent *event) override;
     void setText(const QString& title = "", const QString& message = "", const QString& okBtnText = "", const QString& cancelBtnText = "");
 
     bool isOk = false;
@@ -29,9 +28,6 @@ public Q_SLOTS:
 
 private:
     Ui::DefaultDialog *ui;
-
-protected:
-    void keyPressEvent(QKeyEvent *e) override;
 };
 
 #endif // DEFAULTDIALOG_H

@@ -1,4 +1,4 @@
-// Copyright (c) 2020 The BCZ developers
+// Copyright (c) 2019-2020 The BCZ developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -46,8 +46,8 @@ private Q_SLOTS:
     void onAddContactShowHideClicked();
     void onSortChanged(int idx);
     void onSortOrderChanged(int idx);
-    void changeTheme(bool isLightTheme, QString &theme) override;
 
+    void changeTheme(bool isLightTheme, QString &theme) override;
 private:
     Ui::AddressesWidget *ui;
 

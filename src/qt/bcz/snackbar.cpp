@@ -1,4 +1,4 @@
-// Copyright (c) 2020 The BCZ developers
+// Copyright (c) 2019-2020 The BCZ developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -30,8 +30,7 @@ SnackBar::SnackBar(BCZGUI* _window, QWidget *parent) :
     }
 }
 
-void SnackBar::windowResizeEvent(QResizeEvent* event)
-{
+void SnackBar::windowResizeEvent(QResizeEvent* event) {
     this->resize(qobject_cast<QWidget*>(parent())->width(), this->height());
     this->move(QPoint(0, window->height() - this->height() ));
 }

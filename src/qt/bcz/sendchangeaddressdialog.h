@@ -1,11 +1,12 @@
-// Copyright (c) 2020 The BCZ developers
+// Copyright (c) 2019-2020 The BCZ developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #ifndef SENDCHANGEADDRESSDIALOG_H
 #define SENDCHANGEADDRESSDIALOG_H
 
-#include <QDialog>
+#include "script/standard.h"
+#include "qt/bcz/focuseddialog.h"
 #include "qt/bcz/snackbar.h"
 
 class WalletModel;
@@ -14,7 +15,7 @@ namespace Ui {
 class SendChangeAddressDialog;
 }
 
-class SendChangeAddressDialog : public QDialog
+class SendChangeAddressDialog : public FocusedDialog
 {
     Q_OBJECT
 
@@ -23,7 +24,7 @@ public:
     ~SendChangeAddressDialog();
 
     void setAddress(QString address);
-    QString getAddress() const;
+    CTxDestination getDestination() const;
 
     void showEvent(QShowEvent* event) override;
 
@@ -31,11 +32,13 @@ private:
     WalletModel* walletModel;
     Ui::SendChangeAddressDialog *ui;
     SnackBar *snackBar = nullptr;
+    CTxDestination dest;
+
     void inform(const QString& text);
 
 private Q_SLOTS:
     void reset();
-    void save();
+    void accept() override;
 };
 
 #endif // SENDCHANGEADDRESSDIALOG_H

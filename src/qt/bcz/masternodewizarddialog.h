@@ -1,12 +1,12 @@
-// Copyright (c) 2020 The BCZ developers
+// Copyright (c) 2019 The BCZ developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #ifndef MASTERNODEWIZARDDIALOG_H
 #define MASTERNODEWIZARDDIALOG_H
 
-#include <QDialog>
 #include "walletmodel.h"
+#include "qt/bcz/focuseddialog.h"
 #include "qt/bcz/snackbar.h"
 #include "masternodeconfig.h"
 #include "qt/bcz/pwidget.h"
@@ -18,7 +18,7 @@ class MasterNodeWizardDialog;
 class QPushButton;
 }
 
-class MasterNodeWizardDialog : public QDialog, public PWidget::Translator
+class MasterNodeWizardDialog : public FocusedDialog, public PWidget::Translator
 {
     Q_OBJECT
 
@@ -33,7 +33,7 @@ public:
     CMasternodeConfig::CMasternodeEntry* mnEntry = nullptr;
 
 private Q_SLOTS:
-    void onNextClicked();
+    void accept() override;
     void onBackClicked();
 private:
     Ui::MasterNodeWizardDialog *ui;

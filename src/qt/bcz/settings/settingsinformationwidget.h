@@ -1,4 +1,4 @@
-// Copyright (c) 2020 The BCZ developers
+// Copyright (c) 2019 The BCZ developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -25,12 +25,11 @@ public:
 
 private Q_SLOTS:
     void setNumConnections(int count);
-    void setMasternodeCount(const QString& strMasternodes);
-    void setMnRoiCount(const QString& strMnRoi);
-    void setMempoolSize(long numberOfTxs, size_t dynUsage);
     void setNumBlocks(int count);
+    void setMasternodeCount(const QString& strMasternodes);
+
+public Q_SLOTS:
     void openNetworkMonitor();
-    void updateTrafficStats(quint64 totalBytesIn, quint64 totalBytesOut);
 
 private:
     Ui::SettingsInformationWidget *ui;

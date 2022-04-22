@@ -271,7 +271,7 @@ background:transparent;
                    <item>
                     <widget class="QLabel" name="textId">
                      <property name="text">
-                      <string>492526e7fa3c810b35016...40a5df85ee227ab00b1156994</string>
+                      <string notr="true">492526e7fa3c810b35016...40a5df85ee227ab00b1156994</string>
                      </property>
                     </widget>
                    </item>
@@ -315,7 +315,7 @@ background:transparent;
                    </size>
                   </property>
                   <property name="styleSheet">
-                   <string notr="true">background-color:#908c96;</string>
+                   <string notr="true">background-color:#bababa;</string>
                   </property>
                   <property name="text">
                    <string/>
@@ -350,7 +350,7 @@ background:transparent;
                    <item>
                     <widget class="QLabel" name="textAddress">
                      <property name="text">
-                      <string>127.0.0.2:43223</string>
+                      <string notr="true">127.0.0.2:43223</string>
                      </property>
                     </widget>
                    </item>
@@ -366,7 +366,7 @@ background:transparent;
                    </size>
                   </property>
                   <property name="styleSheet">
-                   <string notr="true">background-color:#908c96;</string>
+                   <string notr="true">background-color:#bababa;</string>
                   </property>
                   <property name="text">
                    <string/>
@@ -395,7 +395,7 @@ background:transparent;
                    <item>
                     <widget class="QLabel" name="textAmount">
                      <property name="text">
-                      <string>492526e7fa3c810b35016...40a5df85ee227ab00b1156994</string>
+                      <string notr="true">492526e7fa3c810b35016...40a5df85ee227ab00b1156994</string>
                      </property>
                     </widget>
                    </item>
@@ -433,7 +433,7 @@ background:transparent;
                    </size>
                   </property>
                   <property name="styleSheet">
-                   <string notr="true">background-color:#908c96;</string>
+                   <string notr="true">background-color:#bababa;</string>
                   </property>
                   <property name="text">
                    <string/>
@@ -487,7 +487,7 @@ background:transparent;
                    </size>
                   </property>
                   <property name="styleSheet">
-                   <string notr="true">background-color:#908c96;</string>
+                   <string notr="true">background-color:#bababa;</string>
                   </property>
                   <property name="text">
                    <string/>
@@ -516,7 +516,7 @@ background:transparent;
                    <item>
                     <widget class="QLabel" name="textStatus">
                      <property name="text">
-                      <string>MISSING</string>
+                      <string notr="true">MISSING</string>
                      </property>
                     </widget>
                    </item>
@@ -532,7 +532,7 @@ background:transparent;
                    </size>
                   </property>
                   <property name="styleSheet">
-                   <string notr="true">background-color:#908c96;</string>
+                   <string notr="true">background-color:#bababa;</string>
                   </property>
                   <property name="text">
                    <string/>
@@ -598,7 +598,7 @@ background:transparent;
                    </size>
                   </property>
                   <property name="styleSheet">
-                   <string notr="true">background-color:#908c96;</string>
+                   <string notr="true">background-color:#bababa;</string>
                   </property>
                   <property name="text">
                    <string/>

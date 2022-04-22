@@ -1,4 +1,4 @@
-// Copyright (c) 2020 The BCZ developers
+// Copyright (c) 2019-2020 The BCZ developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -32,46 +32,32 @@ SettingsBitToolWidget::SettingsBitToolWidget(BCZGUI* _window, QWidget *parent) :
     ui->left->setContentsMargins(10,10,10,10);
 
     /* Title */
-    ui->labelTitle->setText(tr("BIP38 Tool"));
     setCssTitleScreen(ui->labelTitle);
 
     //Button Group
-    ui->pushLeft->setText(tr("Encrypt"));
     setCssProperty(ui->pushLeft, "btn-check-left");
-    ui->pushRight->setText(tr("Decrypt"));
     setCssProperty(ui->pushRight, "btn-check-right");
     ui->pushLeft->setChecked(true);
 
     // Subtitle
-    ui->labelSubtitle1->setText("Encrypt your BCZ addresses (key pair actually) using BIP38 encryption.\nUsing this mechanism you can share your keys without middle-man risk, only need to store your passphrase safely.");
     setCssSubtitleScreen(ui->labelSubtitle1);
 
     // Key
-    ui->labelSubtitleKey->setText(tr("Encrypted key"));
     setCssProperty(ui->labelSubtitleKey, "text-title");
-    ui->lineEditKey->setPlaceholderText(tr("Enter a encrypted key"));
     initCssEditLine(ui->lineEditKey);
 
     // Passphrase
-    ui->labelSubtitlePassphrase->setText(tr("Passphrase"));
     setCssProperty(ui->labelSubtitlePassphrase, "text-title");
-
-    ui->lineEditPassphrase->setPlaceholderText(tr("Enter a passphrase "));
     initCssEditLine(ui->lineEditPassphrase);
 
     // Decrypt controls
-    ui->labelSubtitleDecryptResult->setText(tr("Decrypted address result"));
     setCssProperty(ui->labelSubtitleDecryptResult, "text-title");
-    ui->lineEditDecryptResult->setPlaceholderText(tr("Decrypted Address"));
     ui->lineEditDecryptResult->setAttribute(Qt::WA_MacShowFocusRect, 0);
     ui->lineEditDecryptResult->setReadOnly(true);
     initCssEditLine(ui->lineEditDecryptResult);
 
     // Buttons
-    ui->pushButtonDecrypt->setText(tr("DECRYPT KEY"));
     setCssBtnPrimary(ui->pushButtonDecrypt);
-
-    ui->pushButtonImport->setText(tr("Import Address"));
     setCssProperty(ui->pushButtonImport, "btn-text-primary");
     ui->pushButtonImport->setVisible(false);
 
@@ -82,35 +68,24 @@ SettingsBitToolWidget::SettingsBitToolWidget(BCZGUI* _window, QWidget *parent) :
     // Encrypt
 
     // Address
-    ui->labelSubtitleAddress->setText(tr("BCZ address"));
     setCssProperty(ui->labelSubtitleAddress, "text-title");
-
-    ui->addressIn_ENC->setPlaceholderText(tr("Enter address"));
     setCssProperty(ui->addressIn_ENC, "edit-primary-multi-book");
     ui->addressIn_ENC->setAttribute(Qt::WA_MacShowFocusRect, 0);
     setShadow(ui->addressIn_ENC);
 
     // Message
-    ui->labelSubtitleMessage->setText(tr("Passphrase"));
     setCssProperty(ui->labelSubtitleMessage, "text-title");
-
     setCssProperty(ui->passphraseIn_ENC, "edit-primary");
-    ui->passphraseIn_ENC->setPlaceholderText(tr("Enter passphrase"));
-    setCssProperty(ui->passphraseIn_ENC,"edit-primary");
     setShadow(ui->passphraseIn_ENC);
     ui->passphraseIn_ENC->setAttribute(Qt::WA_MacShowFocusRect, 0);
 
-    ui->labelSubtitleEncryptedKey->setText(tr("Encrypted Key"));
+    // Encrypted Key
     setCssProperty(ui->labelSubtitleEncryptedKey, "text-title");
-    ui->encryptedKeyOut_ENC->setPlaceholderText(tr("Encrypted key"));
     ui->encryptedKeyOut_ENC->setAttribute(Qt::WA_MacShowFocusRect, 0);
     ui->encryptedKeyOut_ENC->setReadOnly(true);
     initCssEditLine(ui->encryptedKeyOut_ENC);
 
     btnContact = ui->addressIn_ENC->addAction(QIcon("://ic-contact-arrow-down"), QLineEdit::TrailingPosition);
-    ui->pushButtonEncrypt->setText(tr("ENCRYPT"));
-    ui->pushButtonClear->setText(tr("CLEAR ALL"));
-    ui->pushButtonDecryptClear->setText(tr("CLEAR"));
     setCssBtnPrimary(ui->pushButtonEncrypt);
     setCssBtnSecondary(ui->pushButtonClear);
     setCssBtnSecondary(ui->pushButtonDecryptClear);
@@ -168,15 +143,15 @@ void SettingsBitToolWidget::onEncryptKeyButtonENCClicked()
         return;
     }
 
-    CBitcoinAddress addr(ui->addressIn_ENC->text().toStdString());
-    if (!addr.IsValid()) {
+    CTxDestination dest = DecodeDestination(ui->addressIn_ENC->text().toStdString());
+    if (!IsValidDestination(dest)) {
         ui->statusLabel_ENC->setStyleSheet("QLabel { color: red; }");
         ui->statusLabel_ENC->setText(tr("The entered address is invalid.") + QString(" ") + tr("Please check the address and try again."));
         return;
     }
 
-    CKeyID keyID;
-    if (!addr.GetKeyID(keyID)) {
+    CKeyID keyID = *boost::get<CKeyID>(&dest);
+    if (!keyID) {
         //ui->addressIn_ENC->setValid(false);
         ui->statusLabel_ENC->setStyleSheet("QLabel { color: red; }");
         ui->statusLabel_ENC->setText(tr("The entered address does not refer to a key.") + QString(" ") + tr("Please check the address and try again."));
@@ -197,7 +172,7 @@ void SettingsBitToolWidget::onEncryptKeyButtonENCClicked()
         return;
     }
 
-    std::string encryptedKey = BIP38_Encrypt(addr.ToString(), qstrPassphrase.toStdString(), key.GetPrivKey_256(), key.IsCompressed());
+    std::string encryptedKey = BIP38_Encrypt(EncodeDestination(dest), qstrPassphrase.toStdString(), key.GetPrivKey_256(), key.IsCompressed());
     ui->encryptedKeyOut_ENC->setText(QString::fromStdString(encryptedKey));
 
     ui->statusLabel_ENC->setStyleSheet("QLabel { color: green; }");
@@ -290,8 +265,7 @@ void SettingsBitToolWidget::onDecryptClicked()
 
     key.Set(privKey.begin(), privKey.end(), fCompressed);
     CPubKey pubKey = key.GetPubKey();
-    CBitcoinAddress address(pubKey.GetID());
-    ui->lineEditDecryptResult->setText(QString::fromStdString(address.ToString()));
+    ui->lineEditDecryptResult->setText(QString::fromStdString(EncodeDestination(pubKey.GetID())));
     ui->pushButtonImport->setVisible(true);
 }
 
@@ -304,10 +278,10 @@ void SettingsBitToolWidget::importAddressFromDecKey()
         return;
     }
 
-    CBitcoinAddress address(ui->lineEditDecryptResult->text().toStdString());
+    CTxDestination dest = DecodeDestination(ui->lineEditDecryptResult->text().toStdString());
     CPubKey pubkey = key.GetPubKey();
 
-    if (!address.IsValid() || !key.IsValid() || CBitcoinAddress(pubkey.GetID()).ToString() != address.ToString()) {
+    if (!IsValidDestination(dest) || !key.IsValid() || EncodeDestination(pubkey.GetID()) != EncodeDestination(dest)) {
         ui->statusLabel_DEC->setStyleSheet("QLabel { color: red; }");
         ui->statusLabel_DEC->setText(tr("Data Not Valid.") + QString(" ") + tr("Please try again."));
         return;

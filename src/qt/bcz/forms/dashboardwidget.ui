@@ -97,7 +97,7 @@
              <item>
               <widget class="QLabel" name="labelSubtitle">
                <property name="text">
-                <string>You can see here the history of your account</string>
+                <string>View your account's history</string>
                </property>
                <property name="alignment">
                 <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
@@ -258,7 +258,7 @@
                   <string notr="true"/>
                  </property>
                  <property name="text">
-                  <string>Warning</string>
+                  <string notr="true">N/A</string>
                  </property>
                  <property name="alignment">
                   <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
@@ -283,7 +283,7 @@
                </size>
               </property>
               <property name="styleSheet">
-               <string notr="true">background-color:#908c96;</string>
+               <string notr="true">background-color:#bababa;</string>
               </property>
               <property name="text">
                <string/>
@@ -326,7 +326,7 @@
         <property name="frameShadow">
          <enum>QFrame::Raised</enum>
         </property>
-        <layout class="QVBoxLayout" name="verticalLayout_7" stretch="1,8,0,0">
+        <layout class="QVBoxLayout" name="verticalLayout_7" stretch="1,8,0">
          <property name="spacing">
           <number>0</number>
          </property>
@@ -419,7 +419,7 @@
                <string notr="true"/>
               </property>
               <property name="text">
-               <string>No transactions</string>
+               <string>No transactions yet</string>
               </property>
               <property name="alignment">
                <set>Qt::AlignCenter</set>
@@ -441,22 +441,6 @@
             </size>
            </property>
           </spacer>
-         </item>
-         <item alignment="Qt::AlignHCenter">
-          <widget class="QPushButton" name="btnHowTo">
-           <property name="minimumSize">
-            <size>
-             <width>280</width>
-             <height>50</height>
-            </size>
-           </property>
-           <property name="focusPolicy">
-            <enum>Qt::NoFocus</enum>
-           </property>
-           <property name="text">
-            <string/>
-           </property>
-          </widget>
          </item>
         </layout>
        </widget>
@@ -519,7 +503,7 @@
             <item>
              <widget class="QLabel" name="labelMessage">
               <property name="text">
-               <string>TextLabel</string>
+               <string>Amount of BCZ staked.</string>
               </property>
              </widget>
             </item>
@@ -567,7 +551,7 @@
           <item>
            <widget class="QLabel" name="labelAmountBcz">
             <property name="text">
-             <string>TextLabel</string>
+             <string notr="true">0 BCZ</string>
             </property>
             <property name="alignment">
              <set>Qt::AlignCenter</set>
@@ -650,19 +634,6 @@
                  </widget>
                 </item>
                 <item>
-                 <spacer name="horizontalSpacer_4">
-                  <property name="orientation">
-                   <enum>Qt::Horizontal</enum>
-                  </property>
-                  <property name="sizeHint" stdset="0">
-                   <size>
-                    <width>40</width>
-                    <height>20</height>
-                   </size>
-                  </property>
-                 </spacer>
-                </item>
-                <item>
                  <widget class="QLabel" name="labelSquareBcz">
                   <property name="minimumSize">
                    <size>
@@ -684,26 +655,7 @@
                 <item>
                  <widget class="QLabel" name="labelBcz">
                   <property name="text">
-                   <string>BCZ</string>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <widget class="QLabel" name="labelSquarezBcz">
-                  <property name="minimumSize">
-                   <size>
-                    <width>14</width>
-                    <height>14</height>
-                   </size>
-                  </property>
-                  <property name="maximumSize">
-                   <size>
-                    <width>14</width>
-                    <height>14</height>
-                   </size>
-                  </property>
-                  <property name="text">
-                   <string/>
+                   <string notr="true">BCZ</string>
                   </property>
                  </widget>
                 </item>
@@ -890,7 +842,7 @@ margin:0px;</string>
            </item>
            <item alignment="Qt::AlignVCenter">
             <widget class="QWidget" name="containerSort" native="true">
-             <layout class="QHBoxLayout" name="horizontalLayout_6" stretch="3,2">
+             <layout class="QHBoxLayout" name="horizontalLayout_61" stretch="3,2">
               <property name="spacing">
                <number>28</number>
               </property>
@@ -1258,7 +1210,7 @@ margin:0px;</string>
                  <string notr="true"/>
                 </property>
                 <property name="text">
-                 <string>LabelText</string>
+                 <string notr="true">N/A</string>
                 </property>
                 <property name="alignment">
                  <set>Qt::AlignCenter</set>
@@ -1290,7 +1242,8 @@ margin:0px;</string>
 }</string>
              </property>
              <property name="text">
-              <string>TextLabel</string>
+              <string>You can verify the staking activity in the status bar at the top right of the wallet.
+It will start automatically as soon as the wallet has enough confirmations on any unspent balances, and the wallet has synced.</string>
              </property>
              <property name="alignment">
               <set>Qt::AlignCenter</set>

@@ -1,6 +1,6 @@
 // Copyright (c) 2011-2014 The Bitcoin developers
 // Copyright (c) 2014-2016 The Dash developers
-// Copyright (c) 2020 The BCZ developers
+// Copyright (c) 2017-2020 The BCZ developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -75,7 +75,7 @@ public:
     ADD_SERIALIZE_METHODS;
 
     template <typename Stream, typename Operation>
-    inline void SerializationOp(Stream& s, Operation ser_action, int nType, int nVersion)
+    inline void SerializationOp(Stream& s, Operation ser_action)
     {
         std::string sAddress = address.toStdString();
         std::string sLabel = label.toStdString();
@@ -86,7 +86,6 @@ public:
         std::string sAuthenticatedMerchant = authenticatedMerchant.toStdString();
 
         READWRITE(this->nVersion);
-        nVersion = this->nVersion;
         READWRITE(sAddress);
         READWRITE(sLabel);
         READWRITE(amount);
@@ -122,7 +121,8 @@ public:
         AmountExceedsBalance,
         AmountWithFeeExceedsBalance,
         DuplicateAddress,
-        TransactionCreationFailed, // Error returned when wallet is still locked
+        TransactionCreationFailed,
+        TransactionCheckFailed,
         TransactionCommitFailed,
         StakingOnlyUnlocked,
         InsaneFee,
@@ -142,6 +142,7 @@ public:
     RecentRequestsTableModel* getRecentRequestsTableModel();
 
     bool isTestNetwork() const;
+    bool isRegTestNetwork() const;
     /** Whether cold staking is enabled or disabled in the network **/
     bool isColdStakingNetworkelyEnabled() const;
     CAmount getMinColdStakingAmount() const;
@@ -151,7 +152,8 @@ public:
     bool isHDEnabled() const;
     bool upgradeWallet(std::string& upgradeError);
 
-    CAmount getBalance(const CCoinControl* coinControl = nullptr, bool fIncludeDelegated = true) const;
+    CAmount getBalance(const CCoinControl* coinControl = nullptr, bool fIncludeDelegated = true, bool fUnlockedOnly = false) const;
+    CAmount getUnlockedBalance(const CCoinControl* coinControl = nullptr, bool fIncludeDelegated = true) const;
     CAmount getUnconfirmedBalance() const;
     CAmount getImmatureBalance() const;
     CAmount getLockedBalance() const;
@@ -182,7 +184,12 @@ public:
     // Return status record for SendCoins, contains error id + information
     struct SendCoinsReturn {
         SendCoinsReturn(StatusCode status = OK) : status(status) {}
+        SendCoinsReturn(CWallet::CommitResult _commitRes) : commitRes(_commitRes)
+        {
+            status = (_commitRes.status == CWallet::CommitStatus::OK ? OK : TransactionCommitFailed);
+        }
         StatusCode status;
+        CWallet::CommitResult commitRes;
     };
 
     void setWalletDefaultFee(CAmount fee = DEFAULT_TRANSACTION_FEE);
@@ -243,22 +250,24 @@ public:
     bool getPubKey(const CKeyID& address, CPubKey& vchPubKeyOut) const;
     int64_t getCreationTime() const;
     int64_t getKeyCreationTime(const CPubKey& key);
-    int64_t getKeyCreationTime(const CBitcoinAddress& address);
-    PairResult getNewAddress(CBitcoinAddress& ret, std::string label = "") const;
+    int64_t getKeyCreationTime(const CTxDestination& address);
+    PairResult getNewAddress(Destination& ret, std::string label = "") const;
     /**
      * Return a new address used to receive for delegated cold stake purpose.
      */
-    PairResult getNewStakingAddress(CBitcoinAddress& ret, std::string label = "") const;
+    PairResult getNewStakingAddress(Destination& ret, std::string label = "") const;
 
     bool whitelistAddressFromColdStaking(const QString &addressStr);
     bool blacklistAddressFromColdStaking(const QString &address);
     bool updateAddressBookPurpose(const QString &addressStr, const std::string& purpose);
-    std::string getLabelForAddress(const CBitcoinAddress& address);
-    bool getKeyId(const CBitcoinAddress& address, CKeyID& keyID);
+    std::string getLabelForAddress(const CTxDestination& address);
+    bool getKeyId(const CTxDestination& address, CKeyID& keyID);
 
-    bool isMine(CBitcoinAddress address);
+    bool isMine(const CTxDestination& address);
     bool isMine(const QString& addressStr);
+    bool isUsed(CTxDestination address);
     void getOutputs(const std::vector<COutPoint>& vOutpoints, std::vector<COutput>& vOutputs);
+    bool getMNCollateralCandidate(COutPoint& outPoint);
     bool isSpent(const COutPoint& outpoint) const;
     void listCoins(std::map<QString, std::vector<COutput> >& mapCoins) const;
 
@@ -267,13 +276,13 @@ public:
     void unlockCoin(COutPoint& output);
     void listLockedCoins(std::vector<COutPoint>& vOutpts);
 
+    std::string GetUniqueWalletBackupName();
     void loadReceiveRequests(std::vector<std::string>& vReceiveRequests);
     bool saveReceiveRequest(const std::string& sAddress, const int64_t nId, const std::string& sRequest);
 
 private:
     CWallet* wallet;
     bool fHaveWatchOnly;
-    bool fHaveMultiSig;
     bool fForceCheckBalanceChanged;
 
     // Wallet has an options model for wallet-specific options
@@ -319,7 +328,7 @@ Q_SIGNALS:
     void requireUnlock();
 
     // Fired when a message should be reported to the user
-    void message(const QString& title, const QString& message, unsigned int style);
+    void message(const QString& title, const QString& body, unsigned int style, bool* ret = nullptr);
 
     // Coins sent: from wallet, to recipient, in (serialized) transaction:
     void coinsSent(CWallet* wallet, SendCoinsRecipient recipient, QByteArray transaction);
@@ -329,9 +338,6 @@ Q_SIGNALS:
 
     // Watch-only address added
     void notifyWatchonlyChanged(bool fHaveWatchonly);
-
-    // MultiSig address added
-    void notifyMultiSigChanged(bool fHaveMultiSig);
 
     // Receive tab address may have changed
     void notifyReceiveAddressChanged();
@@ -345,8 +351,6 @@ public Q_SLOTS:
     void updateAddressBook(const QString& address, const QString& label, bool isMine, const QString& purpose, int status);
     /* Watch-only added */
     void updateWatchOnlyFlag(bool fHaveWatchonly);
-    /* MultiSig added */
-    void updateMultiSigFlag(bool fHaveMultiSig);
     /* Current, immature or unconfirmed balance might have changed - emit 'balanceChanged' if so */
     void pollBalanceChanged();
     /* Update address book labels in the database */

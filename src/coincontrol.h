@@ -1,6 +1,6 @@
 // Copyright (c) 2011-2013 The Bitcoin developers
 // Copyright (c) 2014-2016 The Dash developers
-// Copyright (c) 2020 The BCZ developers
+// Copyright (c) 2015-2020 The BCZ developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -24,6 +24,10 @@ public:
     bool fAllowWatchOnly;
     //! Minimum absolute fee (not per kilobyte)
     CAmount nMinimumTotalFee;
+    //! Override estimated feerate
+    bool fOverrideFeeRate;
+    //! Feerate to use if overrideFeeRate is true
+    CFeeRate nFeeRate;
 
     CCoinControl()
     {
@@ -36,8 +40,10 @@ public:
         setSelected.clear();
         useSwiftTX = false;
         fAllowOtherInputs = false;
-        fAllowWatchOnly = true;
+        fAllowWatchOnly = false;
         nMinimumTotalFee = 0;
+        nFeeRate = CFeeRate(0);
+        fOverrideFeeRate = false;
         fSplitBlock = false;
         nSplitBlock = 1;
     }
@@ -47,10 +53,9 @@ public:
         return (!setSelected.empty());
     }
 
-    bool IsSelected(const uint256& hash, unsigned int n) const
+    bool IsSelected(const COutPoint& output) const
     {
-        COutPoint outpt(hash, n);
-        return (setSelected.count(outpt) > 0);
+        return (setSelected.count(output) > 0);
     }
 
     void Select(const COutPoint& output)
@@ -68,12 +73,12 @@ public:
         setSelected.clear();
     }
 
-    void ListSelected(std::vector<COutPoint>& vOutpoints)
+    void ListSelected(std::vector<COutPoint>& vOutpoints) const
     {
         vOutpoints.assign(setSelected.begin(), setSelected.end());
     }
 
-    unsigned int QuantitySelected()
+    unsigned int QuantitySelected() const
     {
         return setSelected.size();
     }
