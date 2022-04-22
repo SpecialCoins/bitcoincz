@@ -17,8 +17,6 @@
 
 #include <vector>
 
-typedef unsigned char MessageStartChars[MESSAGE_START_SIZE];
-
 struct CDNSSeedData {
     std::string name, host;
     bool supportsServiceBitsFiltering;
@@ -53,15 +51,16 @@ public:
     };
 
     const Consensus::Params& GetConsensus() const { return consensus; }
-    const MessageStartChars& MessageStart() const { return pchMessageStart; }
+    const CMessageHeader::MessageStartChars& MessageStart() const { return pchMessageStart; }
     int GetDefaultPort() const { return nDefaultPort; }
     const uint256& ProofOfWorkLimit() const { return bnProofOfWorkLimit; }
+
     const CBlock& GenesisBlock() const { return genesis; }
 
     /** Make miner wait to have peers to avoid wasting work */
     bool MiningRequiresPeers() const { return !IsRegTestNet(); }
     /** Headers first syncing is disabled */
-    bool HeadersFirstSyncingActive() const { return false; }
+    bool HeadersFirstSyncingActive() const { return false; };
     /** Default value for -checkmempool and -checkblockindex argument */
     bool DefaultConsistencyChecks() const { return IsRegTestNet(); }
 
@@ -83,8 +82,8 @@ protected:
     std::string strNetworkID;
     CBlock genesis;
     Consensus::Params consensus;
-    MessageStartChars pchMessageStart;
     uint256 bnProofOfWorkLimit;
+    CMessageHeader::MessageStartChars pchMessageStart;
     int nDefaultPort;
     std::vector<CDNSSeedData> vSeeds;
     std::vector<unsigned char> base58Prefixes[MAX_BASE58_TYPES];

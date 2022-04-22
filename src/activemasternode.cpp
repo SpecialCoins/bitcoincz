@@ -15,7 +15,7 @@
 #include "protocol.h"
 
 //
-// Bootup the Masternode, look for BCZ input and register on the network
+// Bootup the Masternode, look for a BCZ input and register on the network
 //
 void CActiveMasternode::ManageStatus()
 {
@@ -55,7 +55,7 @@ void CActiveMasternode::ManageStatus()
             return;
         }
 
-        if (pwalletMain->GetBalance() == 0) {
+        if (pwalletMain->GetAvailableBalance() == 0) {
             notCapableReason = "Hot node, waiting for remote activation.";
             LogPrintf("CActiveMasternode::ManageStatus() - not capable: %s\n", notCapableReason);
             return;
@@ -81,7 +81,7 @@ void CActiveMasternode::ManageStatus()
         LogPrintf("CActiveMasternode::ManageStatus() - Checking inbound connection to '%s'\n", service.ToString());
 
         CAddress addr(service, NODE_NETWORK);
-        if (!OpenNetworkConnection(addr, true, nullptr)) {
+        if (!g_connman->OpenNetworkConnection(addr, true, nullptr)) {
             notCapableReason = "Could not connect to " + service.ToString();
             LogPrintf("CActiveMasternode::ManageStatus() - not capable: %s\n", notCapableReason);
             return;

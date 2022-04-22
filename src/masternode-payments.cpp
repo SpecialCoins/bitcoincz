@@ -9,6 +9,7 @@
 #include "fs.h"
 #include "masternode-sync.h"
 #include "masternodeman.h"
+#include "netmessagemaker.h"
 #include "spork.h"
 #include "sync.h"
 #include "util.h"
@@ -195,7 +196,7 @@ bool CMasternodePaymentWinner::IsValid(CNode* pnode, std::string& strError)
 void CMasternodePaymentWinner::Relay()
 {
     CInv inv(MSG_MASTERNODE_WINNER, GetHash());
-    RelayInv(inv);
+    g_connman->RelayInv(inv);
 }
 
 void DumpMasternodePayments()
@@ -222,14 +223,14 @@ void DumpMasternodePayments()
     LogPrint(BCLog::MASTERNODE,"Writting info to mnpayments.dat...\n");
     paymentdb.Write(masternodePayments);
 
-    LogPrint(BCLog::MASTERNODE,"Dump finished  %dms\n", GetTimeMillis() - nStart);
+    LogPrint(BCLog::MASTERNODE,"dump finished  %dms\n", GetTimeMillis() - nStart);
 }
 
-bool IsBlockValueValid(const CBlock& block, CAmount nExpectedValue, CAmount nMinted)
+bool IsBlockValueValid(int nHeight, CAmount nExpectedValue, CAmount nMinted)
 {
     if (nMinted > nExpectedValue) {
         return false;
-        }
+    }
 
     return true;
 }
@@ -255,25 +256,23 @@ bool IsBlockPayeeValid(const CBlock& block, int nBlockHeight)
 }
 
 
-void FillBlockPayee(CMutableTransaction& txNew)
+void FillBlockPayee(CMutableTransaction& txNew, const CBlockIndex* pindexPrev)
 {
-        masternodePayments.FillBlockPayee(txNew);
+    masternodePayments.FillBlockPayee(txNew, pindexPrev);
 }
 
 std::string GetRequiredPaymentsString(int nBlockHeight)
 {
-        return masternodePayments.GetRequiredPaymentsString(nBlockHeight);
+    return masternodePayments.GetRequiredPaymentsString(nBlockHeight);
 }
 
-void CMasternodePayments::FillBlockPayee(CMutableTransaction& txNew)
+void CMasternodePayments::FillBlockPayee(CMutableTransaction& txNew, const CBlockIndex* pindexPrev)
 {
-    CBlockIndex* pindexPrev = chainActive.Tip();
     if (!pindexPrev) return;
 
     bool hasPayment = true;
     CScript payee;
 
-    //spork
     if (!masternodePayments.GetBlockPayee(pindexPrev->nHeight + 1, payee)) {
         //no masternode detected
         CMasternode* winningNode = mnodeman.GetCurrentMasterNode(1);
@@ -327,11 +326,6 @@ void CMasternodePayments::FillBlockPayee(CMutableTransaction& txNew)
               ExtractDestination(payee, address1);
               LogPrint(BCLog::MASTERNODE,"Masternode payment of %s to %s\n", FormatMoney(masternodePayment).c_str(), EncodeDestination(address1).c_str());
     }
-}
-
-int CMasternodePayments::GetMinMasternodePaymentsProto()
-{
-    return ActiveProtocol();
 }
 
 void CMasternodePayments::ProcessMessageMasternodePayments(CNode* pfrom, std::string& strCommand, CDataStream& vRecv)
@@ -631,7 +625,7 @@ bool CMasternodePayments::ProcessBlock(int nBlockHeight)
 
     CMasternodePaymentWinner newWinner(*(activeMasternode.vin));
 
-    {
+   {
         LogPrint(BCLog::MASTERNODE,"CMasternodePayments::ProcessBlock() Start nHeight %d - vin %s. \n", nBlockHeight, activeMasternode.vin->prevout.hash.ToString());
 
         // pay to the oldest MN that still had no payment but its input is old enough and it was active long enough
@@ -702,7 +696,7 @@ void CMasternodePayments::Sync(CNode* node, int nCountNeeded)
         }
         ++it;
     }
-    node->PushMessage(NetMsgType::SYNCSTATUSCOUNT, MASTERNODE_SYNC_MNW, nInvCount);
+    g_connman->PushMessage(node, CNetMsgMaker(node->GetSendVersion()).Make(NetMsgType::SYNCSTATUSCOUNT, MASTERNODE_SYNC_MNW, nInvCount));
 }
 
 std::string CMasternodePayments::ToString() const
@@ -712,40 +706,4 @@ std::string CMasternodePayments::ToString() const
     info << "Votes: " << (int)mapMasternodePayeeVotes.size() << ", Blocks: " << (int)mapMasternodeBlocks.size();
 
     return info.str();
-}
-
-
-int CMasternodePayments::GetOldestBlock()
-{
-    LOCK(cs_mapMasternodeBlocks);
-
-    int nOldestBlock = std::numeric_limits<int>::max();
-
-    std::map<int, CMasternodeBlockPayees>::iterator it = mapMasternodeBlocks.begin();
-    while (it != mapMasternodeBlocks.end()) {
-        if ((*it).first < nOldestBlock) {
-            nOldestBlock = (*it).first;
-        }
-        it++;
-    }
-
-    return nOldestBlock;
-}
-
-
-int CMasternodePayments::GetNewestBlock()
-{
-    LOCK(cs_mapMasternodeBlocks);
-
-    int nNewestBlock = 0;
-
-    std::map<int, CMasternodeBlockPayees>::iterator it = mapMasternodeBlocks.begin();
-    while (it != mapMasternodeBlocks.end()) {
-        if ((*it).first > nNewestBlock) {
-            nNewestBlock = (*it).first;
-        }
-        it++;
-    }
-
-    return nNewestBlock;
 }

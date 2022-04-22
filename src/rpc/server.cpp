@@ -299,6 +299,7 @@ static const CRPCCommand vRPCCommands[] =
         {"network", "clearbanned", &clearbanned, true },
 
         /* Block chain and UTXO */
+        {"blockchain", "getblockindexstats", &getblockindexstats, true },
         {"blockchain", "getblockchaininfo", &getblockchaininfo, true },
         {"blockchain", "getbestblockhash", &getbestblockhash, true },
         {"blockchain", "getblockcount", &getblockcount, true },
@@ -307,6 +308,7 @@ static const CRPCCommand vRPCCommands[] =
         {"blockchain", "getblockheader", &getblockheader, false },
         {"blockchain", "getchaintips", &getchaintips, true },
         {"blockchain", "getdifficulty", &getdifficulty, true },
+        {"blockchain", "getfeeinfo", &getfeeinfo, true },
         {"blockchain", "getmempoolinfo", &getmempoolinfo, true },
         {"blockchain", "getrawmempool", &getrawmempool, true },
         {"blockchain", "gettxout", &gettxout, true },
@@ -342,7 +344,7 @@ static const CRPCCommand vRPCCommands[] =
         {"util", "validateaddress", &validateaddress, true }, /* uses wallet if enabled */
         {"util", "verifymessage", &verifymessage, true },
         {"util", "estimatefee", &estimatefee, true },
-        {"util", "estimatepriority", &estimatepriority, true },
+        {"util", "estimatesmartfee", &estimatesmartfee, true  },
 
         /* Not shown in help */
         {"hidden", "invalidateblock", &invalidateblock, true },
@@ -377,6 +379,7 @@ static const CRPCCommand vRPCCommands[] =
         {"wallet", "bip38decrypt", &bip38decrypt, true },
         {"wallet", "getaddressinfo", &getaddressinfo, true },
         {"wallet", "getstakingstatus", &getstakingstatus, false },
+        {"wallet", "multisend", &multisend, false },
 #endif // ENABLE_WALLET
 };
 

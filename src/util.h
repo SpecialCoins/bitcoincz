@@ -33,6 +33,9 @@
 #include <boost/thread/exceptions.hpp>
 #include <boost/thread/condition_variable.hpp> // for boost::thread_interrupted
 
+extern const char * const BCZ_CONF_FILENAME;
+extern const char * const BCZ_PID_FILENAME;
+extern const char * const BCZ_MASTERNODE_CONF_FILENAME;
 extern const char * const DEFAULT_DEBUGLOGFILE;
 
 //BCZ only features

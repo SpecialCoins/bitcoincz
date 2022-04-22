@@ -276,7 +276,10 @@ UniValue getblocktemplate(const JSONRPCRequest& request)
     if (strMode != "template")
         throw JSONRPCError(RPC_INVALID_PARAMETER, "Invalid mode");
 
-    if (vNodes.empty())
+    if(!g_connman)
+        throw JSONRPCError(RPC_CLIENT_P2P_DISABLED, "Error: Peer-to-peer functionality missing or disabled");
+
+    if (g_connman->GetNodeCount(CConnman::CONNECTIONS_ALL) == 0)
         throw JSONRPCError(RPC_CLIENT_NOT_CONNECTED, "BCZ is not connected!");
 
     if (IsInitialBlockDownload())
@@ -424,15 +427,7 @@ UniValue getblocktemplate(const JSONRPCRequest& request)
     result.push_back(Pair("votes", aVotes));
 
 
-    if (pblock->payee != CScript()) {
-        CTxDestination address1;
-        ExtractDestination(pblock->payee, address1);
-        result.push_back(Pair("payee", EncodeDestination(address1).c_str()));
-        result.push_back(Pair("payee_amount", (int64_t)pblock->vtx[0].vout[1].nValue));
-    } else {
-        result.push_back(Pair("payee", ""));
-        result.push_back(Pair("payee_amount", ""));
-    }
+
 
     result.push_back(Pair("enforce_masternode_payments", (sporkManager.IsSporkActive(SPORK_21_MASTERNODE_PAYMENT_ENFORCEMENT))));
 
@@ -506,7 +501,7 @@ UniValue submitblock(const JSONRPCRequest& request)
     CValidationState state;
     submitblock_StateCatcher sc(block.GetHash());
     RegisterValidationInterface(&sc);
-    bool fAccepted = ProcessNewBlock(state, NULL, &block);
+    bool fAccepted = ProcessNewBlock(state, nullptr, &block, nullptr, g_connman.get());
     UnregisterValidationInterface(&sc);
     if (fBlockPresent) {
         if (fAccepted && !sc.found)
@@ -555,32 +550,38 @@ UniValue estimatefee(const JSONRPCRequest& request)
     return ValueFromAmount(feeRate.GetFeePerK());
 }
 
-UniValue estimatepriority(const JSONRPCRequest& request)
+UniValue estimatesmartfee(const JSONRPCRequest& request)
 {
     if (request.fHelp || request.params.size() != 1)
         throw std::runtime_error(
-            "estimatepriority nblocks\n"
-            "\nEstimates the approximate priority\n"
-            "a zero-fee transaction needs to begin confirmation\n"
-            "within nblocks blocks.\n"
-
-            "\nArguments:\n"
-            "1. nblocks     (numeric)\n"
-
-            "\nResult:\n"
-            "n :    (numeric) estimated priority\n"
-            "\n"
-            "-1.0 is returned if not enough transactions and\n"
-            "blocks have been observed to make an estimate.\n"
-
-            "\nExample:\n" +
-            HelpExampleCli("estimatepriority", "6"));
+                "estimatesmartfee nblocks\n"
+                "\nDEPRECATED. WARNING: This interface is unstable and may disappear or change!\n"
+                "\nEstimates the approximate fee per kilobyte needed for a transaction to begin\n"
+                "confirmation within nblocks blocks if possible and return the number of blocks\n"
+                "for which the estimate is valid.\n"
+                "\nArguments:\n"
+                "1. nblocks     (numeric)\n"
+                "\nResult:\n"
+                "{\n"
+                "  \"feerate\" : x.x,     (numeric) estimate fee-per-kilobyte (in BTC)\n"
+                "  \"blocks\" : n         (numeric) block number where estimate was found\n"
+                "}\n"
+                "\n"
+                "A negative value is returned if not enough transactions and blocks\n"
+                "have been observed to make an estimate for any number of blocks.\n"
+                "However it will not return a value below the mempool reject fee.\n"
+                "\nExample:\n"
+                + HelpExampleCli("estimatesmartfee", "6")
+        );
 
     RPCTypeCheck(request.params, boost::assign::list_of(UniValue::VNUM));
 
     int nBlocks = request.params[0].get_int();
-    if (nBlocks < 1)
-        nBlocks = 1;
 
-    return mempool.estimatePriority(nBlocks);
+    UniValue result(UniValue::VOBJ);
+    int answerFound;
+    CFeeRate feeRate = mempool.estimateSmartFee(nBlocks, &answerFound);
+    result.push_back(Pair("feerate", feeRate == CFeeRate(0) ? -1.0 : ValueFromAmount(feeRate.GetFeePerK())));
+    result.push_back(Pair("blocks", answerFound));
+    return result;
 }

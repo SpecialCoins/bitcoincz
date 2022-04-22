@@ -19,7 +19,6 @@ class CScriptID;
 /** A virtual base class for key stores */
 class CKeyStore
 {
-
 public:
     // todo: Make it protected again once we are more advanced in the wallet/spkm decoupling.
     mutable RecursiveMutex cs_KeyStore;
@@ -46,6 +45,7 @@ public:
     virtual bool RemoveWatchOnly(const CScript& dest) = 0;
     virtual bool HaveWatchOnly(const CScript& dest) const = 0;
     virtual bool HaveWatchOnly() const = 0;
+
 };
 
 typedef std::map<CKeyID, CKey> KeyMap;

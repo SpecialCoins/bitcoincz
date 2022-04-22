@@ -24,11 +24,12 @@
 #include "util.h"
 #include "util/memory.h"
 #include "validationinterface.h"
-#include "wallet/wallet_ismine.h"
+#include "script/ismine.h"
 #include "wallet/scriptpubkeyman.h"
 #include "wallet/walletdb.h"
 
 #include <algorithm>
+#include <atomic>
 #include <map>
 #include <set>
 #include <stdexcept>
@@ -64,6 +65,23 @@ static const unsigned int MAX_FREE_TRANSACTION_CREATE_SIZE = 1000;
 static const int DEFAULT_CUSTOMBACKUPTHRESHOLD = 1;
 //! -minstakesplit default
 static const CAmount DEFAULT_MIN_STAKE_SPLIT_THRESHOLD = 110 * COIN;
+//! Default for -spendzeroconfchange
+static const bool DEFAULT_SPEND_ZEROCONF_CHANGE = true;
+//! Default for -sendfreetransactions
+static const bool DEFAULT_SEND_FREE_TRANSACTIONS = false;
+//! Default for -staking
+static const bool DEFAULT_STAKING = true;
+//! Default for -coldstaking
+static const bool DEFAULT_COLDSTAKING = true;
+//! Defaults for -gen and -genproclimit
+static const bool DEFAULT_GENERATE = false;
+static const unsigned int DEFAULT_GENERATE_PROCLIMIT = 1;
+//! Default for -createwalletbackups
+static const unsigned int DEFAULT_CREATEWALLETBACKUPS = 25;
+//! Default for -disablewallet
+static const bool DEFAULT_DISABLE_WALLET = false;
+
+extern const char * DEFAULT_WALLET_DAT;
 
 class CAccountingEntry;
 class CCoinControl;
@@ -187,6 +205,12 @@ struct CRecipient
     CScript scriptPubKey;
     CAmount nAmount;
     bool fSubtractFeeFromAmount;
+
+    CRecipient(const CScript& _scriptPubKey, const CAmount& _nAmount, bool _fSubtractFeeFromAmount):
+        scriptPubKey(_scriptPubKey),
+        nAmount(_nAmount),
+        fSubtractFeeFromAmount(_fSubtractFeeFromAmount)
+    {}
 };
 
 
@@ -197,7 +221,8 @@ struct CRecipient
 class CWallet : public CCryptoKeyStore, public CValidationInterface
 {
 private:
-    CWalletDB* pwalletdbEncryption;
+    static std::atomic<bool> fFlushThreadRunning;
+
     //! keeps track of whether Unlock has run a thorough check before
     bool fDecryptionThoroughlyChecked{false};
 
@@ -228,6 +253,8 @@ private:
 
     void SyncMetaData(std::pair<TxSpends::iterator, TxSpends::iterator>);
 
+    bool IsKeyUsed(const CPubKey& vchPubKey);
+
 public:
 
     static const CAmount DEFAULT_STAKE_SPLIT_THRESHOLD = 110 * COIN;
@@ -256,6 +283,8 @@ public:
     bool fFileBacked;
     bool fWalletUnlockStaking;
     std::string strWalletFile;
+
+    CWalletDB* pwalletdbEncryption;
 
     std::map<CKeyID, CKeyMetadata> mapKeyMetadata;
 
@@ -302,7 +331,6 @@ public:
     TxItems wtxOrdered;
 
     int64_t nOrderPosNext;
-    std::map<uint256, int> mapRequestCount;
 
     std::map<CTxDestination, AddressBook::CAddressBookData> mapAddressBook;
 
@@ -325,9 +353,7 @@ public:
                         bool fIncludeColdStaking        = false,
                         AvailableCoinsType nCoinType    = ALL_COINS,
                         bool fOnlyConfirmed             = true,
-                        bool fIncludeZeroValue          = false,
-                        bool fUseIX                     = false,
-                        int nWatchonlyConfig            = 1
+                        bool fUseIX                     = false
                         ) const;
     //! >> Available coins (spending)
     bool SelectCoinsToSpend(const std::vector<COutput>& vAvailableCoins, const CAmount& nTargetValue, std::set<std::pair<const CWalletTx*, unsigned int> >& setCoinsRet, CAmount& nValueRet, const CCoinControl* coinControl = nullptr) const;
@@ -408,36 +434,34 @@ public:
 
     bool GetLabelDestination(CTxDestination& dest, const std::string& label, bool bForceNew = false);
     void MarkDirty();
-    bool AddToWallet(const CWalletTx& wtxIn, CWalletDB* pwalletdb = nullptr);
+    bool AddToWallet(const CWalletTx& wtxIn, bool fFlushOnClose = true);
     bool LoadToWallet(const CWalletTx& wtxIn);
-    void SyncTransaction(const CTransaction& tx, const CBlock* pblock);
-    bool AddToWalletIfInvolvingMe(const CTransaction& tx, const CBlock* pblock, bool fUpdate);
+    void SyncTransaction(const CTransaction& tx, const CBlockIndex *pindex, int posInBlock);
+    bool AddToWalletIfInvolvingMe(const CTransaction& tx, const CBlockIndex* pIndex, int posInBlock, bool fUpdate);
     void EraseFromWallet(const uint256& hash);
 
     /**
      * Upgrade wallet to HD if needed. Does nothing if not.
      */
     bool Upgrade(std::string& error, const int& prevVersion);
-
     int ScanForWalletTransactions(CBlockIndex* pindexStart, bool fUpdate = false, bool fromStartup = false);
     void ReacceptWalletTransactions(bool fFirstLoad = false);
-    void ResendWalletTransactions();
+    void ResendWalletTransactions(CConnman* connman);
 
     CAmount loopTxsBalance(std::function<void(const uint256&, const CWalletTx&, CAmount&)>method) const;
-    CAmount GetBalance(bool fIncludeDelegated = true) const;
+    CAmount GetAvailableBalance(bool fIncludeDelegated = true) const;
+    CAmount GetAvailableBalance(isminefilter& filter, bool useCache = false, int minDepth = 1) const;
     CAmount GetColdStakingBalance() const;  // delegated coins for which we have the staking key
     CAmount GetImmatureColdStakingBalance() const;
     CAmount GetStakingBalance(const bool fIncludeColdStaking = true) const;
     CAmount GetDelegatedBalance() const;    // delegated coins for which we have the spending key
     CAmount GetImmatureDelegatedBalance() const;
     CAmount GetLockedCoins() const;
-    CAmount GetUnlockedCoins() const;
     CAmount GetUnconfirmedBalance() const;
     CAmount GetImmatureBalance() const;
     CAmount GetWatchOnlyBalance() const;
     CAmount GetUnconfirmedWatchOnlyBalance() const;
     CAmount GetImmatureWatchOnlyBalance() const;
-    CAmount GetLockedWatchOnlyBalance() const;
     CAmount GetLegacyBalance(const isminefilter& filter, int minDepth, const std::string* account) const;
     bool FundTransaction(CMutableTransaction& tx, CAmount &nFeeRet, bool overrideEstimatedFeeRate, const CFeeRate& specificFeeRate, int& nChangePosInOut, std::string& strFailReason, bool includeWatching, bool lockUnspents, const CTxDestination& destChange = CNoDestination());
     /**
@@ -475,11 +499,16 @@ public:
         // converts CommitResult in human-readable format
         std::string ToString() const;
     };
-    CWallet::CommitResult CommitTransaction(CWalletTx& wtxNew, CReserveKey& reservekey, std::string strCommand = NetMsgType::TX);
+    CWallet::CommitResult CommitTransaction(CWalletTx& wtxNew, CReserveKey& reservekey, CConnman* connman, std::string strCommand = NetMsgType::TX);
     bool AddAccountingEntry(const CAccountingEntry&, CWalletDB & pwalletdb);
-    bool CreateCoinStake(const CKeyStore& keystore, const CBlockIndex* pindexPrev, unsigned int nBits, CMutableTransaction& txNew, int64_t& nTxNewTime);
+    bool CreateCoinStake(const CKeyStore& keystore,
+                         const CBlockIndex* pindexPrev,
+                         unsigned int nBits,
+                         CMutableTransaction& txNew,
+                         int64_t& nTxNewTime,
+                         std::vector<COutput>* availableCoins);
     bool MultiSend();
-    void AutoCombineDust();
+    void AutoCombineDust(CConnman* connman);
 
     static CFeeRate minTxFee;
     /**
@@ -518,7 +547,7 @@ public:
     /** should probably be renamed to IsRelevantToMe */
     bool IsFromMe(const CTransaction& tx) const;
     CAmount GetDebit(const CTransaction& tx, const isminefilter& filter) const;
-    CAmount GetCredit(const CTransaction& tx, const isminefilter& filter, const bool fUnspent = false) const;
+    CAmount GetCredit(const CTransaction& tx, const isminefilter& filter) const;
     CAmount GetChange(const CTransaction& tx) const;
     void SetBestChain(const CBlockLocator& loc);
 
@@ -537,8 +566,6 @@ public:
 
     bool UpdatedTransaction(const uint256& hashTx);
 
-    void Inventory(const uint256& hash);
-
     unsigned int GetKeyPoolSize();
     unsigned int GetStakingKeyPoolSize();
 
@@ -554,8 +581,27 @@ public:
     //! Get wallet transactions that conflict with given transaction (spend same outputs)
     std::set<uint256> GetConflicts(const uint256& txid) const;
 
+    //! Verify the wallet database and perform salvage if required
+    static bool Verify();
+
     /* Mark a transaction (and it in-wallet descendants) as abandoned so its inputs may be respent. */
     bool AbandonTransaction(const uint256& hashTx);
+
+    /* Returns the wallets help message */
+    static std::string GetWalletHelpString(bool showDebug);
+
+    /* Initializes the wallet, returns a new CWallet instance or a null pointer in case of an error */
+    static CWallet* CreateWalletFromFile(const std::string walletFile);
+    static bool InitLoadWallet();
+
+    /* Wallets parameter interaction */
+    static bool ParameterInteraction();
+
+    /**
+     * Wallet post-init setup
+     * Gives the wallet a chance to register repetitive tasks and complete post-init tasks
+     */
+    void postInitProcess(boost::thread_group& threadGroup);
 
     /**
      * Address book entry changed.
@@ -578,8 +624,6 @@ public:
     /** notify wallet file backed up */
     boost::signals2::signal<void (const bool& fSuccess, const std::string& filename)> NotifyWalletBacked;
 
-    /* Wallets parameter interaction */
-    static bool ParameterInteraction();
 };
 
 /** A key allocated from the key pool. */
@@ -679,8 +723,7 @@ public:
         READWRITE(nIndex);
     }
 
-    void SetMerkleBranch(const CBlock& block);
-
+    void SetMerkleBranch(const CBlockIndex* pIndex, int posInBlock);
 
     /**
      * Return depth of transaction in blockchain:
@@ -725,33 +768,13 @@ public:
     int64_t nOrderPos; //! position in ordered transaction list
 
     // memory only
-    mutable bool fDebitCached;
-    mutable bool fCreditCached;
-    mutable bool fImmatureCreditCached;
-    mutable bool fAvailableCreditCached;
-    mutable bool fWatchDebitCached;
-    mutable bool fWatchCreditCached;
-    mutable bool fImmatureWatchCreditCached;
-    mutable bool fAvailableWatchCreditCached;
+    enum AmountType { DEBIT, CREDIT, IMMATURE_CREDIT, AVAILABLE_CREDIT, AMOUNTTYPE_ENUM_ELEMENTS };
+    CAmount GetCachableAmount(AmountType type, const isminefilter& filter, bool recalculate = false) const;
+    bool IsAmountCached(AmountType type, const isminefilter& filter) const; // Only used in unit tests
+    mutable CachableAmount m_amounts[AMOUNTTYPE_ENUM_ELEMENTS];
     mutable bool fChangeCached;
-    mutable bool fColdDebitCached;
-    mutable bool fColdCreditCached;
-    mutable bool fDelegatedDebitCached;
-    mutable bool fDelegatedCreditCached;
     mutable bool fStakeDelegationVoided;
-    mutable CAmount nDebitCached;
-    mutable CAmount nCreditCached;
-    mutable CAmount nImmatureCreditCached;
-    mutable CAmount nAvailableCreditCached;
-    mutable CAmount nWatchDebitCached;
-    mutable CAmount nWatchCreditCached;
-    mutable CAmount nImmatureWatchCreditCached;
-    mutable CAmount nAvailableWatchCreditCached;
     mutable CAmount nChangeCached;
-    mutable CAmount nColdDebitCached;
-    mutable CAmount nColdCreditCached;
-    mutable CAmount nDelegatedDebitCached;
-    mutable CAmount nDelegatedCreditCached;
 
     CWalletTx();
     CWalletTx(const CWallet* pwalletIn);
@@ -813,17 +836,13 @@ public:
 
     //! filter decides which addresses will count towards the debit
     CAmount GetDebit(const isminefilter& filter) const;
-    CAmount GetCredit(const isminefilter& filter) const;
-    CAmount GetUnspentCredit(const isminefilter& filter) const;
+    CAmount GetCredit(const isminefilter& filter, bool recalculate = false) const;
     CAmount GetImmatureCredit(bool fUseCache = true, const isminefilter& filter = ISMINE_SPENDABLE_ALL) const;
-    CAmount GetAvailableCredit(bool fUseCache = true) const;
-    // Return sum of unlocked coins
-    CAmount GetUnlockedCredit() const;
-    // Return sum of unlocked coins
+    CAmount GetAvailableCredit(bool fUseCache = true, const isminefilter& filter=ISMINE_SPENDABLE) const;
+    // Return sum of locked coins
     CAmount GetLockedCredit() const;
     CAmount GetImmatureWatchOnlyCredit(const bool& fUseCache = true) const;
     CAmount GetAvailableWatchOnlyCredit(const bool& fUseCache = true) const;
-    CAmount GetLockedWatchOnlyCredit() const;
     CAmount GetChange() const;
 
     // Cold staking contracts credit/debit
@@ -831,9 +850,6 @@ public:
     CAmount GetColdStakingDebit(bool fUseCache = true) const;
     CAmount GetStakeDelegationCredit(bool fUseCache = true) const;
     CAmount GetStakeDelegationDebit(bool fUseCache = true) const;
-
-    // Helper method to update the amount and cacheFlag.
-    CAmount UpdateAmount(CAmount& amountToUpdate, bool& cacheFlagToUpdate, bool fUseCache, isminetype mimeType, bool fCredit = true) const;
 
     void GetAmounts(std::list<COutputEntry>& listReceived,
         std::list<COutputEntry>& listSent,
@@ -853,8 +869,7 @@ public:
 
     int64_t GetTxTime() const;
     void UpdateTimeSmart();
-    int GetRequestCount() const;
-    void RelayWalletTransaction(std::string strCommand = NetMsgType::TX);
+    void RelayWalletTransaction(CConnman* connman, std::string strCommand = NetMsgType::TX);
     std::set<uint256> GetConflicts() const;
 };
 
@@ -866,20 +881,12 @@ public:
     int i;
     int nDepth;
     bool fSpendable;
+    bool fSolvable;
 
-    COutput(const CWalletTx* txIn, int iIn, int nDepthIn, bool fSpendableIn)
-    {
-        tx = txIn;
-        i = iIn;
-        nDepth = nDepthIn;
-        fSpendable = fSpendableIn;
-    }
+    COutput(const CWalletTx* txIn, int iIn, int nDepthIn, bool fSpendableIn, bool fSolvableIn) :
+        tx(txIn), i(iIn), nDepth(nDepthIn), fSpendable(fSpendableIn), fSolvable(fSolvableIn) {}
 
-    CAmount Value() const
-    {
-        return tx->vout[i].nValue;
-    }
-
+    CAmount Value() const { return tx->vout[i].nValue; }
     std::string ToString() const;
 };
 

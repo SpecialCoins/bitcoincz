@@ -20,6 +20,8 @@
 #include <utility>
 #include <vector>
 
+static const bool DEFAULT_FLUSHWALLET = true;
+
 class CAccount;
 class CAccountingEntry;
 struct CBlockLocator;
@@ -92,7 +94,7 @@ public:
     }
 };
 
-/** Access to the wallet database (wallet.dat) */
+/** Access to the wallet database */
 class CWalletDB : public CDB
 {
 public:
@@ -168,6 +170,8 @@ public:
     static bool Recover(CDBEnv& dbenv, std::string filename, bool fOnlyKeys);
     static bool Recover(CDBEnv& dbenv, std::string filename);
 
+    static void IncrementUpdateCounter();
+    static unsigned int GetUpdateCounter();
 private:
     CWalletDB(const CWalletDB&);
     void operator=(const CWalletDB&);
@@ -179,5 +183,6 @@ void NotifyBacked(const CWallet& wallet, bool fSuccess, std::string strMessage);
 bool BackupWallet(const CWallet& wallet, const fs::path& strDest, bool fEnableCustom = true);
 bool AttemptBackupWallet(const CWallet& wallet, const fs::path& pathSrc, const fs::path& pathDest);
 
+void ThreadFlushWalletDB();
 
 #endif // BITCOIN_WALLETDB_H

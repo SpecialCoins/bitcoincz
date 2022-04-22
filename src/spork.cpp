@@ -6,6 +6,7 @@
 #include "main.h"
 #include "messagesigner.h"
 #include "net.h"
+#include "netmessagemaker.h"
 #include "spork.h"
 #include "sporkdb.h"
 #include <iostream>
@@ -30,7 +31,6 @@ std::vector<CSporkDef> sporkDefs = {
     MAKE_SPORK_DEF(SPORK_30_SAFETY_KILL,                    4070908800ULL), // OFF
     MAKE_SPORK_DEF(SPORK_31_SAFETY_KILL_NEW,                4070908800ULL), // OFF
     MAKE_SPORK_DEF(SPORK_32_F_PAYMENT_NEW,                  4070908800ULL), // OFF
-    MAKE_SPORK_DEF(SPORK_33_FREE_OUT,                       4070908800ULL), // OFF
     MAKE_SPORK_DEF(SPORK_33_FREE_OUT,                       4070908800ULL), // OFF
 };
 
@@ -83,14 +83,6 @@ void CSporkManager::ProcessSpork(CNode* pfrom, std::string& strCommand, CDataStr
 {
     if (fLiteMode) return; // disable all masternode related functionality
 
-    int nChainHeight = 0;
-    {
-        LOCK(cs_main);
-        if (chainActive.Tip() == nullptr)
-            return;
-        nChainHeight = chainActive.Height();
-    }
-
     if (strCommand == NetMsgType::SPORK) {
         CSporkMessage spork;
         vRecv >> spork;
@@ -127,13 +119,13 @@ void CSporkManager::ProcessSpork(CNode* pfrom, std::string& strCommand, CDataStr
                     return;
                 } else {
                     // update active spork
-                    LogPrintf("%s : got updated spork %d (%s) with value %d (signed at %d) - block %d \n", __func__,
-                            spork.nSporkID, sporkName, spork.nValue, spork.nTimeSigned, nChainHeight);
+                    LogPrintf("%s : got updated spork %d (%s) with value %d (signed at %d) \n", __func__,
+                            spork.nSporkID, sporkName, spork.nValue, spork.nTimeSigned);
                 }
             } else {
                 // spork is not active
-                LogPrintf("%s : got new spork %d (%s) with value %d (signed at %d) - block %d \n", __func__,
-                        spork.nSporkID, sporkName, spork.nValue, spork.nTimeSigned, nChainHeight);
+                LogPrintf("%s : got new spork %d (%s) with value %d (signed at %d) \n", __func__,
+                        spork.nSporkID, sporkName, spork.nValue, spork.nTimeSigned);
             }
         }
 
@@ -160,7 +152,7 @@ void CSporkManager::ProcessSpork(CNode* pfrom, std::string& strCommand, CDataStr
         std::map<SporkId, CSporkMessage>::iterator it = mapSporksActive.begin();
 
         while (it != mapSporksActive.end()) {
-            pfrom->PushMessage(NetMsgType::SPORK, it->second);
+            g_connman->PushMessage(pfrom, CNetMsgMaker(pfrom->GetSendVersion()).Make(NetMsgType::SPORK, it->second));
             it++;
         }
     }
@@ -276,6 +268,6 @@ const CPubKey CSporkMessage::GetPublicKey(std::string& strErrorRet) const
 void CSporkMessage::Relay()
 {
     CInv inv(MSG_SPORK, GetHash());
-    RelayInv(inv);
+    g_connman->RelayInv(inv);
 }
 

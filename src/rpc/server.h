@@ -187,7 +187,6 @@ extern std::string HelpExampleRpc(std::string methodname, std::string args);
 extern void EnsureWalletIsUnlocked(bool fAllowAnonOnly = false);
 // Ensure the wallet's existence.
 extern void EnsureWallet();
-
 extern UniValue getconnectioncount(const JSONRPCRequest& request); // in rpc/net.cpp
 extern UniValue getpeerinfo(const JSONRPCRequest& request);
 extern UniValue ping(const JSONRPCRequest& request);
@@ -209,7 +208,7 @@ extern UniValue prioritisetransaction(const JSONRPCRequest& request);
 extern UniValue getblocktemplate(const JSONRPCRequest& request);
 extern UniValue submitblock(const JSONRPCRequest& request);
 extern UniValue estimatefee(const JSONRPCRequest& request);
-extern UniValue estimatepriority(const JSONRPCRequest& request);
+extern UniValue estimatesmartfee(const JSONRPCRequest& request);
 extern UniValue getaddressinfo(const JSONRPCRequest& request);
 extern UniValue getblockchaininfo(const JSONRPCRequest& request);
 extern UniValue getnetworkinfo(const JSONRPCRequest& request);
@@ -234,12 +233,14 @@ extern UniValue getrawmempool(const JSONRPCRequest& request);
 extern UniValue getblockhash(const JSONRPCRequest& request);
 extern UniValue getblock(const JSONRPCRequest& request);
 extern UniValue getblockheader(const JSONRPCRequest& request);
+extern UniValue getfeeinfo(const JSONRPCRequest& request);
 extern UniValue gettxoutsetinfo(const JSONRPCRequest& request);
 extern UniValue gettxout(const JSONRPCRequest& request);
 extern UniValue verifychain(const JSONRPCRequest& request);
 extern UniValue getchaintips(const JSONRPCRequest& request);
 extern UniValue invalidateblock(const JSONRPCRequest& request);
 extern UniValue reconsiderblock(const JSONRPCRequest& request);
+extern UniValue getblockindexstats(const JSONRPCRequest& request);
 extern void validaterange(const UniValue& params, int& heightStart, int& heightEnd, int minHeightStart=1);
 
 // in rpc/masternode.cpp

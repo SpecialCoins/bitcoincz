@@ -8,6 +8,7 @@
 #include "addressbook.h"
 #include "amount.h"
 #include "base58.h"
+#include "coincontrol.h"
 #include "core_io.h"
 #include "init.h"
 #include "key_io.h"
@@ -382,9 +383,12 @@ UniValue upgradewallet(const JSONRPCRequest& request)
 
     // Get version
     int prev_version = pwalletMain->GetVersion();
+
+    WalletFeature features = FEATURE_LATEST;
+
     // Upgrade wallet's version
-    pwalletMain->SetMinVersion(FEATURE_LATEST);
-    pwalletMain->SetMaxVersion(FEATURE_LATEST);
+    pwalletMain->SetMinVersion(features);
+    pwalletMain->SetMaxVersion(features);
 
     // Upgrade to HD
     std::string upgradeError;
@@ -493,41 +497,6 @@ UniValue getnewstakingaddress(const JSONRPCRequest& request)
 }
 
 UniValue delegatoradd(const JSONRPCRequest& request)
-{
-    if (request.fHelp || request.params.size() < 1 || request.params.size() > 2)
-        throw std::runtime_error(
-            "delegatoradd \"addr\" ( \"label\" )\n"
-            "\nAdd the provided address <addr> into the allowed delegators AddressBook.\n"
-            "This enables the staking of coins delegated to this wallet, owned by <addr>\n"
-
-            "\nArguments:\n"
-            "1. \"addr\"        (string, required) The address to whitelist\n"
-            "2. \"label\"       (string, optional) A label for the address to whitelist\n"
-
-            "\nResult:\n"
-            "true|false           (boolean) true if successful.\n"
-
-            "\nExamples:\n" +
-            HelpExampleCli("delegatoradd", "DMJRSsuU9zfyrvxVaAEFQqK4MxZg6vgeS6") +
-            HelpExampleRpc("delegatoradd", "\"DMJRSsuU9zfyrvxVaAEFQqK4MxZg6vgeS6\"") +
-            HelpExampleRpc("delegatoradd", "\"DMJRSsuU9zfyrvxVaAEFQqK4MxZg6vgeS6\" \"myPaperWallet\""));
-
-
-    bool isStakingAddress = false;
-    CTxDestination dest = DecodeDestination(request.params[0].get_str(), isStakingAddress);
-    if (!IsValidDestination(dest) || isStakingAddress)
-        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid BCZ address");
-
-    const std::string strLabel = (request.params.size() > 1 ? request.params[1].get_str() : "");
-
-    CKeyID keyID = boost::get<CKeyID>(DecodeDestination(request.params[0].get_str()));
-    if (!keyID)
-        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Unable to get KeyID from BCZ address");
-
-    return pwalletMain->SetAddressBook(keyID, strLabel, AddressBook::AddressBookPurpose::DELEGATOR);
-}
-
-UniValue whitelist(const JSONRPCRequest& request)
 {
     if (request.fHelp || request.params.size() < 1 || request.params.size() > 2)
         throw std::runtime_error(
@@ -897,8 +866,11 @@ void SendMoney(const CTxDestination& address, CAmount nValue, CWalletTx& wtxNew,
     if (nValue <= 0)
         throw JSONRPCError(RPC_INVALID_PARAMETER, "Invalid amount");
 
-    if (nValue > pwalletMain->GetBalance())
+    if (nValue > pwalletMain->GetAvailableBalance())
         throw JSONRPCError(RPC_WALLET_INSUFFICIENT_FUNDS, "Insufficient funds");
+
+    if (!g_connman)
+        throw JSONRPCError(RPC_CLIENT_P2P_DISABLED, "Error: Peer-to-peer functionality missing or disabled");
 
     std::string strError;
     if (pwalletMain->IsLocked()) {
@@ -914,12 +886,12 @@ void SendMoney(const CTxDestination& address, CAmount nValue, CWalletTx& wtxNew,
     CReserveKey reservekey(pwalletMain);
     CAmount nFeeRequired;
     if (!pwalletMain->CreateTransaction(scriptPubKey, nValue, wtxNew, reservekey, nFeeRequired, strError, nullptr, ALL_COINS, fUseIX, (CAmount)0)) {
-        if (nValue + nFeeRequired > pwalletMain->GetBalance())
+        if (nValue + nFeeRequired > pwalletMain->GetAvailableBalance())
             strError = strprintf("Error: This transaction requires a transaction fee of at least %s because of its amount, complexity, or use of recently received funds!", FormatMoney(nFeeRequired));
         LogPrintf("SendMoney() : %s\n", strError);
         throw JSONRPCError(RPC_WALLET_ERROR, strError);
     }
-    const CWallet::CommitResult&& res = pwalletMain->CommitTransaction(wtxNew, reservekey, (!fUseIX ? NetMsgType::TX : NetMsgType::IX));
+    const CWallet::CommitResult&& res = pwalletMain->CommitTransaction(wtxNew, reservekey, g_connman.get(), (!fUseIX ? NetMsgType::TX : NetMsgType::IX));
     if (res.status != CWallet::CommitStatus::OK)
         throw JSONRPCError(RPC_WALLET_ERROR, res.ToString());
 }
@@ -1011,7 +983,7 @@ UniValue CreateColdStakeDelegation(const UniValue& params, CWalletTx& wtxNew, CR
         fUseDelegated = params[4].get_bool();
 
     // Check amount
-    CAmount currBalance = pwalletMain->GetBalance() + (fUseDelegated ? pwalletMain->GetDelegatedBalance() : 0);
+    CAmount currBalance = pwalletMain->GetAvailableBalance() + (fUseDelegated ? pwalletMain->GetDelegatedBalance() : 0);
     if (nValue > currBalance)
         throw JSONRPCError(RPC_WALLET_INSUFFICIENT_FUNDS, "Insufficient funds");
 
@@ -1103,7 +1075,7 @@ UniValue delegatestake(const JSONRPCRequest& request)
     CReserveKey reservekey(pwalletMain);
     UniValue ret = CreateColdStakeDelegation(request.params, wtx, reservekey);
 
-    const CWallet::CommitResult& res = pwalletMain->CommitTransaction(wtx, reservekey, NetMsgType::TX);
+    const CWallet::CommitResult& res = pwalletMain->CommitTransaction(wtx, reservekey, g_connman.get(), NetMsgType::TX);
     if (res.status != CWallet::CommitStatus::OK)
         throw JSONRPCError(RPC_WALLET_ERROR, res.ToString());
 
@@ -1452,7 +1424,9 @@ UniValue getreceivedbylabel(const JSONRPCRequest& request)
 
 UniValue getbalance(const JSONRPCRequest& request)
 {
-    if (request.fHelp || (request.params.size() > 4 && IsDeprecatedRPCEnabled("accounts")) || (request.params.size() != 0 && !IsDeprecatedRPCEnabled("accounts")))
+    if (request.fHelp ||
+        (request.params.size() > 4 && IsDeprecatedRPCEnabled("accounts")) ||
+        (request.params.size() > 3 && !IsDeprecatedRPCEnabled("accounts")))
         throw std::runtime_error(
             "getbalance ( \"account\" minconf includeWatchonly includeDelegated )\n"
             "\nIf account is not specified, returns the server's total available balance.\n"
@@ -1485,7 +1459,7 @@ UniValue getbalance(const JSONRPCRequest& request)
 
     if (IsDeprecatedRPCEnabled("accounts")) {
         if (request.params.size() == 0)
-            return ValueFromAmount(pwalletMain->GetBalance());
+            return ValueFromAmount(pwalletMain->GetAvailableBalance());
 
         const std::string* account = request.params[0].get_str() != "*" ? &request.params[0].get_str() : nullptr;
 
@@ -1501,9 +1475,12 @@ UniValue getbalance(const JSONRPCRequest& request)
         return ValueFromAmount(pwalletMain->GetLegacyBalance(filter, nMinDepth, account));
     }
 
-    // TODO: re-incorporate the includeDelegated argument
-    //  after 4.2 branch off for 5.0
-    return ValueFromAmount(pwalletMain->GetBalance());
+    const int paramsSize = request.params.size();
+    const int nMinDepth = (paramsSize > 0 ? request.params[0].get_int() : 0);
+    isminefilter filter = ISMINE_SPENDABLE | (paramsSize > 1 && request.params[1].get_bool() ? ISMINE_WATCH_ONLY : ISMINE_NO);
+    filter |= (paramsSize <= 2 || request.params[2].get_bool() ? ISMINE_SPENDABLE_DELEGATED : ISMINE_NO);
+
+    return ValueFromAmount(pwalletMain->GetAvailableBalance(filter, true, nMinDepth));
 }
 
 UniValue getcoldstakingbalance(const JSONRPCRequest& request)
@@ -1812,6 +1789,9 @@ UniValue sendmany(const JSONRPCRequest& request)
 
     LOCK2(cs_main, pwalletMain->cs_wallet);
 
+    if (!g_connman)
+        throw JSONRPCError(RPC_CLIENT_P2P_DISABLED, "Error: Peer-to-peer functionality missing or disabled");
+
     if (!IsDeprecatedRPCEnabled("accounts") && !request.params[0].get_str().empty()) {
         throw JSONRPCError(RPC_INVALID_PARAMETER, "Dummy value must be set to \"\"");
     }
@@ -1869,7 +1849,7 @@ UniValue sendmany(const JSONRPCRequest& request)
     bool fCreated = pwalletMain->CreateTransaction(vecSend, wtx, keyChange, nFeeRequired, nChangePosInOut, strFailReason);
     if (!fCreated)
         throw JSONRPCError(RPC_WALLET_INSUFFICIENT_FUNDS, strFailReason);
-    const CWallet::CommitResult& res = pwalletMain->CommitTransaction(wtx, keyChange);
+    const CWallet::CommitResult& res = pwalletMain->CommitTransaction(wtx, keyChange, g_connman.get());
     if (res.status != CWallet::CommitStatus::OK)
         throw JSONRPCError(RPC_WALLET_ERROR, res.ToString());
 
@@ -2174,12 +2154,12 @@ UniValue listcoldutxos(const JSONRPCRequest& request)
             "[\n"
             "  {\n"
             "    \"txid\" : \"true\",            (string) The transaction id of the P2CS utxo\n"
-            "    \"txidn\" : \"accountname\",    (string) The output number of the P2CS utxo\n"
-            "    \"amount\" : x.xxx,             (numeric) The amount of the P2CS utxo\n"
-            "    \"confirmations\" : n           (numeric) The number of confirmations of the P2CS utxo\n"
-            "    \"cold-staker\" : n             (string) The cold-staker address of the P2CS utxo\n"
-            "    \"coin-owner\" : n              (string) The coin-owner address of the P2CS utxo\n"
-            "    \"whitelisted\" : n             (string) \"true\"/\"false\" coin-owner in delegator whitelist\n"
+            "    \"txidn\" : n                 (numeric) The output number of the P2CS utxo\n"
+            "    \"amount\" : x.xxx,           (numeric) The amount of the P2CS utxo\n"
+            "    \"confirmations\" : n         (numeric) The number of confirmations of the P2CS utxo\n"
+            "    \"cold-staker\" : \"address\"   (string) The cold-staker address of the P2CS utxo\n"
+            "    \"coin-owner\" : \"address\"    (string) The coin-owner address of the P2CS utxo\n"
+            "    \"whitelisted\" : \"true\"      (boolean) \"true\"/\"false\" coin-owner in delegator whitelist\n"
             "  }\n"
             "  ,...\n"
             "]\n"
@@ -2799,7 +2779,7 @@ UniValue backupwallet(const JSONRPCRequest& request)
     if (request.fHelp || request.params.size() != 1)
         throw std::runtime_error(
             "backupwallet \"destination\"\n"
-            "\nSafely copies wallet.dat to destination, which can be a directory or a path with filename.\n"
+            "\nSafely copies wallet file to destination, which can be a directory or a path with filename.\n"
 
             "\nArguments:\n"
             "1. \"destination\"   (string) The destination directory or file\n"
@@ -3086,7 +3066,7 @@ UniValue listunspent(const JSONRPCRequest& request)
                 "      \"address\"   (string) bcz address\n"
                 "      ,...\n"
                 "    ]\n"
-                "4. watchonlyconfig  (numeric, optional, default=1) 1 = list regular unspent transactions, 2 = list only watchonly transactions,  3 = list all unspent transactions (including watchonly)\n"
+                "4. watchonlyconfig  (numeric, optional, default=1) 1 = list regular unspent transactions,  2 = list all unspent transactions (including watchonly)\n"
 
                 "\nResult\n"
                 "[                   (array of json object)\n"
@@ -3101,6 +3081,7 @@ UniValue listunspent(const JSONRPCRequest& request)
                 "    \"amount\" : x.xxx,         (numeric) the transaction amount in BCZ\n"
                 "    \"confirmations\" : n,      (numeric) The number of confirmations\n"
                 "    \"spendable\" : true|false  (boolean) Whether we have the private keys to spend this output\n"
+                "    \"solvable\" : xxx          (bool) Whether we know how to spend this output, ignoring the lack of keys\n"
                 "  }\n"
                 "  ,...\n"
                 "]\n"
@@ -3132,26 +3113,29 @@ UniValue listunspent(const JSONRPCRequest& request)
         }
     }
 
+    // List watch only utxo
     int nWatchonlyConfig = 1;
     if(request.params.size() > 3) {
         nWatchonlyConfig = request.params[3].get_int();
-        if (nWatchonlyConfig > 3 || nWatchonlyConfig < 1)
+        if (nWatchonlyConfig > 2 || nWatchonlyConfig < 1)
             nWatchonlyConfig = 1;
     }
+
+    CCoinControl coinControl;
+    coinControl.fAllowWatchOnly = nWatchonlyConfig == 2;
 
     UniValue results(UniValue::VARR);
     std::vector<COutput> vecOutputs;
     assert(pwalletMain != NULL);
     LOCK2(cs_main, pwalletMain->cs_wallet);
     pwalletMain->AvailableCoins(&vecOutputs,
-                                nullptr,    // coin control
+                                &coinControl,    // coin control
                                 true,       // include delegated
                                 false,      // include cold staking
                                 ALL_COINS,  // coin type
                                 false,      // only confirmed
-                                false,      // include zero value
-                                false,      // use IX
-                                nWatchonlyConfig);
+                                false       // use IX
+                                );
     for (const COutput& out : vecOutputs) {
         if (out.nDepth < nMinDepth || out.nDepth > nMaxDepth)
             continue;
@@ -3193,6 +3177,7 @@ UniValue listunspent(const JSONRPCRequest& request)
         entry.push_back(Pair("amount", ValueFromAmount(nValue)));
         entry.push_back(Pair("confirmations", out.nDepth));
         entry.push_back(Pair("spendable", out.fSpendable));
+        entry.push_back(Pair("solvable", out.fSolvable));
         results.push_back(entry);
     }
 
@@ -3422,7 +3407,7 @@ UniValue getwalletinfo(const JSONRPCRequest& request)
 
     UniValue obj(UniValue::VOBJ);
     obj.push_back(Pair("walletversion", pwalletMain->GetVersion()));
-    obj.push_back(Pair("balance", ValueFromAmount(pwalletMain->GetBalance())));
+    obj.push_back(Pair("balance", ValueFromAmount(pwalletMain->GetAvailableBalance())));
     obj.push_back(Pair("delegated_balance", ValueFromAmount(pwalletMain->GetDelegatedBalance())));
     obj.push_back(Pair("cold_staking_balance", ValueFromAmount(pwalletMain->GetColdStakingBalance())));
     obj.push_back(Pair("unconfirmed_balance", ValueFromAmount(pwalletMain->GetUnconfirmedBalance())));
@@ -3785,8 +3770,8 @@ const CRPCCommand vWalletRPCCommands[] =
 {       //  category              name                        actor (function)           okSafeMode
         //  --------------------- ------------------------    -----------------------    ----------
         //{ "rawtransactions",    "fundrawtransaction",       &fundrawtransaction,       false },
-        {"wallet",              "autocombinerewards",       &autocombinerewards,       false },
-        {"wallet",              "abandontransaction",       &abandontransaction,       false },
+        { "wallet",             "autocombinerewards",       &autocombinerewards,       false },
+        { "wallet",             "abandontransaction",       &abandontransaction,       false },
         { "wallet",             "addmultisigaddress",       &addmultisigaddress,       true  },
         { "wallet",             "backupwallet",             &backupwallet,             true  },
         { "wallet",             "delegatestake",            &delegatestake,            false },
@@ -3832,8 +3817,8 @@ const CRPCCommand vWalletRPCCommands[] =
         { "wallet",             "walletpassphrasechange",   &walletpassphrasechange,   true  },
         { "wallet",             "walletpassphrase",         &walletpassphrase,         true  },
         { "wallet",             "delegatoradd",             &delegatoradd,             true  },
-        { "wallet",             "whitelist",                &whitelist,                true  },
         { "wallet",             "delegatorremove",          &delegatorremove,          true  },
+        { "wallet",             "whitelist",                &delegatoradd,             true  },
 
         /** Account functions (deprecated) */
         { "wallet",             "getaccountaddress",        &getaccountaddress,        true  },

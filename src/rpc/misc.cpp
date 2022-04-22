@@ -9,6 +9,7 @@
 #include "clientversion.h"
 #include "httpserver.h"
 #include "init.h"
+
 #include "main.h"
 #include "masternode-sync.h"
 #include "net.h"
@@ -84,7 +85,7 @@ UniValue getinfo(const JSONRPCRequest& request)
     std::string services;
     for (int i = 0; i < 8; i++) {
         uint64_t check = 1 << i;
-        if (nLocalServices & check) {
+        if (g_connman->GetLocalServices() & check) {
             switch (check) {
                 case NODE_NETWORK:
                     services+= "NETWORK/";
@@ -109,7 +110,7 @@ UniValue getinfo(const JSONRPCRequest& request)
 #ifdef ENABLE_WALLET
     if (pwalletMain) {
         obj.push_back(Pair("walletversion", pwalletMain->GetVersion()));
-        obj.push_back(Pair("balance", ValueFromAmount(pwalletMain->GetBalance())));
+        obj.push_back(Pair("balance", ValueFromAmount(pwalletMain->GetAvailableBalance())));
         obj.push_back(Pair("staking status", (pwalletMain->pStakerStatus->IsActive() ?
                                                 "Staking Active" :
                                                 "Staking Not Active")));
@@ -117,7 +118,8 @@ UniValue getinfo(const JSONRPCRequest& request)
 #endif
     obj.push_back(Pair("blocks", (int)chainActive.Height()));
     obj.push_back(Pair("timeoffset", GetTimeOffset()));
-    obj.push_back(Pair("connections", (int)vNodes.size()));
+    if(g_connman)
+        obj.push_back(Pair("connections", (int)g_connman->GetNodeCount(CConnman::CONNECTIONS_ALL)));
     obj.push_back(Pair("proxy", (proxy.IsValid() ? proxy.proxy.ToStringIPPort() : std::string())));
     obj.push_back(Pair("difficulty", (double)GetDifficulty()));
     obj.push_back(Pair("testnet", Params().NetworkID() == CBaseChainParams::TESTNET));
@@ -311,7 +313,6 @@ UniValue spork(const JSONRPCRequest& request)
         "\nExamples:\n" +
         HelpExampleCli("spork", "show") + HelpExampleRpc("spork", "show"));
 }
-
 UniValue validateaddress(const JSONRPCRequest& request)
 {
     if (request.fHelp || request.params.size() != 1)
@@ -548,6 +549,13 @@ UniValue setmocktime(const JSONRPCRequest& request)
     RPCTypeCheck(request.params, boost::assign::list_of(UniValue::VNUM));
     SetMockTime(request.params[0].get_int64());
 
+    uint64_t t = GetTime();
+    if(g_connman) {
+        g_connman->ForEachNode([t](CNode* pnode) {
+            pnode->nLastSend = pnode->nLastRecv = t;
+        });
+    }
+
     return NullUniValue;
 }
 
@@ -644,7 +652,7 @@ UniValue getstakingstatus(const JSONRPCRequest& request)
             "  \"lastattempt_age\": n               (numeric) seconds since last stake attempt\n"
             "  \"lastattempt_depth\": n             (numeric) depth of the block on top of which the last stake attempt was made\n"
             "  \"lastattempt_hash\": xxx            (hex string) hash of the block on top of which the last stake attempt was made\n"
-            "  \"lastattempt_utxo\": n             (numeric) number of stakeable coins available during last stake attempt\n"
+            "  \"lastattempt_utxo\": n              (numeric) number of stakeable coins available during last stake attempt\n"
             "  \"lastattempt_tries\": n             (numeric) number of stakeable coins checked during last stake attempt\n"
             "}\n"
 
@@ -658,10 +666,10 @@ UniValue getstakingstatus(const JSONRPCRequest& request)
         LOCK2(cs_main, &pwalletMain->cs_wallet);
         UniValue obj(UniValue::VOBJ);
         obj.push_back(Pair("staking_status", pwalletMain->pStakerStatus->IsActive()));
-        obj.push_back(Pair("staking_enabled", GetBoolArg("-staking", true)));
+        obj.push_back(Pair("staking_enabled", GetBoolArg("-stake", DEFAULT_STAKING)));
         bool fColdStaking = GetBoolArg("-coldstaking", true);
         obj.push_back(Pair("coldstaking_enabled", fColdStaking));
-        obj.push_back(Pair("haveconnections", !vNodes.empty()));
+        obj.push_back(Pair("haveconnections", (g_connman->GetNodeCount(CConnman::CONNECTIONS_ALL) > 0)));
         obj.push_back(Pair("mnsync", !masternodeSync.NotCompleted()));
         obj.push_back(Pair("walletunlocked", !pwalletMain->IsLocked()));
         std::vector<COutput> vCoins;

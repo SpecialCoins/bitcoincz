@@ -76,6 +76,7 @@ endif
 # bcz core #
 BITCOIN_CORE_H = \
   activemasternode.h \
+  addrdb.h \
   addrman.h \
   allocators.h \
   arith_uint256.h \
@@ -117,6 +118,7 @@ BITCOIN_CORE_H = \
   httprpc.h \
   httpserver.h \
   init.h \
+  interface/wallet.h \
   legacy/stakemodifier.h \
   kernel.h \
   swifttx.h \
@@ -139,6 +141,7 @@ BITCOIN_CORE_H = \
   net.h \
   netaddress.h \
   netbase.h \
+  netmessagemaker.h \
   noui.h \
   policy/fees.h \
   policy/policy.h \
@@ -166,10 +169,12 @@ BITCOIN_CORE_H = \
   sporkdb.h \
   sporkid.h \
   stakeinput.h \
+  script/ismine.h \
   streams.h \
   support/cleanse.h \
   sync.h \
   threadsafety.h \
+  threadinterrupt.h \
   timedata.h \
   tinyformat.h \
   torcontrol.h \
@@ -194,7 +199,6 @@ BITCOIN_CORE_H = \
   wallet/rpcwallet.h \
   wallet/scriptpubkeyman.h \
   wallet/wallet.h \
-  wallet/wallet_ismine.h \
   wallet/walletdb.h \
   zmq/zmqabstractnotifier.h \
   zmq/zmqconfig.h \
@@ -211,6 +215,7 @@ libbitcoin_util_a-clientversion.$(OBJEXT): obj/build.h
 libbitcoin_server_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(MINIUPNPC_CPPFLAGS) $(EVENT_CFLAGS) $(EVENT_PTHREADS_CFLAGS)
 libbitcoin_server_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 libbitcoin_server_a_SOURCES = \
+  addrdb.cpp \
   addrman.cpp \
   bloom.cpp \
   blocksignature.cpp \
@@ -239,6 +244,7 @@ libbitcoin_server_a_SOURCES = \
   rpc/rawtransaction.cpp \
   rpc/server.cpp \
   script/sigcache.cpp \
+  script/ismine.cpp \
   sporkdb.cpp \
   timedata.cpp \
   torcontrol.cpp \
@@ -263,6 +269,7 @@ libbitcoin_wallet_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 libbitcoin_wallet_a_SOURCES = \
   activemasternode.cpp \
   bip38.cpp \
+  interface/wallet.cpp \
   addressbook.cpp \
   crypter.cpp \
   key_io.cpp \
@@ -281,7 +288,6 @@ libbitcoin_wallet_a_SOURCES = \
   wallet/hdchain.cpp \
   wallet/scriptpubkeyman.cpp \
   wallet/wallet.cpp \
-  wallet/wallet_ismine.cpp \
   wallet/walletdb.cpp \
   stakeinput.cpp \
   $(BITCOIN_CORE_H)
@@ -388,6 +394,7 @@ libbitcoin_util_a_SOURCES = \
   rpc/protocol.cpp \
   support/cleanse.cpp \
   sync.cpp \
+  threadinterrupt.cpp \
   uint256.cpp \
   blob_uint256.cpp \
   util.cpp \
@@ -514,6 +521,7 @@ CLEANFILES = $(EXTRA_LIBRARIES)
 CLEANFILES += *.gcda *.gcno
 CLEANFILES += compat/*.gcda compat/*.gcno
 CLEANFILES += consensus/*.gcda consensus/*.gcno
+CLEANFILES += crypto/*.gcda crypto/*.gcno
 CLEANFILES += primitives/*.gcda primitives/*.gcno
 CLEANFILES += rpc/*.gcda rpc/*.gcno
 CLEANFILES += script/*.gcda script/*.gcno
@@ -569,6 +577,7 @@ endif
 	$(AM_V_GEN) $(PROTOC) --cpp_out=$(@D) --proto_path=$(<D) $<
 
 if EMBEDDED_LEVELDB
+include Makefile.crc32c.include
 include Makefile.leveldb.include
 endif
 
