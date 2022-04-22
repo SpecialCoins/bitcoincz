@@ -18,6 +18,18 @@ const struct NUInfo NetworkUpgradeInfo[Consensus::MAX_NETWORK_UPGRADES] = {
                 /*.strInfo =*/ "BCZ network",
         },
         {
+                /*.strName =*/ "UPGRADE_POS",
+                /*.strInfo =*/ "UPGRADE_POS info",
+        },
+        {
+                /*.strName =*/ "UPGRADE_POW_END",
+                /*.strInfo =*/ "UPGRADE_POW_END info",
+        },
+        {
+                /*.strName =*/ "UPGRADE_MODV2",
+                /*.strInfo =*/ "UPGRADE_MODV2 info",
+        },
+        {
                 /*.strName =*/ "Test_dummy",
                 /*.strInfo =*/ "Test dummy info",
         },
