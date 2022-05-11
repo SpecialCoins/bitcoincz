@@ -14,7 +14,8 @@ Bitcoin CZ coininfo
 * Blocks: ~576 per day
 * Min TX Fee: 0.001 BCZ
 * Block Size: 4MB
-* Max supply: N/A
+* Rewards 3.1 BCZ per block
+* Max supply: 100.000.000
 
 Net Parameters
 ----------------
