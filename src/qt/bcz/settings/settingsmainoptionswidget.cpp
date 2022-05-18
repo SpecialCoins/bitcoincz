@@ -1,4 +1,4 @@
-// Copyright (c) 2019 The BCZ developers
+// Copyright (c) 2020 The BCZ developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -45,13 +45,20 @@ SettingsMainOptionsWidget::SettingsMainOptionsWidget(BCZGUI* _window, QWidget *p
     ui->left->setContentsMargins(10,10,10,10);
     ui->labelDivider->setProperty("cssClass", "container-divider");
 
-    // Title - Subtitle
+    // Title
+    ui->labelTitle->setText(tr("Main"));
+    ui->labelSubtitle1->setText("Customize the main application options");
+
     setCssTitleScreen(ui->labelTitle);
     setCssSubtitleScreen(ui->labelSubtitle1);
     setCssTitleScreen(ui->labelTitleDown);
     setCssSubtitleScreen(ui->labelSubtitleDown);
 
-    setCssProperty({ui->labelTitleSizeDb, ui->labelTitleThreads}, "text-main-settings");
+    ui->labelTitleSizeDb->setText(tr("Size of database cache"));
+    ui->labelTitleSizeDb->setProperty("cssClass", "text-main-settings");
+
+    ui->labelTitleThreads->setText(tr("Number of script verification threads"));
+    ui->labelTitleThreads->setProperty("cssClass", "text-main-settings");
 
     // Switch
     ui->pushSwitchStart->setText(tr("Start BCZ on system login"));
@@ -65,7 +72,13 @@ SettingsMainOptionsWidget::SettingsMainOptionsWidget(BCZGUI* _window, QWidget *p
     ui->threadsScriptVerif->setAttribute(Qt::WA_MacShowFocusRect, 0);
     setShadow(ui->threadsScriptVerif);
 
+    // CheckBox
+    ui->checkBoxMinTaskbar->setText(tr("Minimize to the tray instead of the taskbar"));
+    ui->checkBoxMinClose->setText(tr("Minimize on close"));
+
     // Buttons
+    ui->pushButtonSave->setText(tr("SAVE"));
+    ui->pushButtonReset->setText(tr("Reset to default"));
     setCssBtnPrimary(ui->pushButtonSave);
     setCssBtnSecondary(ui->pushButtonReset);
     setCssBtnSecondary(ui->pushButtonClean);
@@ -73,7 +86,7 @@ SettingsMainOptionsWidget::SettingsMainOptionsWidget(BCZGUI* _window, QWidget *p
     /* Main elements init */
     ui->databaseCache->setMinimum(nMinDbCache);
     ui->databaseCache->setMaximum(nMaxDbCache);
-    ui->threadsScriptVerif->setMinimum(-GetNumCores());
+    ui->threadsScriptVerif->setMinimum(-(int)boost::thread::hardware_concurrency());
     ui->threadsScriptVerif->setMaximum(MAX_SCRIPTCHECK_THREADS);
 
     connect(ui->pushButtonSave, &QPushButton::clicked, [this] { Q_EMIT saveSettings(); });
@@ -81,9 +94,8 @@ SettingsMainOptionsWidget::SettingsMainOptionsWidget(BCZGUI* _window, QWidget *p
     connect(ui->pushButtonClean, &QPushButton::clicked, [this] { Q_EMIT discardSettings(); });
 }
 
-void SettingsMainOptionsWidget::onResetClicked()
-{
-    if (clientModel) {
+void SettingsMainOptionsWidget::onResetClicked(){
+    if(clientModel) {
         if (!ask(tr("Reset Options"), tr("You are just about to reset the app\'s options to the default values.\n\nAre you sure?\n")))
             return;
         OptionsModel *optionsModel = clientModel->getOptionsModel();
@@ -97,8 +109,7 @@ void SettingsMainOptionsWidget::onResetClicked()
     }
 }
 
-void SettingsMainOptionsWidget::setMapper(QDataWidgetMapper *mapper)
-{
+void SettingsMainOptionsWidget::setMapper(QDataWidgetMapper *mapper){
     mapper->addMapping(ui->pushSwitchStart, OptionsModel::StartAtStartup);
     mapper->addMapping(ui->threadsScriptVerif, OptionsModel::ThreadsScriptVerif);
     mapper->addMapping(ui->databaseCache, OptionsModel::DatabaseCache);
@@ -109,7 +120,6 @@ void SettingsMainOptionsWidget::setMapper(QDataWidgetMapper *mapper)
 #endif
 }
 
-SettingsMainOptionsWidget::~SettingsMainOptionsWidget()
-{
+SettingsMainOptionsWidget::~SettingsMainOptionsWidget(){
     delete ui;
 }

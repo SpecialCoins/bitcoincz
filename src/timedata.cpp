@@ -1,5 +1,5 @@
 // Copyright (c) 2014-2017 The Bitcoin developers
-// Copyright (c) 2017-2020 The BCZ developers
+// Copyright (c) 2020 The BCZ developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -7,7 +7,7 @@
 
 #include "chainparams.h"
 #include "guiinterface.h"
-#include "netaddress.h"
+#include "netbase.h"
 #include "sync.h"
 #include "util.h"
 #include "utilstrencodings.h"
@@ -43,7 +43,7 @@ void AddTimeData(const CNetAddr& ip, int64_t nOffsetSample, int nOffsetLimit)
     static std::set<CNetAddr> setKnown;
     if (setKnown.size() == BITCOIN_TIMEDATA_MAX_SAMPLES)
         return;
-    if (!Params().IsRegTestNet() && !setKnown.insert(ip).second)
+    if (!setKnown.insert(ip).second && Params().NetworkID() != CBaseChainParams::REGTEST)
         return;
 
     // Add data

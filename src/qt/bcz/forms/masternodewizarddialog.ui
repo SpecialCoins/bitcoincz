@@ -248,7 +248,7 @@
             </size>
            </property>
            <property name="currentIndex">
-            <number>1</number>
+            <number>0</number>
            </property>
            <widget class="QWidget" name="pageIcon3">
             <property name="minimumSize">
@@ -713,7 +713,7 @@
           <item>
            <widget class="QLabel" name="labelMessage1a">
             <property name="text">
-             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;To create a BCZ Masternode you must dedicate 10,000 BCZ (the unit of BCZ) to the network (however, these coins are still yours and will never leave your possession). &lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;You can deactivate the node and unlock the coins at any time.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;To create a BCZ Masternode you must dedicate 5.000 BCZ (the unit of BCZ) to the network (however, these coins are still yours and will never leave your possession). &lt;/p&gt;&lt;p&gt;You can deactivate the node and unlock the coins at any time.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
             </property>
             <property name="alignment">
              <set>Qt::AlignHCenter|Qt::AlignTop</set>
@@ -820,11 +820,7 @@
            </spacer>
           </item>
           <item>
-           <widget class="QLineEdit" name="lineEditName">
-            <property name="placeholderText">
-             <string notr="true">e.g. user_masternode</string>
-            </property>
-           </widget>
+           <widget class="QLineEdit" name="lineEditName"/>
           </item>
           <item>
            <spacer name="verticalSpacer_1_5">
@@ -845,7 +841,7 @@
           <item>
            <widget class="QLabel" name="labelMessage3">
             <property name="text">
-             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;A transaction of 10,000 BCZ will be made&lt;/p&gt;&lt;p&gt;to a new empty address in your wallet.&lt;/p&gt;&lt;p&gt;The Address is labeled under the master node's name.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;A transaction of 5,000 BCZ will be made&lt;/p&gt;&lt;p&gt;to a new empty address in your wallet.&lt;/p&gt;&lt;p&gt;The Address is labeled under the master node's name.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
             </property>
             <property name="alignment">
              <set>Qt::AlignHCenter|Qt::AlignTop</set>
@@ -949,11 +945,7 @@
            </spacer>
           </item>
           <item>
-           <widget class="QLineEdit" name="lineEditIpAddress">
-            <property name="placeholderText">
-             <string notr="true">e.g. 18.255.255.255</string>
-            </property>
-           </widget>
+           <widget class="QLineEdit" name="lineEditIpAddress"/>
           </item>
           <item>
            <spacer name="verticalSpacer_1_8">
@@ -1063,7 +1055,7 @@
            <enum>Qt::NoFocus</enum>
           </property>
           <property name="text">
-           <string>BACK</string>
+           <string>CANCEL</string>
           </property>
          </widget>
         </item>
@@ -1085,7 +1077,7 @@
            <enum>Qt::NoFocus</enum>
           </property>
           <property name="text">
-           <string>NEXT</string>
+           <string>OK</string>
           </property>
          </widget>
         </item>

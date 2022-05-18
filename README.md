@@ -14,14 +14,13 @@ Bitcoin CZ coininfo
 * Blocks: ~576 per day
 * Min TX Fee: 0.001 BCZ
 * Block Size: 4MB
-* Rewards 3.1 BCZ per block
-* Max supply: 100.000.000
+* Max supply: N/A
 
 Net Parameters
 ----------------
 * P2P Port: 29500
 * RPC Port: 29501
-* Client core: PIVX 4.3.0
+* Client core: PIVX 4.2.0
 * Client name: bcz.qt
 * Conf file: bcz.conf
 

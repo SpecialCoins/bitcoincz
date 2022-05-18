@@ -1,16 +1,15 @@
-// Copyright (c) 2019-2020 The BCZ developers
+// Copyright (c) 2020 The BCZ developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #include "qt/bcz/mnmodel.h"
-
-#include "activemasternode.h"
 #include "masternode-sync.h"
 #include "masternodeman.h"
-#include "net.h"        // for validateMasternodeIP
+#include "activemasternode.h"
 #include "sync.h"
 #include "uint256.h"
 #include "wallet/wallet.h"
+#include "net.h"
 
 MNModel::MNModel(QObject *parent) : QAbstractTableModel(parent)
 {
@@ -30,7 +29,7 @@ void MNModel::updateMNList()
         uint256 txHash(mne.getTxHash());
         CTxIn txIn(txHash, uint32_t(nIndex));
         CMasternode* pmn = mnodeman.Find(txIn);
-        if (!pmn) {
+        if (!pmn){
             pmn = new CMasternode();
             pmn->vin = txIn;
             pmn->activeState = CMasternode::MASTERNODE_MISSING;
@@ -102,7 +101,7 @@ QVariant MNModel::data(const QModelIndex &index, int role) const
             case WAS_COLLATERAL_ACCEPTED:{
                 if (!isAvailable) return false;
                 std::string txHash = rec->vin.prevout.hash.GetHex();
-                if (!collateralTxAccepted.value(txHash)) {
+                if (!collateralTxAccepted.value(txHash)){
                     bool txAccepted = false;
                     {
                         LOCK2(cs_main, pwalletMain->cs_wallet);
@@ -148,7 +147,7 @@ bool MNModel::addMn(CMasternodeConfig::CMasternodeEntry* mne)
 {
     beginInsertRows(QModelIndex(), nodes.size(), nodes.size());
     int nIndex;
-    if (!mne->castOutputIndex(nIndex))
+    if(!mne->castOutputIndex(nIndex))
         return false;
 
     CMasternode* pmn = mnodeman.Find(CTxIn(uint256S(mne->getTxHash()), uint32_t(nIndex)));
@@ -164,8 +163,7 @@ int MNModel::getMNState(QString mnAlias)
     throw std::runtime_error(std::string("Masternode alias not found"));
 }
 
-bool MNModel::isMNInactive(QString mnAlias)
-{
+bool MNModel::isMNInactive(QString mnAlias) {
     int activeState = getMNState(mnAlias);
     return activeState == CMasternode::MASTERNODE_MISSING || activeState == CMasternode::MASTERNODE_EXPIRED || activeState == CMasternode::MASTERNODE_REMOVE;
 }

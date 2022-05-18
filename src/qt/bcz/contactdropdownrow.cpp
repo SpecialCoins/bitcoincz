@@ -1,4 +1,4 @@
-// Copyright (c) 2019 The BCZ developers
+// Copyright (c) 2020 The BCZ developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -19,7 +19,7 @@ void ContactDropdownRow::init(bool isLightTheme, bool isHover) {
 }
 
 void ContactDropdownRow::update(bool isLightTheme, bool isHover, bool isSelected){
-    ui->lblDivisory->setStyleSheet("background-color:#bababa");
+    ui->lblDivisory->setStyleSheet("background-color:#908c96");
 }
 
 void ContactDropdownRow::setData(QString address, QString label){

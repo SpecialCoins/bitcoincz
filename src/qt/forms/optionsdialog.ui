@@ -20,7 +20,7 @@
    <item>
     <widget class="QTabWidget" name="tabWidget">
      <property name="currentIndex">
-      <number>0</number>
+      <number>4</number>
      </property>
      <widget class="QWidget" name="tabMain">
       <attribute name="title">
@@ -456,8 +456,8 @@ https://www.transifex.com/bcz-project/bcz-project-translations</string>
         </layout>
        </item>
        <item>
-        <widget class="QWidget" name="verticalZbczDisplayWidget" native="true">
-         <layout class="QVBoxLayout" name="verticalZbczDisplayLayout">
+        <widget class="QWidget" name="verticalZpivDisplayWidget" native="true">
+         <layout class="QVBoxLayout" name="verticalZpivDisplayLayout">
           <property name="leftMargin">
            <number>0</number>
           </property>

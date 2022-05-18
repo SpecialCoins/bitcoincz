@@ -1,17 +1,16 @@
-// Copyright (c) 2019-2020 The BCZ developers
+// Copyright (c) 2020 The BCZ developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #include "qt/bcz/settings/settingsinformationwidget.h"
 #include "qt/bcz/settings/forms/ui_settingsinformationwidget.h"
-
 #include "clientmodel.h"
+#include "rpcconsole.h"
 #include "chainparams.h"
 #include "db.h"
 #include "util.h"
 #include "guiutil.h"
 #include "qt/bcz/qtutils.h"
-
 #include <QDir>
 
 SettingsInformationWidget::SettingsInformationWidget(BCZGUI* _window,QWidget *parent) :
@@ -28,7 +27,24 @@ SettingsInformationWidget::SettingsInformationWidget(BCZGUI* _window,QWidget *pa
     setCssProperty({ui->layoutOptions1, ui->layoutOptions2, ui->layoutOptions3}, "container-options");
 
     // Title
+    ui->labelTitle->setText(tr("Information"));
     setCssTitleScreen(ui->labelTitle);
+
+    ui->labelTitleGeneral->setText(tr("General"));
+    ui->labelTitleClient->setText(tr("Client Version: "));
+    ui->labelTitleAgent->setText(tr("User Agent:"));
+    ui->labelTitleBerkeley->setText(tr("BerkeleyDB version:"));
+    ui->labelTitleDataDir->setText(tr("Datadir: "));
+    ui->labelTitleTime->setText(tr("Startup time:  "));
+    ui->labelTitleNetwork->setText(tr("Network"));
+    ui->labelTitleName->setText(tr("Name:"));
+    ui->labelTitleConnections->setText(tr("Connections:"));
+    ui->labelTitleMnRoi->setText(tr("Masternode ROI:"));
+    ui->labelTitleMasternode->setText(tr("Masternodes:"));
+    ui->labelTitleMemory->setText(tr("Memory Pool"));
+    ui->labelTitleNumberTransactions->setText(tr("Current number of transactions:"));
+    ui->labelTitleMem->setText(tr("Memory usage:"));
+
 
     setCssProperty({
         ui->labelTitleDataDir,
@@ -37,20 +53,24 @@ SettingsInformationWidget::SettingsInformationWidget(BCZGUI* _window,QWidget *pa
         ui->labelTitleClient,
         ui->labelTitleTime,
         ui->labelTitleName,
+        ui->labelTitleMnRoi,
         ui->labelTitleConnections,
-        ui->labelTitleMasternodes,
+        ui->labelTitleMasternode,
+        ui->labelTitleNumberTransactions,
+        ui->labelTitleMem,
         ui->labelTitleBlockNumber,
         ui->labelTitleBlockTime,
-        ui->labelTitleBlockHash,
         ui->labelTitleNumberTransactions,
         ui->labelInfoNumberTransactions,
+        ui->labelInfoMem,
         ui->labelInfoClient,
         ui->labelInfoAgent,
         ui->labelInfoBerkeley,
         ui->labelInfoDataDir,
         ui->labelInfoTime,
         ui->labelInfoConnections,
-        ui->labelInfoMasternodes,
+        ui->labelInfoMasternodeCount,
+        ui->labelInfoMnRoi,
         ui->labelInfoBlockNumber
         }, "text-main-settings");
 
@@ -62,25 +82,25 @@ SettingsInformationWidget::SettingsInformationWidget(BCZGUI* _window,QWidget *pa
 
     },"text-title");
 
-    // TODO: Mempool section is not currently implemented and instead, hidden for now
-    ui->labelTitleMemory->setVisible(false);
-    ui->labelTitleNumberTransactions->setVisible(false);
-    ui->labelInfoNumberTransactions->setText("0");
-    ui->labelInfoNumberTransactions->setVisible(false);
+    ui->labelTitleBlockchain->setText(tr("Blockchain"));
+    ui->labelTitleBlockNumber->setText(tr("Current number of blocks:"));
+    ui->labelTitleBlockTime->setText(tr("Last block time:"));
 
     // Information Network
     ui->labelInfoName->setText(tr("Main"));
     ui->labelInfoName->setProperty("cssClass", "text-main-settings");
-    ui->labelInfoConnections->setText("0 (In: 0 / Out: 0)");
-    ui->labelInfoMasternodes->setText("Total: 0 (IPv4: 0 / IPv6: 0 / Tor: 0 / Unknown: 0");
+    ui->labelInfoConnections->setText("0 (In: 0 / Out:0)");
+
 
     // Information Blockchain
     ui->labelInfoBlockNumber->setText("0");
     ui->labelInfoBlockTime->setText("Sept 6, 2018. Thursday, 8:21:49 PM");
     ui->labelInfoBlockTime->setProperty("cssClass", "text-main-grey");
-    ui->labelInfoBlockHash->setProperty("cssClass", "text-main-hash");
 
     // Buttons
+    ui->pushButtonFile->setText(tr("Wallet Conf"));
+    ui->pushButtonNetworkMonitor->setText(tr("Network Monitor"));
+    ui->pushButtonBackups->setText(tr("Backups"));
     setCssBtnSecondary(ui->pushButtonBackups);
     setCssBtnSecondary(ui->pushButtonFile);
     setCssBtnSecondary(ui->pushButtonNetworkMonitor);
@@ -106,8 +126,7 @@ SettingsInformationWidget::SettingsInformationWidget(BCZGUI* _window,QWidget *pa
 }
 
 
-void SettingsInformationWidget::loadClientModel()
-{
+void SettingsInformationWidget::loadClientModel(){
     if (clientModel && clientModel->getPeerTableModel() && clientModel->getBanTableModel()) {
         // Provide initial values
         ui->labelInfoClient->setText(clientModel->formatFullVersion());
@@ -118,15 +137,23 @@ void SettingsInformationWidget::loadClientModel()
         setNumConnections(clientModel->getNumConnections());
         connect(clientModel, &ClientModel::numConnectionsChanged, this, &SettingsInformationWidget::setNumConnections);
 
+        setMasternodeCount(clientModel->getMasternodeCountString());
+        connect(clientModel, SIGNAL(strMasternodesChanged(QString)), this, SLOT(setMasternodeCount(QString)));
+
+        setMnRoiCount(clientModel->getMnRoiCountString());
+        connect(clientModel, SIGNAL(strMnRoiChanged(QString)), this, SLOT(setMnRoiCount(QString)));
+
         setNumBlocks(clientModel->getNumBlocks());
         connect(clientModel, &ClientModel::numBlocksChanged, this, &SettingsInformationWidget::setNumBlocks);
 
-        connect(clientModel, &ClientModel::strMasternodesChanged, this, &SettingsInformationWidget::setMasternodeCount);
+        updateTrafficStats(clientModel->getTotalBytesRecv(), clientModel->getTotalBytesSent());
+        connect(clientModel, SIGNAL(bytesChanged(quint64, quint64)), this, SLOT(updateTrafficStats(quint64, quint64)));
+
+        connect(clientModel, SIGNAL(mempoolSizeChanged(long,size_t)), this, SLOT(setMempoolSize(long,size_t)));
     }
 }
 
-void SettingsInformationWidget::setNumConnections(int count)
-{
+void SettingsInformationWidget::setNumConnections(int count){
     if (!clientModel)
         return;
 
@@ -137,30 +164,47 @@ void SettingsInformationWidget::setNumConnections(int count)
     ui->labelInfoConnections->setText(connections);
 }
 
-void SettingsInformationWidget::setNumBlocks(int count)
-{
-    ui->labelInfoBlockNumber->setText(QString::number(count));
-    if (clientModel) {
-        ui->labelInfoBlockTime->setText(clientModel->getLastBlockDate().toString());
-        ui->labelInfoBlockHash->setText(clientModel->getLastBlockHash());
-    }
-}
-
 void SettingsInformationWidget::setMasternodeCount(const QString& strMasternodes)
 {
-    ui->labelInfoMasternodes->setText(strMasternodes);
+    ui->labelInfoMasternodeCount->setText(strMasternodes);
 }
 
-void SettingsInformationWidget::openNetworkMonitor()
+void SettingsInformationWidget::setMnRoiCount(const QString& strMnRoi)
 {
-    if (!rpcConsole) {
+    ui->labelInfoMnRoi->setText(strMnRoi);
+}
+
+void SettingsInformationWidget::updateTrafficStats(quint64 totalBytesIn, quint64 totalBytesOut)
+{
+    //ui->lblBytesIn->setText(FormatBytes(totalBytesIn));
+    //ui->lblBytesOut->setText(FormatBytes(totalBytesOut));
+}
+
+
+void SettingsInformationWidget::setMempoolSize(long numberOfTxs, size_t dynUsage)
+{
+    ui->labelInfoNumberTransactions->setText(QString::number(numberOfTxs));
+
+    if (dynUsage < 1000000)
+        ui->labelInfoMem->setText(QString::number(dynUsage/1000.0, 'f', 2) + " KB");
+    else
+        ui->labelInfoMem->setText(QString::number(dynUsage/1000000.0, 'f', 2) + " MB");
+}
+
+void SettingsInformationWidget::setNumBlocks(int count){
+    ui->labelInfoBlockNumber->setText(QString::number(count));
+    if (clientModel)
+        ui->labelInfoBlockTime->setText(clientModel->getLastBlockDate().toString());
+}
+
+void SettingsInformationWidget::openNetworkMonitor(){
+    if(!rpcConsole){
         rpcConsole = new RPCConsole(0);
         rpcConsole->setClientModel(clientModel);
     }
     rpcConsole->showNetwork();
 }
 
-SettingsInformationWidget::~SettingsInformationWidget()
-{
+SettingsInformationWidget::~SettingsInformationWidget(){
     delete ui;
 }

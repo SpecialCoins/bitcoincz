@@ -1,17 +1,17 @@
-// Copyright (c) 2019 The BCZ developers
+// Copyright (c) 2020 The BCZ developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #ifndef ADDNEWCONTACTDIALOG_H
 #define ADDNEWCONTACTDIALOG_H
 
-#include "qt/bcz/focuseddialog.h"
+#include <QDialog>
 
 namespace Ui {
 class AddNewContactDialog;
 }
 
-class AddNewContactDialog : public FocusedDialog
+class AddNewContactDialog : public QDialog
 {
     Q_OBJECT
 
@@ -27,7 +27,7 @@ public:
     bool res = false;
 
 public Q_SLOTS:
-    void accept() override;
+    void ok();
 private:
     Ui::AddNewContactDialog *ui;
     const char* message = nullptr;

@@ -1,4 +1,4 @@
-// Copyright (c) 2019-2020 The BCZ developers
+// Copyright (c) 2020 The BCZ developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -13,9 +13,10 @@
 #include "qt/bcz/qtutils.h"
 #include <QList>
 #include <QDateTime>
+#include <QKeyEvent>
 
 TxDetailDialog::TxDetailDialog(QWidget *parent, bool _isConfirmDialog, const QString& warningStr) :
-    FocusedDialog(parent),
+    QDialog(parent),
     ui(new Ui::TxDetailDialog),
     isConfirmDialog(_isConfirmDialog)
 {
@@ -40,7 +41,6 @@ TxDetailDialog::TxDetailDialog(QWidget *parent, bool _isConfirmDialog, const QSt
     ui->labelWarning->setVisible(false);
     ui->gridInputs->setVisible(false);
     ui->outputsScrollArea->setVisible(false);
-
     // hide change address for now
     ui->contentChangeAddress->setVisible(false);
     ui->labelDividerChange->setVisible(false);
@@ -67,19 +67,23 @@ TxDetailDialog::TxDetailDialog(QWidget *parent, bool _isConfirmDialog, const QSt
         ui->contentSize->setVisible(false);
 
         connect(ui->btnCancel, &QPushButton::clicked, this, &TxDetailDialog::close);
-        connect(ui->btnSave, &QPushButton::clicked, [this](){accept();});
-    } else {
+        connect(ui->btnSave, &QPushButton::clicked, [this](){acceptTx();});
+    }else{
         ui->labelTitle->setText(tr("Transaction Details"));
         ui->containerButtons->setVisible(false);
     }
 
-    connect(ui->btnEsc, &QPushButton::clicked, this, &TxDetailDialog::close);
+    connect(ui->btnEsc, &QPushButton::clicked, this, &TxDetailDialog::closeDialog);
     connect(ui->pushInputs, &QPushButton::clicked, this, &TxDetailDialog::onInputsClicked);
     connect(ui->pushOutputs, &QPushButton::clicked, this, &TxDetailDialog::onOutputsClicked);
 }
 
-void TxDetailDialog::setData(WalletModel *model, const QModelIndex &index)
+void TxDetailDialog::showEvent(QShowEvent *event)
 {
+    setFocus();
+}
+
+void TxDetailDialog::setData(WalletModel *model, const QModelIndex &index){
     this->model = model;
     TransactionRecord *rec = static_cast<TransactionRecord*>(index.internalPointer());
     QDateTime date = index.data(TransactionTableModel::DateRole).toDateTime();
@@ -89,7 +93,7 @@ void TxDetailDialog::setData(WalletModel *model, const QModelIndex &index)
     ui->textAmount->setText(amountText);
 
     const CWalletTx* tx = model->getTx(rec->hash);
-    if (tx) {
+    if(tx) {
         this->txHash = rec->hash;
         QString hash = QString::fromStdString(tx->GetHash().GetHex());
         ui->textId->setText(hash.left(20) + "..." + hash.right(20));
@@ -128,10 +132,7 @@ void TxDetailDialog::setData(WalletModel *model, WalletModelTransaction &tx)
     ui->textAmount->setText(BitcoinUnits::formatWithUnit(nDisplayUnit, totalAmount, false, BitcoinUnits::separatorAlways) + " (Fee included)");
     int nRecipients = tx.getRecipients().size();
     if (nRecipients == 1) {
-        const SendCoinsRecipient& recipient = tx.getRecipients().at(0);
-        if (recipient.isP2CS) {
-            ui->labelSend->setText(tr("Delegating to"));
-        }
+        SendCoinsRecipient recipient = tx.getRecipients().at(0);
         if (recipient.label.isEmpty()) { // If there is no label, then do not show the blank space.
             ui->textSendLabel->setText(recipient.address);
             ui->textSend->setVisible(false);
@@ -148,13 +149,13 @@ void TxDetailDialog::setData(WalletModel *model, WalletModelTransaction &tx)
     ui->textFee->setText(BitcoinUnits::formatWithUnit(nDisplayUnit, txFee, false, BitcoinUnits::separatorAlways));
 }
 
-void TxDetailDialog::accept()
+void TxDetailDialog::acceptTx()
 {
-    if (isConfirmDialog) {
-        this->confirm = true;
-        this->sendStatus = model->sendCoins(*this->tx);
-    }
-    QDialog::accept();
+    if (!isConfirmDialog)
+        throw GUIException(strprintf("%s called on non confirm dialog", __func__));
+    this->confirm = true;
+    this->sendStatus = model->sendCoins(*this->tx);
+    accept();
 }
 
 void TxDetailDialog::onInputsClicked()
@@ -166,7 +167,7 @@ void TxDetailDialog::onInputsClicked()
         if (!inputsLoaded) {
             inputsLoaded = true;
             const CWalletTx* tx = (this->tx) ? this->tx->getTransaction() : model->getTx(this->txHash);
-            if (tx) {
+            if(tx) {
                 ui->gridInputs->setMinimumHeight(50 + (50 * tx->vin.size()));
                 int i = 1;
                 for (const CTxIn &in : tx->vin) {
@@ -205,7 +206,7 @@ void TxDetailDialog::onOutputsClicked()
                     CTxDestination dest;
                     bool isCsAddress = out.scriptPubKey.IsPayToColdStaking();
                     if (ExtractDestination(out.scriptPubKey, dest, isCsAddress)) {
-                        std::string address = EncodeDestination(dest, isCsAddress);
+                        std::string address = ((isCsAddress) ? CBitcoinAddress::newCSInstance(dest) : CBitcoinAddress::newInstance(dest)).ToString();
                         labelRes = QString::fromStdString(address);
                         labelRes = labelRes.left(16) + "..." + labelRes.right(16);
                     } else {
@@ -224,14 +225,29 @@ void TxDetailDialog::onOutputsClicked()
     }
 }
 
-void TxDetailDialog::reject()
+void TxDetailDialog::keyPressEvent(QKeyEvent *event)
 {
-    if (snackBar && snackBar->isVisible()) snackBar->hide();
-    QDialog::reject();
+    if (event->type() == QEvent::KeyPress) {
+        QKeyEvent* ke = static_cast<QKeyEvent*>(event);
+        // Detect Enter key press
+        if (ke->key() == Qt::Key_Enter || ke->key() == Qt::Key_Return) {
+            if (isConfirmDialog) acceptTx();
+            else accept();
+        }
+        // Detect Esc key press
+        if (ke->key() == Qt::Key_Escape)
+            closeDialog();
+    }
+}
+
+void TxDetailDialog::closeDialog()
+{
+    if(snackBar && snackBar->isVisible()) snackBar->hide();
+    close();
 }
 
 TxDetailDialog::~TxDetailDialog()
 {
-    if (snackBar) delete snackBar;
+    if(snackBar) delete snackBar;
     delete ui;
 }

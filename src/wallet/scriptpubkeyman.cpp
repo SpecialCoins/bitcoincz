@@ -1,5 +1,5 @@
 // Copyright (c) 2019 The Bitcoin Core developers
-// Copyright (c) 2020 The BCZ developers
+// Copyright (c) 2020 The BCZ Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -7,14 +7,14 @@
 #include "crypter.h"
 #include "script/standard.h"
 
-bool ScriptPubKeyMan::SetupGeneration(bool newKeypool, bool force)
+bool ScriptPubKeyMan::SetupGeneration(bool force)
 {
     if (CanGenerateKeys() && !force) {
         return false;
     }
 
     SetHDSeed(GenerateNewSeed(), force);
-    if (newKeypool && !NewKeyPool()) {
+    if (!NewKeyPool()) {
         return false;
     }
     return true;

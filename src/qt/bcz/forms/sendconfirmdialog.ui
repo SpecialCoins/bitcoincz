@@ -334,7 +334,7 @@ background:transparent;
                    </size>
                   </property>
                   <property name="styleSheet">
-                   <string notr="true">background-color:#bababa;</string>
+                   <string notr="true">background-color:#908c96;</string>
                   </property>
                   <property name="text">
                    <string/>
@@ -490,7 +490,7 @@ background:transparent;
                    </size>
                   </property>
                   <property name="styleSheet">
-                   <string notr="true">background-color:#bababa;</string>
+                   <string notr="true">background-color:#908c96;</string>
                   </property>
                   <property name="text">
                    <string/>
@@ -664,7 +664,7 @@ background:transparent;
                    </size>
                   </property>
                   <property name="styleSheet">
-                   <string notr="true">background-color:#bababa;</string>
+                   <string notr="true">background-color:#908c96;</string>
                   </property>
                   <property name="text">
                    <string/>
@@ -761,7 +761,7 @@ background:transparent;
                    </size>
                   </property>
                   <property name="styleSheet">
-                   <string notr="true">background-color:#bababa;</string>
+                   <string notr="true">background-color:#908c96;</string>
                   </property>
                   <property name="text">
                    <string/>
@@ -815,7 +815,7 @@ background:transparent;
                    </size>
                   </property>
                   <property name="styleSheet">
-                   <string notr="true">background-color:#bababa;</string>
+                   <string notr="true">background-color:#908c96;</string>
                   </property>
                   <property name="text">
                    <string/>
@@ -921,7 +921,7 @@ background:transparent;
                    </size>
                   </property>
                   <property name="styleSheet">
-                   <string notr="true">background-color:#bababa;</string>
+                   <string notr="true">background-color:#908c96;</string>
                   </property>
                   <property name="text">
                    <string/>

@@ -1,5 +1,5 @@
 // Copyright (c) 2014-2016 The Dash developers
-// Copyright (c) 2016-2020 The BCZ developers
+// Copyright (c) 2020 The BCZ developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -8,10 +8,10 @@
 #include "activemasternode.h"
 #include "base58.h"
 #include "key.h"
-#include "masternode-sync.h"
 #include "masternodeman.h"
 #include "messagesigner.h"
 #include "net.h"
+#include "masternode-sync.h"
 #include "protocol.h"
 #include "spork.h"
 #include "sync.h"
@@ -41,7 +41,7 @@ void ProcessMessageSwiftTX(CNode* pfrom, std::string& strCommand, CDataStream& v
     if (!sporkManager.IsSporkActive(SPORK_2_SWIFTTX)) return;
     if (!masternodeSync.IsBlockchainSynced()) return;
 
-    if (strCommand == NetMsgType::IX) {
+    if (strCommand == "ix") {
         //LogPrintf("ProcessMessageSwiftTX::ix\n");
         CDataStream vMsg(vRecv);
         CTransaction tx;
@@ -49,6 +49,7 @@ void ProcessMessageSwiftTX(CNode* pfrom, std::string& strCommand, CDataStream& v
 
         CInv inv(MSG_TXLOCK_REQUEST, tx.GetHash());
         pfrom->AddInventoryKnown(inv);
+        GetMainSignals().Inventory(inv.hash);
 
         if (mapTxLockReq.count(tx.GetHash()) || mapTxLockReqRejected.count(tx.GetHash())) {
             return;
@@ -59,7 +60,7 @@ void ProcessMessageSwiftTX(CNode* pfrom, std::string& strCommand, CDataStream& v
         }
 
         for (const CTxOut &o : tx.vout) {
-            // IX supports normal scripts and unspendable scripts (used in DS collateral).
+            // IX supports normal scripts and unspendable scripts (used in DS collateral collateral).
             // TODO: Look into other script types that are normal and can be included
             if (!o.scriptPubKey.IsNormalPaymentScript() && !o.scriptPubKey.IsUnspendable()) {
                 LogPrintf("%s : Invalid Script %s\n", __func__, tx.ToString().c_str());
@@ -78,7 +79,7 @@ void ProcessMessageSwiftTX(CNode* pfrom, std::string& strCommand, CDataStream& v
             fAccepted = AcceptToMemoryPool(mempool, state, tx, true, &fMissingInputs);
         }
         if (fAccepted) {
-            g_connman->RelayInv(inv);
+            RelayInv(inv);
 
             DoConsensusVote(tx, nBlockHeight);
 
@@ -126,7 +127,7 @@ void ProcessMessageSwiftTX(CNode* pfrom, std::string& strCommand, CDataStream& v
 
             return;
         }
-    } else if (strCommand == NetMsgType::IXLOCKVOTE) // SwiftX Lock Consensus Votes
+    } else if (strCommand == "txlvote") // SwiftX Lock Consensus Votes
     {
         CConsensusVote ctx;
         vRecv >> ctx;
@@ -162,7 +163,7 @@ void ProcessMessageSwiftTX(CNode* pfrom, std::string& strCommand, CDataStream& v
                     mapUnknownVotes[ctx.vinMasternode.prevout.hash] = GetTime() + (60 * 10);
                 }
             }
-            g_connman->RelayInv(inv);
+            RelayInv(inv);
         }
 
         if (mapTxLockReq.count(ctx.txHash) && GetTransactionLockSignatures(ctx.txHash) == SWIFTTX_SIGNATURES_REQUIRED) {
@@ -222,10 +223,9 @@ bool IsIXTXValid(const CTransaction& txCollateral)
 
 int64_t CreateNewLock(CTransaction tx)
 {
-    int nChainHeight = WITH_LOCK(cs_main, return chainActive.Height(); );
     int64_t nTxAge = 0;
     BOOST_REVERSE_FOREACH (CTxIn i, tx.vin) {
-        nTxAge = pcoinsTip->GetCoinDepthAtHeight(i.prevout, nChainHeight);
+        nTxAge = GetInputAge(i);
         if (nTxAge < 5) //1 less than the "send IX" gui requires, incase of a block propagating the network at the time
         {
             LogPrintf("%s : Transaction not found / too new: %d / %s\n", __func__, nTxAge,
@@ -239,7 +239,7 @@ int64_t CreateNewLock(CTransaction tx)
         This prevents attackers from using transaction mallibility to predict which masternodes
         they'll use.
     */
-    int nBlockHeight = nChainHeight - nTxAge + 4;
+    int nBlockHeight = (chainActive.Tip()->nHeight - nTxAge) + 4;
 
     if (!mapTxLocks.count(tx.GetHash())) {
         LogPrintf("%s : New Transaction Lock %s !\n", __func__, tx.GetHash().ToString().c_str());
@@ -264,11 +264,7 @@ void DoConsensusVote(CTransaction& tx, int64_t nBlockHeight)
 {
     if (!fMasterNode) return;
 
-    if (activeMasternode.vin == nullopt)
-        LogPrint(BCLog::MASTERNODE, "%s: Active Masternode not initialized.", __func__);
-        return;
-
-    int n = mnodeman.GetMasternodeRank(*(activeMasternode.vin), nBlockHeight, MIN_SWIFTTX_PROTO_VERSION);
+    int n = mnodeman.GetMasternodeRank(activeMasternode.vin, nBlockHeight, MIN_SWIFTTX_PROTO_VERSION);
 
     if (n == -1) {
         LogPrint(BCLog::MASTERNODE, "%s : Unknown Masternode\n", __func__);
@@ -286,7 +282,7 @@ void DoConsensusVote(CTransaction& tx, int64_t nBlockHeight)
     LogPrint(BCLog::MASTERNODE, "%s : In the top %d (%d)\n", __func__, SWIFTTX_SIGNATURES_TOTAL, n);
 
     CConsensusVote ctx;
-    ctx.vinMasternode = *(activeMasternode.vin);
+    ctx.vinMasternode = activeMasternode.vin;
     ctx.txHash = tx.GetHash();
     ctx.nBlockHeight = nBlockHeight;
 
@@ -302,7 +298,7 @@ void DoConsensusVote(CTransaction& tx, int64_t nBlockHeight)
     mapTxLockVote[ctx.GetHash()] = ctx;
 
     CInv inv(MSG_TXLOCK_VOTE, ctx.GetHash());
-    g_connman->RelayInv(inv);
+    RelayInv(inv);
 }
 
 //received a consensus vote
@@ -350,8 +346,6 @@ bool ProcessConsensusVote(CNode* pnode, CConsensusVote& ctx)
     if (i != mapTxLocks.end()) {
         (*i).second.AddSignature(ctx);
 
-        // Not enabled swiftx for now, mapRequestCount doesn't exist anymore,
-        /*
 #ifdef ENABLE_WALLET
         if (pwalletMain) {
             //when we get back signatures, we'll count them as requests. Otherwise the client will think it didn't propagate.
@@ -359,7 +353,6 @@ bool ProcessConsensusVote(CNode* pnode, CConsensusVote& ctx)
                 pwalletMain->mapRequestCount[ctx.txHash]++;
         }
 #endif
-         */
 
         LogPrint(BCLog::MASTERNODE, "%s : Transaction Lock Votes %d - %s !\n", __func__, (*i).second.CountSignatures(), ctx.GetHash().ToString().c_str());
 

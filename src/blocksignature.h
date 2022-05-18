@@ -1,4 +1,4 @@
-// Copyright (c) 2017-2019 The BCZ developers
+// Copyright (c) 2020 The BCZ developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -11,6 +11,6 @@
 
 bool SignBlockWithKey(CBlock& block, const CKey& key);
 bool SignBlock(CBlock& block, const CKeyStore& keystore);
-bool CheckBlockSignature(const CBlock& block, const bool enableP2PKH);
+bool CheckBlockSignature(const CBlock& block);
 
 #endif //BCZ_BLOCKSIGNATURE_H

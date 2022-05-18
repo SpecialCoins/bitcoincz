@@ -1,6 +1,6 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2014 The Bitcoin developers
-// Copyright (c) 2015-2020 The BCZ developers
+// Copyright (c) 2020 The BCZ developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -8,7 +8,6 @@
 #define BITCOIN_PRIMITIVES_TRANSACTION_H
 
 #include "amount.h"
-#include "memusage.h"
 #include "script/script.h"
 #include "serialize.h"
 #include "uint256.h"
@@ -30,9 +29,8 @@ public:
     ADD_SERIALIZE_METHODS;
 
     template <typename Stream, typename Operation>
-    inline void SerializationOp(Stream& s, Operation ser_action) {
-        READWRITE(hash);
-        READWRITE(n);
+    inline void SerializationOp(Stream& s, Operation ser_action, int nType, int nVersion) {
+        READWRITE(FLATDATA(*this));
     }
 
     void SetNull() { hash.SetNull(); n = (uint32_t) -1; }
@@ -56,9 +54,7 @@ public:
     std::string ToString() const;
     std::string ToStringShort() const;
 
-    size_t DynamicMemoryUsage() const { return 0; }
-
-    uint256 GetHash() const;
+    uint256 GetHash();
 
 };
 
@@ -85,9 +81,9 @@ public:
     ADD_SERIALIZE_METHODS;
 
     template <typename Stream, typename Operation>
-    inline void SerializationOp(Stream& s, Operation ser_action) {
+    inline void SerializationOp(Stream& s, Operation ser_action, int nType, int nVersion) {
         READWRITE(prevout);
-        READWRITE(*(CScriptBase*)(&scriptSig));
+        READWRITE(scriptSig);
         READWRITE(nSequence);
     }
 
@@ -109,8 +105,6 @@ public:
     }
 
     std::string ToString() const;
-
-    size_t DynamicMemoryUsage() const { return scriptSig.DynamicMemoryUsage(); }
 };
 
 /** An output of a transaction.  It contains the public key that the next input
@@ -133,9 +127,9 @@ public:
     ADD_SERIALIZE_METHODS;
 
     template <typename Stream, typename Operation>
-    inline void SerializationOp(Stream& s, Operation ser_action) {
+    inline void SerializationOp(Stream& s, Operation ser_action, int nType, int nVersion) {
         READWRITE(nValue);
-        READWRITE(*(CScriptBase*)(&scriptPubKey));
+        READWRITE(scriptPubKey);
     }
 
     void SetNull()
@@ -164,26 +158,17 @@ public:
     uint256 GetHash() const;
     bool GetKeyIDFromUTXO(CKeyID& keyIDRet) const;
 
-    CAmount GetDustThreshold(const CFeeRate &minRelayTxFee) const
-    {
-        // "Dust" is defined in terms of CTransaction::minRelayTxFee,
-        // which has units satoshis-per-kilobyte.
-        // If you'd pay more than 1/3 in fees
-        // to spend something, then we consider it dust.
-        // A typical spendable txout is 34 bytes big, and will
-        // need a CTxIn of at least 148 bytes to spend:
-        // so dust is a spendable txout less than 546 satoshis
-        // with default minRelayTxFee.
-        if (scriptPubKey.IsUnspendable())
-            return 0;
-
-        size_t nSize = GetSerializeSize(*this, SER_DISK, 0) + 148u;
-        return 3 * minRelayTxFee.GetFee(nSize);
-    }
-
     bool IsDust(CFeeRate minRelayTxFee) const
     {
-        return (nValue < GetDustThreshold(minRelayTxFee));
+        // "Dust" is defined in terms of CTransaction::minRelayTxFee, which has units ubcz-per-kilobyte.
+        // If you'd pay more than 1/3 in fees to spend something, then we consider it dust.
+        // A typical txout is 34 bytes big, and will need a CTxIn of at least 148 bytes to spend
+        // i.e. total is 148 + 32 = 182 bytes. Default -minrelaytxfee is 10000 ubcz per kB
+        // and that means that fee per txout is 182 * 10000 / 1000 = 1820 ubcz.
+        // So dust is a txout less than 1820 *3 = 5460 ubcz
+        // with default -minrelaytxfee = minRelayTxFee = 10000 ubcz per kB.
+        size_t nSize = GetSerializeSize(SER_DISK,0)+148u;
+        return (nValue < 3*minRelayTxFee.GetFee(nSize));
     }
 
     friend bool operator==(const CTxOut& a, const CTxOut& b)
@@ -199,8 +184,6 @@ public:
     }
 
     std::string ToString() const;
-
-    size_t DynamicMemoryUsage() const { return scriptPubKey.DynamicMemoryUsage(); }
 };
 
 struct CMutableTransaction;
@@ -240,8 +223,9 @@ public:
     ADD_SERIALIZE_METHODS;
 
     template <typename Stream, typename Operation>
-    inline void SerializationOp(Stream& s, Operation ser_action) {
-        READWRITE(*const_cast<int32_t*>(&nVersion));
+    inline void SerializationOp(Stream& s, Operation ser_action, int nType, int nVersion) {
+        READWRITE(*const_cast<int32_t*>(&this->nVersion));
+        nVersion = this->nVersion;
         READWRITE(*const_cast<std::vector<CTxIn>*>(&vin));
         READWRITE(*const_cast<std::vector<CTxOut>*>(&vout));
         READWRITE(*const_cast<uint32_t*>(&nLockTime));
@@ -268,6 +252,9 @@ public:
     // Compute modified tx size for priority calculation (optionally given tx size)
     unsigned int CalculateModifiedSize(unsigned int nTxSize=0) const;
 
+    bool UsesUTXO(const COutPoint out);
+    std::list<COutPoint> GetOutPoints() const;
+
     bool IsCoinBase() const
     {
         return (vin.size() == 1 && vin[0].prevout.IsNull());
@@ -290,8 +277,6 @@ public:
     unsigned int GetTotalSize() const;
 
     std::string ToString() const;
-
-    size_t DynamicMemoryUsage() const;
 };
 
 /** A mutable version of CTransaction. */
@@ -308,8 +293,9 @@ struct CMutableTransaction
     ADD_SERIALIZE_METHODS;
 
     template <typename Stream, typename Operation>
-    inline void SerializationOp(Stream& s, Operation ser_action) {
-        READWRITE(nVersion);
+    inline void SerializationOp(Stream& s, Operation ser_action, int nType, int nVersion) {
+        READWRITE(this->nVersion);
+        nVersion = this->nVersion;
         READWRITE(vin);
         READWRITE(vout);
         READWRITE(nLockTime);

@@ -1,4 +1,4 @@
-// Copyright (c) 2019 The BCZ developers
+// Copyright (c) 2020 The BCZ developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -29,7 +29,7 @@ void CSRow::updateView(const QString& address, const QString& label, bool isStak
 }
 
 void CSRow::updateState(bool isLightTheme, bool isHovered, bool isSelected) {
-    ui->lblDivisory->setStyleSheet((isLightTheme) ?  "background-color:#bababa" : "background-color:#40ffffff");
+    ui->lblDivisory->setStyleSheet((isLightTheme) ?  "background-color:#908c96" : "background-color:#40ffffff");
     if (fShowMenuButton) {
         ui->pushButtonMenu->setVisible(isHovered);
     }

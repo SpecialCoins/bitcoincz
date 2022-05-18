@@ -1,7 +1,7 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2014 The Bitcoin developers
 // Copyright (c) 2014-2015 The Dash developers
-// Copyright (c) 2015-2020 The BCZ developers
+// Copyright (c) 2020 The BCZ developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -19,9 +19,10 @@
 #include "utiltime.h"
 
 #include <stdarg.h>
-#include <thread>
 
 #include <boost/date_time/posix_time/posix_time.hpp>
+
+namespace fs = boost::filesystem;
 
 
 #ifndef WIN32
@@ -76,16 +77,14 @@
 #include <boost/algorithm/string/case_conv.hpp> // for to_lower()
 #include <boost/algorithm/string/join.hpp>
 #include <boost/algorithm/string/predicate.hpp> // for startswith() and endswith()
+#include <boost/filesystem.hpp>
+#include <boost/filesystem/fstream.hpp>
 #include <boost/program_options/detail/config_file.hpp>
 #include <boost/program_options/parsers.hpp>
 #include <boost/thread.hpp>
 #include <openssl/conf.h>
 #include <openssl/crypto.h>
 #include <openssl/rand.h>
-
-const char * const BCZ_CONF_FILENAME = "bcz.conf";
-const char * const BCZ_PID_FILENAME = "bcz.pid";
-const char * const BCZ_MASTERNODE_CONF_FILENAME = "masternode.conf";
 
 
 // BCZ only features
@@ -351,28 +350,45 @@ void ClearDatadirCache()
 
 fs::path GetConfigFile()
 {
-    fs::path pathConfigFile(GetArg("-conf", BCZ_CONF_FILENAME));
-    return AbsPathForConfigVal(pathConfigFile, false);
+    fs::path pathConfigFile(GetArg("-conf", "bcz.conf"));
+    if (!pathConfigFile.is_complete())
+        pathConfigFile = GetDataDir(false) / pathConfigFile;
+
+    return pathConfigFile;
 }
 
 fs::path GetMasternodeConfigFile()
 {
-    fs::path pathConfigFile(GetArg("-mnconf", BCZ_MASTERNODE_CONF_FILENAME));
-    return AbsPathForConfigVal(pathConfigFile);
+    fs::path pathConfigFile(GetArg("-mnconf", "masternode.conf"));
+    if (!pathConfigFile.is_complete()) pathConfigFile = GetDataDir() / pathConfigFile;
+    return pathConfigFile;
 }
 
 void ReadConfigFile(std::map<std::string, std::string>& mapSettingsRet,
     std::map<std::string, std::vector<std::string> >& mapMultiSettingsRet)
 {
     fs::ifstream streamConfig(GetConfigFile());
-    if (!streamConfig.good()) {
-        // Create empty bcz.conf if it does not exist
-        FILE* configFile = fsbridge::fopen(GetConfigFile(), "a");
+    if (!streamConfig.good())
+    {
+        FILE* configFile = fopen(GetConfigFile().string().c_str(), "a");
         if (configFile != NULL)
-            fclose(configFile);
-        return; // Nothing to read, so just return
-    }
+        {
+            std::string strHeader =
+                    "#listen=1\n"
+                    "#maxconnections=\n"
+                    "#connect=\n"
+                    "#addnode=\n"
+                    "#addnode=\n"
+                    "#addnode=\n"
+                    "#masternode=1\n"
+                    "#masternodeprivkey=\n"
+                    "#externalip=\n";
 
+            fwrite(strHeader.c_str(), std::strlen(strHeader.c_str()), 1, configFile);
+            fclose(configFile);
+        }
+        return;
+    }
     std::set<std::string> setOptions;
     setOptions.insert("*");
 
@@ -400,13 +416,14 @@ fs::path AbsPathForConfigVal(const fs::path& path, bool net_specific)
 #ifndef WIN32
 fs::path GetPidFile()
 {
-    fs::path pathPidFile(GetArg("-pid", BCZ_PID_FILENAME));
-    return AbsPathForConfigVal(pathPidFile);
+    fs::path pathPidFile(GetArg("-pid", "bcz.pid"));
+    if (!pathPidFile.is_complete()) pathPidFile = GetDataDir() / pathPidFile;
+    return pathPidFile;
 }
 
 void CreatePidFile(const fs::path& path, pid_t pid)
 {
-    FILE* file = fsbridge::fopen(path, "w");
+    FILE* file = fopen(path.string().c_str(), "w");
     if (file) {
         fprintf(file, "%d\n", pid);
         fclose(file);
@@ -556,7 +573,25 @@ fs::path GetSpecialFolderPath(int nFolder, bool fCreate)
 
 fs::path GetTempPath()
 {
+#if BOOST_FILESYSTEM_VERSION == 3
     return fs::temp_directory_path();
+#else
+    // TODO: remove when we don't support filesystem v2 anymore
+    fs::path path;
+#ifdef WIN32
+    char pszPath[MAX_PATH] = "";
+
+    if (GetTempPathA(MAX_PATH, pszPath))
+        path = fs::path(pszPath);
+#else
+    path = fs::path("/tmp");
+#endif
+    if (path.empty() || !fs::is_directory(path)) {
+        LogPrintf("GetTempPath(): failed to find temp path\n");
+        return fs::path("");
+    }
+    return path;
+#endif
 }
 
 double double_safe_addition(double fValue, double fIncrement)
@@ -600,7 +635,7 @@ void SetupEnvironment()
     // The path locale is lazy initialized and to avoid deinitialization errors
     // in multithreading environments, it is set explicitly by the main thread.
     // A dummy locale is used to extract the internal default locale, used by
-    // fs::path, which is then used to explicitly imbue the path.
+    // boost::filesystem::path, which is then used to explicitly imbue the path.
     std::locale loc = fs::path::imbue(std::locale::classic());
     fs::path::imbue(loc);
 }
@@ -628,9 +663,4 @@ void SetThreadPriority(int nPriority)
     setpriority(PRIO_PROCESS, 0, nPriority);
 #endif // PRIO_THREAD
 #endif // WIN32
-}
-
-int GetNumCores()
-{
-    return std::thread::hardware_concurrency();
 }

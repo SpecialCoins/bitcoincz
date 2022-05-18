@@ -1,5 +1,5 @@
 // Copyright (c) 2014-2016 The Dash developers
-// Copyright (c) 2016-2020 The BCZ developers
+// Copyright (c) 2020 The BCZ developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -10,12 +10,11 @@
 #include "hash.h"
 #include "key.h"
 #include "main.h"
-#include "messagesigner.h"
 #include "net.h"
 #include "sporkid.h"
 #include "sync.h"
 #include "util.h"
-
+#include "messagesigner.h"
 #include "protocol.h"
 
 
@@ -67,7 +66,7 @@ public:
     ADD_SERIALIZE_METHODS;
 
     template <typename Stream, typename Operation>
-    inline void SerializationOp(Stream& s, Operation ser_action)
+    inline void SerializationOp(Stream& s, Operation ser_action, int nType, int nVersion)
     {
         READWRITE(nSporkID);
         READWRITE(nValue);
@@ -98,7 +97,7 @@ public:
     ADD_SERIALIZE_METHODS;
 
     template <typename Stream, typename Operation>
-    inline void SerializationOp(Stream& s, Operation ser_action)
+    inline void SerializationOp(Stream& s, Operation ser_action, int nType, int nVersion)
     {
         READWRITE(mapSporksActive);
         // we don't serialize private key to prevent its leakage

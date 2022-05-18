@@ -1,4 +1,4 @@
-// Copyright (c) 2019-2020 The BCZ developers
+// Copyright (c) 2020 The BCZ developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -12,7 +12,7 @@
 #include <QComboBox>
 
 SendCustomFeeDialog::SendCustomFeeDialog(BCZGUI* parent, WalletModel* model) :
-    FocusedDialog(parent),
+    QDialog(parent),
     ui(new Ui::SendCustomFeeDialog),
     walletModel(model)
 {
@@ -25,6 +25,8 @@ SendCustomFeeDialog::SendCustomFeeDialog(BCZGUI* parent, WalletModel* model) :
     setCssProperty(ui->frame, "container-dialog");
 
     // Text
+    ui->labelTitle->setText(tr("Customize Fee"));
+    ui->labelMessage->setText(tr("Customize the transaction fee, depending on the fee value your transaction might be included faster in the blockchain."));
     setCssProperty(ui->labelTitle, "text-title-dialog");
     setCssProperty(ui->labelMessage, "text-main-grey");
 
@@ -38,12 +40,14 @@ SendCustomFeeDialog::SendCustomFeeDialog(BCZGUI* parent, WalletModel* model) :
 
     // Custom
     setCssProperty(ui->labelCustomFee, "label-subtitle-dialog");
+    ui->lineEditCustomFee->setPlaceholderText("0.000001");
     initCssEditLine(ui->lineEditCustomFee, true);
     GUIUtil::setupAmountWidget(ui->lineEditCustomFee, this);
 
     // Buttons
     setCssProperty(ui->btnEsc, "ic-close");
     setCssProperty(ui->btnCancel, "btn-dialog-cancel");
+    ui->btnSave->setText(tr("SAVE"));
     setCssBtnPrimary(ui->btnSave);
 
     connect(ui->btnEsc, &QPushButton::clicked, this, &SendCustomFeeDialog::close);
@@ -60,7 +64,6 @@ SendCustomFeeDialog::SendCustomFeeDialog(BCZGUI* parent, WalletModel* model) :
 
 void SendCustomFeeDialog::showEvent(QShowEvent* event)
 {
-    FocusedDialog::showEvent(event);
     updateFee();
     if (walletModel->hasWalletCustomFee()) {
         ui->checkBoxCustom->setChecked(true);
@@ -125,9 +128,9 @@ void SendCustomFeeDialog::accept()
     if (customFee >= insaneFee) {
         inform(tr("Fee too high. Must be below: %1").arg(
                 BitcoinUnits::formatWithUnit(walletModel->getOptionsModel()->getDisplayUnit(), insaneFee)));
-    } else if (customFee < CWallet::GetRequiredFee(1000)) {
+    } else if (customFee < CWallet::minTxFee.GetFeePerK()) {
         inform(tr("Fee too low. Must be at least: %1").arg(
-                BitcoinUnits::formatWithUnit(walletModel->getOptionsModel()->getDisplayUnit(), CWallet::GetRequiredFee(1000))));
+                BitcoinUnits::formatWithUnit(walletModel->getOptionsModel()->getDisplayUnit(), CWallet::minTxFee.GetFeePerK())));
     } else {
         walletModel->setWalletCustomFee(fUseCustomFee, customFee);
         QDialog::accept();

@@ -1,4 +1,4 @@
-// Copyright (c) 2019-2020 The BCZ developers
+// Copyright (c) 2020 The BCZ developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -14,20 +14,20 @@
 #include "networkstyle.h"
 #include "notificator.h"
 #include "guiinterface.h"
-#include "qt/bcz/qtutils.h"
-#include "qt/bcz/defaultdialog.h"
-
 #include "init.h"
 #include "util.h"
+#include "qt/bcz/qtutils.h"
+#include "qt/bcz/defaultdialog.h"
+#include "qt/bcz/settings/settingsfaqwidget.h"
 
+#include <QDesktopWidget>
+#include <QHBoxLayout>
+#include <QVBoxLayout>
 #include <QApplication>
 #include <QColor>
-#include <QHBoxLayout>
-#include <QKeySequence>
-#include <QScreen>
 #include <QShortcut>
+#include <QKeySequence>
 #include <QWindowStateChangeEvent>
-
 
 #define BASE_WINDOW_WIDTH 1200
 #define BASE_WINDOW_HEIGHT 740
@@ -47,7 +47,7 @@ BCZGUI::BCZGUI(const NetworkStyle* networkStyle, QWidget* parent) :
 
 
     // Adapt screen size
-    QRect rec = QGuiApplication::primaryScreen()->geometry();
+    QRect rec = QApplication::desktop()->screenGeometry();
     int adaptedHeight = (rec.height() < BASE_WINDOW_HEIGHT) ?  BASE_WINDOW_MIN_HEIGHT : BASE_WINDOW_HEIGHT;
     int adaptedWidth = (rec.width() < BASE_WINDOW_WIDTH) ?  BASE_WINDOW_MIN_WIDTH : BASE_WINDOW_WIDTH;
     GUIUtil::restoreWindowGeometry(
@@ -76,7 +76,8 @@ BCZGUI::BCZGUI(const NetworkStyle* networkStyle, QWidget* parent) :
 
 #ifdef ENABLE_WALLET
     // Create wallet frame
-    if (enableWallet) {
+    if(enableWallet){
+
         QFrame* centralWidget = new QFrame(this);
         this->setMinimumWidth(BASE_WINDOW_MIN_WIDTH);
         this->setMinimumHeight(BASE_WINDOW_MIN_HEIGHT);
@@ -164,8 +165,7 @@ BCZGUI::BCZGUI(const NetworkStyle* networkStyle, QWidget* parent) :
 
 }
 
-void BCZGUI::createActions(const NetworkStyle* networkStyle)
-{
+void BCZGUI::createActions(const NetworkStyle* networkStyle){
     toggleHideAction = new QAction(networkStyle->getAppIcon(), tr("&Show / Hide"), this);
     toggleHideAction->setStatusTip(tr("Show or hide the main Window"));
 
@@ -181,8 +181,7 @@ void BCZGUI::createActions(const NetworkStyle* networkStyle)
 /**
  * Here add every event connection
  */
-void BCZGUI::connectActions()
-{
+void BCZGUI::connectActions() {
     QShortcut *consoleShort = new QShortcut(this);
     consoleShort->setKey(QKeySequence(SHORT_KEY + Qt::Key_C));
     connect(consoleShort, &QShortcut::activated, [this](){
@@ -205,8 +204,7 @@ void BCZGUI::connectActions()
 }
 
 
-void BCZGUI::createTrayIcon(const NetworkStyle* networkStyle)
-{
+void BCZGUI::createTrayIcon(const NetworkStyle* networkStyle) {
 #ifndef Q_OS_MAC
     trayIcon = new QSystemTrayIcon(this);
     QString toolTip = tr("BCZ Core client") + " " + networkStyle->getTitleAddText();
@@ -217,8 +215,8 @@ void BCZGUI::createTrayIcon(const NetworkStyle* networkStyle)
     notificator = new Notificator(QApplication::applicationName(), trayIcon, this);
 }
 
-BCZGUI::~BCZGUI()
-{
+//
+BCZGUI::~BCZGUI() {
     // Unsubscribe from notifications from core
     unsubscribeFromCoreSignals();
 
@@ -232,17 +230,16 @@ BCZGUI::~BCZGUI()
 
 
 /** Get restart command-line parameters and request restart */
-void BCZGUI::handleRestart(QStringList args)
-{
+void BCZGUI::handleRestart(QStringList args){
     if (!ShutdownRequested())
         Q_EMIT requestedRestart(args);
 }
 
 
-void BCZGUI::setClientModel(ClientModel* clientModel)
-{
+void BCZGUI::setClientModel(ClientModel* clientModel) {
     this->clientModel = clientModel;
-    if (this->clientModel) {
+    if(this->clientModel) {
+
         // Create system tray menu (or setup the dock menu) that late to prevent users from calling actions,
         // while the client has not yet fully loaded
         createTrayIconMenu();
@@ -277,10 +274,9 @@ void BCZGUI::setClientModel(ClientModel* clientModel)
     }
 }
 
-void BCZGUI::createTrayIconMenu()
-{
+void BCZGUI::createTrayIconMenu() {
 #ifndef Q_OS_MAC
-    // return if trayIcon is unset (only on non-macOSes)
+    // return if trayIcon is unset (only on non-Mac OSes)
     if (!trayIcon)
         return;
 
@@ -289,7 +285,7 @@ void BCZGUI::createTrayIconMenu()
 
     connect(trayIcon, &QSystemTrayIcon::activated, this, &BCZGUI::trayIconActivated);
 #else
-    // Note: On macOS, the Dock icon is used to provide the tray's functionality.
+    // Note: On Mac, the dock icon is used to provide the tray's functionality.
     MacDockIconHandler* dockIconHandler = MacDockIconHandler::instance();
     connect(dockIconHandler, &MacDockIconHandler::dockIconClicked, this, &BCZGUI::macosDockIconActivated);
 
@@ -297,11 +293,11 @@ void BCZGUI::createTrayIconMenu()
     trayIconMenu->setAsDockMenu();
 #endif
 
-    // Configuration of the tray icon (or Dock icon) icon menu
+    // Configuration of the tray icon (or dock icon) icon menu
     trayIconMenu->addAction(toggleHideAction);
     trayIconMenu->addSeparator();
 
-#ifndef Q_OS_MAC // This is built-in on macOS
+#ifndef Q_OS_MAC // This is built-in on Mac
     trayIconMenu->addSeparator();
     trayIconMenu->addAction(quitAction);
 #endif
@@ -352,17 +348,15 @@ void BCZGUI::closeEvent(QCloseEvent* event)
 }
 
 
-void BCZGUI::messageInfo(const QString& text)
-{
-    if (!this->snackBar) this->snackBar = new SnackBar(this, this);
+void BCZGUI::messageInfo(const QString& text){
+    if(!this->snackBar) this->snackBar = new SnackBar(this, this);
     this->snackBar->setText(text);
     this->snackBar->resize(this->width(), snackBar->height());
     openDialog(this->snackBar, this);
 }
 
 
-void BCZGUI::message(const QString& title, const QString& message, unsigned int style, bool* ret)
-{
+void BCZGUI::message(const QString& title, const QString& message, unsigned int style, bool* ret) {
     QString strTitle =  tr("BCZ Core"); // default title
     // Default to information icon
     int nNotifyIcon = Notificator::Information;
@@ -401,18 +395,18 @@ void BCZGUI::message(const QString& title, const QString& message, unsigned int 
         // Check for buttons, use OK as default, if none was supplied
         int r = 0;
         showNormalIfMinimized();
-        if (style & CClientUIInterface::BTN_MASK) {
+        if(style & CClientUIInterface::BTN_MASK){
             r = openStandardDialog(
                     (title.isEmpty() ? strTitle : title), message, "OK", "CANCEL"
                 );
-        } else {
+        }else{
             r = openStandardDialog((title.isEmpty() ? strTitle : title), message, "OK");
         }
         if (ret != NULL)
             *ret = r;
-    } else if (style & CClientUIInterface::MSG_INFORMATION_SNACK) {
+    } else if(style & CClientUIInterface::MSG_INFORMATION_SNACK){
         messageInfo(message);
-    } else {
+    }else {
         // Append title to "BCZ - "
         if (!msgType.isEmpty())
             strTitle += " - " + msgType;
@@ -420,8 +414,7 @@ void BCZGUI::message(const QString& title, const QString& message, unsigned int 
     }
 }
 
-bool BCZGUI::openStandardDialog(QString title, QString body, QString okBtn, QString cancelBtn)
-{
+bool BCZGUI::openStandardDialog(QString title, QString body, QString okBtn, QString cancelBtn){
     DefaultDialog *dialog;
     if (isVisible()) {
         showHide(true);
@@ -443,8 +436,7 @@ bool BCZGUI::openStandardDialog(QString title, QString body, QString okBtn, QStr
 }
 
 
-void BCZGUI::showNormalIfMinimized(bool fToggleHidden)
-{
+void BCZGUI::showNormalIfMinimized(bool fToggleHidden) {
     if (!clientModel)
         return;
     if (!isHidden() && !isMinimized() && !GUIUtil::isObscured(this) && fToggleHidden) {
@@ -454,13 +446,11 @@ void BCZGUI::showNormalIfMinimized(bool fToggleHidden)
     }
 }
 
-void BCZGUI::toggleHidden()
-{
+void BCZGUI::toggleHidden() {
     showNormalIfMinimized(true);
 }
 
-void BCZGUI::detectShutdown()
-{
+void BCZGUI::detectShutdown() {
     if (ShutdownRequested()) {
         if (rpcConsole)
             rpcConsole->hide();
@@ -468,31 +458,26 @@ void BCZGUI::detectShutdown()
     }
 }
 
-void BCZGUI::goToDashboard()
-{
-    if (stackedContainer->currentWidget() != dashboard) {
+void BCZGUI::goToDashboard(){
+    if(stackedContainer->currentWidget() != dashboard){
         stackedContainer->setCurrentWidget(dashboard);
         topBar->showBottom();
     }
 }
 
-void BCZGUI::goToSend()
-{
+void BCZGUI::goToSend(){
     showTop(sendWidget);
 }
 
-void BCZGUI::goToAddresses()
-{
+void BCZGUI::goToAddresses(){
     showTop(addressesWidget);
 }
 
-void BCZGUI::goToMasterNodes()
-{
+void BCZGUI::goToMasterNodes(){
     showTop(masterNodesWidget);
 }
 
-void BCZGUI::goToColdStaking()
-{
+void BCZGUI::goToColdStaking(){
     showTop(coldStakingWidget);
 }
 
@@ -500,33 +485,18 @@ void BCZGUI::goToSettings(){
     showTop(settingsWidget);
 }
 
-void BCZGUI::goToSettingsInfo()
-{
-    navMenu->selectSettings();
-    settingsWidget->showInformation();
-    goToSettings();
-}
-
-void BCZGUI::goToReceive()
-{
+void BCZGUI::goToReceive(){
     showTop(receiveWidget);
 }
 
-void BCZGUI::openNetworkMonitor()
-{
-    settingsWidget->openNetworkMonitor();
-}
-
-void BCZGUI::showTop(QWidget* view)
-{
-    if (stackedContainer->currentWidget() != view) {
+void BCZGUI::showTop(QWidget* view){
+    if(stackedContainer->currentWidget() != view){
         stackedContainer->setCurrentWidget(view);
         topBar->showTop();
     }
 }
 
-void BCZGUI::changeTheme(bool isLightTheme)
-{
+void BCZGUI::changeTheme(bool isLightTheme){
 
     QString css = GUIUtil::loadStyleSheet();
     this->setStyleSheet(css);
@@ -538,8 +508,7 @@ void BCZGUI::changeTheme(bool isLightTheme)
     updateStyle(this);
 }
 
-void BCZGUI::resizeEvent(QResizeEvent* event)
-{
+void BCZGUI::resizeEvent(QResizeEvent* event){
     // Parent..
     QMainWindow::resizeEvent(event);
     // background
@@ -548,21 +517,19 @@ void BCZGUI::resizeEvent(QResizeEvent* event)
     Q_EMIT windowResizeEvent(event);
 }
 
-bool BCZGUI::execDialog(QDialog *dialog, int xDiv, int yDiv)
-{
+bool BCZGUI::execDialog(QDialog *dialog, int xDiv, int yDiv){
     return openDialogWithOpaqueBackgroundY(dialog, this);
 }
 
-void BCZGUI::showHide(bool show)
-{
-    if (!op) op = new QLabel(this);
-    if (!show) {
+void BCZGUI::showHide(bool show){
+    if(!op) op = new QLabel(this);
+    if(!show){
         op->setVisible(false);
         opEnabled = false;
-    } else {
+    }else{
         QColor bg("#000000");
         bg.setAlpha(200);
-        if (!isLightTheme()) {
+        if(!isLightTheme()){
             bg = QColor("#00000000");
             bg.setAlpha(150);
         }
@@ -581,16 +548,24 @@ void BCZGUI::showHide(bool show)
     }
 }
 
-int BCZGUI::getNavWidth()
-{
+int BCZGUI::getNavWidth(){
     return this->navMenu->width();
 }
+
+void BCZGUI::openFAQ(int section){
+    showHide(true);
+    SettingsFaqWidget* dialog = new SettingsFaqWidget(this);
+    if (section > 0) dialog->setSection(section);
+    openDialogWithOpaqueBackgroundFullScreen(dialog, this);
+    dialog->deleteLater();
+}
+
 
 #ifdef ENABLE_WALLET
 bool BCZGUI::addWallet(const QString& name, WalletModel* walletModel)
 {
     // Single wallet supported for now..
-    if (!stackedContainer || !clientModel || !walletModel)
+    if(!stackedContainer || !clientModel || !walletModel)
         return false;
 
     // set the model for every view
@@ -605,7 +580,6 @@ bool BCZGUI::addWallet(const QString& name, WalletModel* walletModel)
     settingsWidget->setWalletModel(walletModel);
 
     // Connect actions..
-    connect(walletModel, &WalletModel::message, this, &BCZGUI::message);
     connect(masterNodesWidget, &MasterNodesWidget::message, this, &BCZGUI::message);
     connect(coldStakingWidget, &ColdStakingWidget::message, this, &BCZGUI::message);
     connect(topBar, &TopBar::message, this, &BCZGUI::message);
@@ -616,25 +590,21 @@ bool BCZGUI::addWallet(const QString& name, WalletModel* walletModel)
 
     // Pass through transaction notifications
     connect(dashboard, &DashboardWidget::incomingTransaction, this, &BCZGUI::incomingTransaction);
-
     return true;
 }
 
-bool BCZGUI::setCurrentWallet(const QString& name)
-{
+bool BCZGUI::setCurrentWallet(const QString& name) {
     // Single wallet supported.
     return true;
 }
 
-void BCZGUI::removeAllWallets()
-{
+void BCZGUI::removeAllWallets() {
     // Single wallet supported.
 }
 
-void BCZGUI::incomingTransaction(const QString& date, int unit, const CAmount& amount, const QString& type, const QString& address)
-{
+void BCZGUI::incomingTransaction(const QString& date, int unit, const CAmount& amount, const QString& type, const QString& address) {
     // Only send notifications when not disabled
-    if (!bdisableSystemnotifications) {
+    if(!bdisableSystemnotifications){
         // On new transaction, make an info balloon
         message((amount) < 0 ? (pwalletMain->fMultiSendNotify == true ? tr("Sent MultiSend transaction") : tr("Sent transaction")) : tr("Incoming transaction"),
             tr("Date: %1\n"

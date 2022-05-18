@@ -1,4 +1,4 @@
-// Copyright (c) 2019-2020 The BCZ developers
+// Copyright (c) 2020 The BCZ developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -25,19 +25,33 @@ NavMenuWidget::NavMenuWidget(BCZGUI *mainWindow, QWidget *parent) :
 
     // Buttons
     ui->btnDashboard->setProperty("name", "dash");
+    ui->btnDashboard->setText("HOME\n");
     ui->btnDashboard->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
+
     ui->btnSend->setProperty("name", "send");
     ui->btnSend->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
-    ui->btnReceive->setProperty("name", "receive");
-    ui->btnReceive->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
+    ui->btnSend->setText("SEND\n");
+
     ui->btnAddress->setProperty("name", "address");
+    ui->btnAddress->setText("CONTACTS\n");
     ui->btnAddress->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
+
     ui->btnMaster->setProperty("name", "master");
+    ui->btnMaster->setText("MASTER\r\nNODES");
     ui->btnMaster->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
+
     ui->btnColdStaking->setProperty("name", "cold-staking");
+    ui->btnColdStaking->setText("COLD\r\nSTAKING");
     ui->btnColdStaking->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
+
     ui->btnSettings->setProperty("name", "settings");
+    ui->btnSettings->setText("SETTINGS\n");
     ui->btnSettings->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
+
+    ui->btnReceive->setProperty("name", "receive");
+    ui->btnReceive->setText("RECEIVE\n");
+    ui->btnReceive->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
+
     btns = {ui->btnDashboard, ui->btnSend, ui->btnReceive, ui->btnAddress, ui->btnMaster, ui->btnColdStaking, ui->btnSettings, ui->btnColdStaking};
     onNavSelected(ui->btnDashboard, true);
 
@@ -76,9 +90,9 @@ void NavMenuWidget::connectActions() {
     ui->btnSend->setShortcut(QKeySequence(SHORT_KEY + Qt::Key_2));
     ui->btnReceive->setShortcut(QKeySequence(SHORT_KEY + Qt::Key_3));
     ui->btnAddress->setShortcut(QKeySequence(SHORT_KEY + Qt::Key_4));
-    ui->btnMaster->setShortcut(QKeySequence(SHORT_KEY + Qt::Key_5));
-    ui->btnColdStaking->setShortcut(QKeySequence(SHORT_KEY + Qt::Key_6));
-    ui->btnSettings->setShortcut(QKeySequence(SHORT_KEY + Qt::Key_7));
+    ui->btnMaster->setShortcut(QKeySequence(SHORT_KEY + Qt::Key_6));
+    ui->btnColdStaking->setShortcut(QKeySequence(SHORT_KEY + Qt::Key_7));
+    ui->btnSettings->setShortcut(QKeySequence(SHORT_KEY + Qt::Key_8));
 }
 
 void NavMenuWidget::onSendClicked(){

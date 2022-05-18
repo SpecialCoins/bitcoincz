@@ -101,7 +101,7 @@
                <string notr="true">QLabel { font-style:italic; }</string>
               </property>
               <property name="text">
-               <string>Welcome to BCZ Core.</string>
+               <string>Welcome to BCZ Core - &quot;Because we can!&quot;</string>
               </property>
               <property name="alignment">
                <set>Qt::AlignCenter</set>

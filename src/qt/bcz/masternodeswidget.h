@@ -1,20 +1,18 @@
-// Copyright (c) 2019-2020 The BCZ developers
+// Copyright (c) 2020 The BCZ developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #ifndef MASTERNODESWIDGET_H
 #define MASTERNODESWIDGET_H
 
+#include <QWidget>
 #include "qt/bcz/pwidget.h"
 #include "qt/bcz/furabstractlistitemdelegate.h"
 #include "qt/bcz/mnmodel.h"
 #include "qt/bcz/tooltipmenu.h"
 #include "walletmodel.h"
-
-#include <atomic>
-
 #include <QTimer>
-#include <QWidget>
+#include <atomic>
 
 class BCZGUI;
 

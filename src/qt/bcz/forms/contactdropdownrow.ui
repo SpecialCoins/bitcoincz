@@ -67,7 +67,7 @@
            <string notr="true"/>
           </property>
           <property name="text">
-           <string notr="true">Bob Allen</string>
+           <string>Bob Allen</string>
           </property>
          </widget>
         </item>
@@ -77,7 +77,7 @@
            <string notr="true"/>
           </property>
           <property name="text">
-           <string notr="true">DN6i46dytMPVhV1JMGZFuQBh7BZZ6nNLox</string>
+           <string>DN6i46dytMPVhV1JMGZFuQBh7BZZ6nNLox</string>
           </property>
          </widget>
         </item>
@@ -101,7 +101,7 @@
       </size>
      </property>
      <property name="styleSheet">
-      <string notr="true">background-color:#bababa;</string>
+      <string notr="true">background-color:#908c96;</string>
      </property>
      <property name="text">
       <string/>

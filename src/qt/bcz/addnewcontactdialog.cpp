@@ -1,4 +1,4 @@
-// Copyright (c) 2019 The BCZ developers
+// Copyright (c) 2020 The BCZ developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -7,33 +7,37 @@
 #include "qt/bcz/qtutils.h"
 
 AddNewContactDialog::AddNewContactDialog(QWidget *parent) :
-    FocusedDialog(parent),
+    QDialog(parent),
     ui(new Ui::AddNewContactDialog)
 {
     ui->setupUi(this);
 
     // Stylesheet
     this->setStyleSheet(parent->styleSheet());
-    ui->frame->setProperty("cssClass", "container-dialog");
 
+    ui->frame->setProperty("cssClass", "container-dialog");
     // Title
+    ui->labelTitle->setText(tr("Edit Contact"));
     ui->labelTitle->setProperty("cssClass", "text-title-dialog");
 
-    // Description
+    ui->labelMessage->setText(tr("Set a label for the selected address"));
     ui->labelMessage->setProperty("cssClass", "text-main-grey");
 
     // Address
+    ui->lineEditName->setPlaceholderText(tr("Enter a name for the address (e.g Exchange)"));
     initCssEditLine(ui->lineEditName, true);
 
     // Buttons
     ui->btnEsc->setText("");
     ui->btnEsc->setProperty("cssClass", "ic-close");
+
     ui->btnCancel->setProperty("cssClass", "btn-dialog-cancel");
+    ui->btnOk->setText(tr("SAVE"));
     ui->btnOk->setProperty("cssClass", "btn-primary");
 
     connect(ui->btnEsc, &QPushButton::clicked, this, &AddNewContactDialog::close);
     connect(ui->btnCancel, &QPushButton::clicked, this, &AddNewContactDialog::close);
-    connect(ui->btnOk, &QPushButton::clicked, this, &AddNewContactDialog::accept);
+    connect(ui->btnOk, &QPushButton::clicked, this, &AddNewContactDialog::ok);;
 }
 
 void AddNewContactDialog::setTexts(QString title, const char* message) {
@@ -57,9 +61,9 @@ void AddNewContactDialog::showEvent(QShowEvent *event)
     if (ui->lineEditName) ui->lineEditName->setFocus();
 }
 
-void AddNewContactDialog::accept() {
+void AddNewContactDialog::ok() {
     this->res = true;
-    QDialog::accept();
+    accept();
 }
 
 QString AddNewContactDialog::getLabel(){

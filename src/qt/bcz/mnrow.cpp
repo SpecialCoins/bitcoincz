@@ -1,4 +1,4 @@
-// Copyright (c) 2019-2020 The BCZ developers
+// Copyright (c) 2020 The BCZ developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -14,15 +14,20 @@ MNRow::MNRow(QWidget *parent) :
     setCssProperty(ui->labelAddress, "text-list-body2");
     setCssProperty(ui->labelName, "text-list-title1");
     setCssProperty(ui->labelDate, "text-list-caption-medium");
-    ui->lblDivisory->setStyleSheet("background-color:#bababa;");
+    ui->lblDivisory->setStyleSheet("background-color:#908c96;");
 }
 
 void MNRow::updateView(QString address, QString label, QString status, bool wasCollateralAccepted)
 {
     ui->labelName->setText(label);
     ui->labelAddress->setText(address);
-    if (!wasCollateralAccepted) status = tr("Collateral tx not found");
-    ui->labelDate->setText(tr("Status: %1").arg(status));
+    ui->labelDate->setText("Status: " + status);
+    if (!wasCollateralAccepted)
+    {
+        ui->labelDate->setText("Status: Collateral tx not found");
+    } else {
+        ui->labelDate->setText("Status: " + status);
+    }
 }
 
 MNRow::~MNRow()

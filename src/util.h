@@ -1,7 +1,7 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2014 The Bitcoin developers
 // Copyright (c) 2014-2015 The Dash developers
-// Copyright (c) 2015-2020 The BCZ developers
+// Copyright (c) 2020 The BCZ developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -16,7 +16,6 @@
 #include "config/bcz-config.h"
 #endif
 
-#include "fs.h"
 #include "logging.h"
 #include "compat.h"
 #include "tinyformat.h"
@@ -30,12 +29,10 @@
 #include <string>
 #include <vector>
 
+#include <boost/filesystem/path.hpp>
 #include <boost/thread/exceptions.hpp>
 #include <boost/thread/condition_variable.hpp> // for boost::thread_interrupted
 
-extern const char * const BCZ_CONF_FILENAME;
-extern const char * const BCZ_PID_FILENAME;
-extern const char * const BCZ_MASTERNODE_CONF_FILENAME;
 extern const char * const DEFAULT_DEBUGLOGFILE;
 
 //BCZ only features
@@ -48,12 +45,9 @@ extern std::string strMasterNodeAddr;
 extern int keysLoaded;
 extern bool fSucessfullyLoaded;
 extern bool fStake_BCZ;
-
 extern std::map<std::string, std::string> mapArgs;
 extern std::map<std::string, std::vector<std::string> > mapMultiArgs;
-
 extern std::string strMiscWarning;
-
 
 void SetupEnvironment();
 bool SetupNetworking();
@@ -73,23 +67,22 @@ void FileCommit(FILE* fileout);
 bool TruncateFile(FILE* file, unsigned int length);
 int RaiseFileDescriptorLimit(int nMinFD);
 void AllocateFileRange(FILE* file, unsigned int offset, unsigned int length);
-bool RenameOver(fs::path src, fs::path dest);
-bool TryCreateDirectory(const fs::path& p);
-fs::path GetDefaultDataDir();
-const fs::path &GetDataDir(bool fNetSpecific = true);
+bool RenameOver(boost::filesystem::path src, boost::filesystem::path dest);
+bool TryCreateDirectory(const boost::filesystem::path& p);
+boost::filesystem::path GetDefaultDataDir();
+const boost::filesystem::path &GetDataDir(bool fNetSpecific = true);
 void ClearDatadirCache();
-fs::path GetConfigFile();
-fs::path GetMasternodeConfigFile();
+boost::filesystem::path GetConfigFile();
+boost::filesystem::path GetMasternodeConfigFile();
 #ifndef WIN32
-fs::path GetPidFile();
-void CreatePidFile(const fs::path& path, pid_t pid);
+boost::filesystem::path GetPidFile();
+void CreatePidFile(const boost::filesystem::path& path, pid_t pid);
 #endif
 void ReadConfigFile(std::map<std::string, std::string>& mapSettingsRet, std::map<std::string, std::vector<std::string> >& mapMultiSettingsRet);
 #ifdef WIN32
-fs::path GetSpecialFolderPath(int nFolder, bool fCreate = true);
+boost::filesystem::path GetSpecialFolderPath(int nFolder, bool fCreate = true);
 #endif
-fs::path GetTempPath();
-
+boost::filesystem::path GetTempPath();
 void runCommand(std::string strCommand);
 
 inline bool IsSwitchChar(char c)
@@ -163,12 +156,6 @@ std::string HelpMessageGroup(const std::string& message);
  */
 std::string HelpMessageOpt(const std::string& option, const std::string& message);
 
-/**
- * Return the number of cores available on the current system.
- * @note This does count virtual cores, such as those provided by HyperThreading.
- */
-int GetNumCores();
-
 void SetThreadPriority(int nPriority);
 
 /**
@@ -195,6 +182,6 @@ void TraceThread(const char* name, Callable func)
     }
 }
 
-fs::path AbsPathForConfigVal(const fs::path& path, bool net_specific = true);
+boost::filesystem::path AbsPathForConfigVal(const boost::filesystem::path& path, bool net_specific = true);
 
 #endif // BITCOIN_UTIL_H

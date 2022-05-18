@@ -1,12 +1,12 @@
-// Copyright (c) 2019-2020 The BCZ developers
+// Copyright (c) 2020 The BCZ developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #ifndef SENDCUSTOMFEEDIALOG_H
 #define SENDCUSTOMFEEDIALOG_H
 
+#include <QDialog>
 #include "amount.h"
-#include "qt/bcz/focuseddialog.h"
 #include "qt/bcz/snackbar.h"
 
 class BCZGUI;
@@ -16,7 +16,7 @@ namespace Ui {
 class SendCustomFeeDialog;
 }
 
-class SendCustomFeeDialog : public FocusedDialog
+class SendCustomFeeDialog : public QDialog
 {
     Q_OBJECT
 

@@ -1,6 +1,6 @@
 // Copyright (c) 2010 Satoshi Nakamoto
 // Copyright (c) 2009-2014 The Bitcoin developers
-// Copyright (c) 2016-2020 The BCZ developers
+// Copyright (c) 2020 The BCZ developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -36,8 +36,8 @@ public:
     CBaseTestNetParams()
     {
         networkID = CBaseChainParams::TESTNET;
-        nRPCPort = 29501;
-        strDataDir = "testnet4";
+        nRPCPort = 29600;
+        strDataDir = "testnet";
     }
 };
 static CBaseTestNetParams testNetParams;
@@ -64,24 +64,22 @@ const CBaseChainParams& BaseParams()
     return *pCurrentBaseParams;
 }
 
-CBaseChainParams& BaseParams(CBaseChainParams::Network network)
+void SelectBaseParams(CBaseChainParams::Network network)
 {
     switch (network) {
     case CBaseChainParams::MAIN:
-        return mainParams;
+        pCurrentBaseParams = &mainParams;
+        break;
     case CBaseChainParams::TESTNET:
-        return testNetParams;
+        pCurrentBaseParams = &testNetParams;
+        break;
     case CBaseChainParams::REGTEST:
-        return regTestParams;
+        pCurrentBaseParams = &regTestParams;
+        break;
     default:
         assert(false && "Unimplemented network");
-        return mainParams;
+        return;
     }
-}
-
-void SelectBaseParams(CBaseChainParams::Network network)
-{
-    pCurrentBaseParams = &BaseParams(network);
 }
 
 CBaseChainParams::Network NetworkIdFromCommandLine()

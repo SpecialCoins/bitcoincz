@@ -1,11 +1,11 @@
-// Copyright (c) 2019 The BCZ developers
+// Copyright (c) 2020 The BCZ developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #ifndef MNINFODIALOG_H
 #define MNINFODIALOG_H
 
-#include "qt/bcz/focuseddialog.h"
+#include <QDialog>
 #include "qt/bcz/snackbar.h"
 
 class WalletModel;
@@ -14,7 +14,7 @@ namespace Ui {
 class MnInfoDialog;
 }
 
-class MnInfoDialog : public FocusedDialog
+class MnInfoDialog : public QDialog
 {
     Q_OBJECT
 
@@ -27,7 +27,7 @@ public:
     void setData(QString privKey, QString name, QString address, QString txId, QString outputIndex, QString status);
 
 public Q_SLOTS:
-    void reject() override;
+    void closeDialog();
 
 private:
     Ui::MnInfoDialog *ui;

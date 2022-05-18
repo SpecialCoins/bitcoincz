@@ -1,4 +1,4 @@
-// Copyright (c) 2019-2020 The BCZ developers
+// Copyright (c) 2020 The BCZ developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -71,7 +71,7 @@ class QtRPCTimerBase: public QObject, public RPCTimerBase
 {
     Q_OBJECT
 public:
-    QtRPCTimerBase(std::function<void(void)>& _func, int64_t millis):
+    QtRPCTimerBase(boost::function<void(void)>& _func, int64_t millis):
             func(_func)
     {
         timer.setSingleShot(true);
@@ -90,7 +90,7 @@ class QtRPCTimerInterface: public RPCTimerInterface
 public:
     ~QtRPCTimerInterface() {}
     const char *Name() { return "Qt"; }
-    RPCTimerBase* NewTimer(std::function<void(void)>& func, int64_t millis)
+    RPCTimerBase* NewTimer(boost::function<void(void)>& func, int64_t millis)
     {
         return new QtRPCTimerBase(func, millis);
     }
@@ -209,10 +209,9 @@ void RPCExecutor::requestCommand(const QString& command)
         std::string strPrint;
         // Convert argument list to JSON objects in method-dependent way,
         // and pass it along with the method name to the dispatcher.
-        JSONRPCRequest req;
-        req.params = RPCConvertValues(args[0], std::vector<std::string>(args.begin() + 1, args.end()));
-        req.strMethod = args[0];
-        UniValue result = tableRPC.execute(req);
+        UniValue result = tableRPC.execute(
+                args[0],
+                RPCConvertValues(args[0], std::vector<std::string>(args.begin() + 1, args.end())));
 
         // Format result reply
         if (result.isNull())
@@ -249,10 +248,9 @@ SettingsConsoleWidget::SettingsConsoleWidget(BCZGUI* _window, QWidget *parent) :
     // Containers
     setCssProperty({ui->left, ui->messagesWidget}, "container");
     ui->left->setContentsMargins(10,10,10,10);
-    ui->messagesWidget->setReadOnly(true);
-    ui->messagesWidget->setTextInteractionFlags(Qt::TextInteractionFlag::TextSelectableByMouse);
 
     // Title
+    ui->labelTitle->setText(tr("Console"));
     setCssTitleScreen(ui->labelTitle);
 
     // Console container
@@ -265,14 +263,17 @@ SettingsConsoleWidget::SettingsConsoleWidget(BCZGUI* _window, QWidget *parent) :
 
     // Buttons
     ui->pushButton->setProperty("cssClass", "ic-arrow");
+    ui->pushButtonCommandOptions->setText(tr("Command Line Options "));
+    ui->pushButtonOpenDebug->setText(tr("Open Debug File"));
     setCssBtnSecondary(ui->pushButtonOpenDebug);
     setCssBtnSecondary(ui->pushButtonClear);
     setCssBtnSecondary(ui->pushButtonCommandOptions);
 
     setShadow(ui->pushButtonClear);
+    ui->pushButtonClear->setToolTip(tr("Clear history"));
     connect(ui->pushButtonClear, &QPushButton::clicked, [this]{ clear(false); });
     connect(ui->pushButtonOpenDebug, &QPushButton::clicked, [this](){
-        if (!GUIUtil::openDebugLogfile()) {
+        if(!GUIUtil::openDebugLogfile()){
             inform(tr("Cannot open debug file.\nVerify that you have installed a predetermined text editor."));
         }
     });
@@ -332,7 +333,7 @@ bool SettingsConsoleWidget::eventFilter(QObject* obj, QEvent* event)
             case Qt::Key_Return:
             case Qt::Key_Enter:
                 // forward these events to lineEdit
-                if (obj == autoCompleter->popup()) {
+                if(obj == autoCompleter->popup()) {
                     QApplication::postEvent(ui->lineEdit, new QKeyEvent(*keyevt));
                     return true;
                 }
@@ -347,15 +348,12 @@ bool SettingsConsoleWidget::eventFilter(QObject* obj, QEvent* event)
                     QApplication::postEvent(ui->lineEdit, new QKeyEvent(*keyevt));
                     return true;
                 }
-                if (mod == Qt::ControlModifier && key == Qt::Key_L)
-                    clear(false);
         }
     }
     return QWidget::eventFilter(obj, event);
 }
 
-void SettingsConsoleWidget::loadClientModel()
-{
+void SettingsConsoleWidget::loadClientModel() {
     if (clientModel){
 
         //Setup autocomplete and attach it
@@ -393,8 +391,7 @@ static QString categoryClass(int category)
     }
 }
 
-void SettingsConsoleWidget::clear(bool clearHistory)
-{
+void SettingsConsoleWidget::clear(bool clearHistory){
     ui->messagesWidget->clear();
     if (clearHistory) {
         history.clear();
@@ -518,13 +515,13 @@ void SettingsConsoleWidget::changeTheme(bool isLightTheme, QString &theme)
     // Set default style sheet
     if (isLightTheme) {
         ui->messagesWidget->document()->setDefaultStyleSheet(
-                "table { color: #707070;  }"
+                "table { color: #908c96;  }"
                 "td.time { color: #808080; padding-top: 3px; } "
-                "td.message { color: #707070;font-family: Courier, Courier New, Lucida Console, monospace; font-size: 12px; } " // Todo: Remove fixed font-size
+                "td.message { color: #908c96;font-family: Courier, Courier New, Lucida Console, monospace; font-size: 12px; } " // Todo: Remove fixed font-size
                 "td.cmd-request { color: #006060; } "
                 "td.cmd-error { color: red; } "
                 ".secwarning { color: red; }"
-                "b { color: #707070; } ");
+                "b { color: #908c96; } ");
     } else {
         ui->messagesWidget->document()->setDefaultStyleSheet(
                 "table { color: #FFFFFF; }"
@@ -538,8 +535,7 @@ void SettingsConsoleWidget::changeTheme(bool isLightTheme, QString &theme)
     updateStyle(ui->messagesWidget);
 }
 
-void SettingsConsoleWidget::onCommandsClicked()
-{
+void SettingsConsoleWidget::onCommandsClicked() {
     if (!clientModel)
         return;
 

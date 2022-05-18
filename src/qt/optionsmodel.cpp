@@ -1,6 +1,6 @@
 // Copyright (c) 2011-2014 The Bitcoin developers
 // Copyright (c) 2014-2015 The Dash developers
-// Copyright (c) 2015-2020 The BCZ developers
+// Copyright (c) 2020 The BCZ developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -17,7 +17,6 @@
 #include "init.h"
 #include "main.h"
 #include "net.h"
-#include "netbase.h"
 #include "txdb.h" // for -dbcache defaults
 #include "util.h"
 
@@ -48,7 +47,6 @@ void OptionsModel::Init()
 
     // Ensure restart flag is unset on client startup
     setRestartRequired(false);
-    setSSTChanged(false);
 
     // These are Qt-only settings:
 
@@ -191,10 +189,6 @@ void OptionsModel::setDisplayDefaultOptions(QSettings& settings, bool reset)
         settings.setValue("language", "");
     if (!SoftSetArg("-lang", settings.value("language").toString().toStdString()))
         addOverriddenOption("-lang");
-
-    if (settings.contains("nAnonymizeBCZAmount") || reset)
-        SoftSetArg("-anonymizebczamount", settings.value("nAnonymizeBCZAmount").toString().toStdString());
-
     if (!settings.contains("strThirdPartyTxUrls") || reset)
         settings.setValue("strThirdPartyTxUrls", "");
     strThirdPartyTxUrls = settings.value("strThirdPartyTxUrls", "").toString();
@@ -271,7 +265,7 @@ QVariant OptionsModel::data(const QModelIndex& index, int role) const
         case fUseCustomFee:
             return QVariant((pwalletMain) ? pwalletMain->fUseCustomFee : false);
         case nCustomFee:
-            return QVariant(static_cast<qlonglong>((pwalletMain) ? pwalletMain->nCustomFee : CWallet::GetRequiredFee(1000)));
+            return QVariant(static_cast<qlonglong>((pwalletMain) ? pwalletMain->nCustomFee : CWallet::minTxFee.GetFeePerK()));
 #endif
         case DisplayUnit:
             return nDisplayUnit;
@@ -381,7 +375,6 @@ bool OptionsModel::setData(const QModelIndex& index, const QVariant& value, int 
         case StakeSplitThreshold:
             // Write double as qlonglong/CAmount
             setStakeSplitThreshold(static_cast<CAmount>(value.toDouble() * COIN));
-            setSSTChanged(true);
             break;
         case DisplayUnit:
             setDisplayUnit(value);
@@ -488,23 +481,6 @@ void OptionsModel::setStakeSplitThreshold(const CAmount nStakeSplitThreshold)
     }
 }
 
-/* returns default minimum value for stake split threshold as doulbe */
-double OptionsModel::getSSTMinimum() const
-{
-    return static_cast<double>(CWallet::minStakeSplitThreshold / COIN);
-}
-
-/* Verify that StakeSplitThreshold's value is either 0 or above the min. Else reset */
-bool OptionsModel::isSSTValid()
-{
-    if (pwalletMain && pwalletMain->nStakeSplitThreshold &&
-            pwalletMain->nStakeSplitThreshold < CWallet::minStakeSplitThreshold) {
-        setStakeSplitThreshold(CWallet::minStakeSplitThreshold);
-        return false;
-    }
-    return true;
-}
-
 /* Update Custom Fee value in wallet */
 void OptionsModel::setUseCustomFee(bool fUse)
 {
@@ -561,14 +537,3 @@ bool OptionsModel::isRestartRequired()
     return settings.value("fRestartRequired", false).toBool();
 }
 
-void OptionsModel::setSSTChanged(bool fChanged)
-{
-    QSettings settings;
-    return settings.setValue("fSSTChanged", fChanged);
-}
-
-bool OptionsModel::isSSTChanged()
-{
-    QSettings settings;
-    return settings.value("fSSTChanged", false).toBool();
-}

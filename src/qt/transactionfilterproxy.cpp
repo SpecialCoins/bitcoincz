@@ -1,5 +1,5 @@
 // Copyright (c) 2011-2013 The Bitcoin developers
-// Copyright (c) 2017-2020 The BCZ developers
+// Copyright (c) 2020 The BCZ developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -60,6 +60,7 @@ bool TransactionFilterProxy::filterAcceptsRow(int sourceRow, const QModelIndex& 
     }
     if (amount < minAmount)
         return false;
+
     if (fOnlyStakes && !isStakeTx(type))
         return false;
 
@@ -153,9 +154,3 @@ bool TransactionFilterProxy::isStakeTx(int type) const {
 bool TransactionFilterProxy::isColdStake(int type) const {
     return type == TransactionRecord::P2CSDelegation || type == TransactionRecord::P2CSDelegationSent || type == TransactionRecord::P2CSDelegationSentOwner || type == TransactionRecord::StakeDelegated || type == TransactionRecord::StakeHot;
 }
-
-/*QVariant TransactionFilterProxy::dataFromSourcePos(int sourceRow, int role) const {
-    QModelIndex index = sourceModel()->index(sourceRow, 0, sourceParent);
-    return index.data(index, role);
-}
- */

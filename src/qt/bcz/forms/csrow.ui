@@ -78,9 +78,6 @@
           <layout class="QHBoxLayout" name="horizontalLayout">
            <item>
             <widget class="QLabel" name="labelName">
-             <property name="toolTip">
-              <string notr="true"/>
-             </property>
              <property name="text">
               <string>Savings</string>
              </property>
@@ -112,9 +109,6 @@
           <layout class="QHBoxLayout" name="horizontalLayout_2">
            <item>
             <widget class="QLabel" name="labelAddress">
-             <property name="toolTip">
-              <string notr="true"/>
-             </property>
              <property name="text">
               <string>address</string>
              </property>
@@ -198,7 +192,7 @@
       </size>
      </property>
      <property name="styleSheet">
-      <string notr="true">background-color:#bababa;</string>
+      <string notr="true">background-color:#908c96;</string>
      </property>
      <property name="text">
       <string/>

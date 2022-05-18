@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>769</width>
-    <height>526</height>
+    <height>496</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,7 +17,7 @@
    <item>
     <widget class="QTabWidget" name="tabWidget">
      <property name="currentIndex">
-      <number>0</number>
+      <number>3</number>
      </property>
      <widget class="QWidget" name="tab_info">
       <attribute name="title">
@@ -425,7 +425,7 @@
             <string/>
            </property>
            <property name="icon">
-            <iconset>
+            <iconset resource="../bcz.qrc">
              <normaloff>:/icons/remove</normaloff>:/icons/remove</iconset>
            </property>
            <property name="shortcut">
@@ -1328,7 +1328,7 @@
         </widget>
        </item>
        <item row="4" column="0">
-        <widget class="QLabel" name="wallet_customzbczbackuppath_label">
+        <widget class="QLabel" name="wallet_custombackuppath_label">
          <property name="visible">
           <bool>false</bool>
          </property>
@@ -1338,7 +1338,7 @@
         </widget>
        </item>
        <item row="4" column="1" colspan="3">
-        <widget class="QLabel" name="wallet_customzbczbackuppath">
+        <widget class="QLabel" name="wallet_customzpivbackuppath">
          <property name="cursor">
           <cursorShape>IBeamCursor</cursorShape>
          </property>
@@ -1638,6 +1638,8 @@
    </slots>
   </customwidget>
  </customwidgets>
- <resources/>
+ <resources>
+  <include location="../bcz.qrc"/>
+ </resources>
  <connections/>
 </ui>

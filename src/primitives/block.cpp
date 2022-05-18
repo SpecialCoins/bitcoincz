@@ -1,6 +1,6 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2014 The Bitcoin developers
-// Copyright (c) 2015-2019 The BCZ developers
+// Copyright (c) 2020 The BCZ developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -16,15 +16,16 @@
 
 uint256 CBlockHeader::GetHash() const
 {
-    if (nVersion == 4)
+
+    if ((nVersion == 2) || (nVersion == 5))
+    {
+        return SerializeHash(*this);
+    }
+    else if (nVersion == 4)
     {
         uint256 powHash;
         LYRA2(BEGIN(powHash), 32, BEGIN(nVersion), 80, BEGIN(nVersion), 80, 2, 4, 256);
         return powHash;
-    }
-    else
-    {
-        return SerializeHash(*this);
     }
 }
 

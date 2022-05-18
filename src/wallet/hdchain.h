@@ -1,7 +1,5 @@
-// Copyright (c) 2020 The BCZ developers
+// Copyright (c) 2020 The BCZ Core developers
 // Distributed under the MIT software license, see the accompanying
-// file COPYING or http://www.opensource.org/licenses/mit-license.php.
-
 #ifndef BCZ_HDCHAIN_H
 #define BCZ_HDCHAIN_H
 
@@ -33,9 +31,9 @@ public:
 
     ADD_SERIALIZE_METHODS;
     template <typename Stream, typename Operation>
-    inline void SerializationOp(Stream& s, Operation ser_action)
+    inline void SerializationOp(Stream& s, Operation ser_action, int nType, int nVersion)
     {
-        READWRITE(nVersion);
+        READWRITE(this->nVersion);
         READWRITE(seed_id);
         // Single account counters.
         READWRITE(nExternalChainCounter);
