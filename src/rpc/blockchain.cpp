@@ -122,17 +122,12 @@ UniValue blockToJSON(const CBlock& block, const CBlockIndex* blockindex, bool tx
     result.push_back(Pair("bits", strprintf("%08x", block.nBits)));
     result.push_back(Pair("difficulty", GetDifficulty(blockindex)));
     result.push_back(Pair("chainwork", blockindex->nChainWork.GetHex()));
-
     if (blockindex->pprev)
         result.push_back(Pair("previousblockhash", blockindex->pprev->GetBlockHash().GetHex()));
     CBlockIndex* pnext = chainActive.Next(blockindex);
     if (pnext)
         result.push_back(Pair("nextblockhash", pnext->GetBlockHash().GetHex()));
-
-    result.push_back(Pair("modifier", strprintf("%016x", blockindex->nStakeModifier)));
     result.push_back(Pair("modifierV2", blockindex->nStakeModifierV2.GetHex()));
-
-    result.push_back(Pair("moneysupply",ValueFromAmount(blockindex->nMoneySupply)));
 
     //////////
     ////////// Coin stake data ////////////////
@@ -149,10 +144,7 @@ UniValue blockToJSON(const CBlock& block, const CBlockIndex* blockindex, bool tx
         // todo: Add the debug as param..
         if (!GetHashProofOfStake(blockindex->pprev, stake.get(), nTxTime, false, hashProofOfStakeRet))
             throw JSONRPCError(RPC_INTERNAL_ERROR, "Cannot get proof of stake hash");
-        std::string stakeModifier = (Params().IsStakeModifierV2(blockindex->nHeight) ?
-                                     blockindex->nStakeModifierV2.GetHex() :
-                                     strprintf("%016x", blockindex->nStakeModifier));
-        result.push_back(Pair("stakeModifier", stakeModifier));
+         result.push_back(Pair("stakeModifier", blockindex->nStakeModifierV2.GetHex()));
         result.push_back(Pair("hashProofOfStake", hashProofOfStakeRet.GetHex()));
     }
 

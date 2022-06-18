@@ -2059,10 +2059,7 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
         pos.nTxOffset += ::GetSerializeSize(tx, SER_DISK, CLIENT_VERSION);
     }
 
-    // track money supply and mint amount info
-    CAmount nMoneySupplyPrev = pindex->pprev ? pindex->pprev->nMoneySupply : 0;
-    pindex->nMoneySupply = nMoneySupplyPrev + nValueOut - nValueIn;
-    const int64_t nMint = pindex->nMoneySupply - nMoneySupplyPrev + nFees;
+    const int64_t xnMint = (nValueOut - nValueIn) + nFees;
 
     int64_t nTime1 = GetTimeMicros();
     nTimeConnect += nTime1 - nTimeStart;
@@ -2071,10 +2068,10 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
     CAmount nExpectedMint = GetBlockValue(pindex->nHeight) + nFees + (0.00000001 * COIN);
 
     //Check that the block does not overmint
-    if ((!IsBlockValueValid(block, nExpectedMint, nMint)) && pindex->pprev->nHeight + 1 > (UTXOF))
+    if ((!IsBlockValueValid(block, nExpectedMint, xnMint)) && pindex->pprev->nHeight + 1 > (UTXOF))
     {
         return state.DoS(100, error("ConnectBlock() : reward pays too much (actual=%s vs limit=%s)",
-                                    FormatMoney(nMint), FormatMoney(nExpectedMint)),
+                                    FormatMoney(xnMint), FormatMoney(nExpectedMint)),
                          REJECT_INVALID, "bad-cb-amount");
     }
 
@@ -2790,10 +2787,6 @@ CBlockIndex* AddToBlockIndex(const CBlock& block)
         // ppcoin: compute chain trust score
         pindexNew->bnChainTrust = (pindexNew->pprev ? pindexNew->pprev->bnChainTrust : 0) + pindexNew->GetBlockTrust();
 
-        // ppcoin: compute stake entropy bit for stake modifier
-        if (!pindexNew->SetStakeEntropyBit(pindexNew->GetStakeEntropyBit()))
-            LogPrintf("AddToBlockIndex() : SetStakeEntropyBit() failed \n");
-
         // ppcoin: record proof-of-stake hash value
         if (pindexNew->IsProofOfStake()) {
             if (!mapProofOfStake.count(hash))
@@ -2801,16 +2794,7 @@ CBlockIndex* AddToBlockIndex(const CBlock& block)
             pindexNew->hashProofOfStake = mapProofOfStake[hash];
         }
 
-        if (!Params().IsStakeModifierV2(pindexNew->nHeight)) {
-            uint64_t nStakeModifier = 0;
-            bool fGeneratedStakeModifier = false;
-            if (!ComputeNextStakeModifier(pindexNew->pprev, nStakeModifier, fGeneratedStakeModifier))
-                LogPrintf("AddToBlockIndex() : ComputeNextStakeModifier() failed \n");
-            pindexNew->SetStakeModifier(nStakeModifier, fGeneratedStakeModifier);
-            pindexNew->nStakeModifierChecksum = GetStakeModifierChecksum(pindexNew);
-            if (!CheckStakeModifierCheckpoints(pindexNew->nHeight, pindexNew->nStakeModifierChecksum))
-                LogPrintf("AddToBlockIndex() : Rejected by stake modifier checkpoint height=%d, modifier=%s \n", pindexNew->nHeight, std::to_string(nStakeModifier));
-        } else {
+        {
             // compute v2 stake modifier
             pindexNew->nStakeModifierV2 = ComputeStakeModifier(pindexNew->pprev, block.vtx[1].vin[0].prevout.hash);
         }

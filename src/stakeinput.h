@@ -20,20 +20,12 @@ protected:
 
 public:
     virtual ~CStakeInput(){};
-    virtual bool InitFromTxIn(const CTxIn& txin) = 0;
     virtual CBlockIndex* GetIndexFrom() = 0;
     virtual bool CreateTxIn(CWallet* pwallet, CTxIn& txIn, uint256 hashTxOut = UINT256_ZERO) = 0;
-    virtual bool GetTxFrom(CTransaction& tx) const = 0;
     virtual bool GetTxOutFrom(CTxOut& out) const = 0;
     virtual CAmount GetValue() const = 0;
     virtual bool CreateTxOuts(CWallet* pwallet, std::vector<CTxOut>& vout, CAmount nTotal) = 0;
-    virtual bool GetModifier(uint64_t& nStakeModifier) = 0;
     virtual CDataStream GetUniqueness() const = 0;
-    virtual uint256 GetSerialHash() const = 0;
-    virtual uint64_t getStakeModifierHeight() const {
-        return 0;
-    }
-    virtual bool ContextCheck(int nHeight, uint32_t nTime) = 0;
 };
 
 
@@ -43,26 +35,16 @@ private:
     CTransaction txFrom{CTransaction()};
     unsigned int nPosition{0};
 
-    // cached data
-    uint64_t nStakeModifier = 0;
-    int nStakeModifierHeight = 0;
-    int64_t nStakeModifierTime = 0;
 public:
     CBczStake() {}
 
-    bool InitFromTxIn(const CTxIn& txin) override;
     bool SetPrevout(CTransaction txPrev, unsigned int n);
     CBlockIndex* GetIndexFrom() override;
-    bool GetTxFrom(CTransaction& tx) const override;
     bool GetTxOutFrom(CTxOut& out) const override;
     CAmount GetValue() const override;
-    bool GetModifier(uint64_t& nStakeModifier) override;
     CDataStream GetUniqueness() const override;
     bool CreateTxIn(CWallet* pwallet, CTxIn& txIn, uint256 hashTxOut = UINT256_ZERO) override;
     bool CreateTxOuts(CWallet* pwallet, std::vector<CTxOut>& vout, CAmount nTotal) override;
-    uint256 GetSerialHash() const override { return uint256(0); }
-    uint64_t getStakeModifierHeight() const override { return nStakeModifierHeight; }
-    bool ContextCheck(int nHeight, uint32_t nTime) override;
 };
 
 

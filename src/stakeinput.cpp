@@ -7,41 +7,10 @@
 #include "stakeinput.h"
 #include "wallet/wallet.h"
 
-//Normal Stake
-
-bool CBczStake::InitFromTxIn(const CTxIn& txin)
-{
-
-    // Find the previous transaction in database
-    uint256 hashBlock;
-    CTransaction txPrev;
-    if (!GetTransaction(txin.prevout.hash, txPrev, hashBlock, true))
-        return error("%s : INFO: read txPrev failed, tx id prev: %s", __func__, txin.prevout.hash.GetHex());
-    SetPrevout(txPrev, txin.prevout.n);
-
-    // Find the index of the block of the previous transaction
-    if (mapBlockIndex.count(hashBlock)) {
-        CBlockIndex* pindex = mapBlockIndex.at(hashBlock);
-        if (chainActive.Contains(pindex)) pindexFrom = pindex;
-    }
-    // Check that the input is in the active chain
-    if (!pindexFrom)
-        return error("%s : Failed to find the block index for stake origin", __func__);
-
-    // All good
-    return true;
-}
-
 bool CBczStake::SetPrevout(CTransaction txPrev, unsigned int n)
 {
     this->txFrom = txPrev;
     this->nPosition = n;
-    return true;
-}
-
-bool CBczStake::GetTxFrom(CTransaction& tx) const
-{
-    tx = txFrom;
     return true;
 }
 
@@ -52,7 +21,6 @@ bool CBczStake::GetTxOutFrom(CTxOut& out) const
     out = txFrom.vout[nPosition];
     return true;
 }
-
 bool CBczStake::CreateTxIn(CWallet* pwallet, CTxIn& txIn, uint256 hashTxOut)
 {
     txIn = CTxIn(txFrom.GetHash(), nPosition);
@@ -113,22 +81,6 @@ bool CBczStake::CreateTxOuts(CWallet* pwallet, std::vector<CTxOut>& vout, CAmoun
     return true;
 }
 
-
-bool CBczStake::GetModifier(uint64_t& nStakeModifier)
-{
-    if (this->nStakeModifier == 0) {
-        // look for the modifier
-        GetIndexFrom();
-        if (!pindexFrom)
-            return error("%s: failed to get index from", __func__);
-        // TODO: This method must be removed from here in the short terms.. it's a call to an static method in kernel.cpp when this class method is only called from kernel.cpp, no comments..
-        if (!GetKernelStakeModifier(pindexFrom->GetBlockHash(), this->nStakeModifier, this->nStakeModifierHeight, this->nStakeModifierTime, false))
-            return false;
-    }
-    nStakeModifier = this->nStakeModifier;
-    return true;
-}
-
 CDataStream CBczStake::GetUniqueness() const
 {
     //The unique identifier for a BCZ stake is the outpoint
@@ -156,22 +108,4 @@ CBlockIndex* CBczStake::GetIndexFrom()
     }
 
     return pindexFrom;
-}
-
-// Verify stake contextual checks
-bool CBczStake::ContextCheck(int nHeight, uint32_t nTime)
-{
-    // Get Stake input block time/height
-    CBlockIndex* pindexFrom = GetIndexFrom();
-    if (!pindexFrom)
-        return error("%s: unable to get previous index for stake input");
-    const int nHeightBlockFrom = pindexFrom->nHeight;
-    const uint32_t nTimeBlockFrom = pindexFrom->nTime;
-
-    // Check that the stake has the required depth/age
-    if (!Params().HasStakeMinAgeOrDepth(nHeight, nTime, nHeightBlockFrom, nTimeBlockFrom))
-        return error("%s : min age violation - height=%d - time=%d, nHeightBlockFrom=%d, nTimeBlockFrom=%d",
-                         __func__, nHeight, nTime, nHeightBlockFrom, nTimeBlockFrom);
-    // All good
-    return true;
 }
