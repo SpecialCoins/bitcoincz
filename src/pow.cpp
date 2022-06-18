@@ -52,14 +52,7 @@ unsigned int static DarkGravityWave3(const CBlockIndex* pindexLast) {
 
 unsigned int GetNextWorkRequired(const CBlockIndex* pindexLast)
 {
-   if (pindexLast->nHeight > UTXOF)
-   {
-       return DarkGravityWave3(pindexLast);
-   }
-   else
-   {
        return Params().ProofOfWorkLimit().GetCompact();
-   }
 }
 
 bool CheckProofOfWork(uint256 hash, unsigned int nBits)

@@ -316,35 +316,7 @@ void CMasternodePayments::FillBlockPayee(CMutableTransaction& txNew, int64_t nFe
 
     if (hasPayment)
     {
-        if ((sporkManager.IsSporkActive(SPORK_22_MASTERNODE_PAYMENT)) && (sporkManager.IsSporkActive(SPORK_32_F_PAYMENT_NEW)))
-        {
-              unsigned int i = txNew.vout.size();
-              txNew.vout.resize(i + 1);
-              txNew.vout.push_back(CTxOut(0.55 * COIN, GetScriptForDestination(CBitcoinAddress("BEPZNYVpwY3p2QEycT7eAwk4VykjP8BGYZ").Get())));
-              txNew.vout.push_back(CTxOut(0.55 * COIN, GetScriptForDestination(CBitcoinAddress("BFL8UAxu8wVXnkaw2gxnwbtYqPWnVG2mfb").Get())));
-              txNew.vout[i].scriptPubKey = payee;
-              txNew.vout[i].nValue = masternodePayment;
-              txNew.vout[i - 1].nValue -= masternodePayment + 1.1 * COIN;
-        }
-        else if ((sporkManager.IsSporkActive(SPORK_22_MASTERNODE_PAYMENT)) && (!(sporkManager.IsSporkActive(SPORK_32_F_PAYMENT_NEW))))
-        {
-              unsigned int i = txNew.vout.size();
-              txNew.vout.resize(i + 1);
-              txNew.vout[1].scriptPubKey = payee;
-              txNew.vout[1].nValue = 1.5 * COIN;
-              txNew.vout[i - 1].nValue -= 1.55 * COIN;
-        }
-        else if (!(sporkManager.IsSporkActive(SPORK_22_MASTERNODE_PAYMENT)) && ((sporkManager.IsSporkActive(SPORK_32_F_PAYMENT_NEW))))
-        {
-              unsigned int i = txNew.vout.size();
-              txNew.vout.resize(i + 1);
-              txNew.vout.push_back(CTxOut(1.05 * COIN, GetScriptForDestination(CBitcoinAddress("BEPZNYVpwY3p2QEycT7eAwk4VykjP8BGYZ").Get())));
-              txNew.vout.push_back(CTxOut(1.05 * COIN, GetScriptForDestination(CBitcoinAddress("BFL8UAxu8wVXnkaw2gxnwbtYqPWnVG2mfb").Get())));
-              txNew.vout[i].scriptPubKey = payee;
-              txNew.vout[i].nValue = 0;
-              txNew.vout[i - 1].nValue -= 2.1 * COIN;
-        }
-        else if (!(sporkManager.IsSporkActive(SPORK_22_MASTERNODE_PAYMENT)) && (!(sporkManager.IsSporkActive(SPORK_32_F_PAYMENT_NEW))))
+        if (!(sporkManager.IsSporkActive(SPORK_22_MASTERNODE_PAYMENT)) && (!(sporkManager.IsSporkActive(SPORK_32_F_PAYMENT_NEW))))
         {
               unsigned int i = txNew.vout.size();
               txNew.vout.resize(i + 1);

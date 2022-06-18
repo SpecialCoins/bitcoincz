@@ -23,14 +23,13 @@ class CBlockHeader
 {
 public:
     // header
-    static const int32_t CURRENT_VERSION=3;     //!> Version 5 removes nAccumulatorCheckpoint from serialization
+    static const int32_t CURRENT_VERSION=3;
     int32_t nVersion;
     uint256 hashPrevBlock;
     uint256 hashMerkleRoot;
     uint32_t nTime;
     uint32_t nBits;
     uint32_t nNonce;
-    uint256 nAccumulatorCheckpoint;             // only for version 4.
 
     CBlockHeader()
     {
@@ -48,8 +47,6 @@ public:
         READWRITE(nTime);
         READWRITE(nBits);
         READWRITE(nNonce);
-        if(nVersion > 3 && nVersion < 5)
-            READWRITE(nAccumulatorCheckpoint);
     }
 
     void SetNull()
@@ -60,7 +57,6 @@ public:
         nTime = 0;
         nBits = 0;
         nNonce = 0;
-        nAccumulatorCheckpoint.SetNull();
     }
 
     bool IsNull() const
@@ -129,7 +125,6 @@ public:
         block.nTime          = nTime;
         block.nBits          = nBits;
         block.nNonce         = nNonce;
-        block.nAccumulatorCheckpoint = nAccumulatorCheckpoint;
         return block;
     }
 

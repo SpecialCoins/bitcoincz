@@ -120,7 +120,7 @@ static void CheckBlockIndex();
 /** Constant stuff for coinbase transactions we create: */
 CScript COINBASE_FLAGS;
 
-const std::string strMessageMagic = "DarkNet Signed Message:\n";
+const std::string strMessageMagic = "BZX 2022 Signed Message:\n";
 
 // Internal stuff
 namespace
@@ -1490,25 +1490,12 @@ bool ReadBlockFromDisk(CBlock& block, const CBlockIndex* pindex)
 
 int64_t GetBlockValue(int nHeight)
 {
-    if (nHeight < UTXOF)
-        return 0 * COIN;
-
-    if (nHeight == 107068)
-        return 4.1 * COIN;
-
-    if (nHeight == 107147)
-        return 4.1 * COIN;
-
-    if (nHeight == 107198)
-        return 4.1 * COIN;
-
-    else
-        return 3.1 * COIN;
+    return 100000 * COIN;
 }
 
 int64_t GetMasternodePayment()
 {
-    return 1 * COIN;
+    return 0;
 }
 
 bool IsInitialBlockDownload()
@@ -1980,7 +1967,13 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
 
     if (pindex->nHeight > Params().LAST_POW_BLOCK() && block.IsProofOfWork())
     {
-        return state.DoS(100, error("ConnectBlock() : PoW period ended"),
+        return state.DoS(100, error("NO POW"),
+            REJECT_INVALID, "PoW-ended");
+    }
+
+    if (pindex->nHeight <= Params().LAST_POW_BLOCK() && !block.IsProofOfWork())
+    {
+        return state.DoS(100, error("NO POS"),
             REJECT_INVALID, "PoW-ended");
     }
 

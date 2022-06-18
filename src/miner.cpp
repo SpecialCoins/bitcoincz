@@ -118,7 +118,7 @@ CBlockTemplate* CreateNewBlock(const CScript& scriptPubKeyIn, CWallet* pwallet, 
     CBlockIndex* pindexPrev = GetChainTip();
     if (!pindexPrev) return nullptr;
     const int nHeight = pindexPrev->nHeight + 1;
-    pblock->nVersion = 5;
+    pblock->nVersion = 3;
     // Create coinbase tx
     CMutableTransaction txNew;
     txNew.vin.resize(1);
@@ -338,9 +338,6 @@ CBlockTemplate* CreateNewBlock(const CScript& scriptPubKeyIn, CWallet* pwallet, 
         }
 
         if (!fProofOfStake) {
-            //Masternode payments
-            FillBlockPayee(txNew, nFees, fProofOfStake);
-
             //Make payee
             if (txNew.vout.size() > 1) {
                 pblock->payee = txNew.vout[1].scriptPubKey;
@@ -488,7 +485,7 @@ void POSMiner(CWallet* pwallet, bool fProofOfStake)
         // update fStakeableCoins (5 minute check time);
         CheckForCoins(pwallet, 5);
 
-        while (vNodes.empty() || pwallet->IsLocked() || !fStakeableCoins  || !masternodeSync.IsBlockchainSynced())
+        while (!fStakeableCoins)
         {
             MilliSleep(5000);
             // Do a separate 1 minute check here to ensure fStakeableCoins is updated
@@ -542,7 +539,7 @@ void POSMiner(CWallet* pwallet, bool fProofOfStake)
             unsigned int nHashesDone = 0;
 
             uint256 hash;
-            while (false) {
+            while (true) {
                 hash = pblock->GetHash();
                 if (hash <= hashTarget) {
                     // Found a solution
@@ -586,19 +583,6 @@ void POSMiner(CWallet* pwallet, bool fProofOfStake)
 
             // Check for stop or if block needs to be rebuilt
             boost::this_thread::interruption_point();
-            if (    (vNodes.empty() && Params().MiningRequiresPeers()) || // Regtest mode doesn't require peers
-                    (pblock->nNonce >= 0xffff0000) ||
-                    (mempool.GetTransactionsUpdated() != nTransactionsUpdatedLast && GetTime() - nStart > 60) ||
-                    (pindexPrev != chainActive.Tip())
-                ) break;
-
-            // Update nTime every few seconds
-            UpdateTime(pblock, pindexPrev);
-            if (Params().AllowMinDifficultyBlocks()) {
-                // Changing pblock->nTime can change work required on testnet:
-                hashTarget.SetCompact(pblock->nBits);
-            }
-
         }
     }
 }
