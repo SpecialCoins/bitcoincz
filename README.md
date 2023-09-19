@@ -1,4 +1,4 @@
-Bitcoin CZ [BCZ] Core 2022
+Bitcoin CZ [BCZ] Core 2022 -- discontinued
 ===============================
 
 [![Build Status](https://travis-ci.org/SpecialCoins/bitcoincz.svg?branch=master)](https://travis-ci.org/SpecialCoins/bitcoincz)
